@@ -21,6 +21,45 @@ export default {
       borderRadius: {
         '4xl': '2.5rem',
       },
+      backgroundImage: {
+        'primary-gradient': 'linear-gradient(to left, #acb6e5, #74ebd5)',
+      },
+      colors: {
+        primary: {
+          DEFAULT: '#74ebd5',
+          '50': '#f0fdfa',
+          '100': '#cdfaf0',
+          '200': '#9af5e0',
+          '300': '#74ebd5',
+          '400': '#2fd2b8',
+          '500': '#16b6a0',
+          '600': '#0f9282',
+          '700': '#10756a',
+          '800': '#125d56',
+          '900': '#144d47',
+          '950': '#052e2c',
+        },
+
+        secondary: {
+          PRIMARY: '#acb6e5',
+          '50': '#f2f4fb',
+          '100': '#e7ebf8',
+          '200': '#d3d9f2',
+          '300': '#acb6e5',
+          '400': '#9ba1de',
+          '500': '#8284d2',
+          '600': '#6e69c2',
+          '700': '#5e58aa',
+          '800': '#4d498a',
+          '900': '#42406f',
+          '950': '#272640',
+        },
+
+        accent: '#657786',
+        success: '#28a745',
+        warning: '#ffc107',
+        danger: '#dc3545',
+      },
       fontFamily: {
         sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
         display: [

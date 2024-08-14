@@ -20,6 +20,8 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
+import logo from '@/images/logo-tagadart.webp'
+import Image from 'next/image'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -74,11 +76,13 @@ function Header({
             invert={invert}
             filled={logoHovered}
           />
-          <Logo
+          <Image src={logo} alt="Logo" width={120} height={20} />
+
+          {/* <Logo
             className="hidden h-8 sm:block"
             invert={invert}
             filled={logoHovered}
-          />
+          /> */}
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
