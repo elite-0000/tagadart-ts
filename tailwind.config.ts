@@ -21,6 +21,7 @@ export default {
       borderRadius: {
         '4xl': '2.5rem',
       },
+
       backgroundImage: {
         'primary-gradient': 'linear-gradient(to left, #acb6e5, #74ebd5)',
       },
@@ -60,10 +61,12 @@ export default {
         warning: '#ffc107',
         danger: '#dc3545',
       },
+
       fontFamily: {
-        sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
+        // sans: ['Mona Sans', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
         display: [
-          ['Mona Sans', ...defaultTheme.fontFamily.sans],
+          ['Inter var', ...defaultTheme.fontFamily.sans],
           { fontVariationSettings: '"wdth" 125' },
         ],
       },
