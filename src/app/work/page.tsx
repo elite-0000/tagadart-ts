@@ -30,7 +30,7 @@ function CaseStudies({
     <Container className="mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Case studies
+          Nos projets
         </h2>
       </FadeIn>
       <div className="mt-10 space-y-20 sm:space-y-24 lg:space-y-32">
@@ -56,7 +56,8 @@ function CaseStudies({
                     </p>
                     <p className="text-sm text-neutral-950 lg:mt-2">
                       <time dateTime={caseStudy.date}>
-                        {formatDate(caseStudy.date)}
+                        {/* {formatDate(caseStudy.date)} */}
+                        {caseStudy.date}
                       </time>
                     </p>
                   </div>
@@ -112,7 +113,7 @@ function Clients() {
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          You’re in good company
+          Vous êtes en bonne compagnies
         </h2>
       </FadeIn>
       <FadeInStagger className="mt-10" faster>
@@ -148,8 +149,8 @@ export default async function Work() {
   return (
     <>
       <PageIntro
-        eyebrow="Our work"
-        title="Proven solutions for real-world problems."
+        eyebrow="Nos projets"
+        title="Nous cherchons à se mettre dans la peau de nos clients pour répondre à leurs besoins"
       >
         <p>
           We believe in efficiency and maximizing our resources to provide the
@@ -160,13 +161,13 @@ export default async function Work() {
 
       <CaseStudies caseStudies={caseStudies} />
 
-      <Testimonial
+      {/* <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Mail Smirk', logo: logoMailSmirk }}
       >
         We approached <em>Studio</em> because we loved their past work. They
         delivered something remarkably similar in record time.
-      </Testimonial>
+      </Testimonial> */}
 
       <Clients />
 
