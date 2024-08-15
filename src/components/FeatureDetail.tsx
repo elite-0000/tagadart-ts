@@ -40,12 +40,12 @@ export default function FeatureDetail() {
                 Intelligence artificielle
               </p>
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                L'IA : Une alliée pour des sites web plus intelligents, plus
-                rapides et plus efficaces !
+                L&apos;IA : Une alliée pour des sites web plus intelligents,
+                plus rapides et plus efficaces !
               </h1>
               <p className="mt-6 text-xl leading-8 text-gray-700">
                 Que ce soit dans la santé, la finance ou la logistique, nos
-                solutions d'IA sur mesure optimisent les performances et
+                solutions d&apos;IA sur mesure optimisent les performances et
                 anticipent les besoins, nous positionnant en tant que leader
                 dans notre secteur. Ensemble, nous construisons un avenir plus
                 intelligent et compétitif.

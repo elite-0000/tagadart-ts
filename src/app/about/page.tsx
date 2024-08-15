@@ -193,9 +193,9 @@ export default async function About() {
     <>
       <PageIntro eyebrow="A propos" title="Une agence web eco-responsable">
         <p>
-          Chez Tagadart, en tant qu'agence web éco-responsable, nous nous
+          Chez Tagadart, en tant qu&apos;agence web éco-responsable, nous nous
           engageons à réduire notre empreinte écologique tout en maximisant
-          l'efficacité de nos solutions
+          l&apos;efficacité de nos solutions
         </p>
         <div className="mt-10 max-w-2xl space-y-6 text-base">
           <p>
@@ -207,7 +207,7 @@ export default async function About() {
           </p>
           <p>
             En choisissant Tagadart, vous optez pour une approche numérique
-            responsable, qui allie impact positif sur l'environnement et
+            responsable, qui allie impact positif sur l&apos;environnement et
             visibilité en ligne accrue.
           </p>
         </div>
