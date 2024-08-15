@@ -64,16 +64,16 @@ export default function FeatureDetail() {
           <div className="lg:pr-4">
             <div className="max-w-xl text-base leading-7 text-gray-700 lg:max-w-lg">
               <p>
-                L'intelligence artificielle incarne l'avenir de la technologie,
-                offrant aux entreprises des avantages inégalés. En s'appuyant
-                sur des algorithmes sophistiqués, l'IA permet une analyse rapide
-                et précise des données, révélant des tendances et des insights
-                pertinents tout en garantissant la confidentialité des
-                informations sensibles. Cette technologie révolutionnaire
-                facilite des processus automatisés plus efficaces, stimulant
-                l'innovation et la productivité. En résumé, l'IA pave la voie
-                vers un futur où protection des données et performance vont de
-                pair, sans compromis.
+                L&apos;intelligence artificielle incarne l&apos;avenir de la
+                technologie, offrant aux entreprises des avantages inégalés. En
+                s&apos;appuyant sur des algorithmes sophistiqués, l&apos;IA
+                permet une analyse rapide et précise des données, révélant des
+                tendances et des insights pertinents tout en garantissant la
+                confidentialité des informations sensibles. Cette technologie
+                révolutionnaire facilite des processus automatisés plus
+                efficaces, stimulant l&apos;innovation et la productivité. En
+                résumé, l&apos;IA pave la voie vers un futur où protection des
+                données et performance vont de pair, sans compromis.
               </p>
               {/* <ul role="list" className="mt-8 space-y-8 text-gray-600">
                 <li className="flex gap-x-3">
@@ -119,12 +119,12 @@ export default function FeatureDetail() {
               </ul> */}
               <p className="mt-8">
                 Notre société se spécialise dans le développement de solutions
-                innovantes basées sur l'intelligence artificielle, conçues pour
-                répondre aux besoins uniques de chaque client. Grâce à
-                l'automatisation de processus complexes et à l'analyse de
-                données à grande échelle, nous permettons aux entreprises
-                d'améliorer leur efficacité, de réduire les coûts et de stimuler
-                l'innovation.
+                innovantes basées sur l&apos;intelligence artificielle, conçues
+                pour répondre aux besoins uniques de chaque client. Grâce à
+                l&apos;automatisation de processus complexes et à l&apos;analyse
+                de données à grande échelle, nous permettons aux entreprises
+                d&apos;améliorer leur efficacité, de réduire les coûts et de
+                stimuler l&apos;innovation.
               </p>
             </div>
           </div>

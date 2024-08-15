@@ -29,17 +29,17 @@ function Culture() {
     <div className="mt-24 rounded-4xl bg-primary-800 py-24 sm:mt-32 lg:mt-40 lg:py-32">
       <SectionIntro eyebrow="Notre culture" title="IN GREEN WE TRUST" invert>
         <p>
-          Nous sommes une entreprise qui croit en la durabilité, l'éthique et
-          l'équité. Nous nous engageons à réduire notre empreinte écologique
-          tout en maximisant l'efficacité de nos solutions.
+          Nous sommes une entreprise qui croit en la durabilité, l&apos;éthique
+          et l&apos;équité. Nous nous engageons à réduire notre empreinte
+          écologique tout en maximisant l&apos;efficacité de nos solutions.
         </p>
       </SectionIntro>
       <Container className="mt-16">
         <GridList>
           <GridListItem title="Durabilité" invert>
-            L'engagement à créer des solutions numériques qui minimisent leur
-            impact environnemental, en optimisant la consommation d'énergie et
-            en réduisant les émissions de carbone.
+            L&apos;engagement à créer des solutions numériques qui minimisent
+            leur impact environnemental, en optimisant la consommation
+            d&apos;énergie et en réduisant les émissions de carbone.
           </GridListItem>
           <GridListItem title="Transparence " invert>
             Une communication claire et honnête avec les clients sur les
@@ -47,10 +47,10 @@ function Culture() {
             attendus, pour bâtir une relation de confiance.
           </GridListItem>
           <GridListItem title="Innovation Responsable" invert>
-            L'utilisation de technologies de pointe pour développer des
+            L&apos;utilisation de technologies de pointe pour développer des
             solutions performantes tout en respectant les principes de
-            durabilité, et en restant à l'avant-garde des pratiques éthiques
-            dans le domaine numérique.
+            durabilité, et en restant à l&apos;avant-garde des pratiques
+            éthiques dans le domaine numérique.
           </GridListItem>
         </GridList>
       </Container>
