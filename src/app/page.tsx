@@ -20,6 +20,9 @@ import logoPhobiaLight from '@/images/clients/phobia/logo-light.svg'
 import logoUnseal from '@/images/clients/unseal/logo-light.svg'
 import imageLaptop from '@/images/laptop.jpg'
 import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
+import Features from '@/components/Features'
+
+import Posts from '@/components/Posts'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -35,13 +38,13 @@ const clients = [
 
 function Clients() {
   return (
-    <div className="bg-primary-gradient mt-24 rounded-4xl py-20 sm:mt-32 sm:py-32 lg:mt-56">
+    <div className="mt-24 rounded-4xl bg-primary-gradient py-20 sm:mt-32 sm:py-32 lg:mt-56">
       <Container>
         <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-primary-950 text-center font-display text-sm font-semibold tracking-wider sm:text-left">
-            We’ve worked with hundreds of amazing people
+          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-primary-950 sm:text-left">
+            Nous avons déjà collaboré avec des cliens fabuleux
           </h2>
-          <div className="bg-primary-950 h-px flex-auto" />
+          <div className="h-px flex-auto bg-primary-950" />
         </FadeIn>
         <FadeInStagger faster>
           <ul
@@ -69,10 +72,7 @@ function CaseStudies({
 }) {
   return (
     <>
-      <SectionIntro
-        title="Harnessing technology for a brighter future"
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
+      <SectionIntro title="Nos projets" className="mt-24 sm:mt-32 lg:mt-40">
         <p>
           Des solutions digitales adaptées, consciencieuses et efficaces pour
           vos besoins de demain.
@@ -128,48 +128,35 @@ function Services() {
     <>
       <SectionIntro
         eyebrow="Services"
-        title="We help you identify, explore and respond to new opportunities."
+        title="Des sites durables pour un avenir responsable !"
         className="mt-24 sm:mt-32 lg:mt-40"
       >
         <p>
-          As long as those opportunities involve giving us money to re-purpose
-          old projects — we can come up with an endless number of those.
+          L’importance de concevoir et de gérer des plateformes en ligne qui
+          respectent les principes de durabilité et de responsabilité
+          environnementale
         </p>
       </SectionIntro>
-      <Container className="mt-16">
-        <div className="lg:flex lg:items-center lg:justify-end">
-          <div className="flex justify-center lg:w-1/2 lg:justify-end lg:pr-12">
-            <FadeIn className="w-[33.75rem] flex-none lg:w-[45rem]">
-              <StylizedImage
-                src={imageLaptop}
-                sizes="(min-width: 1024px) 41rem, 31rem"
-                className="justify-center lg:justify-end"
-              />
-            </FadeIn>
-          </div>
-          <List className="mt-16 lg:mt-0 lg:w-1/2 lg:min-w-[33rem] lg:pl-4">
-            <ListItem title="Web development">
-              We specialise in crafting beautiful, high quality marketing pages.
-              The rest of the website will be a shell that uses lorem ipsum
-              everywhere.
-            </ListItem>
-            <ListItem title="Application development">
-              We have a team of skilled developers who are experts in the latest
-              app frameworks, like Angular 1 and Google Web Toolkit.
-            </ListItem>
-            <ListItem title="E-commerce">
-              We are at the forefront of modern e-commerce development. Which
-              mainly means adding your logo to the Shopify store template we’ve
-              used for the past six years.
-            </ListItem>
-            <ListItem title="Custom content management">
-              At Studio we understand the importance of having a robust and
-              customised CMS. That’s why we run all of our client projects out
-              of a single, enormous Joomla instance.
-            </ListItem>
-          </List>
-        </div>
-      </Container>
+      <Features />
+    </>
+  )
+}
+
+function Blog() {
+  return (
+    <>
+      <SectionIntro
+        eyebrow="Blog"
+        title="Nos articles pour se tenir au courant des nouveautés digitales !"
+        className="mt-24 sm:mt-32 lg:mt-40"
+      >
+        {/* <p>
+          L’importance de concevoir et de gérer des plateformes en ligne qui
+          respectent les principes de durabilité et de responsabilité
+          environnementale
+        </p> */}
+      </SectionIntro>
+      <Posts />
     </>
   )
 }
@@ -187,12 +174,10 @@ export default async function Home() {
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Award-winning development studio based in Denmark.
+            Tagadart, une agence digitale eco-responsable
           </h1>
           <p className="mt-6 text-xl text-neutral-600">
-            We are a development studio working at the intersection of design
-            and technology. It’s a really busy intersection though — a lot of
-            our staff have been involved in hit and runs.
+            Connectez-vous à un avenir durable
           </p>
         </FadeIn>
       </Container>
@@ -201,16 +186,17 @@ export default async function Home() {
 
       <CaseStudies caseStudies={caseStudies} />
 
-      <Testimonial
+      {/* <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
         client={{ name: 'Phobia', logo: logoPhobiaDark }}
       >
         The team at Studio went above and beyond with our onboarding, even
         finding a way to access the user’s microphone without triggering one of
         those annoying permission dialogs.
-      </Testimonial>
+      </Testimonial> */}
 
       <Services />
+      <Blog />
 
       <ContactSection />
     </>
