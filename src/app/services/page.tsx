@@ -14,6 +14,7 @@ import { TagList, TagListItem } from '@/components/TagList'
 import imageLaptop from '@/images/laptop.jpg'
 import imageMeeting from '@/images/meeting.jpg'
 import imageWhiteboard from '@/images/whiteboard.jpg'
+import Features from '@/components/Features'
 
 function Section({
   title,
@@ -240,29 +241,34 @@ function Values() {
 }
 
 export const metadata: Metadata = {
-  title: 'Our Process',
+  title: 'Our Services',
   description:
     'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
 }
 
-export default function Process() {
+export default function Services() {
   return (
     <>
-      <PageIntro eyebrow="Our process" title="How we work">
+      <PageIntro
+        eyebrow="Nos services"
+        title="Des sites durables pour un avenir responsable !"
+      >
         <p>
-          We believe in efficiency and maximizing our resources to provide the
-          best value to our clients. The primary way we do that is by re-using
-          the same five projects we’ve been developing for the past decade.
+          L’importance de concevoir et de gérer des plateformes en ligne qui
+          respectent les principes de durabilité et de responsabilité
+          environnementale
         </p>
       </PageIntro>
 
-      <div className="mt-24 space-y-24 [counter-reset:section] sm:mt-32 sm:space-y-32 lg:mt-40 lg:space-y-40">
+      <Features />
+
+      {/* <div className="mt-24 space-y-24 [counter-reset:section] sm:mt-32 sm:space-y-32 lg:mt-40 lg:space-y-40">
         <Discover />
         <Build />
         <Deliver />
-      </div>
+      </div> */}
 
-      <Values />
+      {/* <Values /> */}
 
       <ContactSection />
     </>
