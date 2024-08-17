@@ -2,6 +2,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
+import { MediaItem } from '@/types/global'
 
 export function PageIntro({
   eyebrow,
@@ -13,7 +14,9 @@ export function PageIntro({
   title: string
   children: React.ReactNode
   centered?: boolean
+  cover?: MediaItem
 }) {
+  //TODO: Add a cover image to this component
   return (
     <Container
       className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}
