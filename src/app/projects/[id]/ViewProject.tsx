@@ -4,7 +4,7 @@ import React from 'react'
 import useSWR from 'swr'
 
 import { fetchAxiosAPI } from '@/request/request'
-import { BaseData, FormValues } from '@/types/global'
+import { BaseData } from '@/types/global'
 
 type Props = {
   params: any

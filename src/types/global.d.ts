@@ -51,70 +51,6 @@ export type ItemType = {
 
 export type ValueType = string | number | boolean
 
-//****** TABLE ******\\
-export type FormValues = BaseItem & {
-  // dateRange?: {
-  //   from?: Date | string | undefined | null | "" | number;
-  //   to?: Date | null | string | number;
-  // };
-  // publishedDateRange?: {
-  //   from?: Date | string | undefined | null | "" | number;
-  //   to?: Date | null | string | number;
-  // };
-  id?: number
-  publishedDate?: Date
-  unPublishedDate?: Date
-  publishedAt?: Date
-  unPublishedAt?: Date
-
-  location?: {
-    latitude: number
-    longitude: number
-    address: string
-  }
-  actions?: string
-  name?: string
-  surname?: string
-  dicastere?: string
-  function?: string
-  status?: string
-  address?: string
-  phone?: string
-  mail?: string
-  website?: string
-  type?: string //TODO: Replace by type from ActivityType and after other types....
-
-  // Ajoutez d'autres champs spécifiques au formulaire si nécessaire
-}
-// export type FormValues = {
-//   id?: number;
-//   title: string;
-//   contentRTE?: any;
-//   cover?: any;
-//   type: "Actualités" | "Pilier public" | "Emploi"; //for Select
-//   startDate?: Date;
-//   endDate?: Date;
-//   publishedAt?: Date;
-//   unPublishedAt?: Date;
-//   status?: string;
-//   actions?: string;
-//   publishedDateRange?: {
-//     from?: Date;
-//     to?: Date;
-//   };
-//   dateRange?: {
-//     from?: Date;
-//     to?: Date;
-//   };
-// };
-
-export type ColumnProps = {
-  value: keyof FormValues
-  label: string
-  labelTx?: string
-  type: 'string' | 'date' | 'status' | 'actions' | 'id' | 'dateRange' | 'custom'
-}
-
 //****** IMAGE ******\\
 export const imageItemSchema = object({
   public_id: string(),
@@ -169,4 +105,148 @@ export interface PaginationMeta {
 export interface Data {
   data: any
   meta: PaginationMeta
+}
+
+//TEMP quick ts
+
+//PageIntro.ts
+export interface PageIntro {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+}
+
+// Reference.ts
+export interface Reference {
+  title: string
+  logo: string[]
+}
+
+// Blog.ts
+export interface Blog {
+  title: string
+  subtitle: string
+  project: Project[]
+}
+
+// Services.ts
+export interface Services {
+  title: string
+  subtitle: string
+  project: Project[]
+}
+
+// ProjectCard.ts
+export interface ProjectCard {
+  title: string
+  subtitle: string
+  project: Project[]
+}
+
+// Testimonials.ts
+export interface Testimonials {
+  text: string
+  author: string
+}
+
+// Service.ts
+export interface Service {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+  icon: string
+  relatedProjects: Project[]
+  cta: CTA
+}
+
+// Project.ts
+export interface Project {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+  year: string
+  client: string
+  service: string
+  technologies: string[]
+  testimonial: Testimonial
+  expertise: string
+  moreProjects: Project[]
+  cta: CTA
+  link: string
+}
+
+// BlogPost.ts
+export interface BlogPost {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+  date: string
+  author: Author
+}
+
+// Author.ts
+export interface Author {
+  avatar: string
+  fullname: string
+}
+
+// AboutUs.ts
+export interface AboutUs {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+  culture: Culture
+  team: Team[]
+}
+
+// Culture.ts
+export interface Culture {
+  title: string
+  subtitle: string
+  rte: string[]
+}
+
+// Team.ts
+export interface Team {
+  photo: string
+  fullname: string
+}
+
+// Contact.ts
+export interface Contact {
+  title: string
+  eyebrow: string
+  description: string
+  image: string
+  offices: Office[]
+  newsletter: boolean
+  form: Form
+}
+
+// Office.ts
+export interface Office {
+  title: string
+  address: string
+  email: string
+  phone: string
+}
+
+// Form.ts
+export interface Form {
+  // Define form fields here
+}
+
+// CTA.ts
+export interface CTA {
+  // Define CTA fields here
+}
+
+// Testimonial.ts
+export interface Testimonial {
+  // Define Testimonial fields here
 }
