@@ -19,6 +19,7 @@ export const baseSchema = object({
 export type BaseItem = {
   id: number
   title: string
+  client: string
   description?: string
   contentRTE?: string
   startDate?: Date
