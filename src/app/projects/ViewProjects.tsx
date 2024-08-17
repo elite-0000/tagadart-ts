@@ -9,7 +9,6 @@ export const ViewProjects = () => {
     <>
       <Fetcher url="/projects">
         {({ data: projects }) => {
-          console.log(projects, 'projects')
           return (
             //TODO: Create a component for this
             <div className="my-3 px-4">
