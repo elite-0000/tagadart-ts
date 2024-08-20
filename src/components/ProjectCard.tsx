@@ -35,23 +35,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
               <Image
-                src={project.logo}
+                src={project?.logo}
                 alt=""
                 className="h-16 w-16 flex-none"
                 unoptimized
               />
               <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                {project.client}
+                {project?.client}
               </h3>
             </div>
             <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
               <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                {project.service}
+                {project?.service}
               </p>
               <p className="text-sm text-neutral-950 lg:mt-2">
-                <time dateTime={project.date}>
+                <time dateTime={project?.date}>
                   {/* {formatDate(project.date)} */}
-                  {project.date}
+                  {project?.date}
                 </time>
               </p>
             </div>
