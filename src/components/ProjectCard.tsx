@@ -34,12 +34,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <div className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
           <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
-              <Image
-                src={project?.logo}
-                alt=""
-                className="h-16 w-16 flex-none"
-                unoptimized
-              />
+              {project?.logo && (
+                <Image
+                  src={project?.logo}
+                  alt=""
+                  className="h-16 w-16 flex-none"
+                  unoptimized
+                />
+              )}
               <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
                 {project?.client}
               </h3>
