@@ -56,7 +56,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 }
 
 const ServicesSection: React.FC<ServicesProps> = ({ servicesSection }) => {
-  const { title, content, eyebrow, our_services } = servicesSection
+  const { title, content, eyebrow, our_services } = servicesSection || ''
+  //   const { title, content, eyebrow } = pageIntro
 
   return (
     <>

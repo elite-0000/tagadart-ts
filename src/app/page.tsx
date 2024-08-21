@@ -74,14 +74,12 @@ export default async function Home() {
     projectsSection,
     servicesSection,
     blogSection,
-  } = homeData.data
-
-  console.log(pageIntro, 'pageIntro')
+  } = homeData?.data
 
   return (
     <>
       <h1>Empt</h1>
-      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
+      <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <PageIntro {...pageIntro} />
         </FadeIn>
@@ -90,7 +88,7 @@ export default async function Home() {
       <ProjectsSection projectsSection={projectsSection} />
       <ServicesSection servicesSection={servicesSection} />
       <BlogSection blogSection={blogSection} />
-      <ContactSection /> */}
+      <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>
   )

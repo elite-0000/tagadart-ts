@@ -30,7 +30,7 @@ interface ProjectsProps {
 }
 
 const ProjectsSection: React.FC<ProjectsProps> = ({ projectsSection }) => {
-  const { projects, title, content, eyebrow } = projectsSection
+  const { projects, title, content, eyebrow } = projectsSection || ''
   //   const { title, content, eyebrow } = pageIntro
 
   return (
