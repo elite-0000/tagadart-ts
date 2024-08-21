@@ -25,8 +25,9 @@ import Posts from '@/components/Posts'
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { RestQueryParams } from '@/types/global'
-import Projects from '@/components/sections/ProjectsSection'
+import ProjectsSection from '@/components/sections/ProjectsSection'
 import BlogSection from '@/components/sections/BlogSection'
+import ServicesSection from '@/components/sections/ServicesSection'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -176,6 +177,8 @@ export default async function Home() {
     'pageIntro',
     'referencesSection',
     'servicesSection',
+    'servicesSection.our_services',
+    'servicesSection.our_services.pageIntro',
     'blogSection',
     'blogSection.posts',
     'blogSection.posts.pageIntro',
@@ -220,7 +223,8 @@ export default async function Home() {
         </FadeIn>
       </Container>
 
-      <Projects projectsSection={projectsSection} />
+      <ProjectsSection projectsSection={projectsSection} />
+      <ServicesSection servicesSection={servicesSection} />
       {/* <Clients /> */}
       <BlogSection blogSection={blogSection} />
 

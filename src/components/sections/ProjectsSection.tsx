@@ -29,7 +29,7 @@ interface ProjectsProps {
   projectsSection: ProjectsSectionProps
 }
 
-const Projects: React.FC<ProjectsProps> = ({ projectsSection }) => {
+const ProjectsSection: React.FC<ProjectsProps> = ({ projectsSection }) => {
   const { projects, title, content, eyebrow } = projectsSection
   //   const { title, content, eyebrow } = pageIntro
 
@@ -78,4 +78,4 @@ const Projects: React.FC<ProjectsProps> = ({ projectsSection }) => {
   )
 }
 
-export default Projects
+export default ProjectsSection
