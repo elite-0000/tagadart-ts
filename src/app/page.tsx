@@ -26,6 +26,7 @@ import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/components/PageIntro'
 import { RestQueryParams } from '@/types/global'
 import Projects from '@/components/ProjectsSection'
+import BlogSection from '@/components/BlogSection'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -170,14 +171,15 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  let caseStudies = (await loadCaseStudies()).slice(0, 3)
-
   const populateHome = [
     'cover',
     'referencesSection',
-    'projectsSection',
     'servicesSection',
     'blogSection',
+    'blogSection.posts',
+    'blogSection.posts.pageIntro',
+    'blogSection.posts.author',
+    'projectsSection',
     'projectsSection.projects',
     'projectsSection.projects.pageIntro',
   ]
@@ -204,43 +206,22 @@ export default async function Home() {
     referencesSection,
     projectsSection,
     servicesSection,
-    BlogSection,
+    blogSection,
   } = homeData.data
 
-  console.log(projectsSection, 'projectsSection')
+  console.log(blogSection, 'blogSection')
 
   return (
     <>
-      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
+      <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
-            Tagadart, une agence digitale eco-responsable
-          </h1>
-          <p className="mt-6 text-xl text-neutral-600">
-            Connectez-vous à un avenir durable
-          </p>
+          <PageIntro {...pageIntro} />
         </FadeIn>
-      </Container> */}
-
-      <PageIntro {...pageIntro} />
+      </Container>
 
       <Projects projectsSection={projectsSection} />
-
-      <Clients />
-
-      {/* <CaseStudies caseStudies={caseStudies} /> */}
-
-      {/* <Testimonial
-        className="mt-24 sm:mt-32 lg:mt-40"
-        client={{ name: 'Phobia', logo: logoPhobiaDark }}
-      >
-        The team at Studio went above and beyond with our onboarding, even
-        finding a way to access the user’s microphone without triggering one of
-        those annoying permission dialogs.
-      </Testimonial> */}
-
-      <Services />
-      <Blog />
+      {/* <Clients /> */}
+      <BlogSection blogSection={blogSection} />
 
       <ContactSection />
     </>

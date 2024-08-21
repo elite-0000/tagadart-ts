@@ -113,7 +113,7 @@ export interface Data {
 export interface PageIntro {
   title: string
   eyebrow: string
-  description: string
+  content: any
   image: string
 }
 
