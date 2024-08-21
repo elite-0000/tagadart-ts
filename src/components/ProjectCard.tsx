@@ -27,7 +27,6 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  console.log(project, 'project')
   return (
     <FadeIn key={project.client}>
       <article>

@@ -22,6 +22,7 @@ import { type CaseStudy, type MDXEntry, loadCaseStudies } from '@/lib/mdx'
 import Features from '@/components/Features'
 
 import Posts from '@/components/Posts'
+import { fetchAxiosAPI } from '@/request/request'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -167,6 +168,15 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
+
+  let homeData
+  try {
+    homeData = await fetchAxiosAPI('home')
+  } catch (error) {
+    // Handle the error appropriately here
+    console.error('Failed to load home data:', error)
+    return <div>Failed to load data</div>
+  }
 
   return (
     <>
