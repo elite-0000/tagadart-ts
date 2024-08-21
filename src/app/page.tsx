@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { ContactSection } from '@/components/ContactSection'
+import { ContactSection } from '@/components/sections/ContactSection'
 import { Container } from '@/components/Container'
 import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { List, ListItem } from '@/components/List'
@@ -23,10 +23,10 @@ import Features from '@/components/Features'
 
 import Posts from '@/components/Posts'
 import { fetchAxiosAPI } from '@/request/request'
-import { PageIntro } from '@/components/PageIntro'
+import { PageIntro } from '@/components/sections/PageIntro'
 import { RestQueryParams } from '@/types/global'
-import Projects from '@/components/ProjectsSection'
-import BlogSection from '@/components/BlogSection'
+import Projects from '@/components/sections/ProjectsSection'
+import BlogSection from '@/components/sections/BlogSection'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -173,6 +173,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   const populateHome = [
     'cover',
+    'pageIntro',
     'referencesSection',
     'servicesSection',
     'blogSection',
@@ -209,7 +210,7 @@ export default async function Home() {
     blogSection,
   } = homeData.data
 
-  console.log(blogSection, 'blogSection')
+  console.log(pageIntro, 'pageIntro')
 
   return (
     <>

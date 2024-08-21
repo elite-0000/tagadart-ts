@@ -1,10 +1,10 @@
 import React from 'react'
-import { SectionIntro } from './SectionIntro'
-import { Container } from './Container'
-import { FadeIn } from './FadeIn'
+import { SectionIntro } from '../SectionIntro'
+import { Container } from '../Container'
+import { FadeIn } from '../FadeIn'
 import ReactMarkdown from 'react-markdown'
-import Posts from './Posts' // Assumant que Posts est un autre composant qui affiche les articles du blog
-import PostCard from './PostCard'
+import Posts from '../Posts' // Assumant que Posts est un autre composant qui affiche les articles du blog
+import PostCard from '../PostCard'
 
 interface BlogSectionProps {
   id: number

@@ -1,7 +1,7 @@
 import React from 'react'
-import { SectionIntro } from './SectionIntro'
-import { Container } from './Container'
-import { FadeIn, FadeInStagger } from './FadeIn'
+import { SectionIntro } from '../SectionIntro'
+import { Container } from '../Container'
+import { FadeIn, FadeInStagger } from '../FadeIn'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 
