@@ -3,6 +3,7 @@ import { SectionIntro } from './SectionIntro'
 import { Container } from './Container'
 import { FadeIn, FadeInStagger } from './FadeIn'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 
 interface Project {
   id: number
@@ -47,6 +48,7 @@ const Projects: React.FC<ProjectsProps> = ({ projectsSection }) => {
             <FadeIn key={project.id} className="flex">
               <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
                 <h3>
+                  {/* TODO: Add logo if available */}
                   <Link href={`/projects/${project.id}`}>
                     <span className="absolute inset-0 rounded-3xl" />
                     {project.client}
@@ -65,7 +67,7 @@ const Projects: React.FC<ProjectsProps> = ({ projectsSection }) => {
                   {project.pageIntro.title}
                 </p>
                 <p className="mt-4 text-base text-neutral-600">
-                  {project.pageIntro.content}
+                  <ReactMarkdown>{project.pageIntro.content}</ReactMarkdown>
                 </p>
               </article>
             </FadeIn>
