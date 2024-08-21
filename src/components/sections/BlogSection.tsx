@@ -31,9 +31,7 @@ const BlogSection: React.FC<BlogProps> = ({ blogSection }) => {
       </SectionIntro>
       <Container className="mt-16">
         <FadeIn>
-          {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
-          ))}
+          {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
         </FadeIn>
       </Container>
     </>
