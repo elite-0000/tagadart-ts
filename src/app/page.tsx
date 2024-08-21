@@ -80,7 +80,8 @@ export default async function Home() {
 
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
+      <h1>Empt</h1>
+      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <PageIntro {...pageIntro} />
         </FadeIn>
@@ -88,9 +89,9 @@ export default async function Home() {
 
       <ProjectsSection projectsSection={projectsSection} />
       <ServicesSection servicesSection={servicesSection} />
-      {/* <referencesSection /> //TODO : later add client/reference section */}
       <BlogSection blogSection={blogSection} />
-      <ContactSection />
+      <ContactSection /> */}
+      {/* <referencesSection /> //TODO : later add client/reference section */}
     </>
   )
 }
