@@ -29,146 +29,9 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
 import BlogSection from '@/components/sections/BlogSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 
-const clients = [
-  //TODO: Add EPFL, Daille, and other clients
-  ['Phobia', logoPhobiaLight],
-  ['Family Fund', logoFamilyFund],
-  ['Unseal', logoUnseal],
-  ['Mail Smirk', logoMailSmirk],
-  ['Home Work', logoHomeWork],
-  ['Green Life', logoGreenLife],
-  ['Bright Path', logoBrightPath],
-  ['North Adventures', logoNorthAdventures],
-]
-
-function Clients() {
-  return (
-    <div className="mt-24 rounded-4xl bg-primary-gradient py-20 sm:mt-32 sm:py-32 lg:mt-56">
-      <Container>
-        <FadeIn className="flex items-center gap-x-8">
-          <h2 className="text-center font-display text-sm font-semibold tracking-wider text-primary-950 sm:text-left">
-            Nous avons déjà collaboré avec des cliens fabuleux
-          </h2>
-          <div className="h-px flex-auto bg-primary-950" />
-        </FadeIn>
-        <FadeInStagger faster>
-          <ul
-            role="list"
-            className="mt-10 grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4"
-          >
-            {clients.map(([client, logo]) => (
-              <li key={client}>
-                <FadeIn>
-                  <Image src={logo} alt={client} unoptimized />
-                </FadeIn>
-              </li>
-            ))}
-          </ul>
-        </FadeInStagger>
-      </Container>
-    </div>
-  )
-}
-
-function CaseStudies({
-  caseStudies,
-}: {
-  caseStudies: Array<MDXEntry<CaseStudy>>
-}) {
-  return (
-    <>
-      <SectionIntro title="Nos projets" className="mt-24 sm:mt-32 lg:mt-40">
-        <p>
-          Des solutions digitales adaptées, consciencieuses et efficaces pour
-          vos besoins de demain.
-        </p>
-      </SectionIntro>
-      <Container className="mt-16">
-        <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {caseStudies.map((caseStudy) => (
-            <FadeIn key={caseStudy.href} className="flex">
-              <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
-                <h3>
-                  <Link href={caseStudy.href}>
-                    <span className="absolute inset-0 rounded-3xl" />
-                    <Image
-                      src={caseStudy.logo}
-                      alt={caseStudy.client}
-                      // className="h-8"
-                      // width={160}
-                      height={32}
-                      unoptimized
-                    />
-                  </Link>
-                </h3>
-                <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
-                  <time
-                    dateTime={caseStudy.date.split('-')[0]}
-                    className="font-semibold"
-                  >
-                    {caseStudy.date.split('-')[0]}
-                  </time>
-                  <span className="text-neutral-300" aria-hidden="true">
-                    /
-                  </span>
-                  <span>Case study</span>
-                </p>
-                <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
-                  {caseStudy.title}
-                </p>
-                <p className="mt-4 text-base text-neutral-600">
-                  {caseStudy.description}
-                </p>
-              </article>
-            </FadeIn>
-          ))}
-        </FadeInStagger>
-      </Container>
-    </>
-  )
-}
-
-function Services() {
-  return (
-    <>
-      <SectionIntro
-        eyebrow="Services"
-        title="Des sites durables pour un avenir responsable !"
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>
-          L’importance de concevoir et de gérer des plateformes en ligne qui
-          respectent les principes de durabilité et de responsabilité
-          environnementale
-        </p>
-      </SectionIntro>
-      <Features />
-    </>
-  )
-}
-
-function Blog() {
-  return (
-    <>
-      <SectionIntro
-        eyebrow="Blog"
-        title="Nos articles pour se tenir au courant des nouveautés digitales !"
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        {/* <p>
-          L’importance de concevoir et de gérer des plateformes en ligne qui
-          respectent les principes de durabilité et de responsabilité
-          environnementale
-        </p> */}
-      </SectionIntro>
-      <Posts />
-    </>
-  )
-}
-
 export const metadata: Metadata = {
   description:
-    'We are a development studio working at the intersection of design and technology.',
+    'Agence de développement web et mobile en Suisse. Nous créons des applications web et mobiles sur mesure pour les entreprises et les startups.',
 }
 
 export default async function Home() {
@@ -227,7 +90,6 @@ export default async function Home() {
       <ServicesSection servicesSection={servicesSection} />
       {/* <referencesSection /> //TODO : later add client/reference section */}
       <BlogSection blogSection={blogSection} />
-
       <ContactSection />
     </>
   )
