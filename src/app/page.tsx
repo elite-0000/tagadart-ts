@@ -225,7 +225,7 @@ export default async function Home() {
 
       <ProjectsSection projectsSection={projectsSection} />
       <ServicesSection servicesSection={servicesSection} />
-      {/* <Clients /> */}
+      {/* <referencesSection /> //TODO : later add client/reference section */}
       <BlogSection blogSection={blogSection} />
 
       <ContactSection />
