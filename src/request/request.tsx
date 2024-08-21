@@ -1,56 +1,56 @@
 // @ts-ignore
 
-import axios, { AxiosRequestHeaders, AxiosResponse } from "axios";
+import axios, { AxiosRequestHeaders, AxiosResponse } from 'axios'
 
-import { Data, ImageUpload, RestQueryParams } from "@/types/global";
+import { Data, ImageUpload, RestQueryParams } from '@/types/global'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:1337";
-axios.defaults.baseURL = `${API_URL}/api`;
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:1337'
+axios.defaults.baseURL = `${API_URL}/api`
 
 export const defaultQueryParams: RestQueryParams = {
   // sort: "publishedAt:desc",
-  sort: "id:desc",
-  populate: "*",
-  publicationState: "preview",
+  sort: 'id:desc',
+  populate: '*',
+  publicationState: 'preview',
   pagination: {
     page: 1,
     pageSize: 10,
   },
-};
+}
 export async function fetchUseSWR(
   path: string,
-  userToken?: string | null
+  userToken?: string | null,
 ): Promise<Data> {
-  const headers: any = {};
+  const headers: any = {}
 
   if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
+    headers.Authorization = `Bearer ${userToken}`
   }
   try {
-    const response = await axios.get(`${path}`, { headers });
+    const response = await axios.get(`${path}`, { headers })
 
-    return response.data;
+    return response.data
   } catch (err) {
-    console.error(err, "fetchUseSWR fetching error, path:", path);
-    throw err;
+    console.error(err, 'fetchUseSWR fetching error, path:', path)
+    throw err
   }
 }
 
 export async function fetchAxiosAPI(
   path: string,
   params = defaultQueryParams,
-  userToken?: string | null
+  userToken?: string | null,
 ) {
-  const headers: any = {};
+  const headers: any = {}
 
   if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
+    headers.Authorization = `Bearer ${userToken}`
   }
   try {
-    const response = await axios.get(`${path}`, { headers, params });
-    return response.data;
+    const response = await axios.get(`${path}`, { headers, params })
+    return response.data
   } catch (err) {
-    console.error(err, "fetchAxiosAPI fetching error, path:", path);
+    console.error(err, 'fetchAxiosAPI fetching error, path:', path)
   }
 }
 
@@ -77,42 +77,42 @@ export async function fetchAxiosAPI(
 export async function postAxiosAPI<T = any>(
   path: string,
   data: FormData | Record<string, unknown>,
-  userToken?: string | null
+  userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders;
+  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders
 
   //TS check why shouldErrorTs didn't make an error
   if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
+    headers.Authorization = `Bearer ${userToken}`
     // headers.shouldErrorTs = `Bearer ${userToken}`;
   }
 
   try {
-    const response = await axios.post<T>(path, data, { headers });
-    return response;
+    const response = await axios.post<T>(path, data, { headers })
+    return response
   } catch (err) {
-    console.error("Axios Post error, path:", path, err);
-    throw err;
+    console.error('Axios Post error, path:', path, err)
+    throw err
   }
 }
 
 export async function putAxiosAPI<T = any>(
   path: string,
   data: FormData | Record<string, unknown>,
-  userToken?: string | null
+  userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders;
+  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders
 
   if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
+    headers.Authorization = `Bearer ${userToken}`
   }
 
   try {
-    const response = await axios.put<T>(path, data, { headers });
-    return response;
+    const response = await axios.put<T>(path, data, { headers })
+    return response
   } catch (err) {
-    console.error("Axios Post error, path:", path, err);
-    throw err;
+    console.error('Axios Post error, path:', path, err)
+    throw err
   }
 }
 
@@ -140,17 +140,17 @@ export async function putAxiosAPI<T = any>(
 // }
 
 export async function deleteAxiosAPI(path: string, userToken?: string | null) {
-  const headers: any = {};
+  const headers: any = {}
 
   if (userToken) {
-    headers.Authorization = `Bearer ${userToken}`;
+    headers.Authorization = `Bearer ${userToken}`
   }
 
   try {
-    const response = await axios.delete(path, { headers });
-    return response;
+    const response = await axios.delete(path, { headers })
+    return response
   } catch (err) {
-    console.error(err, "Axios Delete error, path:", path);
-    throw err;
+    console.error(err, 'Axios Delete error, path:', path)
+    throw err
   }
 }

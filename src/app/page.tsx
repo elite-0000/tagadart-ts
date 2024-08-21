@@ -23,6 +23,9 @@ import Features from '@/components/Features'
 
 import Posts from '@/components/Posts'
 import { fetchAxiosAPI } from '@/request/request'
+import { PageIntro } from '@/components/PageIntro'
+import { RestQueryParams } from '@/types/global'
+import Projects from '@/components/ProjectsSection'
 
 const clients = [
   //TODO: Add EPFL, Daille, and other clients
@@ -169,18 +172,46 @@ export const metadata: Metadata = {
 export default async function Home() {
   let caseStudies = (await loadCaseStudies()).slice(0, 3)
 
+  const populateHome = [
+    'cover',
+    'referencesSection',
+    'projectsSection',
+    'servicesSection',
+    'blogSection',
+    'projectsSection.projects',
+    'projectsSection.projects.pageIntro',
+  ]
+
+  const defaultQueryParams: RestQueryParams = {
+    populate: populateHome,
+    publicationState: 'preview',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
   let homeData
   try {
-    homeData = await fetchAxiosAPI('home')
+    homeData = await fetchAxiosAPI('home', defaultQueryParams)
   } catch (error) {
     // Handle the error appropriately here
     console.error('Failed to load home data:', error)
     return <div>Failed to load data</div>
   }
+  const {
+    pageIntro,
+    referencesSection,
+    projectsSection,
+    servicesSection,
+    BlogSection,
+  } = homeData.data
+
+  console.log(projectsSection, 'projectsSection')
 
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
+      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <h1 className="font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-7xl">
             Tagadart, une agence digitale eco-responsable
@@ -189,11 +220,15 @@ export default async function Home() {
             Connectez-vous à un avenir durable
           </p>
         </FadeIn>
-      </Container>
+      </Container> */}
+
+      <PageIntro {...pageIntro} />
+
+      <Projects projectsSection={projectsSection} />
 
       <Clients />
 
-      <CaseStudies caseStudies={caseStudies} />
+      {/* <CaseStudies caseStudies={caseStudies} /> */}
 
       {/* <Testimonial
         className="mt-24 sm:mt-32 lg:mt-40"
