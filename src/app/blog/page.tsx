@@ -53,8 +53,8 @@ export default async function Blog() {
 
   return (
     <>
-      <PageIntro {...blogSection}>
-        <p>{blogSection.content}</p>
+      <PageIntro {...pageIntro}>
+        <p>{pageIntro.content}</p>
       </PageIntro>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
