@@ -10,6 +10,8 @@ import { FadeIn } from '@/components/FadeIn'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { formatDate } from '@/lib/formatDate'
 import { loadArticles } from '@/lib/mdx'
+import { fetchAxiosAPI } from '@/request/request'
+import { RestQueryParams } from '@/types/global'
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -19,10 +21,41 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
   let articles = await loadArticles()
+  const populateBlog = [
+    'pageIntro',
+    'blogSection',
+    'blogSection.title',
+    'blogSection.eyebrow',
+    'blogSection.content',
+    'blogSection.posts',
+    'blogSection.posts.pageIntro',
+    'blogSection.posts.author',
+  ]
+
+  const defaultQueryParams: RestQueryParams = {
+    populate: populateBlog,
+    publicationState: 'preview',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  let blogData;
+  try {
+    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams)
+  } catch (error) {
+    // Handle the error appropriately here
+    console.error('Failed to load blog data:', error)
+    return <div>Failed to load data</div>
+  }
+  const { pageIntro, blogSection } = blogData?.data
 
   return (
     <>
-      <></>
+      <PageIntro {...blogSection}>
+        <p>{blogSection.content}</p>
+      </PageIntro>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">
