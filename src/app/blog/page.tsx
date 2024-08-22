@@ -12,6 +12,7 @@ import { formatDate } from '@/lib/formatDate'
 import { loadArticles } from '@/lib/mdx'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import ArticleCard from '@/components/ArticleCard' // Added import statement
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -57,6 +58,13 @@ export default async function Blog() {
         <p>{pageIntro.content}</p>
       </PageIntro>
 
+      <Container className="mt-24 sm:mt-32 lg:mt-40">
+        <div className="space-y-24 lg:space-y-32">
+          {articles && articles.map((article: any) => (
+              <ArticleCard article={article} key={article.id}/>
+          ))}
+        </div>
+      </Container>
 
       <ContactSection />
     </>
