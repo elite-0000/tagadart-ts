@@ -67,9 +67,9 @@ const ProjectsSection: React.FC<ProjectsProps> = ({ projectsSection }) => {
                   <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
                     {project.pageIntro.title}
                   </p>
-                  <p className="mt-4 text-base text-neutral-600">
+                  <div className="mt-4 text-base text-neutral-600">
                     <ReactMarkdown>{project.pageIntro.content}</ReactMarkdown>
-                  </p>
+                  </div>
                 </article>
               </FadeIn>
             ))}
