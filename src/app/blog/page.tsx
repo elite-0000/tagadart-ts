@@ -44,14 +44,13 @@ export default async function Blog() {
 
   let blogData;
   try {
-    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams);
+    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams)
   } catch (error) {
     // Handle the error appropriately here
     console.error('Failed to load blog data:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, blogSection } = blogData?.data;
-  console.log('blogSection Data:', blogSection);
+  const { pageIntro, blogSection } = blogData?.data
 
   return (
     <>
