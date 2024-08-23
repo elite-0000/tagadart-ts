@@ -8,29 +8,27 @@ import { Button } from '@/components/Button';
 import { formatDate } from '@/lib/formatDate';
 
 interface ArticleProps {
-  article: {
-    href: string;
-    title: string;
-    date: string;
-    description: string;
-    author: {
-      name: string;
-      role: string;
-      image: {
-        src: string;
-        alt: string;
-        width: number;
-        height: number;
-      };
+  href: string;
+  title: string;
+  date: string;
+  description: string;
+  author: {
+    name: string;
+    role: string;
+    image: {
+      src: string;
+      alt: string;
+      width: number;
+      height: number;
     };
   };
 }
 
-interface ProjectCardProps {
-  article: ArticleProps
+interface ArticleCardProps {
+  article: ArticleProps;
 }
 
-const ArticleCard: React.FC<ArticleProps> = ({ article }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   return (
     <FadeIn key={article.href}>
       <article>
