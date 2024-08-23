@@ -62,9 +62,9 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
                 </div> */}
               </dd>
             </dl>
-            <p className="mt-6 max-w-2xl text-base text-neutral-600">
+            <div className="mt-6 max-w-2xl text-base text-neutral-600">
               <ReactMarkdown>{pageIntro.content}</ReactMarkdown>
-            </p>
+            </div>
             {/* <Button
               href={href}
               aria-label={`Read more: ${title}`}
