@@ -10,10 +10,15 @@ import { formatDate } from '@/lib/formatDate';
 interface ArticleProps {
   href: string;
   title: string;
-  date: string;
+  eyebrow: string;
   description: string;
+  pageIntro: {
+    title: string;
+    eyebrow: string;
+    content: string;
+  };
   author: {
-    name: string;
+    fullname: string;
     role: string;
     image: {
       src: string;
@@ -29,6 +34,8 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
+  console.log("article:", article);
+  article.href = 'future-of-web-development';
   return (
     <FadeIn key={article.href}>
       <article>
@@ -41,31 +48,31 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
               <dl className="lg:absolute lg:left-0 lg:top-0 lg:w-1/3 lg:px-4">
                 <dt className="sr-only">Published</dt>
                 <dd className="absolute left-0 top-0 text-sm text-neutral-950 lg:static">
-                  <time dateTime={article.date}>
-                    {formatDate(article.date)}
+                  <time dateTime={article.pageIntro.eyebrow}>
+                    {article.pageIntro.eyebrow}
                   </time>
                 </dd>
                 <dt className="sr-only">Author</dt>
                 <dd className="mt-6 flex gap-x-4">
                   <div className="flex-none overflow-hidden rounded-xl bg-neutral-100">
-                    <Image
+                    {/* <Image
                       src={article.author.image.src}
                       alt={article.author.image.alt}
                       width={article.author.image.width}
                       height={article.author.image.height}
                       className="h-12 w-12 object-cover grayscale"
-                    />
+                    /> */}
                   </div>
                   <div className="text-sm text-neutral-950">
                     <div className="font-semibold">
-                      {article.author.name}
+                      {article.author.fullname}
                     </div>
                     <div>{article.author.role}</div>
                   </div>
                 </dd>
               </dl>
               <p className="mt-6 max-w-2xl text-base text-neutral-600">
-                {article.description}
+                {article.pageIntro.content}
               </p>
               <Button
                 href={article.href}
