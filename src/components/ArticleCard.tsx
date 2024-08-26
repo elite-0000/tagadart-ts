@@ -34,7 +34,6 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  console.log("article:", article);
   article.href = 'future-of-web-development';
   return (
     <FadeIn key={article.href}>
