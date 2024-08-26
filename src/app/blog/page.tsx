@@ -29,8 +29,7 @@ export default async function Blog() {
     'blogSection.posts.pageIntro',
     'blogSection.posts.eyebrow',
     'blogSection.posts.content',
-    'blogSection.posts.cta',
-    'blogSection.posts.image',
+    'blogSection.posts.author',
   ]
 
   const defaultQueryParams: RestQueryParams = {
@@ -51,6 +50,7 @@ export default async function Blog() {
     return <div>Failed to load data</div>
   }
   const { pageIntro, blogSection } = blogData?.data
+  const {posts} = blogSection;
 
   return (
     <>
@@ -60,8 +60,8 @@ export default async function Blog() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">
-          {articles && articles.map((article: any) => (
-              <ArticleCard article={article} key={article.id}/>
+          {posts && posts.map((post: any) => (
+              <ArticleCard article={post} key={post.id}/>
           ))}
         </div>
       </Container>
