@@ -36,7 +36,6 @@ export const metadata: Metadata = {
 }
 
 export default async function About() {
-  let blogArticles = (await loadArticles()).slice(0, 2)
   const populateAbout = [
     'pageIntro',
     'cultureSection',
@@ -72,7 +71,7 @@ export default async function About() {
 
       <Culture culturecard={cultureSection} />
 
-      <Team teamCard={teamSection} /> {/* Corrected the prop name to 'members' to match the expected prop in Team component */}
+      <Team teamCard={teamSection} />
       {/* <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"
