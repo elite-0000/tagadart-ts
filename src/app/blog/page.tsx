@@ -30,6 +30,8 @@ export default async function Blog() {
     'blogSection.posts.eyebrow',
     'blogSection.posts.content',
     'blogSection.posts.author',
+    'blogSection.posts.author.avatar',
+    'blogSection.posts.author.avatar.thumbnail.formats',
   ]
 
   const defaultQueryParams: RestQueryParams = {
