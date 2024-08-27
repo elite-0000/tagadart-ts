@@ -14,6 +14,16 @@ import { unifiedConditional } from 'unified-conditional'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        port: '1337',
+        pathname: '/uploads/**',
+      },
+    ],
+  },
 }
 
 function remarkMDXLayout(source, metaName) {
