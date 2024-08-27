@@ -78,7 +78,7 @@ export default async function Home() {
 
   return (
     <>
-      <h1>Empt</h1>
+      {/* <h1>Empt</h1> */}
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <PageIntro {...pageIntro} />
