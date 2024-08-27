@@ -4,7 +4,12 @@ import { FadeIn } from '@/components/FadeIn'
 import { MDXComponents } from '@/components/MDXComponents'
 import { PageLinks } from '@/components/PageLinks'
 import { formatDate } from '@/lib/formatDate'
+import Fetcher from '@/components/Fetcher'
 import { type Article, type MDXEntry, loadArticles } from '@/lib/mdx'
+import useSWR from 'swr'
+import { fetchAxiosAPI } from '@/request/request'
+import { BaseData } from '@/types/global'
+import { RestQueryParams } from '@/types/global'
 
 export default async function BlogArticleWrapper({
   article,
@@ -13,10 +18,42 @@ export default async function BlogArticleWrapper({
   article: MDXEntry<Article>
   children: React.ReactNode
 }) {
-  let allArticles = await loadArticles()
-  let moreArticles = allArticles
-    .filter(({ metadata }) => metadata !== article)
-    .slice(0, 2)
+  const populateBlog = [
+    'pageIntro',
+    'blogSection',
+    'blogSection.posts',
+    'blogSection.posts.pageIntro',
+    'blogSection.posts.eyebrow',
+    'blogSection.posts.content',
+    'blogSection.posts.author',
+  ]
+  const defaultQueryParams: RestQueryParams = {
+    populate: populateBlog,
+    publicationState: 'preview',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  let blogData;
+  try {
+    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams)
+  } catch (error) {
+    // Handle the error appropriately here
+    console.error('Failed to load blog data:', error)
+    return <div>Failed to load data</div>
+  }
+  // let moreArticles = blogData
+  //   .filter(({ metadata }) => metadata !== article)
+  //   .slice(0, 2)
+  // let allArticles = await loadArticles()
+  // let moreArticles = allArticles
+  //   .filter(({ metadata }) => {
+  //     // console.log("metaData: ", metadata);
+  //     return metadata.id !== article.id
+  //   })
+  //   .slice(0, 2)
 
   return (
     <>
@@ -45,13 +82,13 @@ export default async function BlogArticleWrapper({
         </FadeIn>
       </Container>
 
-      {moreArticles.length > 0 && (
+      {/* {moreArticles.length > 0 && (
         <PageLinks
           className="mt-24 sm:mt-32 lg:mt-40"
           title="More articles"
           pages={moreArticles}
         />
-      )}
+      )} */}
 
       <ContactSection />
     </>
