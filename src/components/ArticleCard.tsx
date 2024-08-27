@@ -20,11 +20,12 @@ interface ArticleProps {
   author: {
     fullname: string;
     role: string;
-    image: {
-      src: string;
-      alt: string;
-      width: number;
-      height: number;
+    avatar: {
+      formats: {
+        thumbnail: {
+          url: string
+        }
+      }
     };
   };
 }
@@ -34,15 +35,19 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  article.href = 'future-of-web-development';
+  const baseUrl = 'http://127.0.0.1:1337';
+  article.href = `${baseUrl}/future-of-web-development`;
+  const imgUrl = article.author.avatar?.formats?.thumbnail?.url ? `${baseUrl}${article.author.avatar.formats.thumbnail.url}` : null;
+  // const imgUrl = null;
   return (
+    
     <FadeIn key={article.href}>
       <article>
         <Border className="pt-16">
           <div className="relative lg:-mx-4 lg:flex lg:justify-end">
             <div className="pt-10 lg:w-2/3 lg:flex-none lg:px-4 lg:pt-0">
               <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                <Link href={article.href}>{article.title}</Link>
+                <Link href={article.href}>{article.pageIntro.title}</Link>
               </h2>
               <dl className="lg:absolute lg:left-0 lg:top-0 lg:w-1/3 lg:px-4">
                 <dt className="sr-only">Published</dt>
@@ -54,13 +59,17 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
                 <dt className="sr-only">Author</dt>
                 <dd className="mt-6 flex gap-x-4">
                   <div className="flex-none overflow-hidden rounded-xl bg-neutral-100">
-                    {/* <Image
-                      src={article.author.image.src}
-                      alt={article.author.image.alt}
-                      width={article.author.image.width}
-                      height={article.author.image.height}
-                      className="h-12 w-12 object-cover grayscale"
-                    /> */}
+                    {imgUrl ? (
+                      <Image
+                        src={imgUrl}
+                        alt={article.author.fullname}
+                        className="h-12 w-12 object-cover grayscale"
+                        width={50}
+                        height={50}
+                      />
+                    ) : (
+                      <div className="h-12 w-12 bg-neutral-100 rounded-xl" />
+                    )}
                   </div>
                   <div className="text-sm text-neutral-950">
                     <div className="font-semibold">
