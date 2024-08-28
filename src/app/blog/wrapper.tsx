@@ -18,32 +18,6 @@ export default async function BlogArticleWrapper({
   article: MDXEntry<Article>
   children: React.ReactNode
 }) {
-  const populateBlog = [
-    'pageIntro',
-    'blogSection',
-    'blogSection.posts',
-    'blogSection.posts.pageIntro',
-    'blogSection.posts.eyebrow',
-    'blogSection.posts.content',
-    'blogSection.posts.author',
-  ]
-  const defaultQueryParams: RestQueryParams = {
-    populate: populateBlog,
-    publicationState: 'preview',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-
-  let blogData;
-  try {
-    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams)
-  } catch (error) {
-    // Handle the error appropriately here
-    console.error('Failed to load blog data:', error)
-    return <div>Failed to load data</div>
-  }
   // let moreArticles = blogData
   //   .filter(({ metadata }) => metadata !== article)
   //   .slice(0, 2)

@@ -8,7 +8,7 @@ import { Button } from '@/components/Button';
 import { formatDate } from '@/lib/formatDate';
 
 interface ArticleProps {
-  href: string;
+  id: number;
   title: string;
   eyebrow: string;
   description: string;
@@ -36,18 +36,18 @@ interface ArticleCardProps {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const baseUrl = 'http://127.0.0.1:1337';
-  article.href = `${baseUrl}/future-of-web-development`;
   const imgUrl = article.author.avatar?.formats?.thumbnail?.url ? `${baseUrl}${article.author.avatar.formats.thumbnail.url}` : null;
   // const imgUrl = null;
+  console.log("article:", article.id);
   return (
     
-    <FadeIn key={article.href}>
+    <FadeIn key={article.id}>
       <article>
         <Border className="pt-16">
           <div className="relative lg:-mx-4 lg:flex lg:justify-end">
             <div className="pt-10 lg:w-2/3 lg:flex-none lg:px-4 lg:pt-0">
               <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                <Link href={article.href}>{article.pageIntro.title}</Link>
+                <Link href={`/blog/${article.id}`}>{article.pageIntro.title}</Link>
               </h2>
               <dl className="lg:absolute lg:left-0 lg:top-0 lg:w-1/3 lg:px-4">
                 <dt className="sr-only">Published</dt>
@@ -83,7 +83,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
                 {article.pageIntro.content}
               </p>
               <Button
-                href={article.href}
+                href={`/blog/${article.id}`}
                 aria-label={`Read more: ${article.title}`}
                 className="mt-8"
               >

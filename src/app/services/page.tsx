@@ -15,6 +15,8 @@ import imageLaptop from '@/images/laptop.jpg'
 import imageMeeting from '@/images/meeting.jpg'
 import imageWhiteboard from '@/images/whiteboard.jpg'
 import Features from '@/components/Features'
+import { RestQueryParams } from '@/types/global'
+import { fetchAxiosAPI } from '@/request/request'
 
 function Section({
   title,
@@ -246,31 +248,51 @@ export const metadata: Metadata = {
     'We believe in efficiency and maximizing our resources to provide the best value to our clients.',
 }
 
-export default function Services() {
+export default async function Services() {
+  const populateService = [
+    'pageIntro',
+    'servicesSection',
+    'servicesSection.our_services',
+    'servicesSection.our_services.pageIntro'
+  ]
+
+  const defaultQueryParams: RestQueryParams = {
+    populate: populateService,
+    publicationState: 'preview',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+  let serviceData;
+  try {
+    serviceData = await fetchAxiosAPI('services-page', defaultQueryParams)
+
+  } catch (error) {
+      console.error('Failed to load service data:', error);
+      return <div>Failed to load data</div>
+  };
+ 
+  const { pageIntro, servicesSection } = serviceData?.data
   return (
     <>
-      <PageIntro
-        eyebrow="Nos services"
-        title="Des sites durables pour un avenir responsable !"
+      <PageIntro {...pageIntro}
       >
-        <p>
-          L’importance de concevoir et de gérer des plateformes en ligne qui
-          respectent les principes de durabilité et de responsabilité
-          environnementale
-        </p>
+        <p>{pageIntro.content}</p>
       </PageIntro>
 
-      <Features />
+      <Features featurecards={servicesSection.our_services}/>
 
-      {/* <div className="mt-24 space-y-24 [counter-reset:section] sm:mt-32 sm:space-y-32 lg:mt-40 lg:space-y-40">
+      <div className="mt-24 space-y-24 [counter-reset:section] sm:mt-32 sm:space-y-32 lg:mt-40 lg:space-y-40">
         <Discover />
         <Build />
         <Deliver />
-      </div> */}
+      </div>
 
-      {/* <Values /> */}
+      <Values />
 
       <ContactSection />
     </>
   )
-}
+
+} 
