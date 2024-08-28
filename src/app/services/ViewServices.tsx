@@ -50,8 +50,9 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 export default async function ViewBlog() {
   const populateService = [
     'pageIntro',
-    'serviceSection',
-    'serviceSection.our_services',
+    'servicesSection',
+    'servicesSection.our_services',
+    'servicesSection.our_services.pageIntro',
   ]
 
   const defaultQueryParams: RestQueryParams = {
@@ -66,13 +67,15 @@ export default async function ViewBlog() {
   let serviceData;
   try {
     serviceData = await fetchAxiosAPI('services-page', defaultQueryParams)
+
   } catch (error) {
     console.error('Failed to load service data:', error)
     return <div>Failed to load data</div>
   }
 
-  const { pageIntro, serviceSection } = serviceData?.data
-  const { our_services } = serviceSection;
+  const { pageIntro, servicesSection } = serviceData?.data
+  const { our_services } = servicesSection;
+  console.log("our_services: ", our_services);
 
   return (
     <>
