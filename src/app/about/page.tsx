@@ -42,6 +42,7 @@ export default async function About() {
     'cultureSection.values',
     'teamSection',
     'teamSection.members',
+    'teamSection.members.avatar',
   ]
 
   const defaultQueryParams: RestQueryParams = {

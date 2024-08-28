@@ -52,6 +52,8 @@ const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
                           <Image
                             alt=""
                             src={`${baseUrl}${person.avatar?.formats?.thumbnail.url}`}
+                            width={50}
+                            height={50}
                             className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
                           />
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
