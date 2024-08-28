@@ -22,16 +22,23 @@ export type BaseItem = {
   client: string
   description?: string
   contentRTE?: string
+  content: any
   startDate?: Date
   endDate?: Date
   publishedAt: Date
   unPublishedAt?: Date
   publishedDate?: Date
   unPublishedDate?: Date
+  author?: any
   cover?: any
   avatar?: any
   status?: string
   contact?: any
+  pageIntro: {
+    title: string
+    eyebrow: string
+    content: string
+  }
 }
 
 export interface BasesData {
