@@ -26,7 +26,6 @@ interface TeamCardProps {
 }
 
 const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
-  console.log("teamcard members: ", teamCard);
   const baseUrl = 'http://127.0.0.1:1337';
   
   return (

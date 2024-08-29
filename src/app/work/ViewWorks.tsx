@@ -42,7 +42,6 @@ export default async function ViewWorks() {
   }
   const { pageIntro, projectsSection } = projectData?.data
   const {projects} = projectsSection;
-  console.log("projects:", projects);
 
   return (
     <>

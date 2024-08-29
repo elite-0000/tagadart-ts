@@ -31,9 +31,7 @@ interface WorkCardProps {
 }
 
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
-  console.log('project', project);
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
-
 
   return (
     
