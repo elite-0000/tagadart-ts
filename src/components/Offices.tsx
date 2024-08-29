@@ -42,7 +42,6 @@ export function Offices({
   invert = false,
   ...props
 }: OfficesProps) {
-  console.log('Offices data:', offices); // Log the offices data
 
   return (
     <ul role="list" {...props}>

@@ -24,6 +24,7 @@ export type BaseItem = {
   contentRTE?: string
   content: any
   startDate?: Date
+  service?: string
   endDate?: Date
   publishedAt: Date
   unPublishedAt?: Date
@@ -32,6 +33,7 @@ export type BaseItem = {
   author?: any
   cover?: any
   avatar?: any
+  year?: string
   status?: string
   contact?: any
   pageIntro: {

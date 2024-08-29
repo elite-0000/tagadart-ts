@@ -38,7 +38,6 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const baseUrl = 'http://127.0.0.1:1337';
   const imgUrl = article.author.avatar?.formats?.thumbnail?.url ? `${baseUrl}${article.author.avatar.formats.thumbnail.url}` : null;
   // const imgUrl = null;
-  console.log("article:", article.id);
   return (
     
     <FadeIn key={article.id}>

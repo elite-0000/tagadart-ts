@@ -75,7 +75,6 @@ export default async function ViewBlog() {
 
   const { pageIntro, servicesSection } = serviceData?.data
   const { our_services } = servicesSection;
-  console.log("our_services: ", our_services);
 
   return (
     <>
