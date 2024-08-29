@@ -5,26 +5,21 @@ import { Border } from '@/components/Border'
 import Image from 'next/image';
 
 interface ClientProps {
-  values: { 
-    title: string; 
-    link: string 
-    avatar: {
-        formats: {
-          thumbnail: {
-            url: string
-          }
-        }
-    };
-  } []; // Added pageIntro property
+    clients: { 
+        title: string; 
+        link: string 
+        avatar: {
+            formats: {
+            thumbnail: {
+                url: string
+            }
+            }
+        };
+  } [];
 } 
 
-interface ClientCardProps {
-  clients: ClientProps;
-}
-
-const Features: React.FC<ClientCardProps> = ({ clients }) => {
+const Features: React.FC<ClientProps> = ({ clients }) => {
     const baseUrl = 'http://127.0.0.1:1337';
-
     return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
@@ -38,12 +33,12 @@ const Features: React.FC<ClientCardProps> = ({ clients }) => {
             role="list"
             className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
             >
-            {clients.values.map((value) => (
+            {clients.map((value) => (
                 <li key={value.title} className="group">
                 <FadeIn className="overflow-hidden">
                     <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
                     <Image 
-                        src={`${baseUrl}${value.avatar?.formats?.thumbnail.url}`} 
+                        src={value.avatar?.formats?.thumbnail?.url ? `${baseUrl}${value.avatar.formats.thumbnail.url}` : ""}
                         width={50}
                         height={50}
                         alt=""

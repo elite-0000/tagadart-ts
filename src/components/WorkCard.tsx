@@ -12,11 +12,12 @@ interface WorkProps {
   id: number;
   client: string
   content: string
-  logo: string
+  year: string
   service: string
-  date: string
-  href: string
+  expertise: string
+  link: string
   title: string
+  logo: string
   summary: string[]
   PageIntro: PageIntro
   testimonial?: {
@@ -24,6 +25,11 @@ interface WorkProps {
     content: string
     avatar: any
   }
+  our_services: {
+    id: number,
+    classIcon: string,
+    content: string
+  } []
 }
 
 interface WorkCardProps {
@@ -56,9 +62,9 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                         {project.service}
                     </p>
                     <p className="text-sm text-neutral-950 lg:mt-2">
-                        <time dateTime={project.date}>
+                        <time dateTime={project.year}>
                         {/* {formatDate(caseStudy.date)} */}
-                        {project.date}
+                        {project.year}
                         </time>
                     </p>
                     </div>

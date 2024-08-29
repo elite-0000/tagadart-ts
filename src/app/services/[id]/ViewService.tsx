@@ -40,7 +40,6 @@ export const ViewService = ({ params: { id } }: Props) => {
     if (!serviceData || !serviceData.data) return null // Added check for blogData.data
     const service = serviceData.data
     const serviceContent = service.content; 
-    console.log('serviceContent: ', serviceContent);
 
     return (
         <article>

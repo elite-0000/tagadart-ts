@@ -12,8 +12,8 @@ import { formatDate } from '@/lib/formatDate'
 import { loadArticles } from '@/lib/mdx'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import ArticleCard from '@/components/ArticleCard' // Added import statement
 import WorkCard from '@/components/WorkCard'
+import Clients from '@/components/Clients'
 
 export default async function ViewWorks() {
   
@@ -21,6 +21,7 @@ export default async function ViewWorks() {
     'pageIntro',
     'projectsSection',
     'projectsSection.projects',
+    'projectsSection.projects.our_services',
   ]
 
   const defaultQueryParams: RestQueryParams = {
@@ -41,8 +42,7 @@ export default async function ViewWorks() {
     return <div>Failed to load data</div>
   }
   const { pageIntro, projectsSection } = projectData?.data
-  const {projects} = projectsSection;
-
+  const { projects } = projectsSection;
   return (
     <>
       <PageIntro {...pageIntro}>
@@ -57,9 +57,16 @@ export default async function ViewWorks() {
         </FadeIn>
         <div className="space-y-24 lg:space-y-32">
           {projects && projects.map((project: any) => (
-              // <ArticleCard article={post} key={post.id}/>
-              <WorkCard key={project.id} project={project} />
+            <WorkCard key={project.id} project={project} />
           ))}
+        </div>
+        <div>
+          {
+            projects && projects.map((project: any) => {
+              const { our_services } = project;
+              return <Clients clients={our_services} key={project.id}>
+              </Clients>
+            })}
         </div>
       </Container>
 
