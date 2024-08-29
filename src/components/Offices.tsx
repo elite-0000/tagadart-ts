@@ -1,13 +1,14 @@
-import clsx from 'clsx'
+import React from 'react';
+import clsx from 'clsx';
 
 function Office({
   name,
   children,
   invert = false,
 }: {
-  name: string
-  children: React.ReactNode
-  invert?: boolean
+  name: string;
+  children: React.ReactNode;
+  invert?: boolean;
 }) {
   return (
     <address
@@ -22,29 +23,49 @@ function Office({
       <br />
       {children}
     </address>
-  )
+  );
+}
+
+interface OfficeProps {
+  id: number;
+  title: string;
+  content: string | null;
+}
+
+interface OfficesProps extends React.ComponentPropsWithoutRef<'ul'> {
+  offices: OfficeProps[];
+  invert?: boolean;
 }
 
 export function Offices({
+  offices,
   invert = false,
   ...props
-}: React.ComponentPropsWithoutRef<'ul'> & { invert?: boolean }) {
+}: OfficesProps) {
+  console.log('Offices data:', offices); // Log the offices data
+
   return (
     <ul role="list" {...props}>
-      <li>
-        <Office name="Copenhagen" invert={invert}>
-          1 Carlsberg Gate
-          <br />
-          1260, København, Denmark
-        </Office>
-      </li>
-      <li>
-        <Office name="Billund" invert={invert}>
-          24 Lego Allé
-          <br />
-          7190, Billund, Denmark
-        </Office>
-      </li>
+      {offices && offices.length > 0 ? (
+        offices.map(({ id, title, content }) => (
+          <li key={id}>
+            <Office name={title} invert={invert}>
+              {content ? (
+                content.split('\n').map((line, idx) => (
+                  <React.Fragment key={idx}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))
+              ) : (
+                <em>No address provided</em>
+              )}
+            </Office>
+          </li>
+        ))
+      ) : (
+        <li>No offices available</li>
+      )}
     </ul>
-  )
+  );
 }
