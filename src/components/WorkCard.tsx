@@ -18,8 +18,9 @@ interface WorkProps {
   link: string
   title: string
   logo: string
+  url: string
   summary: string[]
-  PageIntro: PageIntro
+  pageIntro: PageIntro
   testimonial?: {
     author: string
     content: string
@@ -38,6 +39,9 @@ interface WorkCardProps {
 
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
+  const baseUrl = 'http://127.0.0.1:1337';
+//   console.log('url: ', baseUrl + `${project?.cover?.url}`);
+  console.log("PageIntro112url: ", project.pageIntro.cover.url);
 
   return (
     
@@ -48,9 +52,11 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                     <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
-                        src={project.logo}
+                        src={`${baseUrl}${project?.pageIntro?.cover?.url}`}
                         alt=""
-                        className="h-16 w-16 flex-none"
+                        width={50}
+                        height={50}
+                        className="w-16 h-16 flex-none"
                         unoptimized
                     />
                     <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">

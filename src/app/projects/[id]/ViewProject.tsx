@@ -77,9 +77,9 @@ export const ViewProject = ({ params: { id } }: Props) => {
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
               <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
                   <div className="typography">
-                      <ReactMarkdown >
+                      <ReactMarkdown>
                           {project.content}
-                      </ReactMarkdown>    
+                      </ReactMarkdown>
                   </div>
               </div>
           </FadeIn>

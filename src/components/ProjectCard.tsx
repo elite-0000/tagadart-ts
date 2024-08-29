@@ -10,6 +10,10 @@ import { PageIntro } from '@/types/global'
 interface ProjectProps {
   client: string
   logo: string
+  cover: {
+    id: number,
+    url: string
+  }
   service: string
   date: string
   href: string
@@ -27,6 +31,9 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
+  const baseUrl = 'http://127.0.0.1:1337/';
+  console.log('url: ', baseUrl + `${project?.cover?.url}`);
+  // console.log("project: ", project);
   return (
     <FadeIn key={project.client}>
       <article>
@@ -35,8 +42,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
               {project?.logo && (
                 <Image
-                  src={project?.logo}
+                  src={`${baseUrl}${project?.cover?.url}`}
                   alt=""
+                  key={project?.cover?.id}
+                  width={50}
+                  height={50}
                   className="h-16 w-16 flex-none"
                   unoptimized
                 />

@@ -124,6 +124,10 @@ export interface PageIntro {
   eyebrow: string
   content: any
   image: string
+  cover: {
+    id: number
+    url: string
+  }
 }
 
 // Reference.ts

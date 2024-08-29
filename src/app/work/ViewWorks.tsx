@@ -19,8 +19,10 @@ export default async function ViewWorks() {
   
   const populateWork = [
     'pageIntro',
+    'pageIntro.cover',
     'projectsSection',
     'projectsSection.projects',
+    'projectsSection.projects.pageIntro.cover',
     'projectsSection.projects.our_services',
   ]
 
