@@ -26,7 +26,7 @@ export default async function ViewWorks() {
     'projectsSection.projects.pageIntro.cover',
     'projectsSection.projects.our_services',
     'projectsSection.projects.our_services.pageIntro',
-    'projectsSection.projects.our_services.cta',
+    'projectsSection.projects.our_services.pageIntro.cover',
   ]
 
   const defaultQueryParams: RestQueryParams = {

@@ -6,21 +6,24 @@ import Image from 'next/image';
 
 interface ClientProps {
     clients: { 
+        classIcon: string;
         title: string; 
         link: string 
-        avatar: {
-            formats: {
-            thumbnail: {
+        pageIntro: {
+            id: number;
+            title: string;
+            eyebrow: string;
+            cover: {
+                name: string;
                 url: string
-            }
-            }
+            };
         };
   } [];
 } 
 
 const Features: React.FC<ClientProps> = ({ clients }) => {
     const baseUrl = 'http://127.0.0.1:1337';
-    console.log("clients: ", clients);
+    console.log("clients: ", `${baseUrl}${clients[0].pageIntro.cover.url}`);
     return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
@@ -39,10 +42,14 @@ const Features: React.FC<ClientProps> = ({ clients }) => {
                 <FadeIn className="overflow-hidden">
                     <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
                     <Image 
-                        src={value.avatar?.formats?.thumbnail?.url ? `${baseUrl}${value.avatar.formats.thumbnail.url}` : ""}
-                        width={50}
-                        height={50}
-                        alt=""
+                        style={{ 
+                            width: '100%', 
+                            height: 'auto' 
+                          }} 
+                        width={500}
+                        height={500}
+                        alt={value?.pageIntro?.cover?.name}
+                        src={`${baseUrl}${value?.pageIntro?.cover?.url}`}
                     />
                     </Border>
                 </FadeIn>
