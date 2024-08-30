@@ -9,6 +9,7 @@ import { BaseData } from '@/types/global'
 import ReactMarkdown from 'react-markdown';
 import { PageLinks } from '@/components/PageLinks'
 import { Border } from '@/components/Border';
+import { MessageMarkdown } from '@/components/message-markdown';
 
 type Props = {
   params: any
@@ -65,9 +66,7 @@ export const ViewBlog = ({ params: { id } }: Props) => {
                     <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
                         <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
                             <div className="typography">
-                                {/* <ReactMarkdown>
-                                    {data?.content}
-                                </ReactMarkdown>     */}
+                                <MessageMarkdown content={data?.content}/>
                             </div>
                         </div>
                     </FadeIn>

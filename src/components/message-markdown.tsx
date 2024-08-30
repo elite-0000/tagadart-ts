@@ -17,7 +17,7 @@ export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
           return <p className="mb-2 last:mb-0">{children}</p>
         },
         img({ node, ...props }) {
-          return <img className="max-w-[67%]" {...props} />
+          return <img className="max-w-[100%]" {...props} />
         },
       }}
     >

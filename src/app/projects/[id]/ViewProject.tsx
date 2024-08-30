@@ -9,7 +9,7 @@ import { PageIntro } from '@/components/sections/PageIntro'
 import { PageLinks } from '@/components/PageLinks'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
-import ReactMarkdown from 'react-markdown';
+import { MessageMarkdown } from '@/components/message-markdown';
 
 type Props = {
   params: any
@@ -76,9 +76,7 @@ export const ViewProject = ({ params: { id } }: Props) => {
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
               <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
                   <div className="typography">
-                      <ReactMarkdown>
-                          {project.content}
-                      </ReactMarkdown>
+                      <MessageMarkdown content={project.content}/>
                   </div>
               </div>
           </FadeIn>
