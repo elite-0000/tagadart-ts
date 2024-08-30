@@ -16,6 +16,7 @@ interface ProjectProps {
   }
   service: string
   date: string
+  year: string
   href: string
   title: string
   summary: string[]
@@ -32,8 +33,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const baseUrl = 'http://127.0.0.1:1337/';
-  console.log('url: ', baseUrl + `${project?.cover?.url}`);
-  // console.log("project: ", project);
+  console.log("project: ", project);
   return (
     <FadeIn key={project.client}>
       <article>
@@ -60,9 +60,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 {project?.service}
               </p>
               <p className="text-sm text-neutral-950 lg:mt-2">
-                <time dateTime={project?.date}>
+                <time dateTime={project?.year}>
                   {/* {formatDate(project.date)} */}
-                  {project?.date}
+                  {project?.year}
                 </time>
               </p>
             </div>
