@@ -6,7 +6,6 @@ import useSWR from 'swr'
 import { MDXComponents } from '@/components/MDXComponents'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData } from '@/types/global'
-import { MDXRemote } from 'next-mdx-remote'
 import ReactMarkdown from 'react-markdown';
 import { PageLinks } from '@/components/PageLinks'
 import { Border } from '@/components/Border';
@@ -17,7 +16,6 @@ type Props = {
 
 export const ViewService = ({ params: { id } }: Props) => {
     const fetcher = (url: string) => {
-        console.log('Fetching API URL:', url) // Log the URL here
         return fetchAxiosAPI(url)
     }
 

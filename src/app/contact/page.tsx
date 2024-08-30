@@ -96,7 +96,6 @@ function ContactForm() {
 }
 
 function ContactDetails(offices: any) {
-  console.log('offices', offices);
   return (
     <FadeIn>
       <h2 className="font-display text-base font-semibold text-neutral-950">
@@ -166,7 +165,6 @@ export default async function Contact() {
   let contactData;
   try {
     contactData = await fetchAxiosAPI('contact-page', defaultQueryParams)
-    console.log("contactData: ", contactData);
   } catch (error) {
     // Handle the error appropriately here
     console.error('Failed to load contactData:', error)

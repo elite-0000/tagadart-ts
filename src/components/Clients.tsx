@@ -23,7 +23,6 @@ interface ClientProps {
 
 const Features: React.FC<ClientProps> = ({ clients }) => {
     const baseUrl = 'http://127.0.0.1:1337';
-    console.log("clients: ", `${baseUrl}${clients[0].pageIntro.cover.url}`);
     return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>

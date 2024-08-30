@@ -22,32 +22,39 @@ function ArrowIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 interface Page {
   href: string
-  date: string
   title: string
-  description: string
+  content: string
+  id: number
+  pageIntro: {
+    title: string
+    content: string
+    eyebrow: string
+  }
 }
 
-function PageLink({ page }: { page: Page }) {
+function PageLink({ page, href } : { page: Page, href: string }) {
+  console.log("pagelink href: ", href);
   return (
-    <article key={page.href}>
+    <article key={`${page.href}${page.id}`}>
       <Border
         position="left"
         className="relative flex flex-col items-start pl-8"
       >
         <h3 className="mt-6 text-base font-semibold text-neutral-950">
-          {page.title}
+          {page.pageIntro.title}
         </h3>
         <time
-          dateTime={page.date}
+          dateTime={page.pageIntro.eyebrow}
           className="order-first text-sm text-neutral-600"
         >
-          {formatDate(page.date)}
+          {/* {formatDate(page.date)} */}
+          {page.pageIntro.eyebrow}
         </time>
-        <p className="mt-2.5 text-base text-neutral-600">{page.description}</p>
+        <p className="mt-2.5 text-base text-neutral-600">{page.pageIntro.content}</p>
         <Link
-          href={page.href}
+          href={`${href}${page.id}`}
           className="mt-6 flex gap-x-3 text-base font-semibold text-neutral-950 transition hover:text-neutral-700"
-          aria-label={`Read more: ${page.title}`}
+          aria-label={`Read more: ${page.pageIntro.title}`}
         >
           Read more
           <ArrowIcon className="w-6 flex-none fill-current" />
@@ -62,13 +69,16 @@ export function PageLinks({
   title,
   pages,
   intro,
+  href,
   className,
 }: {
   title: string
+  href: string
   pages: Array<Page>
   intro?: string
   className?: string
 }) {
+  console.log("href:", href);
   return (
     <div className={clsx('relative pt-24 sm:pt-32 lg:pt-40', className)}>
       <div className="absolute inset-x-0 top-0 -z-10 h-[884px] overflow-hidden rounded-t-4xl bg-gradient-to-b from-neutral-50">
@@ -85,8 +95,8 @@ export function PageLinks({
       <Container className={intro ? 'mt-24' : 'mt-16'}>
         <FadeInStagger className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           {pages.map((page) => (
-            <FadeIn key={page.href}>
-              <PageLink page={page} />
+            <FadeIn key={`${page.href}${page.id}`}>
+              <PageLink page={page} href={href} />
             </FadeIn>
           ))}
         </FadeInStagger>

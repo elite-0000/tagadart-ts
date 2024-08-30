@@ -71,13 +71,14 @@ export const ViewBlog = ({ params: { id } }: Props) => {
                             </div>
                         </div>
                     </FadeIn>
-                    {/* {relatedArticles.length > 0 && (
+                    {relatedArticles.length > 0 && (
                         <PageLinks
-                        className="mt-24 sm:mt-32 lg:mt-40"
-                        title="More articles"
-                        pages={relatedArticles}
+                            href='/blog/'
+                            className="mt-24 sm:mt-32 lg:mt-40"
+                            title="More articles"
+                            pages={relatedArticles}
                         />
-                    )} */}
+                    )}
                 </div>
             </Border>
         </article>

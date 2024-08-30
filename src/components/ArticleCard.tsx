@@ -17,6 +17,7 @@ interface ArticleProps {
     eyebrow: string;
     content: string;
   };
+  href: string
   author: {
     fullname: string;
     role: string;
@@ -36,6 +37,7 @@ interface ArticleCardProps {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
   const baseUrl = 'http://127.0.0.1:1337';
+  article.href = `/blog/${article.id}`;
   const imgUrl = article.author.avatar?.formats?.thumbnail?.url ? `${baseUrl}${article.author.avatar.formats.thumbnail.url}` : null;
   // const imgUrl = null;
   return (
