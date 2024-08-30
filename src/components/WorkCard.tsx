@@ -21,11 +21,12 @@ interface WorkProps {
   url: string
   summary: string[]
   pageIntro: PageIntro
-  testimonial?: {
-    author: string
-    content: string
+  testimonials?: {
+    eyebrow: string
+    title: string
     avatar: any
-  }
+    content: string
+  } []
   our_services: {
     id: number,
     classIcon: string,
@@ -40,8 +41,7 @@ interface WorkCardProps {
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
   const baseUrl = 'http://127.0.0.1:1337';
-//   console.log('url: ', baseUrl + `${project?.cover?.url}`);
-  console.log("PageIntro112url: ", project.pageIntro.cover.url);
+  console.log('url: ', project.pageIntro.cover.url);
 
   return (
     
@@ -92,14 +92,21 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                         Read case study
                     </Button>
                     </div>
-                    {project.testimonial && (
-                    <Blockquote
-                        author={project.testimonial.avatar}
-                        className="mt-12"
-                    >
-                        {project.testimonial.content}
-                    </Blockquote>
-                    )}
+                    {
+                        project.testimonials?.map((testiminal) => {
+                            return (
+                                <Blockquote
+                                    key={testiminal.eyebrow}
+                                    author={{
+                                        name: testiminal.eyebrow,
+                                        role: testiminal.title,
+                                      }}
+                                    className="mt-12"
+                                >
+                                {testiminal.content}
+                            </Blockquote>)
+                        })
+                    }
                 </div>
                 </Border>
             </article>
