@@ -6,7 +6,6 @@ import useSWR from 'swr'
 import { MDXComponents } from '@/components/MDXComponents'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData } from '@/types/global'
-import { MDXRemote } from 'next-mdx-remote'
 import ReactMarkdown from 'react-markdown';
 import { PageLinks } from '@/components/PageLinks'
 import { Border } from '@/components/Border';

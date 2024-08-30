@@ -23,7 +23,6 @@ export const ViewProject = ({ params: { id } }: Props) => {
   if (!projectData) return null
 
   const project = projectData.data
-  console.log("project: ", project);
 
   return (
     <div>

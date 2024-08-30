@@ -33,7 +33,6 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const baseUrl = 'http://127.0.0.1:1337/';
-  console.log("project: ", project);
   return (
     <FadeIn key={project.client}>
       <article>

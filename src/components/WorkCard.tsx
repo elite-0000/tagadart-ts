@@ -41,7 +41,6 @@ interface WorkCardProps {
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
   const baseUrl = 'http://127.0.0.1:1337';
-  console.log('url: ', project.pageIntro.cover.url);
 
   return (
     
