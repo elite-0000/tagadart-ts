@@ -79,9 +79,10 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                     <Link href={`/projects/${project.id}`}>{project.title}</Link>
                     </p>
                     <div className="mt-6 space-y-6 text-base text-neutral-600">
-                        {sentencesArray.map((paragraph) => (
+                        {/* {sentencesArray.map((paragraph) => (
                             <p key={paragraph}>{paragraph}</p>
-                        ))}
+                        ))} */}
+                        {project.pageIntro.content}
                     </div>
                     <div className="mt-8 flex">
                     <Button

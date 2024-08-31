@@ -23,7 +23,7 @@ export const ViewProject = ({ params: { id } }: Props) => {
   if (!projectData) return null
 
   const project = projectData.data
-
+  console.log('project', project.content);
   return (
     <div>
       <article className="mt-24 sm:mt-32 lg:mt-40">
@@ -74,11 +74,11 @@ export const ViewProject = ({ params: { id } }: Props) => {
 
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-              <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
-                  <div className="typography">
+              {/* <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
+                  <div className="typography"> */}
                       <MessageMarkdown content={project.content}/>
-                  </div>
-              </div>
+                  {/* </div>
+              </div> */}
           </FadeIn>
         </Container>
       </article>
