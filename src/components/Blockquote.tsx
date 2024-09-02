@@ -9,10 +9,15 @@ function isString(value: unknown): value is string {
 }
 
 function getAbsoluteSrc(src: string): string {
+  console.log('src>>>>>>>>>>>', src);
+  if (src == undefined) {
+    console.log('here');
+  }
   if (src.startsWith('/') || src.startsWith('http://') || src.startsWith('https://')) {
     return `http://127.0.0.1:1337${src}`;
+  } else {
+    throw new Error('Invalid image source');
   }
-  return `http://127.0.0.1:1337/${src}`;
 }
 
 function BlockquoteWithImage({
@@ -26,10 +31,20 @@ function BlockquoteWithImage({
   className?: string
   image: ImagePropsWithOptionalAlt
 }) {
-  let src = image.src
-
-  if (isString(src)) {
-    src = getAbsoluteSrc(src)
+  let src = image.src;
+  console.log("src:::::::::: ");
+  try {
+    if (isString(src) && src) {
+      src = getAbsoluteSrc(src);
+    } else {
+      throw new Error('Image source is not a valid string');
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      // Provide a fallback image or handle the error UI
+      src = '/path/to/fallback/image.jpg'; // Replace with your fallback image path
+    }
   }
 
   return (
@@ -83,7 +98,7 @@ function BlockquoteWithoutImage({
         </figcaption>
       </figure>
     </Border>
-  )
+  );
 }
 
 export function Blockquote(
@@ -94,8 +109,8 @@ export function Blockquote(
       }),
 ) {
   if (props.image) {
-    return <BlockquoteWithImage {...props} />
+    return <BlockquoteWithImage {...props} />;
   }
 
-  return <BlockquoteWithoutImage {...props} />
+  return <BlockquoteWithoutImage {...props} />;
 }

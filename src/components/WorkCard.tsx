@@ -53,7 +53,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                     <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
-                        src={project?.logo?.url ? `${baseUrl}${project.logo.url}` : 'defaultImageUrl'}
+                        src={project?.logo?.url? `${baseUrl}${project.logo.url}` : ''}
                         alt=""
                         width={50}
                         height={50}
