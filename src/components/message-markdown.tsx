@@ -133,6 +133,7 @@ export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
   console.log(tags);
   return (
     <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
+      <div className="typography" >
       <ReactMarkdown remarkPlugins={[remarkGfm]} 
         rehypePlugins={[rehypeHighlight]}>{otherText}</ReactMarkdown>
       <TagList>
@@ -148,6 +149,8 @@ export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
           <StatListItem key={index} label={stat.label} value={stat.value} />
         ))}
       </StatList>
+      </div>
+      
       </div>
   )
 }
