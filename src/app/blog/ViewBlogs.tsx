@@ -1,18 +1,11 @@
 import { type Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import { Border } from '@/components/Border'
-import { Button } from '@/components/Button'
-import { ContactSection } from '@/components/sections/ContactSection'
+import ArticleCard from '@/components/ArticleCard'; // Added import statement
 import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
-import { formatDate } from '@/lib/formatDate'
-import { loadArticles } from '@/lib/mdx'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import ArticleCard from '@/components/ArticleCard' // Added import statement
 
 export const metadata: Metadata = {
   title: 'Blog',
