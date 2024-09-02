@@ -140,7 +140,6 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
 
 export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
   const { tags, blockquote, stats, otherText } = extractDataFromMDX(content);
-  console.log("blockquote", blockquote);
   const isBlockquoteEmpty = !blockquote.author.name && !blockquote.author.role && !blockquote.image.src && !blockquote.text;
 
   return (

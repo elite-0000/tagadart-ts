@@ -9,10 +9,7 @@ function isString(value: unknown): value is string {
 }
 
 function getAbsoluteSrc(src: string): string {
-  console.log('src>>>>>>>>>>>', src);
-  if (src == undefined) {
-    console.log('here');
-  }
+ 
   if (src.startsWith('/') || src.startsWith('http://') || src.startsWith('https://')) {
     return `http://127.0.0.1:1337${src}`;
   } else {
@@ -32,7 +29,6 @@ function BlockquoteWithImage({
   image: ImagePropsWithOptionalAlt
 }) {
   let src = image.src;
-  console.log("src:::::::::: ");
   try {
     if (isString(src) && src) {
       src = getAbsoluteSrc(src);
