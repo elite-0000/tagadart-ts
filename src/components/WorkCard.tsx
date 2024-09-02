@@ -42,9 +42,8 @@ interface WorkCardProps {
 }
 
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
-  const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  
+  console.log('project: ', project);
   return (
     
     <FadeIn key={project.client}>
@@ -79,7 +78,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                 </div>
                 <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
                     <p className="font-display text-4xl font-medium text-neutral-950">
-                    <Link href={`/projects/${project.id}`}>{project.title}</Link>
+                    <Link href={`/projects/${project.id}`}>{project.pageIntro.title}</Link>
                     </p>
                     <div className="mt-6 space-y-6 text-base text-neutral-600">
                         {/* {sentencesArray.map((paragraph) => (
