@@ -1,16 +1,12 @@
 'use client'
-import React from 'react'
-import { ContactSection } from '@/components/sections/ContactSection'
 import { Container } from '@/components/Container'
-import useSWR from 'swr'
-import { fetchAxiosAPI } from '@/request/request'
-import { BaseData } from '@/types/global'
-import { PageIntro } from '@/components/sections/PageIntro'
-import { PageLinks } from '@/components/PageLinks'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
-import { MessageMarkdown } from '@/components/message-markdown';
-import { RestQueryParams } from '@/types/global'
+import { MessageMarkdown } from '@/components/message-markdown'
+import { PageIntro } from '@/components/sections/PageIntro'
+import { fetchAxiosAPI } from '@/request/request'
+import { BaseData, RestQueryParams } from '@/types/global'
+import useSWR from 'swr'
 
 type Props = {
   params: any

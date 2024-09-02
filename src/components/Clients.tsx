@@ -1,8 +1,8 @@
-import React from 'react';
-import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
-import { Border } from '@/components/Border'
+import { Border } from '@/components/Border';
+import { Container } from '@/components/Container';
+import { FadeIn, FadeInStagger } from '@/components/FadeIn';
 import Image from 'next/image';
+import React from 'react';
 
 interface ClientProps {
     clients: { 
