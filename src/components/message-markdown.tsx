@@ -24,7 +24,7 @@ interface Blockquote {
     name: string;
     role: string;
   };
-  image?: {
+  image: {
     src: string;
   };
   text: string;
@@ -58,7 +58,16 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
   const tags: TagListItem[] = [];
   const stats: StatListItem[] = [];
   // Extract TagListItems
-  const tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/);
+  let tagListMatch;
+  try {
+    if (typeof mdxString === 'undefined') {
+      throw new Error('mdxString is undefined');
+    }
+    tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/);
+    // Further processing with tagListMatch
+  } catch (error) {
+    console.log("error");
+  }
   if (tagListMatch) {
     const tagListItems = tagListMatch[0].match(/<TagListItem>(.*?)<\/TagListItem>/g);
     if (tagListItems) {
@@ -131,7 +140,9 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
 
 export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
   const { tags, blockquote, stats, otherText } = extractDataFromMDX(content);
-  console.log('blockquote: ', blockquote);
+  console.log("blockquote", blockquote);
+  const isBlockquoteEmpty = !blockquote.author.name && !blockquote.author.role && !blockquote.image.src && !blockquote.text;
+
   return (
     <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
       <div className="typography" >
@@ -142,9 +153,11 @@ export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
           <TagListItem key={index}>{tag.tagName}</TagListItem>
         ))}
       </TagList>
-      <Blockquote author={blockquote.author} image={blockquote.image}>
-        {blockquote.text}
-      </Blockquote>      
+      {!isBlockquoteEmpty && (
+        <Blockquote author={blockquote.author} image={blockquote.image}>
+          {blockquote.text}
+        </Blockquote>
+      )}
       <StatList>
         {stats.map((stat, index) => (
           <StatListItem key={index} label={stat.label} value={stat.value} />

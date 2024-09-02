@@ -28,17 +28,21 @@ export const ViewBlog = ({ params: { id } }: Props) => {
 
     const getData = async (blogId: any) => {
         const response = await fetchAxiosAPI(`/posts/${blogId}`);
-        setData(response.data);
+        if (response?.data) {
+            setData(response.data);
+        }
     }
 
     const getBlogList = async () => {
         const response = await fetchAxiosAPI(`/posts/`);
-        setBlogList(response.data);
+        if (response?.data) {
+            setBlogList(response.data);
+        }
     }
 
     useEffect(() => {
         if(blogList.length > 0 && data) {
-            const moreArticles = blogList.filter(item => item.id!== parseInt(id)).slice(0,2);
+            const moreArticles = blogList.filter(item => item.id !== parseInt(id)).slice(0, 2);
             setRelatedArticles(moreArticles);
         }
     }, [data, blogList])
@@ -66,7 +70,7 @@ export const ViewBlog = ({ params: { id } }: Props) => {
                     <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
                         <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
                             <div className="typography">
-                                <MessageMarkdown content={data?.content}/>
+                                {data?.content && <MessageMarkdown content={data.content} />}
                             </div>
                         </div>
                     </FadeIn>
@@ -81,6 +85,5 @@ export const ViewBlog = ({ params: { id } }: Props) => {
                 </div>
             </Border>
         </article>
-    
-  )
+    )
 }
