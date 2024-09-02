@@ -1,22 +1,14 @@
-import { type Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import { Border } from '@/components/Border'
-import { Button } from '@/components/Button'
-import { ContactSection } from '@/components/sections/ContactSection'
+import Clients from '@/components/Clients'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
+import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
-import { formatDate } from '@/lib/formatDate'
-import { loadArticles } from '@/lib/mdx'
+import WorkCard from '@/components/WorkCard'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import WorkCard from '@/components/WorkCard'
-import Clients from '@/components/Clients'
 
 export default async function ViewWorks() {
-  
   const populateWork = [
     'pageIntro',
     'pageIntro.cover',
@@ -39,7 +31,7 @@ export default async function ViewWorks() {
     },
   }
 
-  let projectData;
+  let projectData
   try {
     projectData = await fetchAxiosAPI('projects-page', defaultQueryParams)
   } catch (error) {
@@ -48,8 +40,8 @@ export default async function ViewWorks() {
     return <div>Failed to load data</div>
   }
   const { pageIntro, projectsSection } = projectData?.data
-  const { projects } = projectsSection;
-  const clientsData = projects[0]?.our_services;
+  const { projects } = projectsSection
+  const clientsData = projects[0]?.our_services
   return (
     <>
       <PageIntro {...pageIntro}>
@@ -63,9 +55,10 @@ export default async function ViewWorks() {
           </h2>
         </FadeIn>
         <div className="space-y-24 lg:space-y-32">
-          {projects && projects.map((project: any) => (
-            <WorkCard key={project.id} project={project} />
-          ))}
+          {projects &&
+            projects.map((project: any) => (
+              <WorkCard key={project.id} project={project} />
+            ))}
         </div>
         <div>
           <Clients clients={clientsData} key={projects[0]?.id} />
