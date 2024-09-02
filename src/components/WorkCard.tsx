@@ -43,7 +43,6 @@ interface WorkCardProps {
 
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log('project: ', project);
   return (
     
     <FadeIn key={project.client}>

@@ -49,6 +49,7 @@ export default async function ViewWorks() {
   }
   const { pageIntro, projectsSection } = projectData?.data
   const { projects } = projectsSection;
+  const clientsData = projects[0]?.our_services;
   return (
     <>
       <PageIntro {...pageIntro}>
@@ -67,12 +68,7 @@ export default async function ViewWorks() {
           ))}
         </div>
         <div>
-          {
-            projects && projects.map((project: any) => {
-              const { our_services } = project;
-              return <Clients clients={our_services} key={project.id}>
-              </Clients>
-            })}
+          <Clients clients={clientsData} key={projects[0]?.id} />
         </div>
       </Container>
 
