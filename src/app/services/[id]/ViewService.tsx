@@ -1,14 +1,10 @@
 'use client'
-import React from 'react'
+import { Border } from '@/components/Border'
 import { FadeIn } from '@/components/FadeIn'
-import { formatDate } from '@/lib/formatDate'
-import useSWR from 'swr'
-import { MDXComponents } from '@/components/MDXComponents'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData } from '@/types/global'
-import ReactMarkdown from 'react-markdown';
-import { PageLinks } from '@/components/PageLinks'
-import { Border } from '@/components/Border';
+import ReactMarkdown from 'react-markdown'
+import useSWR from 'swr'
 
 type Props = {
   params: any
@@ -28,12 +24,6 @@ export const ViewService = ({ params: { id } }: Props) => {
         `/services/`,
         fetcher,
     )
-    // let moreArticles = allBlogs?.data
-    // let moreArticles = Object.values(allBlogs); 
-    // .filter(({ id }) => id !== currentId)
-    // .slice(0, 2);
-  
-    // console.log('allblogs: ', allBlogs);
 
     if (!serviceData || !serviceData.data) return null // Added check for blogData.data
     const service = serviceData.data
