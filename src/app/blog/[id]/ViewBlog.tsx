@@ -1,15 +1,10 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { Border } from '@/components/Border'
 import { FadeIn } from '@/components/FadeIn'
-import { formatDate } from '@/lib/formatDate'
-import useSWR from 'swr'
-import { MDXComponents } from '@/components/MDXComponents'
-import { fetchAxiosAPI } from '@/request/request'
-import { BaseData } from '@/types/global'
-import ReactMarkdown from 'react-markdown';
+import { MessageMarkdown } from '@/components/message-markdown'
 import { PageLinks } from '@/components/PageLinks'
-import { Border } from '@/components/Border';
-import { MessageMarkdown } from '@/components/message-markdown';
+import { fetchAxiosAPI } from '@/request/request'
+import { useEffect, useState } from 'react'
 
 type Props = {
   params: any
