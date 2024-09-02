@@ -74,25 +74,27 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
 
   // Extract Blockquote
   const blockquoteMatch = mdxString.match(/<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/);
-  let blockquote: Blockquote = {
+  let blockquote = {
     author: {
       name: '',
       role: ''
     },
+    image: { src: '' },
     text: ''
   };
+
   if (blockquoteMatch) {
-    const authorNameMatch = blockquoteMatch[1].match(/name: '([^']*)'/);
-    const authorRoleMatch = blockquoteMatch[1].match(/role: '([^']*)'/);
-    const imageSrcMatch = blockquoteMatch[1].match(/src: ([^}]*)/);
-    const textMatch = blockquoteMatch[1].match(/>([^<]*)<\/Blockquote>/);
+    const authorNameMatch = blockquoteMatch[0].match(/name: '([^']*)'/);
+    const authorRoleMatch = blockquoteMatch[0].match(/role: '([^']*)'/);
+    const imageSrcMatch = blockquoteMatch[0].match(/src: ([^\s}]*)/);
+    const textMatch = blockquoteMatch[1].match(/>([\s\S]*?)<\/Blockquote>/);
 
     blockquote = {
       author: {
         name: authorNameMatch ? authorNameMatch[1] : '',
         role: authorRoleMatch ? authorRoleMatch[1] : ''
       },
-      image: imageSrcMatch ? { src: imageSrcMatch[1].trim() } : undefined,
+      image: { src: imageSrcMatch ? imageSrcMatch[1].trim() : '' },
       text: textMatch ? textMatch[1].trim() : blockquoteMatch[1].replace(/<[^>]+>/g, '').trim()
     };
   }
@@ -130,7 +132,6 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
 
 export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
   const { tags, blockquote, stats, otherText } = extractDataFromMDX(content);
-  console.log(tags);
   return (
     <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
       <div className="typography" >

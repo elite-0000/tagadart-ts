@@ -46,7 +46,6 @@ export const ViewProject = ({ params: { id } }: Props) => {
   const baseUrl = 'http://127.0.0.1:1337';
   if (!projectData) return null
   const project = projectData.data
-  console.log("project>>>>>>> ", project.pageIntro.cover);
 
   return (
       <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">

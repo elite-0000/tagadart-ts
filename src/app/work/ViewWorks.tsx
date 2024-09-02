@@ -49,7 +49,6 @@ export default async function ViewWorks() {
   }
   const { pageIntro, projectsSection } = projectData?.data
   const { projects } = projectsSection;
-  console.log("view works: ", projects);
   return (
     <>
       <PageIntro {...pageIntro}>

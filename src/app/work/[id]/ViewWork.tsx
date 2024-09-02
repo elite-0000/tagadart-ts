@@ -39,7 +39,6 @@ export const ViewWork = ({ params: { id } }: Props) => {
     if (!workData || !workData.data) return null // Added check for blogData.data
     const work = workData.data
     const workContent = work.content; 
-    console.log('workContent: ', workContent);
 
     return (
         <></>

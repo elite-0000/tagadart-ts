@@ -1,9 +1,19 @@
 import Image, { type ImageProps } from 'next/image'
 import clsx from 'clsx'
-
 import { Border } from '@/components/Border'
 
 type ImagePropsWithOptionalAlt = Omit<ImageProps, 'alt'> & { alt?: string }
+
+function isString(value: unknown): value is string {
+  return typeof value === 'string'
+}
+
+function getAbsoluteSrc(src: string): string {
+  if (src.startsWith('/') || src.startsWith('http://') || src.startsWith('https://')) {
+    return `http://127.0.0.1:1337${src}`;
+  }
+  return `http://127.0.0.1:1337/${src}`;
+}
 
 function BlockquoteWithImage({
   author,
@@ -16,6 +26,12 @@ function BlockquoteWithImage({
   className?: string
   image: ImagePropsWithOptionalAlt
 }) {
+  let src = image.src
+
+  if (isString(src)) {
+    src = getAbsoluteSrc(src)
+  }
+
   return (
     <figure
       className={clsx(
@@ -28,8 +44,11 @@ function BlockquoteWithImage({
       </blockquote>
       <div className="col-start-1 row-start-2 overflow-hidden rounded-xl bg-neutral-100 sm:col-span-5 sm:row-span-full sm:rounded-3xl">
         <Image
-          alt=""
+          alt={image.alt || ''}
           {...image}
+          src={src}
+          width={image.width || 100} // Default width if not provided
+          height={image.height || 100} // Default height if not provided
           sizes="(min-width: 1024px) 17.625rem, (min-width: 768px) 16rem, (min-width: 640px) 40vw, 3rem"
           className="h-12 w-12 object-cover grayscale sm:aspect-[7/9] sm:h-auto sm:w-full"
         />
