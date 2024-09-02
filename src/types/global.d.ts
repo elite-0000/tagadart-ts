@@ -31,7 +31,6 @@ export type BaseItem = {
   publishedDate?: Date
   unPublishedDate?: Date
   author?: any
-  cover?: any
   avatar?: any
   year?: string
   status?: string
@@ -40,7 +39,9 @@ export type BaseItem = {
     title: string
     eyebrow: string
     content: string
+    cover: any
   }
+  cover?: any; // Add cover field here
 }
 
 export interface BasesData {

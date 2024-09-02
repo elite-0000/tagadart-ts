@@ -17,7 +17,10 @@ interface WorkProps {
   expertise: string
   link: string
   title: string
-  logo: string
+  logo: {
+    url: string
+    id: number
+  }
   url: string
   summary: string[]
   pageIntro: PageIntro
@@ -41,7 +44,6 @@ interface WorkCardProps {
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
   const baseUrl = 'http://127.0.0.1:1337';
-
   return (
     
     <FadeIn key={project.client}>
@@ -51,7 +53,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                     <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
-                        src={`${baseUrl}${project?.pageIntro?.cover?.url}`}
+                        src={project?.logo?.url ? `${baseUrl}${project.logo.url}` : 'defaultImageUrl'}
                         alt=""
                         width={50}
                         height={50}

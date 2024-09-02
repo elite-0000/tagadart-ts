@@ -21,8 +21,9 @@ export default async function ViewWorks() {
     'pageIntro',
     'pageIntro.cover',
     'projectsSection',
-    'projectsSection.projects.testimonials',
     'projectsSection.projects',
+    'projectsSection.projects.logo',
+    'projectsSection.projects.testimonials',
     'projectsSection.projects.pageIntro.cover',
     'projectsSection.projects.our_services',
     'projectsSection.projects.our_services.pageIntro',
@@ -48,6 +49,7 @@ export default async function ViewWorks() {
   }
   const { pageIntro, projectsSection } = projectData?.data
   const { projects } = projectsSection;
+  console.log("view works: ", projects);
   return (
     <>
       <PageIntro {...pageIntro}>
