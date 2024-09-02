@@ -22,7 +22,8 @@ interface ClientProps {
 } 
 
 const Features: React.FC<ClientProps> = ({ clients }) => {
-    const baseUrl = 'http://127.0.0.1:1337';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
     return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
@@ -48,7 +49,7 @@ const Features: React.FC<ClientProps> = ({ clients }) => {
                         width={500}
                         height={500}
                         alt={value?.pageIntro?.cover?.name}
-                        src={`${baseUrl}${value?.pageIntro?.cover?.url}`}
+                        src={`${apiUrl}${value?.pageIntro?.cover?.url}`}
                     />
                     </Border>
                 </FadeIn>

@@ -51,7 +51,7 @@ export default async function ViewBlog() {
     console.error('Failed to load blog data:', error)
     return <div>Failed to load data</div>
   }
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+ 
   const { pageIntro, blogSection } = blogData?.data
   const {posts} = blogSection;
 

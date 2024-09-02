@@ -26,7 +26,7 @@ interface TeamCardProps {
 }
 
 const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
-  const baseUrl = 'http://127.0.0.1:1337';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -50,7 +50,7 @@ const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
                         <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
                           <Image
                             alt=""
-                            src={`${baseUrl}${person.avatar?.formats?.thumbnail.url}`}
+                            src={`${apiUrl}${person.avatar?.formats?.thumbnail.url}`}
                             width={50}
                             height={50}
                             className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"

@@ -43,7 +43,8 @@ interface WorkCardProps {
 
 const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
   const sentencesArray = project.content.split('\n').filter(line => line.trim() !== '');
-  const baseUrl = 'http://127.0.0.1:1337';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  
   return (
     
     <FadeIn key={project.client}>
@@ -53,7 +54,7 @@ const WorkCard: React.FC<WorkCardProps> = ({ project }) => {
                 <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
                     <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
                     <Image
-                        src={project?.logo?.url? `${baseUrl}${project.logo.url}` : ''}
+                        src={project?.logo?.url? `${apiUrl}${project.logo.url}` : ''}
                         alt=""
                         width={50}
                         height={50}

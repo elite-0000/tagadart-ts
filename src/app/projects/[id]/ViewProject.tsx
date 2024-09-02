@@ -43,7 +43,8 @@ export const ViewProject = ({ params: { id } }: Props) => {
     `/projects/${id}`,
     (url: string) => fetchAxiosAPI(url, defaultQueryParams),
   )
-  const baseUrl = 'http://127.0.0.1:1337';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   if (!projectData) return null
   const project = projectData.data
 
@@ -84,7 +85,7 @@ export const ViewProject = ({ params: { id } }: Props) => {
               <div className="border-y border-neutral-200 bg-neutral-100">
                 <div className="-my-px mx-auto max-w-[76rem] bg-neutral-200">
                   <GrayscaleTransitionImage
-                    src={`${baseUrl}${project?.pageIntro?.cover?.url}`}
+                    src={`${apiUrl}${project?.pageIntro?.cover?.url}`}
                     quality={90}
                     className="w-full"
                     sizes="(min-width: 1216px) 76rem, 100vw"

@@ -32,7 +32,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const baseUrl = 'http://127.0.0.1:1337/';
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
   return (
     <FadeIn key={project.client}>
       <article>
@@ -41,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
               {project?.logo && (
                 <Image
-                  src={`${baseUrl}${project?.cover?.url}`}
+                  src={`${apiUrl}${project?.cover?.url}`}
                   alt=""
                   key={project?.cover?.id}
                   width={50}
