@@ -1,10 +1,5 @@
 import React, { FC } from "react"
 import remarkGfm from "remark-gfm"
-import { MessageMarkdownMemoized } from "./message-markdown-memoized"
-import { Tag } from "lucide-react"
-import { compile } from "@mdx-js/mdx";
-import { remark } from 'remark';
-import html from 'remark-html';
 import ReactMarkdown from 'react-markdown';
 import { TagList, TagListItem } from "./TagList"
 import { Blockquote } from "./Blockquote"

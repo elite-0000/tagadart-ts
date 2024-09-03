@@ -33,6 +33,7 @@
     "react-dom": "^18.2.0",
     "react-markdown": "^9.0.1",
     "recma-import-images": "0.0.3",
+    "rehype-highlight": "^7.0.0",
     "remark-gfm": "^4.0.0",
     "remark-rehype-wrap": "0.0.3",
     "remark-unwrap-images": "^4.0.0",
