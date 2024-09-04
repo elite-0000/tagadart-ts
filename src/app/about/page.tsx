@@ -41,13 +41,16 @@ export default async function About() {
     console.error('Failed to load about data:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, cultureSection, teamSection } = aboutData?.data
-
+  
+  const { pageIntro, cultureSection, teamSection } = aboutData?.data || {};
+  
   return (
     <>
-      <PageIntro {...pageIntro}>
+      {pageIntro && 
+        <PageIntro {...pageIntro}>
         <p>{pageIntro.content}</p>
       </PageIntro>
+      }
 
       <Culture culturecard={cultureSection} />
 
