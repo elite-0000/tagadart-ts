@@ -73,7 +73,7 @@ export default async function ViewBlog() {
     return <div>Failed to load data</div>
   }
 
-  const { pageIntro, servicesSection } = serviceData?.data
+  const { pageIntro, servicesSection } = serviceData?.data || {};
   const { our_services } = servicesSection;
 
   return (

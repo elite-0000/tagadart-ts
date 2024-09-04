@@ -45,7 +45,7 @@ export default async function ViewBlog() {
     return <div>Failed to load data</div>
   }
  
-  const { pageIntro, blogSection } = blogData?.data
+  const { pageIntro, blogSection } = blogData?.data || {};
   const {posts} = blogSection;
 
   return (
