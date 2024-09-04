@@ -21,6 +21,11 @@ const nextConfig = {
         hostname: new URL(process.env.NEXT_PUBLIC_API_URL).hostname,
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'http',
+        hostname: '127.0.0.1',
+        pathname: '/uploads/**',
+      },
     ],
   },
 }
