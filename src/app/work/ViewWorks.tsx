@@ -39,7 +39,7 @@ export default async function ViewWorks() {
     console.error('Failed to load projects data:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, projectsSection } = projectData?.data
+  const { pageIntro, projectsSection } = projectData?.data || {};
   const { projects } = projectsSection
   const clientsData = projects[0]?.our_services
   return (
