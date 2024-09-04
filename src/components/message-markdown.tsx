@@ -1,13 +1,14 @@
-import React, { FC } from "react"
-import remarkGfm from "remark-gfm"
+import React, { FC } from "react";
+import remarkGfm from "remark-gfm";
 import ReactMarkdown from 'react-markdown';
-import { TagList, TagListItem } from "./TagList"
-import { Blockquote } from "./Blockquote"
-import { StatList, StatListItem } from "./StatList"
+import { TagList, TagListItem } from "./TagList";
+import { Blockquote } from "./Blockquote";
+import { StatList, StatListItem } from "./StatList";
+import TopTip from './TopTip'; // Import the TopTip component
 import rehypeHighlight from 'rehype-highlight';
 
 interface MessageMarkdownProps {
-  content: string
+  content: string;
 }
 
 interface TagListItem {
@@ -35,31 +36,20 @@ interface ExtractedData {
   blockquote: Blockquote;
   stats: StatListItem[];
   otherText: string;
-}
-
-interface StatListItem {
-  value: string;
-  label: string;
-}
-
-interface ExtractedData {
-  tags: TagListItem[];
-  blockquote: Blockquote;
-  stats: StatListItem[];  
-  otherText: string;
+  topTipContent: string;
 }
 
 function extractDataFromMDX(mdxString: string): ExtractedData {
   const tags: TagListItem[] = [];
   const stats: StatListItem[] = [];
-  // Extract TagListItems
+  let topTipContent = '';
+
   let tagListMatch;
   try {
     if (typeof mdxString === 'undefined') {
       throw new Error('mdxString is undefined');
     }
     tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/);
-    // Further processing with tagListMatch
   } catch (error) {
     console.log("error");
   }
@@ -75,7 +65,6 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
     }
   }
 
-  // Extract Blockquote
   const blockquoteMatch = mdxString.match(/<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/);
   let blockquote = {
     author: {
@@ -102,7 +91,6 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
     };
   }
 
-  // Extract StatListItems
   const statListMatch = mdxString.match(/<StatList>[\s\S]*?<\/StatList>/);
   if (statListMatch) {
     const statListItems = statListMatch[0].match(/<StatListItem value="([^"]+)" label="([^"]+)" \/>/g);
@@ -116,49 +104,57 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
     }
   }
 
-  // Remove the matched component data from the MDX string
+  const topTipMatch = mdxString.match(/<TopTip>([\s\S]*?)<\/TopTip>/);
+  if (topTipMatch) {
+    topTipContent = topTipMatch[1].trim();
+  }
+
   const cleanedMdxString = mdxString
     .replace(/<TagList>[\s\S]*?<\/TagList>/, '')
     .replace(/<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/, '')
-    .replace(/<StatList>[\s\S]*?<\/StatList>/, '');
+    .replace(/<StatList>[\s\S]*?<\/StatList>/, '')
+    .replace(/<TopTip>[\s\S]*?<\/TopTip>/, '');
 
-  // Capture remaining text
   const otherText = cleanedMdxString.trim();
 
   return {
     tags,
     blockquote,
     stats,
-    otherText
+    otherText,
+    topTipContent
   };
 }
 
 export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
-  const { tags, blockquote, stats, otherText } = extractDataFromMDX(content);
+  const { tags, blockquote, stats, otherText, topTipContent } = extractDataFromMDX(content);
   const isBlockquoteEmpty = !blockquote.author.name && !blockquote.author.role && !blockquote.image.src && !blockquote.text;
 
   return (
     <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
-      <div className="typography" >
-      <ReactMarkdown remarkPlugins={[remarkGfm]} 
-        rehypePlugins={[rehypeHighlight]}>{otherText}</ReactMarkdown>
-      <TagList>
-        {tags.map((tag, index) => (
-          <TagListItem key={index}>{tag.tagName}</TagListItem>
-        ))}
-      </TagList>
-      {!isBlockquoteEmpty && (
-        <Blockquote author={blockquote.author} image={blockquote.image}>
-          {blockquote.text}
-        </Blockquote>
-      )}
-      <StatList>
-        {stats.map((stat, index) => (
-          <StatListItem key={index} label={stat.label} value={stat.value} />
-        ))}
-      </StatList>
+      <div className="typography">
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+          {otherText}
+        </ReactMarkdown>
+        {topTipContent && (
+          <TopTip>{topTipContent}</TopTip>
+        )}
+        <TagList>
+          {tags.map((tag, index) => (
+            <TagListItem key={index}>{tag.tagName}</TagListItem>
+          ))}
+        </TagList>
+        {!isBlockquoteEmpty && (
+          <Blockquote author={blockquote.author} image={blockquote.image}>
+            {blockquote.text}
+          </Blockquote>
+        )}
+        <StatList>
+          {stats.map((stat, index) => (
+            <StatListItem key={index} label={stat.label} value={stat.value} />
+          ))}
+        </StatList>
       </div>
-      
-      </div>
+    </div>
   )
 }
