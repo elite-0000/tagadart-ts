@@ -10,6 +10,9 @@ import { remarkRehypeWrap } from 'remark-rehype-wrap'
 import remarkUnwrapImages from 'remark-unwrap-images'
 import shiki from 'shiki'
 import { unifiedConditional } from 'unified-conditional'
+import createNextIntlPlugin from 'next-intl/plugin'
+
+const withNextIntl = createNextIntlPlugin()
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,6 +32,8 @@ const nextConfig = {
     ],
   },
 }
+
+export default withNextIntl(nextConfig)
 
 function remarkMDXLayout(source, metaName) {
   let parser = Parser.extend(jsx())
@@ -55,43 +60,43 @@ function remarkMDXLayout(source, metaName) {
   }
 }
 
-export default async function config() {
-  let highlighter = await shiki.getHighlighter({
-    theme: 'css-variables',
-  })
+// export default async function config() {
+//   let highlighter = await shiki.getHighlighter({
+//     theme: 'css-variables',
+//   })
 
-  let withMDX = nextMDX({
-    extension: /\.mdx$/,
-    options: {
-      recmaPlugins: [recmaImportImages],
-      rehypePlugins: [
-        [rehypeShiki, { highlighter }],
-        [
-          remarkRehypeWrap,
-          {
-            node: { type: 'mdxJsxFlowElement', name: 'Typography' },
-            start: ':root > :not(mdxJsxFlowElement)',
-            end: ':root > mdxJsxFlowElement',
-          },
-        ],
-      ],
-      remarkPlugins: [
-        remarkGfm,
-        remarkUnwrapImages,
-        [
-          unifiedConditional,
-          [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/blog'))}`),
-            [[remarkMDXLayout, '@/app/blog/wrapper', 'article']],
-          ],
-          [
-            new RegExp(`^${escapeStringRegexp(path.resolve('src/app/work'))}`),
-            [[remarkMDXLayout, '@/app/work/wrapper', 'caseStudy']],
-          ],
-        ],
-      ],
-    },
-  })
+//   let withMDX = nextMDX({
+//     extension: /\.mdx$/,
+//     options: {
+//       recmaPlugins: [recmaImportImages],
+//       rehypePlugins: [
+//         [rehypeShiki, { highlighter }],
+//         [
+//           remarkRehypeWrap,
+//           {
+//             node: { type: 'mdxJsxFlowElement', name: 'Typography' },
+//             start: ':root > :not(mdxJsxFlowElement)',
+//             end: ':root > mdxJsxFlowElement',
+//           },
+//         ],
+//       ],
+//       remarkPlugins: [
+//         remarkGfm,
+//         remarkUnwrapImages,
+//         [
+//           unifiedConditional,
+//           [
+//             new RegExp(`^${escapeStringRegexp(path.resolve('src/app/blog'))}`),
+//             [[remarkMDXLayout, '@/app/blog/wrapper', 'article']],
+//           ],
+//           [
+//             new RegExp(`^${escapeStringRegexp(path.resolve('src/app/work'))}`),
+//             [[remarkMDXLayout, '@/app/work/wrapper', 'caseStudy']],
+//           ],
+//         ],
+//       ],
+//     },
+//   })
 
-  return withMDX(nextConfig)
-}
+//   return withMDX(nextConfig)
+// }

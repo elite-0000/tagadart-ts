@@ -1,0 +1,38 @@
+import { type Metadata } from 'next'
+import { RootLayout } from '@/components/RootLayout'
+import '@/styles/tailwind.css'
+
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages } from 'next-intl/server'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s - Tagadart',
+    default: 'Tagadart - Agence Digitale Eco Responsable Lausanne',
+  },
+}
+
+export default async function LocaleLayout({
+  children,
+  params: { locale },
+}: {
+  children: React.ReactNode
+  params: { locale: string }
+}) {
+  // Providing all messages to the client
+  // side is the easiest way to get started
+  const messages = await getMessages()
+
+  return (
+    <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
+      <body className="flex min-h-full flex-col">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
+        <RootLayout>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+          </NextIntlClientProvider>
+        </RootLayout>
+      </body>
+    </html>
+  )
+}

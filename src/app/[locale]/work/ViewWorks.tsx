@@ -7,6 +7,8 @@ import WorkCard from '@/components/WorkCard'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 
+import { useTranslations } from 'next-intl'
+
 export default async function ViewWorks() {
   const populateWork = [
     'pageIntro',
@@ -42,6 +44,9 @@ export default async function ViewWorks() {
   const { pageIntro, projectsSection } = projectData?.data || {}
   const { projects } = projectsSection
   const clientsData = projects[0]?.our_services
+
+  const t = useTranslations('Project')
+
   return (
     <>
       <PageIntro {...pageIntro}>
@@ -51,7 +56,7 @@ export default async function ViewWorks() {
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
           <h2 className="font-display text-2xl font-semibold text-neutral-950">
-            Nos projets
+            <h1>aaaaaaaaaaaaaa{t('title')}</h1>
           </h2>
         </FadeIn>
         <div className="space-y-24 lg:space-y-32">
