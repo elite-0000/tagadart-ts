@@ -1,17 +1,16 @@
-import React from 'react';
+import React from 'react'
 
 interface FeatureProps {
-  title: string;
-  icon: React.ComponentType<any>;
-  description: string;
-  href: string;
-  eyebrow: string;
-  pageIntro: { title: string; content: string }; // Added pageIntro property
-
+  title: string
+  icon: React.ComponentType<any>
+  description: string
+  href: string
+  eyebrow: string
+  pageIntro: { title: string; content: string } // Added pageIntro property
 }
 
 interface FeatureCardProps {
-  featurecards: FeatureProps;
+  featurecards: FeatureProps
 }
 
 const Features: React.FC<FeatureCardProps> = ({ featurecards }) => {
@@ -26,10 +25,13 @@ const Features: React.FC<FeatureCardProps> = ({ featurecards }) => {
                   aria-hidden="true"
                   className="h-5 w-5 flex-none text-indigo-600"
                 /> */}
-                {featurecards.pageIntro?.title || 'Default Title'} {/* Added optional chaining and default value */}
+                {featurecards.pageIntro?.title || 'Default Title'}{' '}
+                {/* Added optional chaining and default value */}
               </dt>
               <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                <p className="flex-auto">{featurecards.pageIntro?.content || 'Default Content'}</p>
+                <p className="flex-auto">
+                  {featurecards.pageIntro?.content || 'Default Content'}
+                </p>
                 <p className="mt-6">
                   <a
                     href={featurecards.href}
@@ -47,4 +49,4 @@ const Features: React.FC<FeatureCardProps> = ({ featurecards }) => {
   )
 }
 
-export default Features;
+export default Features

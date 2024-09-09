@@ -17,12 +17,12 @@ import Icon from '@/components/Icon'
 
 interface ServiceCardProps {
   service: {
-    id: string;
+    id: string
     pageIntro: {
-      title: string;
-      content: string;
-    };
-  };
+      title: string
+      content: string
+    }
+  }
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
@@ -64,17 +64,16 @@ export default async function ViewBlog() {
     },
   }
 
-  let serviceData;
+  let serviceData
   try {
     serviceData = await fetchAxiosAPI('services-page', defaultQueryParams)
-
   } catch (error) {
     console.error('Failed to load service data:', error)
     return <div>Failed to load data</div>
   }
 
-  const { pageIntro, servicesSection } = serviceData?.data || {};
-  const { our_services } = servicesSection;
+  const { pageIntro, servicesSection } = serviceData?.data || {}
+  const { our_services } = servicesSection
 
   return (
     <>
@@ -84,9 +83,10 @@ export default async function ViewBlog() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">
-          {our_services && our_services.map((service: any) => (
-            <ServiceCard service={service} key={service.id} />
-          ))}
+          {our_services &&
+            our_services.map((service: any) => (
+              <ServiceCard service={service} key={service.id} />
+            ))}
         </div>
       </Container>
 

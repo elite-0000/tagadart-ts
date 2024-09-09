@@ -1,14 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from 'react'
+import clsx from 'clsx'
 
 function Office({
   name,
   children,
   invert = false,
 }: {
-  name: string;
-  children: React.ReactNode;
-  invert?: boolean;
+  name: string
+  children: React.ReactNode
+  invert?: boolean
 }) {
   return (
     <address
@@ -23,26 +23,21 @@ function Office({
       <br />
       {children}
     </address>
-  );
+  )
 }
 
 interface OfficeProps {
-  id: number;
-  title: string;
-  content: string | null;
+  id: number
+  title: string
+  content: string | null
 }
 
 interface OfficesProps extends React.ComponentPropsWithoutRef<'ul'> {
-  offices: OfficeProps[];
-  invert?: boolean;
+  offices: OfficeProps[]
+  invert?: boolean
 }
 
-export function Offices({
-  offices,
-  invert = false,
-  ...props
-}: OfficesProps) {
-
+export function Offices({ offices, invert = false, ...props }: OfficesProps) {
   return (
     <ul role="list" {...props}>
       {offices && offices.length > 0 ? (
@@ -66,5 +61,5 @@ export function Offices({
         <li>No offices available</li>
       )}
     </ul>
-  );
+  )
 }

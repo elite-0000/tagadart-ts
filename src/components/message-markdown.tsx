@@ -1,144 +1,160 @@
-import React, { FC } from "react";
-import remarkGfm from "remark-gfm";
-import ReactMarkdown from 'react-markdown';
-import { TagList, TagListItem } from "./TagList";
-import { Blockquote } from "./Blockquote";
-import { StatList, StatListItem } from "./StatList";
-import TopTip from './TopTip'; // Import the TopTip component
-import rehypeHighlight from 'rehype-highlight';
+import React, { FC } from 'react'
+import remarkGfm from 'remark-gfm'
+import ReactMarkdown from 'react-markdown'
+import { TagList, TagListItem } from './TagList'
+import { Blockquote } from './Blockquote'
+import { StatList, StatListItem } from './StatList'
+import TopTip from './TopTip' // Import the TopTip component
+import rehypeHighlight from 'rehype-highlight'
 
 interface MessageMarkdownProps {
-  content: string;
+  content: string
 }
 
 interface TagListItem {
-  tagName: string;
+  tagName: string
 }
 
 interface Blockquote {
   author: {
-    name: string;
-    role: string;
-  };
+    name: string
+    role: string
+  }
   image: {
-    src: string;
-  };
-  text: string;
+    src: string
+  }
+  text: string
 }
 
 interface StatListItem {
-  value: string;
-  label: string;
+  value: string
+  label: string
 }
 
 interface ExtractedData {
-  tags: TagListItem[];
-  blockquote: Blockquote;
-  stats: StatListItem[];
-  otherText: string;
-  topTipContent: string;
+  tags: TagListItem[]
+  blockquote: Blockquote
+  stats: StatListItem[]
+  otherText: string
+  topTipContent: string
 }
 
 function extractDataFromMDX(mdxString: string): ExtractedData {
-  const tags: TagListItem[] = [];
-  const stats: StatListItem[] = [];
-  let topTipContent = '';
+  const tags: TagListItem[] = []
+  const stats: StatListItem[] = []
+  let topTipContent = ''
 
-  let tagListMatch;
+  let tagListMatch
   try {
     if (typeof mdxString === 'undefined') {
-      throw new Error('mdxString is undefined');
+      throw new Error('mdxString is undefined')
     }
-    tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/);
+    tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/)
   } catch (error) {
-    console.log("error");
+    console.log('error')
   }
   if (tagListMatch) {
-    const tagListItems = tagListMatch[0].match(/<TagListItem>(.*?)<\/TagListItem>/g);
+    const tagListItems = tagListMatch[0].match(
+      /<TagListItem>(.*?)<\/TagListItem>/g,
+    )
     if (tagListItems) {
-      tagListItems.forEach(tag => {
-        const tagNameMatch = tag.match(/<TagListItem>(.*?)<\/TagListItem>/);
+      tagListItems.forEach((tag) => {
+        const tagNameMatch = tag.match(/<TagListItem>(.*?)<\/TagListItem>/)
         if (tagNameMatch) {
-          tags.push({ tagName: tagNameMatch[1] });
+          tags.push({ tagName: tagNameMatch[1] })
         }
-      });
+      })
     }
   }
 
-  const blockquoteMatch = mdxString.match(/<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/);
+  const blockquoteMatch = mdxString.match(
+    /<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/,
+  )
   let blockquote = {
     author: {
       name: '',
-      role: ''
+      role: '',
     },
     image: { src: '' },
-    text: ''
-  };
+    text: '',
+  }
 
   if (blockquoteMatch) {
-    const authorNameMatch = blockquoteMatch[0].match(/name: '([^']*)'/);
-    const authorRoleMatch = blockquoteMatch[0].match(/role: '([^']*)'/);
-    const imageSrcMatch = blockquoteMatch[0].match(/src: ([^\s}]*)/);
-    const textMatch = blockquoteMatch[1].match(/>([\s\S]*?)<\/Blockquote>/);
+    const authorNameMatch = blockquoteMatch[0].match(/name: '([^']*)'/)
+    const authorRoleMatch = blockquoteMatch[0].match(/role: '([^']*)'/)
+    const imageSrcMatch = blockquoteMatch[0].match(/src: ([^\s}]*)/)
+    const textMatch = blockquoteMatch[1].match(/>([\s\S]*?)<\/Blockquote>/)
 
     blockquote = {
       author: {
         name: authorNameMatch ? authorNameMatch[1] : '',
-        role: authorRoleMatch ? authorRoleMatch[1] : ''
+        role: authorRoleMatch ? authorRoleMatch[1] : '',
       },
       image: { src: imageSrcMatch ? imageSrcMatch[1].trim() : '' },
-      text: textMatch ? textMatch[1].trim() : blockquoteMatch[1].replace(/<[^>]+>/g, '').trim()
-    };
-  }
-
-  const statListMatch = mdxString.match(/<StatList>[\s\S]*?<\/StatList>/);
-  if (statListMatch) {
-    const statListItems = statListMatch[0].match(/<StatListItem value="([^"]+)" label="([^"]+)" \/>/g);
-    if (statListItems) {
-      statListItems.forEach(stat => {
-        const statMatch = stat.match(/<StatListItem value="([^"]+)" label="([^"]+)" \/>/);
-        if (statMatch) {
-          stats.push({ value: statMatch[1], label: statMatch[2] });
-        }
-      });
+      text: textMatch
+        ? textMatch[1].trim()
+        : blockquoteMatch[1].replace(/<[^>]+>/g, '').trim(),
     }
   }
 
-  const topTipMatch = mdxString.match(/<TopTip>([\s\S]*?)<\/TopTip>/);
+  const statListMatch = mdxString.match(/<StatList>[\s\S]*?<\/StatList>/)
+  if (statListMatch) {
+    const statListItems = statListMatch[0].match(
+      /<StatListItem value="([^"]+)" label="([^"]+)" \/>/g,
+    )
+    if (statListItems) {
+      statListItems.forEach((stat) => {
+        const statMatch = stat.match(
+          /<StatListItem value="([^"]+)" label="([^"]+)" \/>/,
+        )
+        if (statMatch) {
+          stats.push({ value: statMatch[1], label: statMatch[2] })
+        }
+      })
+    }
+  }
+
+  const topTipMatch = mdxString.match(/<TopTip>([\s\S]*?)<\/TopTip>/)
   if (topTipMatch) {
-    topTipContent = topTipMatch[1].trim();
+    topTipContent = topTipMatch[1].trim()
   }
 
   const cleanedMdxString = mdxString
     .replace(/<TagList>[\s\S]*?<\/TagList>/, '')
     .replace(/<Blockquote[\s\S]*?>([\s\S]*?)<\/Blockquote>/, '')
     .replace(/<StatList>[\s\S]*?<\/StatList>/, '')
-    .replace(/<TopTip>[\s\S]*?<\/TopTip>/, '');
+    .replace(/<TopTip>[\s\S]*?<\/TopTip>/, '')
 
-  const otherText = cleanedMdxString.trim();
+  const otherText = cleanedMdxString.trim()
 
   return {
     tags,
     blockquote,
     stats,
     otherText,
-    topTipContent
-  };
+    topTipContent,
+  }
 }
 
 export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
-  const { tags, blockquote, stats, otherText, topTipContent } = extractDataFromMDX(content);
-  const isBlockquoteEmpty = !blockquote.author.name && !blockquote.author.role && !blockquote.image.src && !blockquote.text;
+  const { tags, blockquote, stats, otherText, topTipContent } =
+    extractDataFromMDX(content)
+  const isBlockquoteEmpty =
+    !blockquote.author.name &&
+    !blockquote.author.role &&
+    !blockquote.image.src &&
+    !blockquote.text
 
   return (
-    <div className='[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0 mt-24 sm:mt-32 lg:mt-40 main_content'>
+    <div className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
       <div className="typography">
-        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm]}
+          rehypePlugins={[rehypeHighlight]}
+        >
           {otherText}
         </ReactMarkdown>
-        {topTipContent && (
-          <TopTip>{topTipContent}</TopTip>
-        )}
+        {topTipContent && <TopTip>{topTipContent}</TopTip>}
         <TagList>
           {tags.map((tag, index) => (
             <TagListItem key={index}>{tag.tagName}</TagListItem>

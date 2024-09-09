@@ -106,7 +106,10 @@ function ContactDetails(offices: any) {
         addresses here for legal reasons.
       </p>
 
-      <Offices offices={offices.offices} className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2" />
+      <Offices
+        offices={offices.offices}
+        className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2"
+      />
 
       <Border className="mt-16 pt-16">
         <h2 className="font-display text-base font-semibold text-neutral-950">
@@ -148,10 +151,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Contact() {
-  const populateContact = [
-    'pageIntro',
-    'offices',
-  ]
+  const populateContact = ['pageIntro', 'offices']
 
   const defaultQueryParams: RestQueryParams = {
     populate: populateContact,
@@ -162,7 +162,7 @@ export default async function Contact() {
     },
   }
 
-  let contactData;
+  let contactData
   try {
     contactData = await fetchAxiosAPI('contact-page', defaultQueryParams)
   } catch (error) {
@@ -170,18 +170,16 @@ export default async function Contact() {
     console.error('Failed to load contactData:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, offices } = contactData?.data || ""
-
-  
+  const { pageIntro, offices } = contactData?.data || ''
 
   return (
     <>
-    {/* TODO: Add more security if empty data. Use component ? */}
-    {pageIntro && 
-      <PageIntro {...pageIntro[0]}>
-        <p>{pageIntro[0].content}</p>
-      </PageIntro>
-    }
+      {/* TODO: Add more security if empty data. Use component ? */}
+      {pageIntro && (
+        <PageIntro {...pageIntro[0]}>
+          <p>{pageIntro[0].content}</p>
+        </PageIntro>
+      )}
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
@@ -192,4 +190,3 @@ export default async function Contact() {
     </>
   )
 }
-

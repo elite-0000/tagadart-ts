@@ -1,54 +1,57 @@
-import React from 'react';
-import { Container } from '@/components/Container';
-import { FadeIn } from '@/components/FadeIn';
-import { Border } from '@/components/Border';
-import Link from 'next/link'; // Corrected import statement
-import Image from 'next/image'; // Corrected import statement
-import { Button } from '@/components/Button';
-import { formatDate } from '@/lib/formatDate';
+import React from 'react'
+import { Container } from '@/components/Container'
+import { FadeIn } from '@/components/FadeIn'
+import { Border } from '@/components/Border'
+import Link from 'next/link' // Corrected import statement
+import Image from 'next/image' // Corrected import statement
+import { Button } from '@/components/Button'
+import { formatDate } from '@/lib/formatDate'
 
 interface ArticleProps {
-  id: number;
-  title: string;
-  eyebrow: string;
-  description: string;
+  id: number
+  title: string
+  eyebrow: string
+  description: string
   pageIntro: {
-    title: string;
-    eyebrow: string;
-    content: string;
-  };
+    title: string
+    eyebrow: string
+    content: string
+  }
   href: string
   author: {
-    fullname: string;
-    role: string;
+    fullname: string
+    role: string
     avatar: {
       formats: {
         thumbnail: {
           url: string
         }
       }
-    };
-  };
+    }
+  }
 }
 
 interface ArticleCardProps {
-  article: ArticleProps;
+  article: ArticleProps
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  article.href = `/blog/${article.id}`;
-  const imgUrl = article.author.avatar?.formats?.thumbnail?.url ? `${apiUrl}${article.author.avatar.formats.thumbnail.url}` : null;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
+  article.href = `/blog/${article.id}`
+  const imgUrl = article.author.avatar?.formats?.thumbnail?.url
+    ? `${apiUrl}${article.author.avatar.formats.thumbnail.url}`
+    : null
   // const imgUrl = null;
   return (
-    
     <FadeIn key={article.id}>
       <article>
         <Border className="pt-16">
           <div className="relative lg:-mx-4 lg:flex lg:justify-end">
             <div className="pt-10 lg:w-2/3 lg:flex-none lg:px-4 lg:pt-0">
               <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                <Link href={`/blog/${article.id}`}>{article.pageIntro.title}</Link>
+                <Link href={`/blog/${article.id}`}>
+                  {article.pageIntro.title}
+                </Link>
               </h2>
               <dl className="lg:absolute lg:left-0 lg:top-0 lg:w-1/3 lg:px-4">
                 <dt className="sr-only">Published</dt>
@@ -69,7 +72,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
                         height={50}
                       />
                     ) : (
-                      <div className="h-12 w-12 bg-neutral-100 rounded-xl" />
+                      <div className="h-12 w-12 rounded-xl bg-neutral-100" />
                     )}
                   </div>
                   <div className="text-sm text-neutral-950">
@@ -94,8 +97,8 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
           </div>
         </Border>
       </article>
-    </FadeIn>  
-  );
-};
+    </FadeIn>
+  )
+}
 
-export default ArticleCard;
+export default ArticleCard

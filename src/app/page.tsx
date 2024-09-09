@@ -56,7 +56,7 @@ export default async function Home() {
     projectsSection,
     servicesSection,
     blogSection,
-  } = homeData?.data || ""
+  } = homeData?.data || ''
 
   return (
     <>

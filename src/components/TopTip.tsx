@@ -1,10 +1,10 @@
-import React from 'react';
-import clsx from 'clsx';
+import React from 'react'
+import clsx from 'clsx'
 import { Border } from '@/components/Border'
 
 interface TopTipProps {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }
 
 const TopTip: React.FC<TopTipProps> = ({ children, className }) => {
@@ -15,7 +15,7 @@ const TopTip: React.FC<TopTipProps> = ({ children, className }) => {
       </p>
       <div className="mt-4">{children}</div>
     </Border>
-  );
-};
+  )
+}
 
-export default TopTip;
+export default TopTip

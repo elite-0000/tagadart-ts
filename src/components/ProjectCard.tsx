@@ -11,7 +11,7 @@ interface ProjectProps {
   client: string
   logo: string
   cover: {
-    id: number,
+    id: number
     url: string
   }
   service: string
@@ -32,7 +32,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   return (
     <FadeIn key={project.client}>

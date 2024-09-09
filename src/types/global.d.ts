@@ -41,7 +41,7 @@ export type BaseItem = {
     content: string
     cover: any
   }
-  cover?: any; // Add cover field here
+  cover?: any // Add cover field here
 }
 
 export interface BasesData {

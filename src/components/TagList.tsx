@@ -8,8 +8,11 @@ export function TagList({
   className?: string
 }) {
   return (
-    <ul role="list" className={clsx(className, 'flex flex-wrap gap-4')}
-    style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+    <ul
+      role="list"
+      className={clsx(className, 'flex flex-wrap gap-4')}
+      style={{ listStyleType: 'none', padding: 0, margin: 0 }}
+    >
       {children}
     </ul>
   )
