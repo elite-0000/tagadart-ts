@@ -1,4 +1,3 @@
-
 import Clients from '@/components/Clients'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
@@ -32,6 +31,7 @@ export default async function ViewWorks() {
   }
 
   let projectData
+
   try {
     projectData = await fetchAxiosAPI('projects-page', defaultQueryParams)
   } catch (error) {
@@ -39,7 +39,7 @@ export default async function ViewWorks() {
     console.error('Failed to load projects data:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, projectsSection } = projectData?.data || {};
+  const { pageIntro, projectsSection } = projectData?.data || {}
   const { projects } = projectsSection
   const clientsData = projects[0]?.our_services
   return (

@@ -32,7 +32,7 @@ interface Page {
   }
 }
 
-function PageLink({ page, href } : { page: Page, href: string }) {
+function PageLink({ page, href }: { page: Page; href: string }) {
   return (
     <article key={`${page.href}${page.id}`}>
       <Border
@@ -49,7 +49,9 @@ function PageLink({ page, href } : { page: Page, href: string }) {
           {/* {formatDate(page.date)} */}
           {page.pageIntro.eyebrow}
         </time>
-        <p className="mt-2.5 text-base text-neutral-600">{page.pageIntro.content}</p>
+        <p className="mt-2.5 text-base text-neutral-600">
+          {page.pageIntro.content}
+        </p>
         <Link
           href={`${href}${page.id}`}
           className="mt-6 flex gap-x-3 text-base font-semibold text-neutral-950 transition hover:text-neutral-700"

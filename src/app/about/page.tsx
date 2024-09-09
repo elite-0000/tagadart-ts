@@ -7,6 +7,7 @@ import { PageIntro } from '@/components/sections/PageIntro'
 import Culture from '@/components/Culture'
 import Team from '@/components/Team'
 import { RestQueryParams } from '@/types/global'
+import { PageLinks } from '@/components/PageLinks'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -50,8 +51,8 @@ export default async function About() {
       pageSize: 10,
     },
   }
-  
-  let aboutData, blogData;
+
+  let aboutData, blogData
   try {
     aboutData = await fetchAxiosAPI('about-us-page', aboutQueryParams)
   } catch (error) {
@@ -67,27 +68,27 @@ export default async function About() {
     console.error('Failed to load blog data:', error)
     return <div>Failed to load data</div>
   }
-  
-  const { pageIntro, cultureSection, teamSection } = aboutData?.data || {};
+
+  const { pageIntro, cultureSection, teamSection } = aboutData?.data || {}
   const { blogSection } = blogData?.data
-  const {posts} = blogSection;
+  const { posts } = blogSection
   return (
     <>
-      {pageIntro && 
+      {pageIntro && (
         <PageIntro {...pageIntro}>
-        <p>{pageIntro.content}</p>
-      </PageIntro>
-      }
+          <p>{pageIntro.content}</p>
+        </PageIntro>
+      )}
 
       <Culture culturecard={cultureSection} />
 
       <Team teamCard={teamSection} />
-      <PageLinks
+      {/* <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"
         // intro="Our team of experienced designers and developers has just one thing on their mind; working on your ideas to draw a smile on the face of your users worldwide. From conducting Brand Sprints to UX Design."
         pages={posts}
-      />
+      /> */}
 
       <ContactSection />
     </>
