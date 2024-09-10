@@ -1,3 +1,4 @@
+import BasicMarkdown from '@/components/BasicMarkdown'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
@@ -48,13 +49,11 @@ export const ViewProject = async ({ params: { id } }: Props) => {
       <FadeIn>
         <header>
           <PageIntro eyebrow="Projet" title={project.pageIntro.title} centered>
-            <div className="markdown">
-              <ReactMarkdown>{project.pageIntro.content}</ReactMarkdown>
-            </div>
+            <BasicMarkdown content={project.pageIntro.content} />
 
-            <MessageMarkdown
+            {/* <MessageMarkdown
               content={project.pageIntro.content}
-            ></MessageMarkdown>
+            ></MessageMarkdown> */}
           </PageIntro>
 
           <FadeIn>
@@ -99,7 +98,8 @@ export const ViewProject = async ({ params: { id } }: Props) => {
         </header>
       </FadeIn>
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-        <MessageMarkdown content={project.content} />
+        <BasicMarkdown content={project.content} />
+        {/* <MessageMarkdown content={project.content}></MessageMarkdown> */}
       </FadeIn>
     </Container>
   )
