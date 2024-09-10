@@ -38,7 +38,6 @@ const Clients: React.FC<ClientProps> = ({ clients }) => {
           className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
         >
           {clients.map((value) => {
-            console.log(value, 'value')
             return (
               <li key={value.title} className="group">
                 <FadeIn className="overflow-hidden">

@@ -70,8 +70,8 @@ export const imageItemSchema = object({
 // export type ImageItem = InferType<typeof imageItemSchema>;
 
 export interface MediaItem {
-  id?: string
-  url?: URL
+  id: string
+  url: URL
   provider_metadata?: any
   // Define the properties of MediaItem here
   // ...
@@ -116,8 +116,6 @@ export interface Data {
   data: any
   meta: PaginationMeta
 }
-
-//TEMP quick ts
 
 //PageIntro.ts
 export interface PageIntro {
@@ -173,23 +171,6 @@ export interface Service {
   icon: string
   relatedProjects: Project[]
   cta: CTA
-}
-
-// Project.ts
-export interface Project {
-  title: string
-  eyebrow: string
-  description: string
-  image: string
-  year: string
-  client: string
-  service: string
-  technologies: string[]
-  testimonial: Testimonial
-  expertise: string
-  moreProjects: Project[]
-  cta: CTA
-  link: string
 }
 
 // BlogPost.ts

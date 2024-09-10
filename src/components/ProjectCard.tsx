@@ -20,11 +20,21 @@ interface ProjectProps {
   href: string
   title: string
   summary: string[]
-  PageIntro: PageIntro
+  pageIntro: PageIntro
   testimonial?: {
     author: string
     content: string
   }
+}
+
+interface ProjectProps2 {
+  pageIntro: PageIntro
+  year: string
+  client: string
+  service: string
+  link: string
+  content: string
+  expertise: string
 }
 
 interface ProjectCardProps {
@@ -34,6 +44,8 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
+  console.log(project.pageIntro.cover, 'project.cover')
+
   return (
     <FadeIn key={project.client}>
       <article>
@@ -42,7 +54,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
               {project?.logo && (
                 <Image
-                  src={`${apiUrl}${project?.cover?.url}`}
+                  src={`${project?.pageIntro?.cover?.url}`}
                   alt=""
                   key={project?.cover?.id}
                   width={50}
