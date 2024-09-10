@@ -5,6 +5,7 @@ import { Post } from './post'
 
 // Project.ts
 export interface Project {
+  id: string
   pageIntro: PageIntro
   logo: MediaItem
   year: string

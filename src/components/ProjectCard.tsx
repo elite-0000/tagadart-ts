@@ -6,45 +6,16 @@ import { Blockquote } from '@/components/Blockquote'
 
 import { Button } from '@/components/Button'
 import { PageIntro } from '@/types/global'
-
-interface ProjectProps {
-  client: string
-  logo: string
-  cover: {
-    id: number
-    url: string
-  }
-  service: string
-  date: string
-  year: string
-  href: string
-  title: string
-  summary: string[]
-  pageIntro: PageIntro
-  testimonial?: {
-    author: string
-    content: string
-  }
-}
-
-interface ProjectProps2 {
-  pageIntro: PageIntro
-  year: string
-  client: string
-  service: string
-  link: string
-  content: string
-  expertise: string
-}
+import { Project } from '@/types/project'
+import ReactMarkdown from 'react-markdown'
+import { getTranslations } from 'next-intl/server'
 
 interface ProjectCardProps {
-  project: ProjectProps
+  project: Project
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
-  console.log(project.pageIntro.cover, 'project.cover')
+const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
+  const t = await getTranslations('Project')
 
   return (
     <FadeIn key={project.client}>
@@ -54,13 +25,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
               {project?.logo && (
                 <Image
-                  src={`${project?.pageIntro?.cover?.url}`}
-                  alt=""
-                  key={project?.cover?.id}
-                  width={50}
+                  src={`${project?.logo?.url}`}
+                  alt={project?.client}
+                  key={project?.id}
+                  width={250}
                   height={50}
-                  className="h-16 w-16 flex-none"
-                  unoptimized
                 />
               )}
               <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
@@ -80,20 +49,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </div>
           </div>
           <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
-            {/* <p className="font-display text-4xl font-medium text-neutral-950">
-              <Link href={project.href}>{project.PageIntro?.title}</Link>
-            </p> */}
-            {/* <div className="mt-6 space-y-6 text-base text-neutral-600">
-              {project.summary.map((paragraph) => (
+            <p className="font-display text-4xl font-medium text-neutral-950">
+              {/* <Link href={project.href}></Link> */}
+              {project.pageIntro?.title}
+            </p>
+            <div className="mt-6 space-y-6 text-base text-neutral-600">
+              <ReactMarkdown>{project.pageIntro?.content}</ReactMarkdown>
+              {/* {project.summary.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div> */}
+              ))} */}
+            </div>
             <div className="mt-8 flex">
               <Button
-                href={project.href}
+                // href={project.link}
+                href={`projects/${project.id}`}
                 aria-label={`Read case study: ${project.client}`}
               >
-                Read case study
+                {t('view_more')}
               </Button>
             </div>
             {/* {project.testimonial && (

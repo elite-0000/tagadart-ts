@@ -3,7 +3,25 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const withNextIntl = createNextIntlPlugin()
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  images: {
+    domains: ['res.cloudinary.com'],
+    // remotePatterns: [
+    //   {
+    //     protocol: 'https',
+    //     hostname: new URL(process.env.NEXT_PUBLIC_API_URL).hostname,
+    //     pathname: '/uploads/**',
+    //   },
+    //   {
+    //     protocol: 'http',
+    //     hostname: '127.0.0.1',
+    //     pathname: '/uploads/**',
+    //   },
+    // ],
+  },
+}
 
 export default withNextIntl(nextConfig)
 
@@ -22,25 +40,6 @@ export default withNextIntl(nextConfig)
 // import createNextIntlPlugin from 'next-intl/plugin'
 
 // const withNextIntl = createNextIntlPlugin()
-
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
-//   images: {
-//     remotePatterns: [
-//       {
-//         protocol: 'https',
-//         hostname: new URL(process.env.NEXT_PUBLIC_API_URL).hostname,
-//         pathname: '/uploads/**',
-//       },
-//       {
-//         protocol: 'http',
-//         hostname: '127.0.0.1',
-//         pathname: '/uploads/**',
-//       },
-//     ],
-//   },
-// }
 
 // export default withNextIntl(nextConfig)
 
