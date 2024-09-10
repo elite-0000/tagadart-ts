@@ -1,5 +1,9 @@
 {
   "Project": {
-    "title": "Nos projects"
+    "title": "Nos projets"
+  },
+  "HomePage": {
+    "title": "Bonjour Monde",
+    "about": "A propos"
   }
 }
