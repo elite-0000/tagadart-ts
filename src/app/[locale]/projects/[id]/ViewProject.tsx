@@ -79,7 +79,7 @@ export const ViewProject = ({ params: { id } }: Props) => {
             <div className="border-y border-neutral-200 bg-neutral-100">
               <div className="-my-px mx-auto max-w-[76rem] bg-neutral-200">
                 <GrayscaleTransitionImage
-                  src={`${apiUrl}${project?.pageIntro?.cover?.url}`}
+                  src={`${project?.pageIntro?.cover?.url}`}
                   quality={90}
                   className="w-full"
                   sizes="(min-width: 1216px) 76rem, 100vw"

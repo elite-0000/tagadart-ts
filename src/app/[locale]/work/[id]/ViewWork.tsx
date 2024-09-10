@@ -1,3 +1,5 @@
+//DEPRECATED
+
 'use client'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData } from '@/types/global'
