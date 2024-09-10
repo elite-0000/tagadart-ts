@@ -22,6 +22,8 @@ import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
 import logo from '@/images/logo-tagadart.webp'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -76,7 +78,13 @@ function Header({
             invert={invert}
             filled={logoHovered}
           />
-          <Image src={logo} alt="Logo" width={120} height={20} />
+          <Image
+            src={logo}
+            alt="Logo"
+            width={120}
+            height={20}
+            className="fill-slate-50 brightness-100"
+          />
 
           {/* <Logo
             className="hidden h-8 sm:block"
@@ -144,15 +152,17 @@ function NavigationItem({
 }
 
 function Navigation() {
+  const t = useTranslations('Navigation')
+
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/work">Our Work</NavigationItem>
-        <NavigationItem href="/about">About Us</NavigationItem>
+        <NavigationItem href="/projects">{t('project')}</NavigationItem>
+        <NavigationItem href="/about">{t('about')}</NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/services">Our Services</NavigationItem>
-        <NavigationItem href="/blog">Blog</NavigationItem>
+        <NavigationItem href="/services">{t('services')}</NavigationItem>
+        <NavigationItem href="/blog">{t('blog')}</NavigationItem>
       </NavigationRow>
     </nav>
   )
