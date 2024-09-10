@@ -1,13 +1,13 @@
 import BasicMarkdown from '@/components/BasicMarkdown'
+import { Blockquote } from '@/components/Blockquote'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
 import { MessageMarkdown } from '@/components/message-markdown'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { fetchAxiosAPI } from '@/request/request'
-import { BaseData, RestQueryParams } from '@/types/global'
+import { RestQueryParams } from '@/types/global'
 import { ProjectData } from '@/types/project'
-import ReactMarkdown from 'react-markdown'
 
 type Props = {
   params: any
@@ -16,6 +16,9 @@ type Props = {
 const populateProject = [
   'pageIntro',
   'pageIntro.cover',
+  'testimonials',
+  'testimonials.author',
+  'testimonials.author.avatar',
   'projectsSection',
   'projectsSection.projects',
   'projectsSection.projects.logo',
@@ -44,16 +47,14 @@ export const ViewProject = async ({ params: { id } }: Props) => {
   if (!projectData) return null
   const project = projectData.data
 
+  console.log(project, 'project')
+
   return (
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <header>
           <PageIntro eyebrow="Projet" title={project.pageIntro.title} centered>
             <BasicMarkdown content={project.pageIntro.content} />
-
-            {/* <MessageMarkdown
-              content={project.pageIntro.content}
-            ></MessageMarkdown> */}
           </PageIntro>
 
           <FadeIn>
@@ -80,6 +81,19 @@ export const ViewProject = async ({ params: { id } }: Props) => {
               </Container>
             </div>
 
+            {/* {project.testimonials && (
+              <Blockquote author={project.testimonial.author} className="mt-12">
+                {project.testimonial.content}
+              </Blockquote>
+            )} */}
+
+            {project.testimonials &&
+              project.testimonials.map((testimonial) => (
+                <Blockquote key={testimonial.id} author={testimonial.author}>
+                  {testimonial.content}
+                </Blockquote>
+              ))}
+
             <div className="border-y border-neutral-200 bg-neutral-100">
               <div className="-my-px mx-auto max-w-[76rem] bg-neutral-200">
                 <GrayscaleTransitionImage
@@ -98,8 +112,15 @@ export const ViewProject = async ({ params: { id } }: Props) => {
         </header>
       </FadeIn>
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-        <BasicMarkdown content={project.content} />
-        {/* <MessageMarkdown content={project.content}></MessageMarkdown> */}
+        <div className="[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
+          <div className="typography">
+            {/* TODO: Translate */}
+            <h2>Content</h2>
+            <BasicMarkdown content={project.content} />
+            <h2>Expertise</h2>
+            <BasicMarkdown content={project.expertise} />
+          </div>
+        </div>
       </FadeIn>
     </Container>
   )

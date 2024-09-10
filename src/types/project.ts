@@ -1,7 +1,8 @@
 import { MediaItem, PageIntro, PaginationMeta, Service } from './global.d'
-import { Testimonial } from './global'
+
 import { Tag } from './tag'
 import { Post } from './post'
+import { Testimonial } from './testimonial'
 
 // Project.ts
 export interface Project {
@@ -15,7 +16,7 @@ export interface Project {
   content: string
   expertise: string
   tags: Tag[]
-  testimonial: Testimonial[]
+  testimonials: Testimonial[]
   our_services: Service[]
   posts: Post[]
 }

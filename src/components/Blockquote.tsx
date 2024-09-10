@@ -1,51 +1,18 @@
 import { Border } from '@/components/Border'
+
+import { Member } from '@/types/member'
 import clsx from 'clsx'
-import Image, { type ImageProps } from 'next/image'
-
-type ImagePropsWithOptionalAlt = Omit<ImageProps, 'alt'> & { alt?: string }
-
-function isString(value: unknown): value is string {
-  return typeof value === 'string'
-}
-
-function getAbsoluteSrc(src: string): string {
-  if (
-    src.startsWith('/') ||
-    src.startsWith('http://') ||
-    src.startsWith('https://')
-  ) {
-    return `http://127.0.0.1:1337${src}`
-  } else {
-    throw new Error('Invalid image source')
-  }
-}
+import Image from 'next/image'
 
 function BlockquoteWithImage({
   author,
   children,
   className,
-  image,
 }: {
-  author: { name: string; role: string }
+  author: Member
   children: React.ReactNode
   className?: string
-  image: ImagePropsWithOptionalAlt
 }) {
-  let src = image.src
-  try {
-    if (isString(src) && src) {
-      src = getAbsoluteSrc(src)
-    } else {
-      throw new Error('Image source is not a valid string')
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.message)
-      // Provide a fallback image or handle the error UI
-      src = '/path/to/fallback/image.jpg' // Replace with your fallback image path
-    }
-  }
-
   return (
     <figure
       className={clsx(
@@ -56,22 +23,23 @@ function BlockquoteWithImage({
       <blockquote className="col-span-2 text-xl/7 text-neutral-600 sm:col-span-7 sm:col-start-6 sm:row-start-2">
         {typeof children === 'string' ? <p>{children}</p> : children}
       </blockquote>
-      <div className="col-start-1 row-start-2 overflow-hidden rounded-xl bg-neutral-100 sm:col-span-5 sm:row-span-full sm:rounded-3xl">
+      <div className="col-start-1 row-start-2 sm:col-span-5 sm:row-span-full">
+        {/* TODO: Add Cloudinary component */}
         <Image
-          alt={image.alt || ''}
-          {...image}
-          src={src}
-          width={image.width || 100} // Default width if not provided
-          height={image.height || 100} // Default height if not provided
-          sizes="(min-width: 1024px) 17.625rem, (min-width: 768px) 16rem, (min-width: 640px) 40vw, 3rem"
-          className="h-12 w-12 object-cover grayscale sm:aspect-[7/9] sm:h-auto sm:w-full"
+          {...author.avatar}
+          src={author.avatar.url}
+          width={192}
+          height={192}
+          className="m-auto rounded-xl grayscale sm:rounded-3xl"
+          // sizes="(min-width: 1024px) 17.625rem, (min-width: 768px) 16rem, (min-width: 640px) 40vw, 3rem"
+          // className="h-12 w-12 object-cover grayscale sm:aspect-[7/9] sm:h-auto sm:w-full"
         />
       </div>
       <figcaption className="text-sm text-neutral-950 sm:col-span-7 sm:row-start-3 sm:text-base">
-        <span className="font-semibold">{author.name}</span>
+        <span className="font-semibold">{author.fullname}</span>
         <span className="hidden font-semibold sm:inline">, </span>
         <br className="sm:hidden" />
-        <span className="sm:font-semibold">{author.role}</span>
+        <span className="sm:font-semibold">{author.title}</span>
       </figcaption>
     </figure>
   )
@@ -82,7 +50,7 @@ function BlockquoteWithoutImage({
   children,
   className,
 }: {
-  author: { name: string; role: string }
+  author: Member
   children: React.ReactNode
   className?: string
 }) {
@@ -93,7 +61,7 @@ function BlockquoteWithoutImage({
           {typeof children === 'string' ? <p>{children}</p> : children}
         </blockquote>
         <figcaption className="mt-6 font-semibold text-neutral-950">
-          {author.name}, {author.role}
+          {author.fullname}, {author.role}
         </figcaption>
       </figure>
     </Border>
@@ -107,7 +75,7 @@ export function Blockquote(
         image?: undefined
       }),
 ) {
-  if (props.image) {
+  if (props.author.avatar) {
     return <BlockquoteWithImage {...props} />
   }
 

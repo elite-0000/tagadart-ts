@@ -2,9 +2,10 @@ import { MediaItem } from './global'
 import { Member } from './member'
 
 export interface Testimonial {
+  id: string
   title: string
   cover: MediaItem
   content: string
-  //TODO: Replace by pageIntro
   author: Member
+  //TODO: Replace by pageIntro
 }

@@ -71,8 +71,11 @@ export const imageItemSchema = object({
 
 export interface MediaItem {
   id: string
-  url: URL
+  url: string
   provider_metadata?: any
+  width?: number
+  height?: number
+  alt: string
   // Define the properties of MediaItem here
   // ...
 }
@@ -156,12 +159,6 @@ export interface ProjectCard {
   project: Project[]
 }
 
-// Testimonials.ts
-export interface Testimonials {
-  text: string
-  author: string
-}
-
 // Service.ts
 export interface Service {
   title: string
@@ -239,9 +236,4 @@ export interface Form {
 // CTA.ts
 export interface CTA {
   // Define CTA fields here
-}
-
-// Testimonial.ts
-export interface Testimonial {
-  // Define Testimonial fields here
 }
