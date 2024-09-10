@@ -1,4 +1,4 @@
-import { MediaItem, PageIntro, Service } from './global.d'
+import { MediaItem, PageIntro, PaginationMeta, Service } from './global.d'
 import { Testimonial } from './global'
 import { Tag } from './tag'
 import { Post } from './post'
@@ -18,4 +18,14 @@ export interface Project {
   testimonial: Testimonial[]
   our_services: Service[]
   posts: Post[]
+}
+
+export interface ProjectsData {
+  data: Project[]
+  meta: PaginationMeta
+}
+
+export interface ProjectData {
+  data: Project
+  meta: PaginationMeta
 }

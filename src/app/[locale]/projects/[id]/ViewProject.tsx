@@ -1,4 +1,3 @@
-'use client'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
@@ -6,13 +5,14 @@ import { MessageMarkdown } from '@/components/message-markdown'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { fetchAxiosAPI } from '@/request/request'
 import { BaseData, RestQueryParams } from '@/types/global'
-import useSWR from 'swr'
+import { ProjectData } from '@/types/project'
+import ReactMarkdown from 'react-markdown'
 
 type Props = {
   params: any
 }
 
-const populateWork = [
+const populateProject = [
   'pageIntro',
   'pageIntro.cover',
   'projectsSection',
@@ -26,7 +26,7 @@ const populateWork = [
 ]
 
 const defaultQueryParams: RestQueryParams = {
-  populate: populateWork,
+  populate: populateProject,
   publicationState: 'preview',
   pagination: {
     page: 1,
@@ -34,12 +34,11 @@ const defaultQueryParams: RestQueryParams = {
   },
 }
 
-export const ViewProject = ({ params: { id } }: Props) => {
-  const { data: projectData } = useSWR<BaseData>(
+export const ViewProject = async ({ params: { id } }: Props) => {
+  const projectData: ProjectData = await fetchAxiosAPI(
     `/projects/${id}`,
-    (url: string) => fetchAxiosAPI(url, defaultQueryParams),
+    defaultQueryParams,
   )
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   if (!projectData) return null
   const project = projectData.data
@@ -49,7 +48,13 @@ export const ViewProject = ({ params: { id } }: Props) => {
       <FadeIn>
         <header>
           <PageIntro eyebrow="Projet" title={project.pageIntro.title} centered>
-            <p>{project.pageIntro.content}</p>
+            <div className="markdown">
+              <ReactMarkdown>{project.pageIntro.content}</ReactMarkdown>
+            </div>
+
+            <MessageMarkdown
+              content={project.pageIntro.content}
+            ></MessageMarkdown>
           </PageIntro>
 
           <FadeIn>
@@ -84,8 +89,8 @@ export const ViewProject = ({ params: { id } }: Props) => {
                   className="w-full"
                   sizes="(min-width: 1216px) 76rem, 100vw"
                   priority
-                  alt="Description of the image" // Optional alt text
-                  width={800} // Replace with the actual width of your image
+                  alt={project.pageIntro?.title}
+                  width={800}
                   height={600}
                 />
               </div>
