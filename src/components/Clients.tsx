@@ -37,26 +37,29 @@ const Features: React.FC<ClientProps> = ({ clients }) => {
           role="list"
           className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
         >
-          {clients.map((value) => (
-            <li key={value.title} className="group">
-              <FadeIn className="overflow-hidden">
-                <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
-                  {value?.pageIntro?.cover && (
-                    <Image
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                      }}
-                      width={500}
-                      height={500}
-                      alt={value?.pageIntro?.cover?.name}
-                      src={`${apiUrl}/${value?.pageIntro?.cover?.url}`}
-                    />
-                  )}
-                </Border>
-              </FadeIn>
-            </li>
-          ))}
+          {clients.map((value) => {
+            console.log(value, 'value')
+            return (
+              <li key={value.title} className="group">
+                <FadeIn className="overflow-hidden">
+                  <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
+                    {value?.pageIntro?.cover && (
+                      <Image
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                        }}
+                        width={500}
+                        height={500}
+                        alt={value?.pageIntro?.cover?.name}
+                        src={`${apiUrl}/${value?.pageIntro?.cover?.url}`}
+                      />
+                    )}
+                  </Border>
+                </FadeIn>
+              </li>
+            )
+          })}
         </ul>
       </FadeInStagger>
     </Container>
