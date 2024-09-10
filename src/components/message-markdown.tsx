@@ -4,7 +4,7 @@ import React, { FC } from 'react'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 import { TagList, TagListItem } from './TagList'
-import { Blockquote } from './Blockquote'
+import { Testimonial } from './Testimonial'
 import { StatList, StatListItem } from './StatList'
 import TopTip from './TopTip' // Import the TopTip component
 import rehypeHighlight from 'rehype-highlight'
@@ -162,11 +162,11 @@ export const MessageMarkdown: FC<MessageMarkdownProps> = ({ content }) => {
             <TagListItem key={index}>{tag.tagName}</TagListItem>
           ))}
         </TagList>
-        {!isBlockquoteEmpty && (
-          <Blockquote author={blockquote.author} image={blockquote.image}>
+        {/* {!isBlockquoteEmpty && (
+          <Testimonial author={blockquote.author}>
             {blockquote.text}
-          </Blockquote>
-        )}
+          </Testimonial>
+        )} */}
         <StatList>
           {stats.map((stat, index) => (
             <StatListItem key={index} label={stat.label} value={stat.value} />

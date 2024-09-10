@@ -1,5 +1,5 @@
 import BasicMarkdown from '@/components/BasicMarkdown'
-import { Blockquote } from '@/components/Blockquote'
+import { Testimonial } from '@/components/Testimonial'
 import { Container } from '@/components/Container'
 import { FadeIn } from '@/components/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/GrayscaleTransitionImage'
@@ -43,11 +43,8 @@ export const ViewProject = async ({ params: { id } }: Props) => {
     `/projects/${id}`,
     defaultQueryParams,
   )
-
   if (!projectData) return null
   const project = projectData.data
-
-  console.log(project, 'project')
 
   return (
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
@@ -82,16 +79,16 @@ export const ViewProject = async ({ params: { id } }: Props) => {
             </div>
 
             {/* {project.testimonials && (
-              <Blockquote author={project.testimonial.author} className="mt-12">
+              <Testimonial author={project.testimonial.author} className="mt-12">
                 {project.testimonial.content}
-              </Blockquote>
+              </Testimonial>
             )} */}
 
             {project.testimonials &&
               project.testimonials.map((testimonial) => (
-                <Blockquote key={testimonial.id} author={testimonial.author}>
+                <Testimonial key={testimonial.id} author={testimonial.author}>
                   {testimonial.content}
-                </Blockquote>
+                </Testimonial>
               ))}
 
             <div className="border-y border-neutral-200 bg-neutral-100">

@@ -1,44 +1,83 @@
-import Image, { type ImageProps } from 'next/image'
+import { Border } from '@/components/Border'
+
+import { Member } from '@/types/member'
 import clsx from 'clsx'
+import Image from 'next/image'
 
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
-import { GridPattern } from '@/components/GridPattern'
-
-export function Testimonial({
+function TestimonialWithImage({
+  author,
   children,
-  client,
   className,
 }: {
+  author: Member
   children: React.ReactNode
-  client: { logo: ImageProps['src']; name: string }
   className?: string
 }) {
   return (
-    <div
+    <figure
       className={clsx(
-        'relative isolate bg-neutral-50 py-16 sm:py-28 md:py-32',
+        'grid grid-cols-[auto,1fr] items-center gap-x-4 gap-y-8 sm:grid-cols-12 sm:grid-rows-[1fr,auto,auto,1fr] sm:gap-x-10 lg:gap-x-16',
         className,
       )}
     >
-      <GridPattern
-        className="absolute inset-0 -z-10 h-full w-full fill-neutral-100 stroke-neutral-950/5 [mask-image:linear-gradient(to_bottom_left,white_50%,transparent_60%)]"
-        yOffset={-256}
-      />
-      <Container>
-        <FadeIn>
-          <figure className="mx-auto max-w-4xl">
-            <blockquote className="relative font-display text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
-              <p className="before:content-['“'] after:content-['”'] sm:before:absolute sm:before:right-full">
-                {children}
-              </p>
-            </blockquote>
-            <figcaption className="mt-10">
-              <Image src={client.logo} alt={client.name} unoptimized />
-            </figcaption>
-          </figure>
-        </FadeIn>
-      </Container>
-    </div>
+      <blockquote className="col-span-2 text-xl/7 text-neutral-600 sm:col-span-7 sm:col-start-6 sm:row-start-2">
+        {typeof children === 'string' ? <p>{children}</p> : children}
+      </blockquote>
+      <div className="col-start-1 row-start-2 sm:col-span-5 sm:row-span-full">
+        {/* TODO: Add Cloudinary component */}
+        <Image
+          {...author.avatar}
+          src={author.avatar.url}
+          width={192}
+          height={192}
+          className="m-auto rounded-xl grayscale sm:rounded-3xl"
+          // sizes="(min-width: 1024px) 17.625rem, (min-width: 768px) 16rem, (min-width: 640px) 40vw, 3rem"
+          // className="h-12 w-12 object-cover grayscale sm:aspect-[7/9] sm:h-auto sm:w-full"
+        />
+      </div>
+      <figcaption className="text-sm text-neutral-950 sm:col-span-7 sm:row-start-3 sm:text-base">
+        <span className="font-semibold">{author.fullname}</span>
+        <span className="hidden font-semibold sm:inline">, </span>
+        <br className="sm:hidden" />
+        <span className="sm:font-semibold">{author.title}</span>
+      </figcaption>
+    </figure>
   )
+}
+
+function TestimonialWithoutImage({
+  author,
+  children,
+  className,
+}: {
+  author: Member
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <Border position="left" className={clsx('pl-8', className)}>
+      <figure className="text-sm">
+        <blockquote className="text-neutral-600 [&>*]:relative [&>:first-child]:before:absolute [&>:first-child]:before:right-full [&>:first-child]:before:content-['“'] [&>:last-child]:after:content-['”']">
+          {typeof children === 'string' ? <p>{children}</p> : children}
+        </blockquote>
+        <figcaption className="mt-6 font-semibold text-neutral-950">
+          {author.fullname}, {author.role}
+        </figcaption>
+      </figure>
+    </Border>
+  )
+}
+
+export function Testimonial(
+  props:
+    | React.ComponentPropsWithoutRef<typeof TestimonialWithImage>
+    | (React.ComponentPropsWithoutRef<typeof TestimonialWithoutImage> & {
+        image?: undefined
+      }),
+) {
+  if (props.author.avatar) {
+    return <TestimonialWithImage {...props} />
+  }
+
+  return <TestimonialWithoutImage {...props} />
 }
