@@ -21,7 +21,7 @@ interface ClientProps {
   }[]
 }
 
-const Features: React.FC<ClientProps> = ({ clients }) => {
+const Clients: React.FC<ClientProps> = ({ clients }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   return (
@@ -66,4 +66,4 @@ const Features: React.FC<ClientProps> = ({ clients }) => {
   )
 }
 
-export default Features
+export default Clients
