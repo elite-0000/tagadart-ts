@@ -4,6 +4,8 @@ import { Member } from '@/types/member'
 import clsx from 'clsx'
 import Image from 'next/image'
 
+import NextCloudinaryImage from './ImageNextCloudinary'
+
 function TestimonialWithImage({
   author,
   children,
@@ -13,6 +15,10 @@ function TestimonialWithImage({
   children: React.ReactNode
   className?: string
 }) {
+  console.log(
+    author.avatar.provider_metadata.public_id,
+    'author.avatar.provider_metadata.public_id',
+  )
   return (
     <figure
       className={clsx(
@@ -25,7 +31,7 @@ function TestimonialWithImage({
       </blockquote>
       <div className="col-start-1 row-start-2 sm:col-span-5 sm:row-span-full">
         {/* TODO: Add Cloudinary component */}
-        <Image
+        <NextCloudinaryImage
           {...author.avatar}
           src={author.avatar.url}
           width={192}

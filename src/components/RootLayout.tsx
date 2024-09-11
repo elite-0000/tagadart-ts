@@ -20,10 +20,11 @@ import { GridPattern } from '@/components/GridPattern'
 import { Logo, Logomark } from '@/components/Logo'
 import { Offices } from '@/components/Offices'
 import { SocialMedia } from '@/components/SocialMedia'
-import logo from '@/images/logo-tagadart.webp'
+import logo from '@/images/logo-tagadart.svg'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import NextCloudinaryImage from './ImageNextCloudinary'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -73,17 +74,30 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          <Logomark
+          {/* <Logomark
             className="h-8 sm:hidden"
             invert={invert}
             filled={logoHovered}
-          />
-          <Image
-            src={logo}
+          /> */}
+
+          {/* <Image
+              src={logo}
+              alt="Logo"
+              width={120}
+              height={20}
+              className="fill-slate-50 brightness-100"
+            />
+         */}
+          <NextCloudinaryImage
+            src={
+              invert
+                ? 'logo_tagadart_white_a60e46ff2a'
+                : 'logo_tagadart_2ef62a5f8c'
+            }
             alt="Logo"
-            width={120}
-            height={20}
-            className="fill-slate-50 brightness-100"
+            width={140}
+            height={140}
+            className="m-auto rounded-xl sm:rounded-3xl"
           />
 
           {/* <Logo
@@ -192,7 +206,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
       window.removeEventListener('click', onClick)
     }
   }, [])
-
+  const t = useTranslations('Navigation')
   return (
     <MotionConfig transition={shouldReduceMotion ? { duration: 0 } : undefined}>
       <header>
@@ -245,7 +259,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
               <Container>
                 <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
-                  <div>
+                  {/* <div>
                     <h2 className="font-display text-base font-semibold text-white">
                       Our offices
                     </h2>
@@ -253,10 +267,10 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                       invert
                       className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
                     />
-                  </div>
+                  </div> */}
                   <div className="sm:border-l sm:border-transparent sm:pl-16">
                     <h2 className="font-display text-base font-semibold text-white">
-                      Follow us
+                      {t('Follow us')}
                     </h2>
                     <SocialMedia className="mt-6" invert />
                   </div>
