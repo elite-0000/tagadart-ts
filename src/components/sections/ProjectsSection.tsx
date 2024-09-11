@@ -4,33 +4,19 @@ import { Container } from '../Container'
 import { FadeIn, FadeInStagger } from '../FadeIn'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-
-interface Project {
-  id: number
-  year: string
-  client: string
-  service: string
-  expertise: string
-  link: string | null
-  content: string
-  pageIntro: any
-}
-
-interface ProjectsSectionProps {
-  id: number
-  title: string
-  content: string
-  eyebrow: string
-
-  projects: Array<Project>
-}
+import { Project } from '@/types/project'
+import { PageIntro } from '@/types/global'
 
 interface ProjectsProps {
-  projectsSection: ProjectsSectionProps
+  projectsSection: PageIntro
+  projects: Project[]
 }
 
-const ProjectsSection: React.FC<ProjectsProps> = ({ projectsSection }) => {
-  const { projects, title, content, eyebrow } = projectsSection || ''
+const ProjectsSection: React.FC<ProjectsProps> = ({
+  projectsSection,
+  projects,
+}) => {
+  const { title, content, eyebrow } = projectsSection || ''
   //   const { title, content, eyebrow } = pageIntro
 
   return (
@@ -65,10 +51,10 @@ const ProjectsSection: React.FC<ProjectsProps> = ({ projectsSection }) => {
                     <span>{project.service}</span>
                   </p>
                   <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
-                    {project.pageIntro.title}
+                    {project?.pageIntro?.title}
                   </p>
                   <div className="mt-4 text-base text-neutral-600">
-                    <ReactMarkdown>{project.pageIntro.content}</ReactMarkdown>
+                    <ReactMarkdown>{project?.pageIntro?.content}</ReactMarkdown>
                   </div>
                 </article>
               </FadeIn>

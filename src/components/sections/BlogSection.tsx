@@ -5,16 +5,10 @@ import { FadeIn } from '../FadeIn'
 import ReactMarkdown from 'react-markdown'
 import PostCard from '../PostCard'
 import { Post } from '@/types/post'
-
-interface BlogSectionProps {
-  id: number
-  title: string
-  content: string
-  eyebrow: string
-}
+import { PageIntro } from '@/types/global'
 
 interface BlogProps {
-  blogSection: BlogSectionProps
+  blogSection: PageIntro
   posts: Post[]
 }
 

@@ -59,6 +59,39 @@ export async function fetchBlogPage() {
   }
 }
 
+export async function fetchProjectsPage() {
+  const populateProjectsPage = [
+    'pageIntro',
+    'pageIntro.cover',
+    'projectsSection',
+    'projectsSection.projects',
+    'projectsSection.projects.logo',
+    'projectsSection.projects.testimonials',
+    'projectsSection.projects.pageIntro.cover',
+    'projectsSection.projects.our_services',
+    'projectsSection.projects.our_services.pageIntro',
+    'projectsSection.projects.our_services.pageIntro.cover',
+  ]
+
+  // Query parameters for fetching the projects data
+  const queryParams: RestQueryParams = {
+    populate: populateProjectsPage,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const projectsData = await fetchAxiosAPI('home', queryParams)
+    return projectsData?.data
+  } catch (error) {
+    console.error('Failed to load home data:', error)
+    throw error
+  }
+}
+
 // Fetch posts data
 export async function fetchPosts() {
   const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
@@ -83,7 +116,7 @@ export async function fetchPosts() {
 
 // Fetch projects data (for the home page)
 export async function fetchProjects() {
-  const populateProjects = ['projectsSection.projects.pageIntro']
+  const populateProjects = ['pageIntro']
 
   const queryParams: RestQueryParams = {
     populate: populateProjects,
