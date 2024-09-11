@@ -1,10 +1,10 @@
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 
 import { Member } from '@/types/member'
 import clsx from 'clsx'
 import Image from 'next/image'
 
-import NextCloudinaryImage from './ImageNextCloudinary'
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 function TestimonialWithImage({
   author,

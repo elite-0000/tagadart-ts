@@ -13,18 +13,18 @@ import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Footer } from '@/components/Footer'
-import { GridPattern } from '@/components/GridPattern'
-import { Logo, Logomark } from '@/components/Logo'
-import { Offices } from '@/components/Offices'
-import { SocialMedia } from '@/components/SocialMedia'
+import { Button } from '@/components/elements/Button'
+import { Container } from '@/components/ui/Container'
+import { Footer } from '@/components/sections/Footer'
+import { GridPattern } from '@/components/ui/GridPattern'
+import { Logo, Logomark } from '@/components/images/Logo'
+import { Offices } from '@/components/sections/Offices'
+import { SocialMedia } from '@/components/sections/SocialMedia'
 import logo from '@/images/logo-tagadart.svg'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
-import NextCloudinaryImage from './ImageNextCloudinary'
+
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean

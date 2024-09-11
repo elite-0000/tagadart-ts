@@ -1,6 +1,6 @@
-import { Border } from '@/components/Border'
-import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import { Border } from '@/components/ui/Border'
+import { Container } from '@/components/ui/Container'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import Image from 'next/image'
 import React from 'react'
 
@@ -21,7 +21,7 @@ interface ClientProps {
   }[]
 }
 
-const Clients: React.FC<ClientProps> = ({ clients }) => {
+const ClientsSection: React.FC<ClientProps> = ({ clients }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   return (
@@ -65,4 +65,4 @@ const Clients: React.FC<ClientProps> = ({ clients }) => {
   )
 }
 
-export default Clients
+export default ClientsSection

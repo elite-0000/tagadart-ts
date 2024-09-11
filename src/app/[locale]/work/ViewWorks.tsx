@@ -1,9 +1,9 @@
-import Clients from '@/components/Clients'
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import Clients from '@/components/sections/Clients'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
-import WorkCard from '@/components/WorkCard'
+import WorkCard from '@/components/elements/WorkCard'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 

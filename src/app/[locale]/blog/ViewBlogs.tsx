@@ -1,13 +1,13 @@
 import { type Metadata } from 'next'
 
-import ArticleCard from '@/components/ArticleCard' // Added import statement
-import { Container } from '@/components/Container'
+import ArticleCard from '@/components/elements/ArticleCard' // Added import statement
+import { Container } from '@/components/ui/Container'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 import BlogSection from '@/components/sections/BlogSection'
-import { FadeIn } from '@/components/FadeIn'
+import { FadeIn } from '@/components/ui/FadeIn'
 
 export default async function ViewBlog() {
   const populateBlog = [

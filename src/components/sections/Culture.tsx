@@ -1,7 +1,7 @@
 import React from 'react'
-import { Container } from '@/components/Container'
-import { GridList, GridListItem } from '@/components/GridList'
-import { SectionIntro } from '@/components/SectionIntro'
+import { Container } from '@/components/ui/Container'
+import { GridList, GridListItem } from '@/components/ui/GridList'
+import { SectionIntro } from '@/components/sections/SectionIntro'
 
 interface CultureProps {
   title: string

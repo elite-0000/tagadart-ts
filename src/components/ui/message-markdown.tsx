@@ -3,8 +3,8 @@
 import React, { FC } from 'react'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
-import { TagList, TagListItem } from './TagList'
-import { Testimonial } from './Testimonial'
+import { TagList, TagListItem } from '../sections/TagList'
+import { Testimonial } from '../elements/Testimonial'
 import { StatList, StatListItem } from './StatList'
 import TopTip from './TopTip' // Import the TopTip component
 import rehypeHighlight from 'rehype-highlight'

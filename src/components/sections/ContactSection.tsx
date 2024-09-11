@@ -1,7 +1,7 @@
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
-import { Offices } from '@/components/Offices'
+import { Button } from '@/components/elements/Button'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Offices } from '@/components/sections/Offices'
 
 export function ContactSection() {
   return (

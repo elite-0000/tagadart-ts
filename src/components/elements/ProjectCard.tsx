@@ -1,10 +1,10 @@
 import React from 'react'
-import { FadeIn } from '@/components/FadeIn'
+import { FadeIn } from '@/components/ui/FadeIn'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Blockquote } from '@/components/Blockquote'
 
-import { Button } from '@/components/Button'
+import { Button } from '@/components/elements/Button'
 import { PageIntro } from '@/types/global'
 import { Project } from '@/types/project'
 import ReactMarkdown from 'react-markdown'

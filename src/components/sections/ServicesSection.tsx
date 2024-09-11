@@ -1,10 +1,10 @@
 import React from 'react'
-import { SectionIntro } from '../SectionIntro'
-import { Container } from '../Container'
-import { FadeIn } from '../FadeIn'
+import { SectionIntro } from './SectionIntro'
+import { Container } from '../ui/Container'
+import { FadeIn } from '../ui/FadeIn'
 import ReactMarkdown from 'react-markdown'
 import { PageIntro } from '@/types/global'
-import Icon from '../Icon'
+import Icon from '../images/Icon'
 import { Service } from '@/types/service'
 
 

@@ -13,7 +13,7 @@ interface FeatureCardProps {
   featurecards: FeatureProps
 }
 
-const Features: React.FC<FeatureCardProps> = ({ featurecards }) => {
+const FeatureCardProps: React.FC<FeatureCardProps> = ({ featurecards }) => {
   return (
     <div className="bg-white py-8 sm:py-12">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -49,4 +49,4 @@ const Features: React.FC<FeatureCardProps> = ({ featurecards }) => {
   )
 }
 
-export default Features
+export default FeatureCardProps

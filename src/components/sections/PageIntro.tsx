@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { MediaItem } from '@/types/global'
 
 export function PageIntro({

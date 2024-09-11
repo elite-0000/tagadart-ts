@@ -1,10 +1,10 @@
 import React from 'react'
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { Border } from '@/components/Border'
 import Link from 'next/link' // Corrected import statement
 import Image from 'next/image' // Corrected import statement
-import { Button } from '@/components/Button'
+import { Button } from '@/components/elements/Button'
 import { formatDate } from '@/lib/formatDate'
 
 interface ArticleProps {

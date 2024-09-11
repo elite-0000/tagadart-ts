@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container } from '@/components/Container'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import { Container } from '@/components/ui/Container'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import Image from 'next/image'
 
 interface TeamProps {

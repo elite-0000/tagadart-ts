@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
-import { Logo } from '@/components/Logo'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Logo } from '@/components/images/Logo'
 import { socialMediaProfiles } from '@/components/SocialMedia'
 
 import { useTranslations } from 'next-intl'

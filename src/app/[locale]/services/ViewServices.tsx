@@ -2,18 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { Border } from '@/components/Border'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/elements/Button'
 import { ContactSection } from '@/components/sections/ContactSection'
-import { Container } from '@/components/Container'
-import { FadeIn } from '@/components/FadeIn'
+import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { formatDate } from '@/lib/formatDate'
 import { loadArticles } from '@/lib/mdx'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import ArticleCard from '@/components/ArticleCard'
+import ArticleCard from '@/components/elements/ArticleCard'
 import ReactMarkdown from 'react-markdown' // Ensure this is imported
-import Icon from '@/components/Icon'
+import Icon from '@/components/images/Icon'
 
 interface ServiceCardProps {
   service: {

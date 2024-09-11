@@ -1,9 +1,9 @@
 import React from 'react'
-import { SectionIntro } from '../SectionIntro'
-import { Container } from '../Container'
-import { FadeIn } from '../FadeIn'
+import { SectionIntro } from './SectionIntro'
+import { Container } from '../ui/Container'
+import { FadeIn } from '../ui/FadeIn'
 import ReactMarkdown from 'react-markdown'
-import PostCard from '../PostCard'
+import PostCard from '../elements/PostCard'
 import { Post } from '@/types/post'
 import { PageIntro } from '@/types/global'
 

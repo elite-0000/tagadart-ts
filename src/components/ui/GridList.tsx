@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 
 import { Border } from '@/components/Border'
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 
 export function GridList({
   children,
