@@ -17,12 +17,12 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   let homeData = null
-  let postsData = null
+  let posts = null
   let projects = null
 
   try {
     homeData = await fetchHomePage()
-    postsData = await fetchPosts()
+    posts = await fetchPosts()
     projects = await fetchProjects()
   } catch (error) {
     console.error('Failed to load data:', error)
@@ -42,7 +42,7 @@ export default async function Home() {
 
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
       <ServicesSection servicesSection={servicesSection} />
-      <BlogSection blogSection={blogSection} posts={postsData} />
+      <BlogSection blogSection={blogSection} posts={posts} />
       <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>

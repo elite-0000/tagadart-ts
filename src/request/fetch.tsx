@@ -3,7 +3,6 @@
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 
-// Fetch home page data
 export async function fetchHomePage() {
   const populateHome = [
     'cover',
@@ -33,7 +32,6 @@ export async function fetchHomePage() {
   }
 }
 
-// Fetch blog page data
 export async function fetchBlogPage() {
   const populateBlog = [
     'pageIntro',
@@ -92,7 +90,36 @@ export async function fetchProjectsPage() {
   }
 }
 
-// Fetch posts data
+export async function fetchServicesPage() {
+  const populateService = [
+    'pageIntro',
+    'servicesSection',
+    'servicesSection.our_services',
+    'servicesSection.our_services.pageIntro',
+  ]
+
+  const defaultQueryParams: RestQueryParams = {
+    populate: populateService,
+    publicationState: 'preview',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  
+  try {
+    const serviceData = await fetchAxiosAPI('services-page', defaultQueryParams)
+    return serviceData.data
+  } catch (error) {
+    console.error('Failed to load service data:', error)
+    return <div>Failed to load data</div>
+  }
+}
+
+
+
+//////// COLLECTIONS
 export async function fetchPosts() {
   const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
 
@@ -135,3 +162,5 @@ export async function fetchProjects() {
     throw error
   }
 }
+
+
