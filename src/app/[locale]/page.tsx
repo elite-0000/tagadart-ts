@@ -50,17 +50,35 @@ export default async function Home() {
     console.error('Failed to load home data:', error)
     return <div>Failed to load data</div>
   }
-  const {
-    pageIntro,
-    referencesSection,
-    projectsSection,
-    servicesSection,
-    blogSection,
-  } = homeData?.data || ''
+  const { pageIntro, projectsSection, servicesSection, blogSection } =
+    homeData?.data || ''
+
+  const populatePosts = [
+    'pageIntro',
+    'author',
+    'author.avatar',
+    'pageIntro.cover',
+  ]
+
+  const postsQueryParams: RestQueryParams = {
+    populate: populatePosts,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  let postsData
+  try {
+    postsData = await fetchAxiosAPI('posts', postsQueryParams)
+  } catch (error) {
+    console.error('Failed to load blog data:', error)
+    return <div>Failed to load data</div>
+  }
 
   return (
     <>
-      {/* <h1>Empt</h1> */}
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <PageIntro {...pageIntro} />
@@ -69,7 +87,7 @@ export default async function Home() {
 
       <ProjectsSection projectsSection={projectsSection} />
       <ServicesSection servicesSection={servicesSection} />
-      <BlogSection blogSection={blogSection} />
+      <BlogSection blogSection={blogSection} posts={postsData.data} />
       <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>

@@ -42,8 +42,6 @@ export default async function ViewProjects() {
   }
 
   let projectData
-
-  // Fetch project data on the server
   try {
     projectData = await fetchAxiosAPI('projects-page', defaultQueryParams)
   } catch (error) {

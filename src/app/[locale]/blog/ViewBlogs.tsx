@@ -6,12 +6,8 @@ import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-
-export const metadata: Metadata = {
-  title: 'Blog',
-  description:
-    'Stay up-to-date with the latest industry news as our marketing teams finds new ways to re-purpose old CSS tricks articles.',
-}
+import BlogSection from '@/components/sections/BlogSection'
+import { FadeIn } from '@/components/FadeIn'
 
 export default async function ViewBlog() {
   const populateBlog = [
@@ -26,7 +22,7 @@ export default async function ViewBlog() {
     'blogSection.posts.author.avatar.thumbnail.formats',
   ]
 
-  const defaultQueryParams: RestQueryParams = {
+  const pageBlogQueryParams: RestQueryParams = {
     populate: populateBlog,
     publicationState: 'preview',
     pagination: {
@@ -37,29 +33,45 @@ export default async function ViewBlog() {
 
   let blogData
   try {
-    blogData = await fetchAxiosAPI('blog-page', defaultQueryParams)
+    blogData = await fetchAxiosAPI('blog-page', pageBlogQueryParams)
   } catch (error) {
-    // Handle the error appropriately here
     console.error('Failed to load blog data:', error)
     return <div>Failed to load data</div>
   }
 
   const { pageIntro, blogSection } = blogData?.data || {}
-  const { posts } = blogSection
+
+  const populatePosts = [
+    'pageIntro',
+    'author',
+    'author.avatar',
+    'pageIntro.cover',
+  ]
+
+  const postsQueryParams: RestQueryParams = {
+    populate: populatePosts,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  let postsData
+  try {
+    postsData = await fetchAxiosAPI('posts', postsQueryParams)
+  } catch (error) {
+    console.error('Failed to load blog data:', error)
+    return <div>Failed to load data</div>
+  }
 
   return (
     <>
-      <PageIntro {...pageIntro}>
-        <p>{pageIntro.content}</p>
-      </PageIntro>
-
-      <Container className="mt-24 sm:mt-32 lg:mt-40">
-        <div className="space-y-24 lg:space-y-32">
-          {posts &&
-            posts.map((post: any) => (
-              <ArticleCard article={post} key={post.id} />
-            ))}
-        </div>
+      <Container className="mt-24 sm:mt-32 md:mt-56">
+        <FadeIn className="max-w-3xl">
+          <PageIntro {...pageIntro} />
+        </FadeIn>
+        <BlogSection blogSection={blogSection} posts={postsData.data} />
       </Container>
 
       <ContactSection />

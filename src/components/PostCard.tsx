@@ -6,24 +6,7 @@ import { Border } from './Border'
 import { formatDate } from '@/lib/formatDate'
 import ReactMarkdown from 'react-markdown'
 import { PageIntro } from '@/types/global'
-
-interface Author {
-  name: string
-  role: string
-  image: {
-    src: string
-    alt?: string
-  }
-}
-
-interface Post {
-  id: number
-  content: any
-  createdAt: string
-  updatedAt: string
-  publishedAt: string
-  pageIntro: PageIntro
-}
+import { Post } from '@/types/post'
 
 interface PostCardProps {
   post: Post

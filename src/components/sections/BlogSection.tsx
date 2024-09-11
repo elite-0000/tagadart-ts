@@ -4,21 +4,22 @@ import { Container } from '../Container'
 import { FadeIn } from '../FadeIn'
 import ReactMarkdown from 'react-markdown'
 import PostCard from '../PostCard'
+import { Post } from '@/types/post'
 
 interface BlogSectionProps {
   id: number
   title: string
   content: string
   eyebrow: string
-  posts: Array<any> //TS: Change to Post type
 }
 
 interface BlogProps {
   blogSection: BlogSectionProps
+  posts: Post[]
 }
 
-const BlogSection: React.FC<BlogProps> = ({ blogSection }) => {
-  const { title, content, eyebrow, posts } = blogSection || ''
+const BlogSection: React.FC<BlogProps> = ({ blogSection, posts }) => {
+  const { title, content, eyebrow } = blogSection || ''
 
   return (
     <>
