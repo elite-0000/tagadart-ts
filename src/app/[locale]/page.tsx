@@ -10,6 +10,7 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import { fetchHomePage, fetchPosts } from '@/request/fetch'
 
 export const metadata: Metadata = {
   description:
@@ -17,65 +18,19 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  const populateHome = [
-    'cover',
-    'pageIntro',
-    'referencesSection',
-    'servicesSection',
-    'servicesSection.our_services',
-    'servicesSection.our_services.pageIntro',
-    'blogSection',
-    'blogSection.posts',
-    'blogSection.posts.pageIntro',
-    'blogSection.posts.author',
-    'projectsSection',
-    'projectsSection.projects',
-    'projectsSection.projects.pageIntro',
-  ]
+  let homeData = null
+  let postsData = null
 
-  const defaultQueryParams: RestQueryParams = {
-    populate: populateHome,
-    publicationState: 'preview',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-
-  let homeData
   try {
-    homeData = await fetchAxiosAPI('home', defaultQueryParams)
+    homeData = await fetchHomePage()
+    postsData = await fetchPosts()
   } catch (error) {
-    // Handle the error appropriately here
-    console.error('Failed to load home data:', error)
+    console.error('Failed to load data:', error)
     return <div>Failed to load data</div>
   }
+
   const { pageIntro, projectsSection, servicesSection, blogSection } =
-    homeData?.data || ''
-
-  const populatePosts = [
-    'pageIntro',
-    'author',
-    'author.avatar',
-    'pageIntro.cover',
-  ]
-
-  const postsQueryParams: RestQueryParams = {
-    populate: populatePosts,
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-
-  let postsData
-  try {
-    postsData = await fetchAxiosAPI('posts', postsQueryParams)
-  } catch (error) {
-    console.error('Failed to load blog data:', error)
-    return <div>Failed to load data</div>
-  }
+    homeData || ''
 
   return (
     <>
@@ -87,7 +42,7 @@ export default async function Home() {
 
       <ProjectsSection projectsSection={projectsSection} />
       <ServicesSection servicesSection={servicesSection} />
-      <BlogSection blogSection={blogSection} posts={postsData.data} />
+      <BlogSection blogSection={blogSection} posts={postsData} />
       <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>
