@@ -141,7 +141,6 @@ export async function fetchPosts() {
   }
 }
 
-// Fetch projects data (for the home page)
 export async function fetchProjects() {
   const populateProjects = ['pageIntro']
 
@@ -163,4 +162,24 @@ export async function fetchProjects() {
   }
 }
 
+export async function fetchServices() {
+  const populateServices = ['pageIntro']
+
+  const queryParams: RestQueryParams = {
+    populate: populateServices,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const servicesData = await fetchAxiosAPI('our-services', queryParams)
+    return servicesData?.data
+  } catch (error) {
+    console.error('Failed to load services data:', error)
+    throw error
+  }
+}
 

@@ -3,24 +3,19 @@ import { SectionIntro } from '../SectionIntro'
 import { Container } from '../Container'
 import { FadeIn } from '../FadeIn'
 import ReactMarkdown from 'react-markdown'
-import { PageIntro, Project, ProjectCard } from '@/types/global'
+import { PageIntro } from '@/types/global'
 import Icon from '../Icon'
+import { Service } from '@/types/service'
 
-interface Service {
-  id: number
-  classIcon: string
-  pageIntro: PageIntro
-  content: any
-  cta: any
-  projects: Project[]
-}
+
 
 interface ServicesSectionProps {
+  //TODO: Extend pageIntro
   id: number
   title: string
   content: string
   eyebrow: string
-  our_services: Array<Service>
+  our_services: Service[]
 }
 
 interface ServicesProps {
@@ -57,7 +52,6 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 
 const ServicesSection: React.FC<ServicesProps> = ({ servicesSection }) => {
   const { title, content, eyebrow, our_services } = servicesSection || ''
-  //   const { title, content, eyebrow } = pageIntro
 
   return (
     <>
