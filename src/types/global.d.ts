@@ -108,10 +108,7 @@ export interface PageIntro {
   eyebrow: string
   content: any
   image: string
-  cover: {
-    id: number
-    url: string
-  }
+  cover: MediaItem
 }
 
 export interface Culture {

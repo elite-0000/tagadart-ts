@@ -3,11 +3,11 @@ import Clients from '@/components/sections/Clients'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { ContactSection } from '@/components/sections/ContactSection'
-import { PageIntro } from '@/components/sections/PageIntro'
 
 import { getTranslations } from 'next-intl/server'
 import { fetchProjects, fetchProjectsPage } from '@/request/fetch'
 import ProjectsSection from '@/components/sections/ProjectsSection'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 export const metadata: Metadata = {
   title: 'Projets - Agence de développement web et mobile en Suisse',
@@ -30,9 +30,9 @@ export default async function ViewProjectsPage() {
 
   return (
     <>
-      <PageIntro {...pageIntro}>
+      <PageIntroSections {...pageIntro}>
         <p>{pageIntro.content}</p>
-      </PageIntro>
+      </PageIntroSections>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>

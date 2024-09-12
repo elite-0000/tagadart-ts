@@ -6,8 +6,8 @@ import { RestQueryParams } from '@/types/global'
 //////// PAGES
 export async function fetchHomePage() {
   const populateHome = [
-    'cover',
     'pageIntro',
+    'pageIntro.cover',
     'referencesSection',
     'servicesSection.our_services.pageIntro',
     'blogSection.posts.pageIntro',

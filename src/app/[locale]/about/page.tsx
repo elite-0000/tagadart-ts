@@ -2,7 +2,7 @@ import { fetchAxiosAPI } from '@/request/request'
 import { type Metadata } from 'next'
 
 import { ContactSection } from '@/components/sections/ContactSection'
-import { PageIntro } from '@/components/sections/PageIntro'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 import TeamSection from '@/components/sections/TeamSection'
 import { RestQueryParams } from '@/types/global'
@@ -47,9 +47,9 @@ export default async function About() {
   return (
     <>
       {pageIntro && (
-        <PageIntro {...pageIntro}>
+        <PageIntroSections {...pageIntro}>
           <p>{pageIntro.content}</p>
-        </PageIntro>
+        </PageIntroSections>
       )}
 
       {/* <CultureSection culturecard={cultureSection} /> */}

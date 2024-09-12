@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import { fetchBlogPage, fetchPosts } from '@/request/fetch'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { PageIntro } from '@/components/sections/PageIntro'
+
 import BlogSection from '@/components/sections/BlogSection'
 import { ContactSection } from '@/components/sections/ContactSection'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 export const metadata: Metadata = {
   title: 'Blogs',
@@ -28,7 +29,7 @@ export default async function ViewBlogsPage() {
     <>
       <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
-          <PageIntro {...pageIntro} />
+          <PageIntroSections {...pageIntro} />
         </FadeIn>
         <BlogSection blogSection={blogSection} posts={posts} />
       </Container>

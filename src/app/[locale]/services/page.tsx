@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 
 import { ContactSection } from '@/components/sections/ContactSection'
 import { Container } from '@/components/ui/Container'
-import { PageIntro } from '@/components/sections/PageIntro'
+
 import { fetchServices, fetchServicesPage } from '@/request/fetch'
 import { ServiceCard } from '@/components/elements/ServiceCard'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 export const metadata: Metadata = {
   title: 'Services',
 }
@@ -26,9 +27,9 @@ export default async function ViewServicesPages() {
 
   return (
     <>
-      <PageIntro {...pageIntro}>
+      <PageIntroSections {...pageIntro}>
         <p>{pageIntro.content}</p>
-      </PageIntro>
+      </PageIntroSections>
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">

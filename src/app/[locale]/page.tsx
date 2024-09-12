@@ -5,7 +5,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { ContactSection } from '@/components/sections/ContactSection'
 
 import BlogSection from '@/components/sections/BlogSection'
-import { PageIntro } from '@/components/sections/PageIntro'
+
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import {
@@ -14,6 +14,7 @@ import {
   fetchProjects,
   fetchServices,
 } from '@/request/fetch'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 export const metadata: Metadata = {
   description:
@@ -41,12 +42,13 @@ export default async function Home() {
 
   return (
     <>
-      <Container className="mt-24 sm:mt-32 md:mt-56">
+      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
         <FadeIn className="max-w-3xl">
           <PageIntro {...pageIntro} />
         </FadeIn>
-      </Container>
+      </Container> */}
 
+      <PageIntroSections {...pageIntro} />
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
       <ServicesSection servicesSection={servicesSection} services={services} />
       <BlogSection blogSection={blogSection} posts={posts} />

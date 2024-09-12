@@ -7,6 +7,8 @@ type NextCloudinaryImageProps = CldImageProps & {
   width: number
   height: number
   src: string
+  crop?: string
+  gravity?: string
 }
 
 const NextCloudinaryImage = ({
@@ -14,6 +16,8 @@ const NextCloudinaryImage = ({
   width,
   height,
   src,
+  crop = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
+  gravity = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#control_gravity
   ...props
 }: NextCloudinaryImageProps) => {
   return (
@@ -24,7 +28,8 @@ const NextCloudinaryImage = ({
       height={height}
       loading="lazy"
       sizes="(min-width: 480px ) 50vw, (min-width: 728px) 33vw, (min-width: 976px) 25vw, 100vw" //TODO: Better responsive sizes
-      //   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      crop={crop} // Add crop prop
+      gravity={gravity} // Add gravity prop
       {...props}
     />
   )

@@ -7,10 +7,11 @@ import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { OfficesSection } from '@/components/sections/Offices'
-import { PageIntro } from '@/components/sections/PageIntro'
+
 import { SocialMedia } from '@/components/sections/SocialMedia'
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 function TextInput({
   label,
@@ -176,9 +177,9 @@ export default async function Contact() {
     <>
       {/* TODO: Add more security if empty data. Use component ? */}
       {pageIntro && (
-        <PageIntro {...pageIntro[0]}>
+        <PageIntroSections {...pageIntro[0]}>
           <p>{pageIntro[0].content}</p>
-        </PageIntro>
+        </PageIntroSections>
       )}
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">

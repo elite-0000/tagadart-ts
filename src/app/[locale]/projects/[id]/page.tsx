@@ -4,10 +4,10 @@ import { Testimonial } from '@/components/elements/Testimonial'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'
-import { PageIntro } from '@/components/sections/PageIntro'
 
 import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 
 export const metadata: Metadata = {
   title: 'Projet - Nom du projet',
@@ -22,13 +22,15 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
   if (!project) return null
 
+  const { pageIntro } = project || ''
+
   return (
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <header>
-          <PageIntro eyebrow="Projet" title={project.pageIntro.title} centered>
-            <BasicMarkdown>{project.pageIntro.content}</BasicMarkdown>
-          </PageIntro>
+          <PageIntroSections {...pageIntro}>
+            <p>{pageIntro.content}</p>
+          </PageIntroSections>
 
           <FadeIn>
             <div className="mt-24 border-t border-neutral-200 bg-white/50 sm:mt-32 lg:mt-40">
