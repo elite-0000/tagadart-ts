@@ -4,7 +4,6 @@ import { type Metadata } from 'next'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 
-import CultureSection from '@/components/sections/Culture'
 import TeamSection from '@/components/sections/TeamSection'
 import { RestQueryParams } from '@/types/global'
 
