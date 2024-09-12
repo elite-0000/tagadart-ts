@@ -20,7 +20,6 @@ type Props = {
 
 export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
-
   if (!project) return null
 
   return (

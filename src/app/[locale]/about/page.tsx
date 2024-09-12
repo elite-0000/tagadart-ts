@@ -4,8 +4,8 @@ import { type Metadata } from 'next'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 
-import Culture from '@/components/sections/Culture'
-import Team from '@/components/elements/Team'
+import CultureSection from '@/components/sections/Culture'
+import TeamSection from '@/components/sections/TeamSection'
 import { RestQueryParams } from '@/types/global'
 
 export const metadata: Metadata = {
@@ -79,9 +79,9 @@ export default async function About() {
         </PageIntro>
       )}
 
-      <Culture culturecard={cultureSection} />
+      <CultureSection culturecard={cultureSection} />
 
-      <Team teamCard={teamSection} />
+      <TeamSection teamCard={teamSection} />
       {/* <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"

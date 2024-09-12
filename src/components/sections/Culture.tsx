@@ -17,7 +17,7 @@ interface CultureCardProps {
   culturecard: CultureProps
 }
 
-const Culture: React.FC<CultureCardProps> = ({ culturecard }) => {
+const CultureSection: React.FC<CultureCardProps> = ({ culturecard }) => {
   return (
     <div className="mt-24 rounded-4xl bg-primary-800 py-24 sm:mt-32 lg:mt-40 lg:py-32">
       <SectionIntro
@@ -40,4 +40,4 @@ const Culture: React.FC<CultureCardProps> = ({ culturecard }) => {
   )
 }
 
-export default Culture
+export default CultureSection

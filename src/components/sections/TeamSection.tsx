@@ -21,7 +21,7 @@ interface TeamCardProps {
   teamCard: TeamProps
 }
 
-const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
+const TeamSection: React.FC<TeamCardProps> = ({ teamCard }) => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   return (
@@ -72,4 +72,4 @@ const Team: React.FC<TeamCardProps> = ({ teamCard }) => {
   )
 }
 
-export default Team
+export default TeamSection

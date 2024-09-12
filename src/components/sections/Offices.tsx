@@ -37,7 +37,11 @@ interface OfficesProps extends React.ComponentPropsWithoutRef<'ul'> {
   invert?: boolean
 }
 
-export function Offices({ offices, invert = false, ...props }: OfficesProps) {
+export function OfficesSection({
+  offices,
+  invert = false,
+  ...props
+}: OfficesProps) {
   return (
     <ul role="list" {...props}>
       {offices && offices.length > 0 ? (

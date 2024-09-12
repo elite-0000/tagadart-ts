@@ -6,7 +6,7 @@ import { Border } from '@/components/ui/Border'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { Offices } from '@/components/sections/Offices'
+import { OfficesSection } from '@/components/sections/Offices'
 import { PageIntro } from '@/components/sections/PageIntro'
 import { SocialMedia } from '@/components/sections/SocialMedia'
 import { fetchAxiosAPI } from '@/request/request'
@@ -106,7 +106,7 @@ function ContactDetails(offices: any) {
         addresses here for legal reasons.
       </p>
 
-      <Offices
+      <OfficesSection
         offices={offices.offices}
         className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2"
       />

@@ -1,7 +1,7 @@
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { Offices } from '@/components/sections/Offices'
+import { OfficesSection } from '@/components/sections/Offices'
 
 export function ContactSection() {
   return (
@@ -21,7 +21,7 @@ export function ContactSection() {
               <h3 className="font-display text-base font-semibold text-white">
                 Our offices
               </h3>
-              <Offices
+              <OfficesSection
                 invert
                 className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
               />
