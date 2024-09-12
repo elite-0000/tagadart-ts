@@ -1,9 +1,10 @@
 import { type Metadata } from 'next'
-import { RootLayout } from '@/components/RootLayout'
+
 import '@/styles/tailwind.css'
 
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
+import { RootLayout } from '@/components/ui/RootLayout'
 
 export const metadata: Metadata = {
   title: {

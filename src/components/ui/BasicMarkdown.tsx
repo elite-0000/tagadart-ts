@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
 type Props = {
-  content: string
+  content?: string
+  children?: string
 }
 
-function BasicMarkdown({ content }: Props) {
+function BasicMarkdown({ children, content }: Props) {
   return (
     <div className="typography">
-      <ReactMarkdown
-        children={content}
-        remarkPlugins={[remarkGfm]}
-        rehypePlugins={[rehypeRaw]}
-      />
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+        {children || content}
+      </ReactMarkdown>
     </div>
   )
 }

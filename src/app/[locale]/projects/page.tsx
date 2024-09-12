@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import Clients from '@/components/sections/Clients'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import ProjectCard from '@/components/ProjectCard'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
-import { fetchAxiosAPI } from '@/request/request'
-import { RestQueryParams } from '@/types/global'
+
 import { getTranslations } from 'next-intl/server'
-import { fetchPosts, fetchProjects, fetchProjectsPage } from '@/request/fetch'
+import { fetchProjects, fetchProjectsPage } from '@/request/fetch'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 
 export const metadata: Metadata = {
@@ -27,19 +25,15 @@ export default async function ViewProjectsPage() {
     return <div>Failed to load data</div>
   }
 
-  console.log(projects, 'projects')
-
   const { pageIntro, projectsSection } = projectsPageData || ''
   const t = await getTranslations('Project')
 
   return (
     <>
-      {/* Page Introduction */}
       <PageIntro {...pageIntro}>
         <p>{pageIntro.content}</p>
       </PageIntro>
 
-      {/* Projects Section */}
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <FadeIn>
           <h2 className="font-display text-2xl font-semibold text-neutral-950">

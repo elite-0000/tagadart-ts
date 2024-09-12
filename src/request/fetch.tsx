@@ -3,6 +3,7 @@
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 
+//////// PAGES
 export async function fetchHomePage() {
   const populateHome = [
     'cover',
@@ -31,7 +32,6 @@ export async function fetchHomePage() {
     throw error
   }
 }
-
 export async function fetchBlogPage() {
   const populateBlog = [
     'pageIntro',
@@ -56,7 +56,6 @@ export async function fetchBlogPage() {
     throw error
   }
 }
-
 export async function fetchProjectsPage() {
   const populateProjectsPage = [
     'pageIntro',
@@ -89,7 +88,6 @@ export async function fetchProjectsPage() {
     throw error
   }
 }
-
 export async function fetchServicesPage() {
   const populateService = [
     'pageIntro',
@@ -107,7 +105,6 @@ export async function fetchServicesPage() {
     },
   }
 
-  
   try {
     const serviceData = await fetchAxiosAPI('services-page', defaultQueryParams)
     return serviceData.data
@@ -116,8 +113,6 @@ export async function fetchServicesPage() {
     return <div>Failed to load data</div>
   }
 }
-
-
 
 //////// COLLECTIONS
 export async function fetchPosts() {
@@ -162,6 +157,41 @@ export async function fetchProjects() {
   }
 }
 
+export async function fetchProject(id: string) {
+  const populateProject = [
+    'pageIntro',
+    'pageIntro.cover',
+    'testimonials',
+    'testimonials.author',
+    'testimonials.author.avatar',
+    'projectsSection',
+    'projectsSection.projects',
+    'projectsSection.projects.logo',
+    'projectsSection.projects.testimonials',
+    'projectsSection.projects.pageIntro.cover',
+    'projectsSection.projects.our_services',
+    'projectsSection.projects.our_services.pageIntro',
+    'projectsSection.projects.our_services.pageIntro.cover',
+  ]
+
+  const queryParams: RestQueryParams = {
+    populate: populateProject,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
+    return projectsData?.data
+  } catch (error) {
+    console.error('Failed to load projects data:', error)
+    throw error
+  }
+}
+
 export async function fetchServices() {
   const populateServices = ['pageIntro']
 
@@ -182,4 +212,3 @@ export async function fetchServices() {
     throw error
   }
 }
-

@@ -4,10 +4,9 @@ import { type Metadata } from 'next'
 import { ContactSection } from '@/components/sections/ContactSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 
-import Culture from '@/components/Culture'
-import Team from '@/components/Team'
+import Culture from '@/components/sections/Culture'
+import Team from '@/components/elements/Team'
 import { RestQueryParams } from '@/types/global'
-import { PageLinks } from '@/components/PageLinks'
 
 export const metadata: Metadata = {
   title: 'About Us',
