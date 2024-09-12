@@ -7,7 +7,7 @@ import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionIma
 import { MessageMarkdown } from '@/components/ui/message-markdown'
 import { PageIntro } from '@/components/sections/PageIntro'
 
-import { ProjectData } from '@/types/project'
+import { Project, ProjectData } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 
 export const metadata: Metadata = {
@@ -20,10 +20,9 @@ type Props = {
 }
 
 export default async function ViewProjectPage({ params: { id } }: Props) {
-  const projectData: ProjectData = await fetchProject(id)
+  const project: Project = await fetchProject(id)
 
-  if (!projectData) return null
-  const project = projectData.data
+  if (!project) return null
 
   return (
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
