@@ -1,8 +1,9 @@
-import { MediaItem, PageIntro, PaginationMeta, Service } from './global.d'
+import { MediaItem, PageIntro, PaginationMeta } from './global.d'
 
 import { Tag } from './tag'
 import { Post } from './post'
 import { Testimonial } from './testimonial'
+import { Service } from './service'
 
 // Project.ts
 export interface Project {

@@ -1,17 +1,17 @@
 import clsx from 'clsx'
 
-import { Blockquote } from '@/components/Blockquote'
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'
-import { StatList, StatListItem } from '@/components/StatList'
-import { TagList, TagListItem } from '@/components/TagList'
+import { StatList, StatListItem } from '@/components/ui/StatList'
+import { TagList, TagListItem } from '@/components/sections/TagList'
+import { Testimonial } from '../elements/Testimonial'
 
 export const MDXComponents = {
   Blockquote({
     className,
     ...props
-  }: React.ComponentPropsWithoutRef<typeof Blockquote>) {
-    return <Blockquote className={clsx('my-32', className)} {...props} />
+  }: React.ComponentPropsWithoutRef<typeof Testimonial>) {
+    return <Testimonial className={clsx('my-32', className)} {...props} />
   },
   img: function Img({
     className,

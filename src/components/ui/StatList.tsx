@@ -1,4 +1,4 @@
-import { Border } from '@/components/Border'
+import { Border } from '@/components/ui/Border'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 
 export function StatList({
