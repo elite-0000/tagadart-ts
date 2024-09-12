@@ -130,10 +130,8 @@ export interface Office {
 
 // }
 
-// // CTA.ts
-// export interface CTA {
-
-// }
+// CTA.ts
+export interface CTA {}
 
 // // AboutUs.ts
 // export interface AboutUs {
