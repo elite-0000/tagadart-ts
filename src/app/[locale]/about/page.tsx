@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 }
 
 export default async function About() {
+  let aboutData = null
+
   const populateAbout = [
     'pageIntro',
     'cultureSection',
@@ -22,15 +24,6 @@ export default async function About() {
     'teamSection',
     'teamSection.members',
     'teamSection.members.avatar',
-  ]
-  const populateBlog = [
-    'pageIntro',
-    'blogSection',
-    'blogSection.posts',
-    'blogSection.posts.pageIntro',
-    'blogSection.posts.eyebrow',
-    'blogSection.posts.content',
-    'blogSection.posts.author',
   ]
 
   const aboutQueryParams: RestQueryParams = {
@@ -42,16 +35,6 @@ export default async function About() {
     },
   }
 
-  const blogQueryParams: RestQueryParams = {
-    populate: populateBlog,
-    publicationState: 'preview',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-
-  let aboutData, blogData
   try {
     aboutData = await fetchAxiosAPI('about-us-page', aboutQueryParams)
   } catch (error) {
@@ -60,17 +43,8 @@ export default async function About() {
     return <div>Failed to load data</div>
   }
 
-  try {
-    blogData = await fetchAxiosAPI('blog-page', blogQueryParams)
-  } catch (error) {
-    // Handle the error appropriately here
-    console.error('Failed to load blog data:', error)
-    return <div>Failed to load data</div>
-  }
-
   const { pageIntro, cultureSection, teamSection } = aboutData?.data || {}
-  const { blogSection } = blogData?.data
-  const { posts } = blogSection
+
   return (
     <>
       {pageIntro && (
@@ -81,7 +55,7 @@ export default async function About() {
 
       {/* <CultureSection culturecard={cultureSection} /> */}
 
-      <TeamSection teamCard={teamSection} />
+      <TeamSection teamSection={teamSection} />
       {/* <PageLinks
         className="mt-24 sm:mt-32 lg:mt-40"
         title="From the blog"

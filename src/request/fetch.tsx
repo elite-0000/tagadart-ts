@@ -32,6 +32,34 @@ export async function fetchHomePage() {
     throw error
   }
 }
+
+export async function fetchAboutPage() {
+  const populateAbout = [
+    'pageIntro',
+    'cultureSection',
+    'cultureSection.values',
+    'teamSection',
+    'teamSection.members',
+    'teamSection.members.avatar',
+  ]
+
+  const queryParams: RestQueryParams = {
+    populate: populateAbout,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const aboutData = await fetchAxiosAPI('about-us-page', queryParams)
+    return aboutData?.data
+  } catch (error) {
+    console.error('Failed to load home data:', error)
+    throw error
+  }
+}
 export async function fetchBlogPage() {
   const populateBlog = [
     'pageIntro',

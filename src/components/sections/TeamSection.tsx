@@ -2,37 +2,24 @@ import React from 'react'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import Image from 'next/image'
-
-interface TeamProps {
-  title: string
-  content: string
-  eyebrow: string
-  members: {
-    fullname: string
-    email: string
-    role: string
-    avatar: {
-      url: string
-    }
-  }[]
-}
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
+import { PageIntro } from '@/types/global'
+import { Member } from '@/types/member'
 
 interface TeamCardProps {
-  teamCard: TeamProps
+  teamSection: PageIntro & { members: Member[] }
 }
 
-const TeamSection: React.FC<TeamCardProps> = ({ teamCard }) => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL
-
+const TeamSection: React.FC<TeamCardProps> = ({ teamSection }) => {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <div className="space-y-24">
-        <FadeInStagger key={teamCard.title}>
+        <FadeInStagger key={teamSection.title}>
           <FadeIn />
           <div className="grid grid-cols-1 gap-6 pt-12 sm:pt-16 lg:grid-cols-4 xl:gap-8">
             <FadeIn>
               <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                {teamCard.title}
+                {teamSection.title}
               </h2>
             </FadeIn>
             <div className="lg:col-span-3">
@@ -40,13 +27,13 @@ const TeamSection: React.FC<TeamCardProps> = ({ teamCard }) => {
                 role="list"
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
               >
-                {teamCard.members.map((person) => (
+                {teamSection.members.map((person) => (
                   <li key={person.fullname}>
                     <FadeIn>
                       <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
-                        <Image
-                          alt=""
-                          src={`${apiUrl}${person.avatar?.url}`}
+                        <NextCloudinaryImage
+                          src={`${person.avatar?.url}`}
+                          alt={`${person.avatar?.alt}`}
                           width={50}
                           height={50}
                           className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
