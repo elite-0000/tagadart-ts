@@ -16,10 +16,6 @@ const ClientCard: React.FC<ClientCardProps> = ({ client }) => {
         <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
           {client?.logo && (
             <NextCloudinaryImage
-              //   style={{
-              //     width: '100%',
-              //     height: 'auto',
-              //   }}
               width={500}
               height={500}
               alt={client?.logo?.alt}

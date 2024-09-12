@@ -2,7 +2,7 @@
 
 import axios, { AxiosRequestHeaders, AxiosResponse } from 'axios'
 
-import { Data, ImageUpload, RestQueryParams } from '@/types/global'
+import { Data, RestQueryParams } from '@/types/global'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:1337'
 axios.defaults.baseURL = `${API_URL}/api`

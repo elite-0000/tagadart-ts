@@ -1,20 +1,10 @@
-import { MediaItem } from './user'
-
-type ImageUpload = { uri: string } | string | null | any
+import { Member } from './member'
 
 export type LocationType = {
   longitude: number
   latitude: number
   address: string
 }
-
-export const baseSchema = object({
-  title: string().required(),
-  content: string(),
-  contentRtM: string(),
-  startDate: date(),
-  endDate: date(),
-})
 
 export type BaseItem = {
   id: number
@@ -62,13 +52,6 @@ export type ItemType = {
 export type ValueType = string | number | boolean
 
 //****** IMAGE ******\\
-export const imageItemSchema = object({
-  public_id: string(),
-  url: string(),
-})
-
-// export type ImageItem = InferType<typeof imageItemSchema>;
-
 export interface MediaItem {
   id: string
   url: string
@@ -120,7 +103,6 @@ export interface Data {
   meta: PaginationMeta
 }
 
-//PageIntro.ts
 export interface PageIntro {
   title: string
   eyebrow: string
@@ -132,66 +114,53 @@ export interface PageIntro {
   }
 }
 
-// Reference.ts
-export interface Reference {
-  title: string
-  logo: string[]
-}
-
-// Author.ts
-export interface Author {
-  avatar: string
-  fullname: string
-}
-
-// AboutUs.ts
-export interface AboutUs {
-  title: string
-  eyebrow: string
-  description: string
-  image: string
-  culture: Culture
-  team: Team[]
-}
-
-// Culture.ts
 export interface Culture {
   id: string
   title: string
   content: string
 }
 
-// Team.ts
-export interface Team {
-  photo: string
-  fullname: string
-}
-
-// Contact.ts
-export interface Contact {
+export interface Culture {
+  id: string
   title: string
-  eyebrow: string
-  description: string
-  image: string
-  offices: Office[]
-  newsletter: boolean
-  form: Form
+  content: string
 }
 
 // Office.ts
 export interface Office {
-  title: string
-  address: string
-  email: string
-  phone: string
+  name: string
+  children: React.ReactNode
+  invert: boolean
+  phone?: string
 }
 
-// Form.ts
-export interface Form {
-  // Define form fields here
-}
+// // Form.ts
+// export interface Form {
 
-// CTA.ts
-export interface CTA {
-  // Define CTA fields here
-}
+// }
+
+// // CTA.ts
+// export interface CTA {
+
+// }
+
+// // AboutUs.ts
+// export interface AboutUs {
+//   title: string
+//   eyebrow: string
+//   description: string
+//   image: string
+//   culture: Culture
+//   team: Member[]
+// }
+
+// // Contact.ts
+// export interface Contact {
+//   title: string
+//   eyebrow: string
+//   description: string
+//   image: string
+//   offices: Office[]
+//   newsletter: boolean
+//   form: Form
+// }

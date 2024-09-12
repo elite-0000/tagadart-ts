@@ -1,15 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
+import { Office } from '@/types/global'
 
-function Office({
-  name,
-  children,
-  invert = false,
-}: {
-  name: string
-  children: React.ReactNode
-  invert?: boolean
-}) {
+function OfficeCard({ name, children, invert = false }: Office) {
   return (
     <address
       className={clsx(
@@ -47,7 +40,7 @@ export function OfficesSection({
       {offices && offices.length > 0 ? (
         offices.map(({ id, title, content }) => (
           <li key={id}>
-            <Office name={title} invert={invert}>
+            <OfficeCard name={title} invert={invert}>
               {content ? (
                 content.split('\n').map((line, idx) => (
                   <React.Fragment key={idx}>
@@ -58,7 +51,7 @@ export function OfficesSection({
               ) : (
                 <em>No address provided</em>
               )}
-            </Office>
+            </OfficeCard>
           </li>
         ))
       ) : (
@@ -66,4 +59,15 @@ export function OfficesSection({
       )}
     </ul>
   )
+}
+
+interface OfficeProps {
+  id: number
+  title: string
+  content: string | null
+}
+
+interface OfficesProps extends React.ComponentPropsWithoutRef<'ul'> {
+  offices: OfficeProps[]
+  invert?: boolean
 }
