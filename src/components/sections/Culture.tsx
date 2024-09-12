@@ -26,7 +26,7 @@ const CultureSection: React.FC<CultureCardProps> = ({
       <Container className="mt-16">
         <GridList>
           {culture.map((item) => (
-            <CultureCard culture={item} />
+            <CultureCard key={item.id} culture={item} />
           ))}
         </GridList>
       </Container>
