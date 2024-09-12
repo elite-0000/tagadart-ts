@@ -120,12 +120,6 @@ export interface Culture {
   content: string
 }
 
-export interface Culture {
-  id: string
-  title: string
-  content: string
-}
-
 // Office.ts
 export interface Office {
   name: string
