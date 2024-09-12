@@ -17,7 +17,6 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   projects,
 }) => {
   const { title, content, eyebrow } = projectsSection || ''
-  //   const { title, content, eyebrow } = pageIntro
 
   return (
     <>
