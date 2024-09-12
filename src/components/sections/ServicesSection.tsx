@@ -7,19 +7,9 @@ import { PageIntro } from '@/types/global'
 import Icon from '../images/Icon'
 import { Service } from '@/types/service'
 
-
-
-interface ServicesSectionProps {
-  //TODO: Extend pageIntro
-  id: number
-  title: string
-  content: string
-  eyebrow: string
-  our_services: Service[]
-}
-
 interface ServicesProps {
-  servicesSection: ServicesSectionProps
+  servicesSection: PageIntro
+  services: Service[]
 }
 
 interface ServiceCardProps {
@@ -50,8 +40,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
   )
 }
 
-const ServicesSection: React.FC<ServicesProps> = ({ servicesSection }) => {
-  const { title, content, eyebrow, our_services } = servicesSection || ''
+const ServicesSection: React.FC<ServicesProps> = ({
+  servicesSection,
+  services,
+}) => {
+  const { title, content, eyebrow } = servicesSection || ''
 
   return (
     <>
@@ -64,7 +57,7 @@ const ServicesSection: React.FC<ServicesProps> = ({ servicesSection }) => {
       </SectionIntro>
       <Container className="mt-16">
         <FadeIn className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {our_services?.map((service) => (
+          {services?.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
         </FadeIn>

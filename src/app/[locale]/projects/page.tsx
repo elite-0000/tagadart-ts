@@ -45,10 +45,6 @@ export default async function ViewProjectsPage() {
             projectsSection={projectsSection}
             projects={projects}
           />
-          {/* {projects &&
-            projects.map((project: any) => (
-              <ProjectCard key={project.id} project={project} />
-            ))} */}
         </div>
 
         {/* Clients Section */}
@@ -57,7 +53,6 @@ export default async function ViewProjectsPage() {
         </div> */}
       </Container>
 
-      {/* Contact Section */}
       <ContactSection />
     </>
   )

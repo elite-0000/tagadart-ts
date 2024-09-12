@@ -8,7 +8,12 @@ import BlogSection from '@/components/sections/BlogSection'
 import { PageIntro } from '@/components/sections/PageIntro'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ServicesSection from '@/components/sections/ServicesSection'
-import { fetchHomePage, fetchPosts, fetchProjects } from '@/request/fetch'
+import {
+  fetchHomePage,
+  fetchPosts,
+  fetchProjects,
+  fetchServices,
+} from '@/request/fetch'
 
 export const metadata: Metadata = {
   description:
@@ -19,11 +24,13 @@ export default async function Home() {
   let homeData = null
   let posts = null
   let projects = null
+  let services = null
 
   try {
     homeData = await fetchHomePage()
     posts = await fetchPosts()
     projects = await fetchProjects()
+    services = await fetchServices()
   } catch (error) {
     console.error('Failed to load data:', error)
     return <div>Failed to load data</div>
@@ -41,7 +48,7 @@ export default async function Home() {
       </Container>
 
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
-      <ServicesSection servicesSection={servicesSection} />
+      <ServicesSection servicesSection={servicesSection} services={services} />
       <BlogSection blogSection={blogSection} posts={posts} />
       <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
