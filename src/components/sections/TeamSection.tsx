@@ -1,7 +1,6 @@
 import React from 'react'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
-import Image from 'next/image'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 import { PageIntro } from '@/types/global'
 import { Member } from '@/types/member'

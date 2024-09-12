@@ -3,6 +3,9 @@
     "title": "Nos projets",
     "view_more": "Voir plus"
   },
+  "Service": {
+    "view_more": "Voir plus"
+  },
   "HomePage": {
     "title": "Bonjour Monde",
     "about": "A propos"

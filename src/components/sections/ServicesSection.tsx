@@ -6,38 +6,11 @@ import ReactMarkdown from 'react-markdown'
 import { PageIntro } from '@/types/global'
 import Icon from '../images/Icon'
 import { Service } from '@/types/service'
+import { ServiceCard } from '../elements/ServiceCard'
 
 interface ServicesProps {
   servicesSection: PageIntro
   services: Service[]
-}
-
-interface ServiceCardProps {
-  service: Service
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
-  return (
-    <div key={service.pageIntro.title} className="flex flex-col">
-      <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-        {/* @ts-ignore */}
-        {/* {service.classIcon && <Icon name={service.classIcon} />} */}
-        <Icon name="brain-circuit" />
-        {service.pageIntro.title}
-      </dt>
-      <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-        <ReactMarkdown>{service.pageIntro.content}</ReactMarkdown>
-        <p className="mt-6">
-          <a
-            href={`/services/${service.id}`}
-            className="text-sm font-semibold leading-6 text-indigo-600"
-          >
-            Learn more <span aria-hidden="true">→</span>
-          </a>
-        </p>
-      </dd>
-    </div>
-  )
 }
 
 const ServicesSection: React.FC<ServicesProps> = ({
