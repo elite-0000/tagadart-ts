@@ -136,6 +136,27 @@ export async function fetchPosts() {
   }
 }
 
+export async function fetchPost(id: string) {
+  const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
+
+  const queryParams: RestQueryParams = {
+    populate: populatePosts,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const postsData = await fetchAxiosAPI(`/posts/${id}`, queryParams)
+    return postsData?.data
+  } catch (error) {
+    console.error('Failed to load posts data:', error)
+    throw error
+  }
+}
+
 export async function fetchProjects() {
   const populateProjects = ['pageIntro']
 
@@ -206,6 +227,27 @@ export async function fetchServices() {
 
   try {
     const servicesData = await fetchAxiosAPI('our-services', queryParams)
+    return servicesData?.data
+  } catch (error) {
+    console.error('Failed to load services data:', error)
+    throw error
+  }
+}
+
+export async function fetchService(id: string) {
+  const populateServices = ['pageIntro']
+
+  const queryParams: RestQueryParams = {
+    populate: populateServices,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const servicesData = await fetchAxiosAPI(`our-services/${id}`, queryParams)
     return servicesData?.data
   } catch (error) {
     console.error('Failed to load services data:', error)

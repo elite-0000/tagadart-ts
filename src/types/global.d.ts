@@ -138,48 +138,6 @@ export interface Reference {
   logo: string[]
 }
 
-// Blog.ts
-export interface Blog {
-  title: string
-  subtitle: string
-  project: Project[]
-}
-
-// Services.ts
-export interface Services {
-  title: string
-  subtitle: string
-  project: Project[]
-}
-
-// ProjectCard.ts
-export interface ProjectCard {
-  title: string
-  subtitle: string
-  project: Project[]
-}
-
-// Service.ts
-export interface Service {
-  title: string
-  eyebrow: string
-  description: string
-  image: string
-  icon: string
-  relatedProjects: Project[]
-  cta: CTA
-}
-
-// BlogPost.ts
-export interface BlogPost {
-  title: string
-  eyebrow: string
-  description: string
-  image: string
-  date: string
-  author: Author
-}
-
 // Author.ts
 export interface Author {
   avatar: string

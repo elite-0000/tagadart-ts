@@ -4,10 +4,9 @@ import { Testimonial } from '@/components/elements/Testimonial'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'
-import { MessageMarkdown } from '@/components/ui/message-markdown'
 import { PageIntro } from '@/components/sections/PageIntro'
 
-import { Project, ProjectData } from '@/types/project'
+import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 
 export const metadata: Metadata = {
