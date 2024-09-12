@@ -10,6 +10,10 @@
     "title": "Bonjour Monde",
     "about": "A propos"
   },
+  "Contact": {
+    "title": "Dites-nous en plus sur vos projets",
+    "button_contact": "Contactez-nous"
+  },
   "Navigation": {
     "home": "Accueil",
     "project": "Projets",

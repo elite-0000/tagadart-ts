@@ -36,7 +36,7 @@ function Navigation() {
         { title: 'About', href: '/about' },
         { title: 'Services', href: '/services' },
         { title: 'Blog', href: '/blog' },
-        { title: 'Contact us', href: '/contact' },
+        { title: 'Contact', href: '/contact' },
       ],
     },
     {

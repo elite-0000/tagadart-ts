@@ -1,5 +1,4 @@
 'use client'
-
 import {
   createContext,
   useContext,
@@ -65,6 +64,8 @@ function Header({
 }) {
   let { logoHovered, setLogoHovered } = useContext(RootLayoutContext)!
 
+  const t = useTranslations('Contact')
+
   return (
     <Container>
       <div className="flex items-center justify-between">
@@ -108,7 +109,7 @@ function Header({
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
-            Contact us
+            {t('button_contact')}
           </Button>
           <button
             ref={toggleRef}
