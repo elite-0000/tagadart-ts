@@ -17,17 +17,9 @@ const ServicesSection: React.FC<ServicesProps> = ({
   servicesSection,
   services,
 }) => {
-  const { title, content, eyebrow } = servicesSection || ''
-
   return (
     <>
-      <SectionIntro
-        eyebrow={eyebrow}
-        title={title}
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <ReactMarkdown>{content}</ReactMarkdown>
-      </SectionIntro>
+      <SectionIntro {...servicesSection} />
       <Container className="mt-16">
         <FadeIn className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {services?.map((service) => (

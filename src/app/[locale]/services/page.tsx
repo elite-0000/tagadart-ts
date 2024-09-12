@@ -22,14 +22,12 @@ export default async function ViewServicesPages() {
     return <div>Failed to load data</div>
   }
 
-  const { pageIntro, projectsSection } = servicesPageData || ''
+  const { pageIntro } = servicesPageData || ''
   // const t = await getTranslations('Project')
 
   return (
     <>
-      <PageIntroSections {...pageIntro}>
-        <p>{pageIntro.content}</p>
-      </PageIntroSections>
+      <PageIntroSections {...pageIntro} />
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">

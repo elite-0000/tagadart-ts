@@ -30,16 +30,9 @@ export default async function ViewProjectsPage() {
 
   return (
     <>
-      <PageIntroSections {...pageIntro}>
-        <p>{pageIntro.content}</p>
-      </PageIntroSections>
+      <PageIntroSections {...pageIntro} />
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
-        <FadeIn>
-          <h2 className="font-display text-2xl font-semibold text-neutral-950">
-            {t('title')}
-          </h2>
-        </FadeIn>
         <div className="space-y-24 lg:space-y-32">
           <ProjectsSection
             projectsSection={projectsSection}

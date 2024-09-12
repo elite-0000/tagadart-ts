@@ -28,11 +28,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <header>
-          <PageIntroSections
-            showCover={false}
-            centered={true}
-            {...pageIntro}
-          ></PageIntroSections>
+          <PageIntroSections showCover={false} centered={true} {...pageIntro} />
 
           <FadeIn>
             <div className="mt-24 border-t border-neutral-200 bg-white/50 sm:mt-32 lg:mt-24">

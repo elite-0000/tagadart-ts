@@ -7,6 +7,7 @@ import { formatDate } from '@/lib/formatDate'
 import ReactMarkdown from 'react-markdown'
 import { PageIntro } from '@/types/global'
 import { Post } from '@/types/post'
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 interface PostCardProps {
   post: Post
@@ -30,7 +31,19 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               </dd>
               <dt className="sr-only">Author</dt>
               <dd className="mt-6 flex gap-x-4">
-                <div className="flex-none overflow-hidden rounded-xl bg-neutral-100">
+                <div className="rounded-xl">
+                  {post.pageIntro.cover && (
+                    <div className="mt-6">
+                      <NextCloudinaryImage
+                        src={post.pageIntro.cover.url}
+                        alt={post.pageIntro.cover.alt}
+                        width={600}
+                        height={500}
+                        className="rounded-md"
+                        crop="fill"
+                      />
+                    </div>
+                  )}
                   {/* <Image
                     src={author.image.src}
                     alt={author.image.alt || ''}

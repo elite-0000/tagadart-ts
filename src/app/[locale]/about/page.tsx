@@ -46,11 +46,7 @@ export default async function About() {
 
   return (
     <>
-      {pageIntro && (
-        <PageIntroSections {...pageIntro}>
-          <p>{pageIntro.content}</p>
-        </PageIntroSections>
-      )}
+      {pageIntro && <PageIntroSections {...pageIntro}></PageIntroSections>}
 
       {/* <CultureSection culturecard={cultureSection} /> */}
 

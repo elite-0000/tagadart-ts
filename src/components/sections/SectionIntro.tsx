@@ -24,7 +24,7 @@ export function SectionIntro({
       {...props}
       className={clsx('mt-24 sm:mt-32', centered && 'text-center')}
     >
-      <FadeIn className="max-w-2xl">
+      <FadeIn>
         <h2>
           {eyebrow && (
             <>

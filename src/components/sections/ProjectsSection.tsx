@@ -19,14 +19,7 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
 
   return (
     <>
-      {/* <SectionIntro
-        eyebrow={eyebrow}
-        title={title}
-        className="mt-24 sm:mt-32 lg:mt-40"
-      >
-        <p>{content}</p>
-      </SectionIntro> */}
-      <SectionIntro centered={true} {...projectsSection} />
+      <SectionIntro {...projectsSection} />
       <Container className="mt-16">
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {projects &&
