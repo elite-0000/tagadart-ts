@@ -5,6 +5,8 @@ import { Button } from '@/components/elements/Button'
 import { Project } from '@/types/project'
 import ReactMarkdown from 'react-markdown'
 import { getTranslations } from 'next-intl/server'
+import Link from 'next/link'
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 interface ProjectCardProps {
   project: Project
@@ -14,67 +16,54 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
   const t = await getTranslations('Project')
 
   return (
-    <FadeIn key={project.client}>
-      <article>
-        <div className="grid grid-cols-3 gap-x-8 gap-y-8 pt-16">
-          <div className="col-span-full sm:flex sm:items-center sm:justify-between sm:gap-x-8 lg:col-span-1 lg:block">
-            <div className="sm:flex sm:items-center sm:gap-x-6 lg:block">
-              {project?.logo && (
-                <Image
-                  src={`${project?.logo?.url}`}
-                  alt={project?.client}
-                  key={project?.id}
-                  width={250}
-                  height={50}
-                />
-              )}
-              <h3 className="mt-6 text-sm font-semibold text-neutral-950 sm:mt-0 lg:mt-8">
-                {project?.client}
-              </h3>
+    <FadeIn key={project.id} className="flex">
+      <Link href={`/projects/${project.id}`}>
+        <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
+          <div className="flex items-center">
+            <div>
+              <NextCloudinaryImage
+                src={project.logo.url}
+                alt={project.client}
+                width={100}
+                height={20}
+                crop="fill_pad"
+                className="mr-3"
+              />
             </div>
-            <div className="mt-1 flex gap-x-4 sm:mt-0 lg:block">
-              <p className="text-sm tracking-tight text-neutral-950 after:ml-4 after:font-semibold after:text-neutral-300 after:content-['/'] lg:mt-2 lg:after:hidden">
-                {project?.service}
-              </p>
-              <p className="text-sm text-neutral-950 lg:mt-2">
-                <time dateTime={project?.year}>
-                  {/* {formatDate(project.date)} */}
-                  {project?.year}
-                </time>
-              </p>
-            </div>
+            {/* <div>
+              <h2>{project.client}</h2>
+            </div> */}
           </div>
-          <div className="col-span-full lg:col-span-2 lg:max-w-2xl">
-            <p className="font-display text-4xl font-medium text-neutral-950">
-              {/* <Link href={project.href}></Link> */}
-              {project.pageIntro?.title}
-            </p>
-            <div className="mt-6 space-y-6 text-base text-neutral-600">
-              <ReactMarkdown>{project.pageIntro?.content}</ReactMarkdown>
-              {/* {project.summary.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))} */}
+          {project.pageIntro.cover && (
+            <div className="mt-6">
+              <NextCloudinaryImage
+                src={project.pageIntro.cover.url}
+                alt={project.pageIntro.cover.alt}
+                width={600}
+                height={500}
+                className="rounded-md"
+              />
             </div>
-            <div className="mt-8 flex">
-              <Button
-                // href={project.link}
-                href={`projects/${project.id}`}
-                aria-label={`Read case study: ${project.client}`}
-              >
-                {t('view_more')}
-              </Button>
-            </div>
-            {/* {project.testimonial && (
-              <Blockquote
-                author={project.testimonial.author}
-                className="mt-12"
-              >
-                {project.testimonial.content}
-              </Blockquote>
-            )} */}
+          )}
+
+          {/* <p>{project.client}</p> */}
+          <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
+            <time dateTime={project.year} className="font-semibold">
+              {project.year}
+            </time>
+            <span className="text-neutral-300" aria-hidden="true">
+              /
+            </span>
+            <span>{project.service}</span>
+          </p>
+          <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+            {project?.pageIntro?.title}
+          </p>
+          <div className="mt-4 text-base text-neutral-600">
+            <ReactMarkdown>{project?.pageIntro?.content}</ReactMarkdown>
           </div>
-        </div>
-      </article>
+        </article>
+      </Link>
     </FadeIn>
   )
 }

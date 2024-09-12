@@ -28,12 +28,14 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <header>
-          <PageIntroSections {...pageIntro}>
-            <p>{pageIntro.content}</p>
-          </PageIntroSections>
+          <PageIntroSections
+            showCover={false}
+            centered={true}
+            {...pageIntro}
+          ></PageIntroSections>
 
           <FadeIn>
-            <div className="mt-24 border-t border-neutral-200 bg-white/50 sm:mt-32 lg:mt-40">
+            <div className="mt-24 border-t border-neutral-200 bg-white/50 sm:mt-32 lg:mt-24">
               <Container>
                 <div className="mx-auto max-w-5xl">
                   <dl className="-mx-6 grid grid-cols-1 text-sm text-neutral-950 sm:mx-0 sm:grid-cols-3">
@@ -56,13 +58,6 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
               </Container>
             </div>
 
-            {project.testimonials &&
-              project.testimonials.map((testimonial) => (
-                <Testimonial key={testimonial.id} author={testimonial.author}>
-                  {testimonial.content}
-                </Testimonial>
-              ))}
-
             <div className="border-y border-neutral-200 bg-neutral-100">
               <div className="-my-px mx-auto max-w-[76rem] bg-neutral-200">
                 <GrayscaleTransitionImage
@@ -77,6 +72,13 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
                 />
               </div>
             </div>
+
+            {project.testimonials &&
+              project.testimonials.map((testimonial) => (
+                <Testimonial key={testimonial.id} author={testimonial.author}>
+                  {testimonial.content}
+                </Testimonial>
+              ))}
           </FadeIn>
         </header>
       </FadeIn>

@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { MediaItem, PageIntro } from '@/types/global'
+import { PageIntro } from '@/types/global'
 import BasicMarkdown from '../ui/BasicMarkdown'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
@@ -11,15 +11,16 @@ export function PageIntroSections({
   title,
   content,
   cover,
-  // children,
   centered = false,
-}: PageIntro & { children: React.ReactNode; centered?: boolean }) {
+  showCover = true,
+}: PageIntro & { centered?: boolean; showCover?: boolean }) {
   return (
     <Container
       className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}
     >
       <FadeIn>
-        <div className="grid grid-cols-6 gap-8">
+        {/* <div className="grid gap-8"> */}
+        <div className={`grid gap-8 ${showCover && 'grid-cols-6'}`}>
           <div className="col-span-4">
             <h1>
               <span className="block font-display text-base font-semibold text-neutral-950">
@@ -44,7 +45,7 @@ export function PageIntroSections({
               <BasicMarkdown>{content}</BasicMarkdown>
             </div>
           </div>
-          {cover && (
+          {showCover && cover && (
             <div className="col-span-2">
               <NextCloudinaryImage
                 src={cover.url}

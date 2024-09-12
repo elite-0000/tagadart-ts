@@ -186,7 +186,7 @@ export async function fetchPost(id: string) {
 }
 
 export async function fetchProjects() {
-  const populateProjects = ['pageIntro']
+  const populateProjects = ['pageIntro', 'pageIntro.cover', 'logo']
 
   const queryParams: RestQueryParams = {
     populate: populateProjects,

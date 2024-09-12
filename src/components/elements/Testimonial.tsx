@@ -15,10 +15,6 @@ function TestimonialWithImage({
   children: React.ReactNode
   className?: string
 }) {
-  console.log(
-    author.avatar.provider_metadata.public_id,
-    'author.avatar.provider_metadata.public_id',
-  )
   return (
     <figure
       className={clsx(
