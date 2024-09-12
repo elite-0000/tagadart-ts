@@ -156,9 +156,9 @@ export interface AboutUs {
 
 // Culture.ts
 export interface Culture {
+  id: string
   title: string
-  subtitle: string
-  rte: string[]
+  content: string
 }
 
 // Team.ts

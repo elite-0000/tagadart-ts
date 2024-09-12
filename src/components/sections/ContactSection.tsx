@@ -21,10 +21,10 @@ export function ContactSection() {
               <h3 className="font-display text-base font-semibold text-white">
                 Our offices
               </h3>
-              <OfficesSection
+              {/* <OfficesSection
                 invert
                 className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
-              />
+              /> */}
             </div>
           </div>
         </div>

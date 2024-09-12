@@ -1,7 +1,6 @@
 import { Border } from '@/components/ui/Border'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
-import Image from 'next/image'
 import React from 'react'
 import ClientCard from '../elements/ClientCard'
 

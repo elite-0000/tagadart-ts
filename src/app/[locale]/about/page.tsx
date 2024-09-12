@@ -79,7 +79,7 @@ export default async function About() {
         </PageIntro>
       )}
 
-      <CultureSection culturecard={cultureSection} />
+      {/* <CultureSection culturecard={cultureSection} /> */}
 
       <TeamSection teamCard={teamSection} />
       {/* <PageLinks
