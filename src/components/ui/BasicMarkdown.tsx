@@ -10,7 +10,7 @@ type Props = {
 
 function BasicMarkdown({ children, content }: Props) {
   return (
-    <div className="typography">
+    <div className="markdown-content">
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
         {children || content}
       </ReactMarkdown>
