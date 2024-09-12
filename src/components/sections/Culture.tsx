@@ -16,13 +16,7 @@ const CultureSection: React.FC<CultureCardProps> = ({
 }) => {
   return (
     <div className="mt-24 rounded-4xl bg-primary-800 py-24 sm:mt-32 lg:mt-40 lg:py-32">
-      <SectionIntro
-        eyebrow={cultureSection.eyebrow}
-        title={cultureSection.title}
-        invert
-      >
-        <p>{cultureSection.content}</p>
-      </SectionIntro>
+      <SectionIntro {...cultureSection} />
       <Container className="mt-16">
         <GridList>
           {culture.map((item) => (

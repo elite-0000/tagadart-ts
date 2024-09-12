@@ -88,9 +88,9 @@ export function PageLinks({
         />
       </div>
 
-      <SectionIntro title={title} smaller>
+      {/* <SectionIntro title={title} smaller>
         {intro && <p>{intro}</p>}
-      </SectionIntro>
+      </SectionIntro> */}
 
       <Container className={intro ? 'mt-24' : 'mt-16'}>
         <FadeInStagger className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
