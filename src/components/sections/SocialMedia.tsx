@@ -53,7 +53,7 @@ function FacebookIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 export const socialMediaProfiles = [
   {
     title: 'Facebook',
-    href: 'https://www.facebook.com/tagadartsarl',
+    href: 'https://www.facebook.com/tagadartcommunication',
     icon: FacebookIcon,
   },
   {

@@ -13,6 +13,9 @@ import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 
+import { getTranslations } from 'next-intl/server'
+import { fetchContactPage } from '@/request/fetch'
+
 function TextInput({
   label,
   ...props
@@ -54,42 +57,66 @@ function RadioInput({
   )
 }
 
-function ContactForm() {
+async function ContactForm() {
+  const t = await getTranslations('Contact')
   return (
     <FadeIn className="lg:order-last">
       <form>
         <h2 className="font-display text-base font-semibold text-neutral-950">
-          Work inquiries
+          {t('title')}
         </h2>
         <div className="isolate mt-6 -space-y-px rounded-2xl bg-white/50">
-          <TextInput label="Name" name="name" autoComplete="name" />
+          <TextInput label={t('name')} name="name" autoComplete="name" />
           <TextInput
-            label="Email"
+            label={t('email')}
             type="email"
             name="email"
             autoComplete="email"
           />
           <TextInput
-            label="Company"
+            label={t('company')}
             name="company"
             autoComplete="organization"
           />
-          <TextInput label="Phone" type="tel" name="phone" autoComplete="tel" />
-          <TextInput label="Message" name="message" />
+          <TextInput
+            label={t('phone')}
+            type="tel"
+            name="phone"
+            autoComplete="tel"
+          />
+          <TextInput label={t('message')} name="message" />
           <div className="border border-neutral-300 px-6 py-8 first:rounded-t-2xl last:rounded-b-2xl">
             <fieldset>
-              <legend className="text-base/6 text-neutral-500">Budget</legend>
+              <legend className="text-base/6 text-neutral-500">
+                {t('budget')}
+              </legend>
               <div className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2">
-                <RadioInput label="$25K – $50K" name="budget" value="25" />
-                <RadioInput label="$50K – $100K" name="budget" value="50" />
-                <RadioInput label="$100K – $150K" name="budget" value="100" />
-                <RadioInput label="More than $150K" name="budget" value="150" />
+                <RadioInput
+                  label={t('budget_label01')}
+                  name="budget"
+                  value="5"
+                />
+                <RadioInput
+                  label={t('budget_label02')}
+                  name="budget"
+                  value="10"
+                />
+                <RadioInput
+                  label={t('budget_label03')}
+                  name="budget"
+                  value="50"
+                />
+                <RadioInput
+                  label={t('budget_label04')}
+                  name="budget"
+                  value="100"
+                />
               </div>
             </fieldset>
           </div>
         </div>
         <Button type="submit" className="mt-10">
-          Let’s work together
+          {t('button_contact')}
         </Button>
       </form>
     </FadeIn>
@@ -152,35 +179,42 @@ export const metadata: Metadata = {
 }
 
 export default async function Contact() {
-  const populateContact = ['pageIntro', 'offices']
+  // const populateContact = ['pageIntro', 'offices']
 
-  const defaultQueryParams: RestQueryParams = {
-    populate: populateContact,
-    publicationState: 'preview',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  // const defaultQueryParams: RestQueryParams = {
+  //   populate: populateContact,
+  //   publicationState: 'preview',
+  //   pagination: {
+  //     page: 1,
+  //     pageSize: 10,
+  //   },
+  // }
+
+  // try {
+  //   contactData = await fetchAxiosAPI('contact-page', defaultQueryParams)
+  // } catch (error) {
+  //   // Handle the error appropriately here
+  //   console.error('Failed to load contactData:', error)
+  //   return <div>Failed to load data</div>
+  // }
+  // const { pageIntro, offices } = contactData?.data || ''
+
+  // let homeData = null
 
   let contactData
+
   try {
-    contactData = await fetchAxiosAPI('contact-page', defaultQueryParams)
+    contactData = await fetchContactPage()
   } catch (error) {
-    // Handle the error appropriately here
-    console.error('Failed to load contactData:', error)
+    console.error('Failed to load data:', error)
     return <div>Failed to load data</div>
   }
-  const { pageIntro, offices } = contactData?.data || ''
+
+  const { pageIntro, offices } = contactData || ''
 
   return (
     <>
-      {/* TODO: Add more security if empty data. Use component ? */}
-      {pageIntro && (
-        <PageIntroSections {...pageIntro[0]}>
-          <p>{pageIntro[0].content}</p>
-        </PageIntroSections>
-      )}
+      <PageIntroSections {...pageIntro} />
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">

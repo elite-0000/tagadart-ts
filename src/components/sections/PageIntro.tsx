@@ -14,6 +14,7 @@ export function PageIntroSections({
   centered = false,
   showCover = true,
 }: PageIntro & { centered?: boolean; showCover?: boolean }) {
+  console.log(cover, 'cover')
   return (
     <Container
       className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}

@@ -27,10 +27,9 @@ export default async function ViewBlogsPage() {
 
   return (
     <>
+      <PageIntroSections showCover={true} {...pageIntro} />
       <Container className="mt-24 sm:mt-32 md:mt-56">
-        <FadeIn className="max-w-3xl">
-          <PageIntroSections {...pageIntro} />
-        </FadeIn>
+        <FadeIn className="max-w-3xl"></FadeIn>
         <BlogSection blogSection={blogSection} posts={posts} />
       </Container>
 

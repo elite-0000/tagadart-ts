@@ -19,7 +19,17 @@
   },
   "Contact": {
     "title": "Dites-nous en plus sur vos projets",
-    "button_contact": "Contactez-nous"
+    "button_contact": "Contactez-nous",
+    "budget": "Votre budget",
+    "name": "Votre nom",
+    "email": "Votre email",
+    "message": "Votre message",
+    "phone": "Votre téléphone",
+    "company": "Votre entreprise",
+    "budget_label01": "Moins de 5'000CHF",
+    "budget_label02": "10 000CHF - 20 000CHF",
+    "budget_label03": "20 000CHF - 50 000CHF",
+    "budget_label04": "50 000CHF - 100 000CHF"
   },
   "Navigation": {
     "home": "Accueil",

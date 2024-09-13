@@ -33,6 +33,26 @@ export async function fetchHomePage() {
   }
 }
 
+export async function fetchContactPage() {
+  const populateContact = ['pageIntro', 'offices']
+  const queryParams: RestQueryParams = {
+    populate: populateContact,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const homeData = await fetchAxiosAPI('contact-page', queryParams)
+    return homeData?.data
+  } catch (error) {
+    console.error('Failed to load home data:', error)
+    throw error
+  }
+}
+
 export async function fetchAboutPage() {
   const populateAbout = [
     'pageIntro',
@@ -61,11 +81,7 @@ export async function fetchAboutPage() {
   }
 }
 export async function fetchBlogPage() {
-  const populateBlog = [
-    'pageIntro',
-    'blogSection.posts.pageIntro',
-    'blogSection.posts.author.avatar.thumbnail.formats',
-  ]
+  const populateBlog = ['pageIntro', 'pageIntro.cover']
 
   const queryParams: RestQueryParams = {
     populate: populateBlog,
