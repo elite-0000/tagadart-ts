@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import { toast } from '@/hooks/use-toast'
 import { TextInput } from './components/TextInput'
 import DatePickerInput from './components/DatePicker'
+import { postAxiosAPI } from '@/request/request'
 
 //TODO: Get the form schema from the Strapi
 /*
@@ -25,10 +26,16 @@ onSubmit
 */
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
+  fullname: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
-  bla: z.date().optional(),
+  subject: z.string().min(2, {
+    message: 'Username must be at least 2 characters.',
+  }),
+  emailTo: z.string().email({
+    message: 'Email must be a valid email address.',
+  }),
+  //   bla: z.date(),
 
   //   bla: z
   //     .union([
@@ -45,56 +52,66 @@ export function InputForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      username: '',
-      bla: new Date(),
+      fullname: '',
+      emailTo: '',
+      subject: '',
     },
   })
 
-  function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: 'You submitted the following values:',
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    })
+  async function onSubmit(data: z.infer<typeof FormSchema>) {
+    try {
+      //Todo: Add image upload
+      const formData = new FormData()
+      formData.append('data', JSON.stringify(data))
+      await postAxiosAPI('/email-contact', formData)
+
+      //This work withou Multipart
+      // postAxiosAPI('/email-contact', { data: data })
+
+      toast({
+        title: 'You submitted the following values:',
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+          </pre>
+        ),
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        {/* <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        /> */}
         <TextInput
-          valName="username"
-          label="Username"
-          placeholder="shadcn"
-          description="This is your public display name."
+          valName="subject"
+          label="Subject"
+          // description="This is your public display name."
           control={form.control}
         />
-        <DatePickerInput
+        <TextInput
+          valName="fullname"
+          label="Fullname"
+          placeholder="Paul le Meilleur"
+          // description="This is your public display name."
+          control={form.control}
+        />
+        <TextInput
+          valName="emailTo"
+          label="Email"
+          placeholder="aurel@webjedi.ch"
+          //   description="This is your public display name."
+          control={form.control}
+        />
+        {/* <DatePickerInput
           valName="bla"
           label="Username"
           placeholder="shadcn"
           description="This is your public display name."
           control={form.control}
           type="single"
-        />
+        /> */}
         <Button type="submit">Submit</Button>
       </form>
     </Form>
