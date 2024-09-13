@@ -15,6 +15,7 @@ import { PageIntroSections } from '@/components/sections/PageIntro'
 
 import { getTranslations } from 'next-intl/server'
 import { fetchContactPage } from '@/request/fetch'
+import { InputForm } from '@/components/form/ContactForm'
 
 function TextInput({
   label,
@@ -57,7 +58,7 @@ function RadioInput({
   )
 }
 
-async function ContactForm() {
+async function ContactForm2() {
   const t = await getTranslations('Contact')
   return (
     <FadeIn className="lg:order-last">
@@ -218,7 +219,7 @@ export default async function Contact() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
-          <ContactForm />
+          <InputForm />
           <ContactDetails offices={offices} />
         </div>
       </Container>

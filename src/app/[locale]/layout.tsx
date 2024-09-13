@@ -1,4 +1,5 @@
 import { type Metadata } from 'next'
+import { Toaster } from '@/components/ui/toaster'
 
 import '@/styles/tailwind.css'
 
@@ -30,6 +31,7 @@ export default async function LocaleLayout({
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
         <NextIntlClientProvider messages={messages}>
           <RootLayout>{children}</RootLayout>
+          <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>
