@@ -1,14 +1,10 @@
-// @ts-ignore
-
 import axios, { AxiosRequestHeaders, AxiosResponse } from 'axios'
-
-import { Data, RestQueryParams } from '@/types/global'
+import { BaseData, RestQueryParams } from '@/types/global'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:1337'
 axios.defaults.baseURL = `${API_URL}/api`
 
 export const defaultQueryParams: RestQueryParams = {
-  // sort: "publishedAt:desc",
   sort: 'id:desc',
   populate: '*',
   publicationState: 'preview',
@@ -20,7 +16,7 @@ export const defaultQueryParams: RestQueryParams = {
 export async function fetchUseSWR(
   path: string,
   userToken?: string | null,
-): Promise<Data> {
+): Promise<BaseData> {
   const headers: any = {}
 
   if (userToken) {
@@ -81,7 +77,6 @@ export async function postAxiosAPI<T = any>(
 ): Promise<AxiosResponse<T>> {
   const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders
 
-  //TS check why shouldErrorTs didn't make an error
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`
     // headers.shouldErrorTs = `Bearer ${userToken}`;

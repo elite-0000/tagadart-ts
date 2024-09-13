@@ -28,8 +28,8 @@ const NextCloudinaryImage = ({
       height={height}
       loading="lazy"
       sizes="(min-width: 480px ) 50vw, (min-width: 728px) 33vw, (min-width: 976px) 25vw, 100vw" //TODO: Better responsive sizes
-      crop={crop} // Add crop prop
-      gravity={gravity} // Add gravity prop
+      crop={crop}
+      gravity={gravity}
       {...props}
     />
   )
