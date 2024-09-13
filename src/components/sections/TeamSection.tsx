@@ -13,20 +13,22 @@ const TeamSection: React.FC<TeamCardProps> = ({ teamSection }) => {
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <div className="space-y-24">
-        <FadeInStagger key={teamSection.title}>
+        <FadeInStagger key={teamSection?.title}>
           <FadeIn />
           <div className="grid grid-cols-1 gap-6 pt-12 sm:pt-16 lg:grid-cols-4 xl:gap-8">
             <FadeIn>
-              <h2 className="font-display text-2xl font-semibold text-neutral-950">
-                {teamSection.title}
-              </h2>
+              {teamSection && (
+                <h2 className="font-display text-2xl font-semibold text-neutral-950">
+                  {teamSection?.title}
+                </h2>
+              )}
             </FadeIn>
             <div className="lg:col-span-3">
               <ul
                 role="list"
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
               >
-                {teamSection.members.map((person) => (
+                {teamSection?.members&&teamSection.members.map((person) => (
                   <li key={person.fullname}>
                     <FadeIn>
                       <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
