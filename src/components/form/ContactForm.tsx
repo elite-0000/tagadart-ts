@@ -15,13 +15,25 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { toast } from '@/hooks/use-toast'
+import { TextInput } from './components/TextInput'
 
-//TODO: Get the form schema from the Stra
+//TODO: Get the form schema from the Strapi
+/*
+FormSchema
+onSubmit
+*/
 
 const FormSchema = z.object({
-  username: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
-  }),
+  username: z.string().min(2),
+  bla: z
+    .union([
+      z.string().length(0, {
+        message: 'Bla must be at least 4 characters.',
+      }),
+      z.string().min(4),
+    ])
+    .optional()
+    .transform((e) => (e === '' ? undefined : e)),
 })
 
 export function InputForm() {
@@ -29,6 +41,7 @@ export function InputForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: '',
+      bla: '',
     },
   })
 
@@ -46,7 +59,7 @@ export function InputForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
+        {/* <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -61,6 +74,20 @@ export function InputForm() {
               <FormMessage />
             </FormItem>
           )}
+        /> */}
+        <TextInput
+          valName="username"
+          label="Username"
+          placeholder="shadcn"
+          description="This is your public display name."
+          control={form.control}
+        />
+        <TextInput
+          valName="bla"
+          label="Username"
+          placeholder="shadcn"
+          description="This is your public display name."
+          control={form.control}
         />
         <Button type="submit">Submit</Button>
       </form>
