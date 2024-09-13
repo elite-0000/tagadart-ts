@@ -75,11 +75,12 @@ export async function postAxiosAPI<T = any>(
   data: FormData | Record<string, unknown>,
   userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders
+  const headers = {
+    'Content-Type': 'multipart/form-data',
+  } as AxiosRequestHeaders
 
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`
-    // headers.shouldErrorTs = `Bearer ${userToken}`;
   }
 
   try {
