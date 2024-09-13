@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { toast } from '@/hooks/use-toast'
 import { TextInput } from './components/TextInput'
+import DatePickerInput from './components/DatePicker'
 
 //TODO: Get the form schema from the Strapi
 /*
@@ -24,16 +25,20 @@ onSubmit
 */
 
 const FormSchema = z.object({
-  username: z.string().min(2),
-  bla: z
-    .union([
-      z.string().length(0, {
-        message: 'Bla must be at least 4 characters.',
-      }),
-      z.string().min(4),
-    ])
-    .optional()
-    .transform((e) => (e === '' ? undefined : e)),
+  username: z.string().min(2, {
+    message: 'Username must be at least 2 characters.',
+  }),
+  bla: z.date().optional(),
+
+  //   bla: z
+  //     .union([
+  //       z.string().length(0, {
+  //         message: 'Bla must be at least 4 characters.',
+  //       }),
+  //       z.string().min(4),
+  //     ])
+  //     .optional()
+  //     .transform((e) => (e === '' ? undefined : e)),
 })
 
 export function InputForm() {
@@ -41,7 +46,7 @@ export function InputForm() {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       username: '',
-      bla: '',
+      bla: new Date(),
     },
   })
 
@@ -82,12 +87,13 @@ export function InputForm() {
           description="This is your public display name."
           control={form.control}
         />
-        <TextInput
+        <DatePickerInput
           valName="bla"
           label="Username"
           placeholder="shadcn"
           description="This is your public display name."
           control={form.control}
+          type="single"
         />
         <Button type="submit">Submit</Button>
       </form>
