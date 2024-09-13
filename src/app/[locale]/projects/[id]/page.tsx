@@ -8,6 +8,7 @@ import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionIma
 import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
+import { getTranslations } from 'next-intl/server'
 
 export const metadata: Metadata = {
   title: 'Projet - Nom du projet',
@@ -23,6 +24,8 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
   if (!project) return null
 
   const { pageIntro } = project || ''
+
+  const t = await getTranslations('Project')
 
   return (
     <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
@@ -68,26 +71,39 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
                 />
               </div>
             </div>
+          </FadeIn>
+        </header>
+      </FadeIn>
 
+      <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
+        <div className="[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
+          <div>
+            <h2 className="text-xl">{t('content')}</h2>
+            <BasicMarkdown content={project.content} />
+          </div>
+          <div>
+            <h2 className="text-xl">{t('expertise')}</h2>
+            <BasicMarkdown content={project.expertise} />
+          </div>
+          {/* TODO: Add Tags list */}
+
+          {/* <div>
             {project.testimonials &&
               project.testimonials.map((testimonial) => (
                 <Testimonial key={testimonial.id} author={testimonial.author}>
                   {testimonial.content}
                 </Testimonial>
               ))}
-          </FadeIn>
-        </header>
-      </FadeIn>
-      <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-        <div className="[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-          <div className="typography">
-            {/* TODO: Translate */}
-            <h2>Content</h2>
-            <BasicMarkdown content={project.content} />
-            <h2>Expertise</h2>
-            <BasicMarkdown content={project.expertise} />
-          </div>
+          </div> */}
         </div>
+      </FadeIn>
+      <FadeIn>
+        <Testimonial
+          key={project.testimonials[0].id}
+          author={project.testimonials[0].author}
+        >
+          {project.testimonials[0].content}
+        </Testimonial>
       </FadeIn>
     </Container>
   )
