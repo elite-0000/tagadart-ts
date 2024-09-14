@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import {
   FormControl,
   FormDescription,
@@ -9,12 +9,15 @@ import {
 } from '@/components/ui/form'
 import { useDropzone } from 'react-dropzone'
 
+import { useForm } from 'react-hook-form'
+
 type Props = {
   valName: string
   label: string
   description?: string
   required?: boolean
   control: any
+  multiple?: boolean // Allow multiple file uploads
 }
 
 export function DropzoneInput({
@@ -23,6 +26,7 @@ export function DropzoneInput({
   description,
   required,
   control,
+  multiple = true, // Allow multiple files by default
 }: Props) {
   return (
     <FormField
@@ -32,7 +36,12 @@ export function DropzoneInput({
         <FormItem>
           <FormLabel>{label}</FormLabel>
           <FormControl>
-            <DropzoneComponent field={field} fieldState={fieldState} />
+            <DropzoneComponent
+              field={field}
+              fieldState={fieldState}
+              valName={valName}
+              multiple={multiple}
+            />
           </FormControl>
           {description && <FormDescription>{description}</FormDescription>}
           <FormMessage />
@@ -42,18 +51,44 @@ export function DropzoneInput({
   )
 }
 
-// Composant Dropzone personnalisé
+// Composant Dropzone personnalisé avec logique de suppression et gestion des fichiers
 function DropzoneComponent({
   field,
   fieldState,
+  valName,
+  multiple,
 }: {
   field: any
   fieldState: any
+  valName: string
+  multiple: boolean
 }) {
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
-    onDrop: (acceptedFiles) => {
-      field.onChange(acceptedFiles) // Met à jour la valeur du champ via React Hook Form
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([])
+  const { setValue, getValues } = useForm()
+
+  // console.log(getValues(), 'getValues')
+
+  // Custom onDrop function using useCallback to handle file selection
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      const files = multiple ? acceptedFiles : [acceptedFiles[0]] // Handle single/multiple files
+      // console.log(files, 'files')
+      field.onChange(files) // Update the field value in react-hook-form
+      // setSelectedFiles(files) // Update the local state to display selected files
+      // setValue(valName, files)
     },
+    [multiple, field],
+  )
+
+  const removeFile = (file: File) => {
+    const newFiles = selectedFiles.filter((f: File) => f !== file)
+    setSelectedFiles(newFiles) // Update the local state
+    field.onChange(newFiles) // Update the field value in react-hook-form
+  }
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    multiple,
   })
 
   return (
@@ -63,18 +98,35 @@ function DropzoneComponent({
         isDragActive ? 'border-blue-500' : 'border-gray-300'
       }`}
     >
+      {/* <div className="text-2xl font-bold">
+        <code className="text-white">
+          {JSON.stringify(getValues('cover'), null, 2)}
+        </code>
+      </div> */}
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here...</p>
+        <p>Déposez les fichiers ici...</p>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>
+          Glissez-déposez des fichiers ici, ou cliquez pour sélectionner des
+          fichiers
+        </p>
       )}
 
       {/* Affichage des fichiers sélectionnés */}
-      {field.value && field.value.length > 0 && (
+      {selectedFiles && selectedFiles.length > 0 && (
         <ul className="mt-2">
-          {field.value.map((file: File, index: number) => (
-            <li key={index}>{file.name}</li>
+          {selectedFiles.map((file: File, index: number) => (
+            <li key={index} className="flex items-center justify-between">
+              <span>{file.name}</span>
+              <button
+                type="button"
+                onClick={() => removeFile(file)}
+                className="ml-4 text-red-500 hover:text-red-700"
+              >
+                Supprimer
+              </button>
+            </li>
           ))}
         </ul>
       )}
