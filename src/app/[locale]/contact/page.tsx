@@ -15,7 +15,7 @@ import { PageIntroSections } from '@/components/sections/PageIntro'
 
 import { getTranslations } from 'next-intl/server'
 import { fetchContactPage } from '@/request/fetch'
-import { InputForm } from '@/components/form/ContactForm'
+import { ContactForm } from '@/components/form/ContactForm'
 
 function TextInput({
   label,
@@ -219,7 +219,7 @@ export default async function Contact() {
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="grid grid-cols-1 gap-x-8 gap-y-24 lg:grid-cols-2">
-          <InputForm />
+          <ContactForm />
           <ContactDetails offices={offices} />
         </div>
       </Container>

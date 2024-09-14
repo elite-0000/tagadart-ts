@@ -4,40 +4,25 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Form } from '@/components/ui/form'
+
 import { toast } from '@/hooks/use-toast'
 import { TextInput } from './components/TextInput'
-import DatePickerInput from './components/DatePicker'
+
 import { postAxiosAPI } from '@/request/request'
 import { DropzoneInput } from './components/DropZone'
-import { formDataImg } from './utils/FormData'
-
-//TODO: Get the form schema from the Strapi
-/*
-FormSchema
-onSubmit
-*/
 
 const FormSchema = z.object({
   fullname: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+    message: 'Fullname must be at least 2 characters.',
   }),
   subject: z.string().min(2, {
-    message: 'Username must be at least 2 characters.',
+    message: 'Subject must be at least 2 characters.',
   }),
   emailTo: z.string().email({
     message: 'Email must be a valid email address.',
   }),
-  cover: z.array(z.unknown()).optional(),
+  media: z.array(z.unknown()).optional(),
   //   bla: z.date(),
 
   //   bla: z
@@ -51,29 +36,43 @@ const FormSchema = z.object({
   //     .transform((e) => (e === '' ? undefined : e)),
 })
 
-export function InputForm() {
+const formDataContact = async (values: z.infer<typeof FormSchema>) => {
+  const formData = new FormData()
+  const newValues = {
+    ...values,
+    media: null,
+  }
+
+  formData.append('data', JSON.stringify(newValues))
+
+  // if (values.media && values.media[0] instanceof File) {
+  //   formData.append('files.media', values.media[0], values.media[0].name)
+  // }
+
+  if (values.media && values.media.length > 0) {
+    values.media.map((file: any) => {
+      formData.append('files.media', file, file.name)
+    })
+  }
+
+  return formData
+}
+
+export function ContactForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       fullname: '',
       emailTo: '',
       subject: '',
-      cover: [],
+      media: [],
     },
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      //Todo: Add image upload
-      const formData = await formDataImg(data)
-      // const formData = new FormData()
-      // formData.append('data', JSON.stringify(data))
-
-      // console.log(data.files, 'data.files')
-
-      // data?.files.map((item) => {
-      //   formData.append('files.media', item, item.name)
-      // })
+      console.log(data, 'data')
+      const formData = await formDataContact(data)
       await postAxiosAPI('/email-contact', formData)
 
       //This work without FormData
@@ -116,7 +115,7 @@ export function InputForm() {
           control={form.control}
         />
         <DropzoneInput
-          valName="cover"
+          valName="media"
           label="Upload Files"
           description="Drag and drop files here or click to select files"
           control={form.control}

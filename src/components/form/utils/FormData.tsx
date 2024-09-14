@@ -1,23 +1,18 @@
-export const formDataImg = async (values: any) => {
-  console.log(values, 'values')
-
+export const formDataImgExample = async (values: any) => {
   const formData = new FormData()
   const newValues = {
     ...values,
 
-    publishedAt:
-      values.publishedDate && new Date(values.publishedDate) <= new Date()
-        ? values.publishedDate
-        : null,
-
-    // cover: null,
-    // avatar: null,
+    media: null,
+    cover: null,
+    avatar: null,
   }
 
   formData.append('data', JSON.stringify(newValues))
 
-  console.log(values.cover, 'values.cover')
-
+  if (values.media && values.media[0] instanceof File) {
+    formData.append('files.media', values.media[0], values.media[0].name)
+  }
   if (values.cover && values.cover[0] instanceof File) {
     formData.append('files.cover', values.cover[0], values.cover[0].name)
   }
