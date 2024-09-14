@@ -75,13 +75,16 @@ export async function postAxiosAPI<T = any>(
   data: FormData | Record<string, unknown>,
   userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  const headers = {
-    'Content-Type': 'multipart/form-data',
-  } as AxiosRequestHeaders
+  const headers = {} as AxiosRequestHeaders
 
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`
   }
+  if (typeof data === 'string') {
+    headers['Content-Type'] = 'multipart/form-data'
+  }
+
+  console.log(typeof data, 'data type front')
 
   try {
     const response = await axios.post<T>(path, data, { headers })

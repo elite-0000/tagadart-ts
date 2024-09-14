@@ -61,12 +61,12 @@ export function InputForm() {
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       //Todo: Add image upload
-      const formData = new FormData()
-      formData.append('data', JSON.stringify(data))
-      await postAxiosAPI('/email-contact', formData)
+      // const formData = new FormData()
+      // formData.append('data', JSON.stringify(data))
+      // await postAxiosAPI('/email-contact', formData)
 
-      //This work withou Multipart
-      // postAxiosAPI('/email-contact', { data: data })
+      //This work without FormData
+      postAxiosAPI('/email-contact', { data: data })
 
       toast({
         title: 'You submitted the following values:',
