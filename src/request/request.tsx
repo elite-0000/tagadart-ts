@@ -84,14 +84,10 @@ export async function postAxiosAPI<T = any>(
     headers.Authorization = `Bearer ${userToken}`
   }
 
-  console.log(data, 'data front')
-
   // TODO: Change if to check if image
   // if (typeof data === 'string') {
   //   headers['Content-Type'] = 'multipart/form-data'
   // }
-
-  console.log(typeof data, 'data type front')
 
   try {
     const response = await axios.post<T>(path, data, { headers })
