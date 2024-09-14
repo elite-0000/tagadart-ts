@@ -75,17 +75,13 @@ export async function postAxiosAPI<T = any>(
   data: FormData | Record<string, unknown>,
   userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  // const headers = {} as AxiosRequestHeaders
-
-  const headers = {
-    'Content-Type': 'multipart/form-data',
-  } as AxiosRequestHeaders
+  const headers = {} as AxiosRequestHeaders
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`
   }
 
-  // TODO: Change if to check if image
-  // if (typeof data === 'string') {
+  // TODO: I'm not sure it's needed....
+  // if ( data instanceof FormData) {
   //   headers['Content-Type'] = 'multipart/form-data'
   // }
 

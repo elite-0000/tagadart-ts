@@ -71,12 +71,11 @@ export function ContactForm() {
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
-      console.log(data, 'data')
-      const formData = await formDataContact(data)
-      await postAxiosAPI('/email-contact', formData)
+      // const formData = await formDataContact(data)
+      // await postAxiosAPI('/email-contact', formData)
 
       //This work without FormData
-      // postAxiosAPI('/email-contact', { data: data })
+      await postAxiosAPI('/email-contact', { data: data })
 
       toast({
         title: 'You submitted the following values:',
