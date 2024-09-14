@@ -1,0 +1,71 @@
+import React from 'react'
+import { FadeIn } from '@/components/ui/FadeIn'
+import Image from 'next/image'
+import { Button } from '@/components/elements/Button'
+import { Project } from '@/types/project'
+import ReactMarkdown from 'react-markdown'
+import { getTranslations } from 'next-intl/server'
+import Link from 'next/link'
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
+
+interface ProjectCardProps {
+  project: Project
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
+  const t = await getTranslations('Project')
+
+  return (
+    <FadeIn key={project.id} className="flex">
+      <Link href={`/projects/${project.id}`}>
+        <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
+          <div className="flex items-center">
+            <div>
+              <NextCloudinaryImage
+                src={project.logo.url}
+                alt={project.client}
+                width={100}
+                height={20}
+                crop="fill_pad"
+                className="mr-3"
+              />
+            </div>
+            {/* <div>
+              <h2>{project.client}</h2>
+            </div> */}
+          </div>
+          {project.pageIntro.cover && (
+            <div className="mt-6">
+              <NextCloudinaryImage
+                src={project.pageIntro.cover.url}
+                alt={project.pageIntro.cover.alt}
+                width={600}
+                height={500}
+                className="rounded-md"
+              />
+            </div>
+          )}
+
+          {/* <p>{project.client}</p> */}
+          <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
+            <time dateTime={project.year} className="font-semibold">
+              {project.year}
+            </time>
+            <span className="text-neutral-300" aria-hidden="true">
+              /
+            </span>
+            <span>{project.service}</span>
+          </p>
+          <p className="mt-6 font-display text-2xl font-semibold text-neutral-950">
+            {project?.pageIntro?.title}
+          </p>
+          <div className="mt-4 text-base text-neutral-600">
+            <ReactMarkdown>{project?.pageIntro?.content}</ReactMarkdown>
+          </div>
+        </article>
+      </Link>
+    </FadeIn>
+  )
+}
+
+export default ProjectCard

@@ -28,6 +28,7 @@ type ImagePropsWithOptionalAlt = Omit<ImageProps, 'alt'> & { alt?: string }
 export type MDXEntry<T> = T & { href: string; metadata: T }
 
 export interface Article {
+  id: number
   date: string
   title: string
   description: string

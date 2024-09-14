@@ -1,8 +1,12 @@
 import { type Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 export default {
+  // content: isProduction ? ['./src/**/*.{js,jsx,mdx,ts,tsx}'] : [], // Only scan files for purge in production
   content: ['./src/**/*.{js,jsx,mdx,ts,tsx}'],
+
   theme: {
     fontSize: {
       xs: ['0.75rem', { lineHeight: '1rem' }],
@@ -72,5 +76,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 } satisfies Config
