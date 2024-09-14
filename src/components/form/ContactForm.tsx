@@ -18,6 +18,8 @@ import { toast } from '@/hooks/use-toast'
 import { TextInput } from './components/TextInput'
 import DatePickerInput from './components/DatePicker'
 import { postAxiosAPI } from '@/request/request'
+import { DropzoneInput } from './components/DropZone'
+import { formDataImg } from './utils/FormData'
 
 //TODO: Get the form schema from the Strapi
 /*
@@ -35,6 +37,7 @@ const FormSchema = z.object({
   emailTo: z.string().email({
     message: 'Email must be a valid email address.',
   }),
+  cover: z.array(z.unknown()).optional(),
   //   bla: z.date(),
 
   //   bla: z
@@ -55,18 +58,26 @@ export function InputForm() {
       fullname: '',
       emailTo: '',
       subject: '',
+      cover: [],
     },
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
     try {
       //Todo: Add image upload
+      const formData = await formDataImg(data)
       // const formData = new FormData()
       // formData.append('data', JSON.stringify(data))
-      // await postAxiosAPI('/email-contact', formData)
+
+      // console.log(data.files, 'data.files')
+
+      // data?.files.map((item) => {
+      //   formData.append('files.media', item, item.name)
+      // })
+      await postAxiosAPI('/email-contact', formData)
 
       //This work without FormData
-      postAxiosAPI('/email-contact', { data: data })
+      // postAxiosAPI('/email-contact', { data: data })
 
       toast({
         title: 'You submitted the following values:',
@@ -102,6 +113,12 @@ export function InputForm() {
           label="Email"
           placeholder="aurel@webjedi.ch"
           //   description="This is your public display name."
+          control={form.control}
+        />
+        <DropzoneInput
+          valName="cover"
+          label="Upload Files"
+          description="Drag and drop files here or click to select files"
           control={form.control}
         />
         {/* <DatePickerInput
