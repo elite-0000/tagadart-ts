@@ -99,10 +99,10 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
       </FadeIn>
       <FadeIn>
         <Testimonial
-          key={project.testimonials[0].id}
-          author={project.testimonials[0].author}
+          key={project.testimonials?.[0]?.id}
+          author={project.testimonials?.[0]?.author}
         >
-          {project.testimonials[0].content}
+          {project.testimonials?.[0]?.content}
         </Testimonial>
       </FadeIn>
     </Container>
