@@ -16,13 +16,21 @@ const FormSchema = z.object({
   fullname: z.string().min(2, {
     message: 'Fullname must be at least 2 characters.',
   }),
+  telephone: z.number().min(2, {
+    message: 'Telephone must be at least 2 characters.',
+  }),
   subject: z.string().min(2, {
+    message: 'Subject must be at least 2 characters.',
+  }),
+  message: z.string().min(2, {
     message: 'Subject must be at least 2 characters.',
   }),
   emailTo: z.string().email({
     message: 'Email must be a valid email address.',
   }),
   media: z.array(z.unknown()).optional(),
+  budget: z.string().optional(),
+
   //   bla: z.date(),
 
   //   bla: z
@@ -64,7 +72,11 @@ export function ContactForm() {
     defaultValues: {
       fullname: '',
       emailTo: '',
+      telephone: 0,
       subject: '',
+      message: '',
+      budget: '',
+
       media: [],
     },
   })
@@ -116,7 +128,7 @@ export function ContactForm() {
         <DropzoneInput
           valName="media"
           label="Upload Files"
-          description="Drag and drop files here or click to select files"
+          // description="Drag and drop files here or click to select files"
           control={form.control}
         />
         {/* <DatePickerInput
