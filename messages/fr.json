@@ -34,7 +34,9 @@
     "budget_label01": "Moins de 5'000CHF",
     "budget_label02": "10 000CHF - 20 000CHF",
     "budget_label03": "20 000CHF - 50 000CHF",
-    "budget_label04": "50 000CHF - 100 000CHF"
+    "budget_label04": "50 000CHF - 100 000CHF",
+    "form_submit_title": "Votre message a été envoyé avec succès",
+    "form_submit_description": "Nous vous remercions pour votre message. Nous vous contacterons dans les plus brefs délais."
   },
   "Navigation": {
     "home": "Accueil",

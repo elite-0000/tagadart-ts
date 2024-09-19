@@ -80,7 +80,6 @@ export function ContactForm() {
       subject: '',
       message: '',
       budget: '',
-
       media: [],
     },
   })
@@ -90,17 +89,16 @@ export function ContactForm() {
       const formData = await formDataContact(data)
       await postAxiosAPI('/email-contact', formData)
 
-      //This work without FormData
+      // This works without FormData
       // await postAxiosAPI('/email-contact', { data: data })
 
       toast({
-        title: 'You submitted the following values:',
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-          </pre>
-        ),
+        title: t('form_submit_title'),
+        description: t('form_submit_description'),
+        variant: 'success',
       })
+
+      form.reset()
     } catch (error) {
       console.error(error)
     }
