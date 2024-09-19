@@ -27,6 +27,22 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
+      <head>
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16700186470');
+            `,
+          }}
+        />
+      </head>
       <body className="flex min-h-full flex-col">
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
         <NextIntlClientProvider messages={messages}>
