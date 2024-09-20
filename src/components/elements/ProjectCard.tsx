@@ -1,12 +1,15 @@
 import React from 'react'
 import { FadeIn } from '@/components/ui/FadeIn'
 import Image from 'next/image'
-import { Button } from '@/components/elements/Button'
+import { Button } from '@/components/ui/button'
+
 import { Project } from '@/types/project'
 import ReactMarkdown from 'react-markdown'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
+import BasicMarkdown from '../ui/BasicMarkdown'
+import { truncateWithEllipses } from '@/lib/helper'
 
 interface ProjectCardProps {
   project: Project
@@ -60,7 +63,14 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
             {project?.pageIntro?.title}
           </p>
           <div className="mt-4 text-base text-neutral-600">
-            <ReactMarkdown>{project?.pageIntro?.content}</ReactMarkdown>
+            <BasicMarkdown>
+              {truncateWithEllipses(project?.pageIntro?.content, 75)}
+            </BasicMarkdown>
+          </div>
+          <div className="mt-6">
+            <Button asChild variant="primary">
+              <Link href={`/projects/${project.id}`}>{t('view_more')}</Link>
+            </Button>
           </div>
         </article>
       </Link>
