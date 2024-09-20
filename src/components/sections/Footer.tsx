@@ -139,7 +139,7 @@ export function Footer() {
             />
           </Link>
           <p className="text-sm text-neutral-700">
-            © Tagadart SARL {new Date().getFullYear()}
+            © Tagadart Sàrl {new Date().getFullYear()}
           </p>
         </div>
       </FadeIn>
