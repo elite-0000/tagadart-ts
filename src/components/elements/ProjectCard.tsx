@@ -1,7 +1,7 @@
 import React from 'react'
 import { FadeIn } from '@/components/ui/FadeIn'
 import Image from 'next/image'
-import { Button } from '@/components/ui/button'
+import { Button, buttonVariants } from '@/components/ui/button'
 
 import { Project } from '@/types/project'
 import ReactMarkdown from 'react-markdown'
@@ -68,9 +68,14 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
             </BasicMarkdown>
           </div>
           <div className="mt-6">
-            <Button asChild variant="primary">
-              <Link href={`/projects/${project.id}`}>{t('view_more')}</Link>
-            </Button>
+            {/* <Link
+              href={`/projects/${project.id}`}
+              className={buttonVariants({ variant: 'primary' })}
+            >
+              {t('view_more')}
+            </Link> */}
+
+            <Button variant="primary">{t('view_more')}</Button>
           </div>
         </article>
       </Link>

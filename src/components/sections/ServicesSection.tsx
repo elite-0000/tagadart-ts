@@ -21,7 +21,7 @@ const ServicesSection: React.FC<ServicesProps> = ({
     <>
       <SectionIntro {...servicesSection} />
       <Container className="mt-16">
-        <FadeIn className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <FadeIn className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {services?.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

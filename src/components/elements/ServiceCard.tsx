@@ -3,32 +3,38 @@ import Icon from '@/components/images/Icon'
 import BasicMarkdown from '../ui/BasicMarkdown'
 import { getTranslations } from 'next-intl/server'
 import { truncateWithEllipses } from '@/lib/helper'
+import Link from 'next/link'
+import { IconProps } from '@radix-ui/react-icons/dist/types'
 
 export const ServiceCard: React.FC<{ service: Service }> = async ({
   service,
 }) => {
   const t = await getTranslations('Service')
-  console.log(service.classIcon, 'service.classIcon')
+
   return (
     <div key={service.id} className="flex flex-col">
-      <dt className="items-top flex min-h-20 gap-x-3 text-xl font-semibold leading-7 text-gray-900">
-        {/* @ts-ignore */}
-        <Icon size={64} name={service.classIcon as IconProps} />
+      <dt className="items-top flex min-h-20 gap-x-3 text-xl font-bold leading-7 text-gray-900">
+        <div className="text-primary-600">
+          <Icon
+            size={48}
+            /* @ts-ignore */
+            name={service.classIcon as IconProps}
+          />
+        </div>
         {service.pageIntro.title}
       </dt>
-      <dd className="mt-4 flex flex-auto flex-col text-lg leading-4 text-gray-600">
+      <dd className="mt-1 flex flex-auto flex-col text-lg leading-6 text-gray-600">
         <BasicMarkdown>
-          {truncateWithEllipses(service.pageIntro.content, 75)}
+          {truncateWithEllipses(service.pageIntro.content, 150)}
         </BasicMarkdown>
         {/* <BasicMarkdown>{service.pageIntro.content}</BasicMarkdown> */}
-        <p className="mt-6">
-          <a
-            href={`/services/${service.id}`}
-            className="text-sm font-semibold leading-6 text-indigo-600"
-          >
-            {t('view_more')} <span aria-hidden="true">→</span>
-          </a>
-        </p>
+
+        <Link
+          href={`/services/${service.id}`}
+          className="mt-4 text-sm font-semibold leading-6 text-primary-600"
+        >
+          {t('view_more')} <span aria-hidden="true">→</span>
+        </Link>
       </dd>
     </div>
   )
