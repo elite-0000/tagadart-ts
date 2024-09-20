@@ -6,6 +6,7 @@ import { Container } from '@/components/ui/Container'
 import { fetchServices, fetchServicesPage } from '@/request/fetch'
 import { ServiceCard } from '@/components/elements/ServiceCard'
 import { PageIntroSections } from '@/components/sections/PageIntro'
+import ServicesSection from '@/components/sections/ServicesSection'
 export const metadata: Metadata = {
   title: 'Services',
 }
@@ -22,22 +23,13 @@ export default async function ViewServicesPages() {
     return <div>Failed to load data</div>
   }
 
-  const { pageIntro } = servicesPageData || ''
+  const { pageIntro, servicesSection } = servicesPageData || ''
   // const t = await getTranslations('Project')
 
   return (
     <>
       <PageIntroSections {...pageIntro} />
-
-      <Container className="mt-24 sm:mt-32 lg:mt-40">
-        <div className="space-y-24 lg:space-y-32">
-          {services &&
-            services.map((service: any) => (
-              <ServiceCard service={service} key={service.id} />
-            ))}
-        </div>
-      </Container>
-
+      <ServicesSection servicesSection={servicesSection} services={services} />
       <ContactSection />
     </>
   )
