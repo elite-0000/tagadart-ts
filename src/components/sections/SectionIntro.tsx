@@ -12,17 +12,22 @@ export function SectionIntro({
   smaller = false,
   invert = false,
   centered = false,
+  noMarginTop = false,
   ...props
 }: PageIntro & {
   centered?: boolean
   showCover?: boolean
+  noMarginTop?: boolean
   smaller?: boolean
   invert?: boolean
 }) {
   return (
     <Container
       {...props}
-      className={clsx('mt-24 sm:mt-32', centered && 'text-center')}
+      className={clsx(
+        !noMarginTop && 'mt-24 sm:mt-32',
+        centered && 'text-center',
+      )}
     >
       <FadeIn>
         <h2>
@@ -31,7 +36,7 @@ export function SectionIntro({
               <span
                 className={clsx(
                   'mb-6 block font-display text-base font-semibold',
-                  invert ? 'text-white' : 'text-neutral-950',
+                  invert ? 'text-primary-50' : 'text-neutral-950',
                 )}
               >
                 {eyebrow}
@@ -45,7 +50,7 @@ export function SectionIntro({
               smaller
                 ? 'text-2xl font-semibold'
                 : 'text-4xl font-medium sm:text-5xl',
-              invert ? 'text-white' : 'text-neutral-950',
+              invert ? 'text-primary-50' : 'text-neutral-950',
             )}
           >
             {title}
@@ -54,7 +59,8 @@ export function SectionIntro({
         {content && (
           <div
             className={clsx(
-              'mt-6 max-w-3xl text-xl text-neutral-600',
+              'mt-6 max-w-3xl text-xl',
+              invert ? 'text-primary-200' : 'text-neutral-600',
               centered && 'mx-auto',
             )}
           >

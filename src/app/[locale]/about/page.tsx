@@ -6,6 +6,7 @@ import { PageIntroSections } from '@/components/sections/PageIntro'
 
 import TeamSection from '@/components/sections/TeamSection'
 import { RestQueryParams } from '@/types/global'
+import CultureSection from '@/components/sections/Culture'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -48,7 +49,9 @@ export default async function About() {
     <>
       {pageIntro && <PageIntroSections {...pageIntro}></PageIntroSections>}
 
-      {/* <CultureSection culturecard={cultureSection} /> */}
+      <div className="container mx-auto px-4">
+        <CultureSection cultureSection={cultureSection} />
+      </div>
 
       <TeamSection teamSection={teamSection} />
       {/* <PageLinks
