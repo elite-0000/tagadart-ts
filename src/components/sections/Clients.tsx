@@ -5,23 +5,26 @@ import React from 'react'
 import ClientCard from '../elements/ClientCard'
 
 import { Client } from '@/types/client'
+import { PageIntro } from '@/types/global'
+import { SectionIntro } from './SectionIntro'
 
 interface ClientProps {
-  // projectsSection: PageIntro
+  referencesSection: PageIntro
   clients: Client[]
 }
 
-const ClientsSection: React.FC<ClientProps> = ({ clients }) => {
+const ReferenceSection: React.FC<ClientProps> = ({
+  clients,
+  referencesSection,
+}) => {
+  console.log(clients, 'clients')
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
-        {/* <h2 className="font-display text-2xl font-semibold text-neutral-950">
-          Vous êtes en bonne compagnies
-        </h2> */}
-        {/* <PageIntro {...pageIntro} /> */}
+        <SectionIntro {...referencesSection} />
       </FadeIn>
       <FadeInStagger className="mt-10" faster>
-        <Border as={FadeIn} />
+        <Border className="mb-12" as={FadeIn} />
         <ul
           role="list"
           className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
@@ -39,4 +42,4 @@ const ClientsSection: React.FC<ClientProps> = ({ clients }) => {
   )
 }
 
-export default ClientsSection
+export default ReferenceSection

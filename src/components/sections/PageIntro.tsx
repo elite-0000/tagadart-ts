@@ -14,7 +14,6 @@ export function PageIntroSections({
   centered = false,
   showCover = true,
 }: PageIntro & { centered?: boolean; showCover?: boolean }) {
-  console.log(cover, 'cover')
   return (
     <Container
       className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}
@@ -50,7 +49,7 @@ export function PageIntroSections({
             <div className="col-span-2">
               <NextCloudinaryImage
                 src={cover.url}
-                alt={cover.alt}
+                alt={cover.alternativeText}
                 width={600}
                 height={500}
                 className="rounded-md shadow-2xl ring-1 ring-gray-900/10"

@@ -27,7 +27,7 @@ export interface MediaItem {
   provider_metadata?: any
   width?: number
   height?: number
-  alt: string
+  alternativeText: string
 }
 
 //****** REQUEST ******\\

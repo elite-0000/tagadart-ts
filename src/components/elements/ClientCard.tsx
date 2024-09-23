@@ -10,25 +10,24 @@ interface ClientCardProps {
 }
 
 const ClientCard: React.FC<ClientCardProps> = ({ client }) => {
+  console.log(client, 'client')
   return (
-    <li key={client.name} className="group">
+    <>
       <FadeIn className="overflow-hidden">
-        <Border className="pt-12 group-[&:nth-child(-n+2)]:-mt-px sm:group-[&:nth-child(3)]:-mt-px lg:group-[&:nth-child(4)]:-mt-px">
-          {client?.logo && (
-            <NextCloudinaryImage
-              width={500}
-              height={500}
-              alt={client?.logo?.alt}
-              src={`${client?.logo?.url}`}
-            />
-          )}
-        </Border>
+        {client?.logo && (
+          <NextCloudinaryImage
+            width={160}
+            height={80}
+            alt={client?.logo?.alternativeText}
+            src={`${client?.logo?.url}`}
+            crop="fit"
+          />
+        )}
       </FadeIn>
-      <div className="text-center">
+      {/* <div className="text-center">
         <h2 className="text-xl font-bold">{client.name}</h2>
-        {/* <p>{client.description}</p> */}
-      </div>
-    </li>
+      </div> */}
+    </>
   )
 }
 

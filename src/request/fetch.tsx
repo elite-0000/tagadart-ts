@@ -298,3 +298,45 @@ export async function fetchService(id: string) {
     throw error
   }
 }
+
+export async function fetchClients() {
+  const populateClients = ['logo']
+
+  const queryParams: RestQueryParams = {
+    populate: populateClients,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const clientsData = await fetchAxiosAPI('clients', queryParams)
+    return clientsData?.data
+  } catch (error) {
+    console.error('Failed to load services data:', error)
+    throw error
+  }
+}
+
+export async function fetchClient(id: string) {
+  const populateClients = ['logo']
+
+  const queryParams: RestQueryParams = {
+    populate: populateClients,
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+
+  try {
+    const clientsData = await fetchAxiosAPI(`clients/${id}`, queryParams)
+    return clientsData?.data
+  } catch (error) {
+    console.error('Failed to load services data:', error)
+    throw error
+  }
+}
