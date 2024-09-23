@@ -1,3 +1,5 @@
+//TODO: Refactoring, it's not very clean, too much comments and unuse components
+
 'use client'
 import {
   createContext,
