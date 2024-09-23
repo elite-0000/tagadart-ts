@@ -34,7 +34,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         </div>
         <div className="group relative max-w-xl">
           <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <Link href={`/projects/${post.id}`}>
+            <Link href={`/posts/${post.id}`}>
               <span className="absolute inset-0" />
               {post.pageIntro.title}
             </Link>
@@ -45,6 +45,25 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               {truncateWithEllipses(post.pageIntro.content, 150)}
             </BasicMarkdown>
           </div>
+          {post?.author && (
+            <div className="mt-6 flex items-center">
+              {post?.author?.avatar && (
+                <NextCloudinaryImage
+                  src={post.author.avatar.url}
+                  alt={post.author.avatar.alt}
+                  width={50}
+                  height={50}
+                  className="h-12 w-12 rounded-full object-cover"
+                />
+              )}
+              <div className="ml-4">
+                <p className="text-sm font-medium text-gray-900">
+                  {post.author.fullname}
+                </p>
+                <p className="text-sm text-gray-500">{post.author.title}</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </article>
