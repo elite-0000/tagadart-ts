@@ -23,11 +23,11 @@ const ReferenceSection: React.FC<ClientProps> = ({
       <FadeIn>
         <SectionIntro {...referencesSection} />
       </FadeIn>
-      <FadeInStagger className="mt-10" faster>
+      <FadeInStagger faster>
         <Border className="mb-12" as={FadeIn} />
         <ul
           role="list"
-          className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-4"
+          className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
         >
           {clients.map((client) => {
             return (
