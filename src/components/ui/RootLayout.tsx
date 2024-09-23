@@ -97,10 +97,10 @@ function Header({
                 ? 'logo_tagadart_white_a60e46ff2a'
                 : 'logo_tagadart_2ef62a5f8c'
             }
-            alt="Logo"
+            alt="Tagadart Logo"
             width={140}
             height={140}
-            className="m-auto rounded-xl sm:rounded-3xl"
+            className="m-auto"
           />
 
           {/* <Logo
@@ -262,15 +262,6 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
               <Container>
                 <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
-                  {/* <div>
-                    <h2 className="font-display text-base font-semibold text-white">
-                      Our offices
-                    </h2>
-                    <Offices
-                      invert
-                      className="mt-6 grid grid-cols-1 gap-8 sm:grid-cols-2"
-                    />
-                  </div> */}
                   <div className="sm:border-l sm:border-transparent sm:pl-16">
                     <h2 className="font-display text-base font-semibold text-white">
                       {t('follow_us')}
