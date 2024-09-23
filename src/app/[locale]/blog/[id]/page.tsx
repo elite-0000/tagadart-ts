@@ -44,14 +44,6 @@ export default async function ViewPost({ params: { id } }: Props) {
               </div> */}
             </div>
           </FadeIn>
-          {/* {relatedArticles.length > 0 && (
-            <PageLinks
-              href="/blog/"
-              className="mt-24 sm:mt-32 lg:mt-40"
-              title="More articles"
-              pages={relatedArticles}
-            />
-          )} */}
         </div>
       </Border>
     </article>
