@@ -38,9 +38,9 @@ const TeamSection: React.FC<TeamCardProps> = ({ teamSection }) => {
                             alt={`${person.fullname}`}
                             width={500}
                             height={700}
-                            // crop={'crop'}
                             crop={'fill'}
-                            // crop={'pad'} //crop fill pad
+                            // crop={'crop'}
+                            // crop={'pad'}
                             className="grayscale transition duration-500 motion-safe:group-hover:scale-105"
                           />
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
