@@ -148,7 +148,7 @@ async function ContactDetails(offices: any) {
         </h2>
         <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
           {[
-            ['Support', 'support@tagadart.com'],
+            ['Support', 'support@tagadart.ch'],
             ['John', 'john@tagadart.ch'],
             ['Aurélien', 'aurelien@tagadart.ch'],
           ].map(([label, email]) => (
