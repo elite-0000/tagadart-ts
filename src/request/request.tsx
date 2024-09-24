@@ -1,14 +1,10 @@
-// @ts-ignore
-
 import axios, { AxiosRequestHeaders, AxiosResponse } from 'axios'
-
-import { Data, ImageUpload, RestQueryParams } from '@/types/global'
+import { BaseData, RestQueryParams } from '@/types/global'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:1337'
 axios.defaults.baseURL = `${API_URL}/api`
 
 export const defaultQueryParams: RestQueryParams = {
-  // sort: "publishedAt:desc",
   sort: 'id:desc',
   populate: '*',
   publicationState: 'preview',
@@ -20,7 +16,7 @@ export const defaultQueryParams: RestQueryParams = {
 export async function fetchUseSWR(
   path: string,
   userToken?: string | null,
-): Promise<Data> {
+): Promise<BaseData> {
   const headers: any = {}
 
   if (userToken) {
@@ -79,13 +75,15 @@ export async function postAxiosAPI<T = any>(
   data: FormData | Record<string, unknown>,
   userToken?: string | null,
 ): Promise<AxiosResponse<T>> {
-  const headers: AxiosRequestHeaders = {} as AxiosRequestHeaders
-
-  //TS check why shouldErrorTs didn't make an error
+  const headers = {} as AxiosRequestHeaders
   if (userToken) {
     headers.Authorization = `Bearer ${userToken}`
-    // headers.shouldErrorTs = `Bearer ${userToken}`;
   }
+
+  // TODO: I'm not sure it's needed....
+  // if ( data instanceof FormData) {
+  //   headers['Content-Type'] = 'multipart/form-data'
+  // }
 
   try {
     const response = await axios.post<T>(path, data, { headers })
