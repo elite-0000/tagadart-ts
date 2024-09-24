@@ -16,7 +16,7 @@ import {
   fetchServices,
 } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
-import ReferenceSection from '@/components/sections/Clients'
+import ClientsSection from '@/components/sections/Clients'
 
 export const metadata: Metadata = {
   description:
@@ -61,10 +61,7 @@ export default async function Home() {
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
       <ServicesSection servicesSection={servicesSection} services={services} />
       <BlogSection blogSection={blogSection} posts={posts} />
-      <ReferenceSection
-        clients={clients}
-        referencesSection={referencesSection}
-      />
+      <ClientsSection clients={clients} referencesSection={referencesSection} />
       <ContactSection />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>

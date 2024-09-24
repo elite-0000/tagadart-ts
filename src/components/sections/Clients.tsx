@@ -13,11 +13,10 @@ interface ClientProps {
   clients: Client[]
 }
 
-const ReferenceSection: React.FC<ClientProps> = ({
+const ClientsSection: React.FC<ClientProps> = ({
   clients,
   referencesSection,
 }) => {
-  console.log(clients, 'clients')
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
@@ -29,7 +28,7 @@ const ReferenceSection: React.FC<ClientProps> = ({
           role="list"
           className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
         >
-          {clients.map((client) => {
+          {clients?.map((client) => {
             return (
               <li key={client.id} className="group">
                 <ClientCard client={client} />
@@ -42,4 +41,4 @@ const ReferenceSection: React.FC<ClientProps> = ({
   )
 }
 
-export default ReferenceSection
+export default ClientsSection

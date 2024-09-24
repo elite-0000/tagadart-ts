@@ -36,9 +36,12 @@ const TeamSection: React.FC<TeamCardProps> = ({ teamSection }) => {
                           <NextCloudinaryImage
                             src={`${person.avatar?.url}`}
                             alt={`${person.fullname}`}
-                            width={50}
-                            height={50}
-                            className="h-96 w-full object-cover grayscale transition duration-500 motion-safe:group-hover:scale-105"
+                            width={500}
+                            height={700}
+                            // crop={'crop'}
+                            crop={'fill'}
+                            // crop={'pad'} //crop fill pad
+                            className="grayscale transition duration-500 motion-safe:group-hover:scale-105"
                           />
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
                             <p className="font-display text-base/6 font-semibold tracking-wide text-white">
