@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
             <div className="mt-6">
               <NextCloudinaryImage
                 src={project.pageIntro.cover.url}
-                alt={project.pageIntro.cover.alt}
+                alt={project.pageIntro.title}
                 width={600}
                 height={500}
                 className="rounded-md"

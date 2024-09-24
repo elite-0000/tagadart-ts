@@ -19,7 +19,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
         <NextCloudinaryImage
           src={post.pageIntro.cover.url}
-          alt={post.pageIntro.cover.alt}
+          alt={post.pageIntro.title}
           width={1000}
           height={1000}
           // crop={'fill'}
@@ -50,7 +50,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
               {post?.author?.avatar && (
                 <NextCloudinaryImage
                   src={post.author.avatar.url}
-                  alt={post.author.avatar.alt}
+                  alt={post.author.fullname}
                   width={50}
                   height={50}
                   className="h-12 w-12 rounded-full object-cover"

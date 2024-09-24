@@ -29,6 +29,7 @@ function TestimonialWithImage({
         <NextCloudinaryImage
           {...author.avatar}
           src={author.avatar.url}
+          alt={author.fullname}
           width={192}
           height={192}
           className="m-auto rounded-xl grayscale sm:rounded-3xl"
