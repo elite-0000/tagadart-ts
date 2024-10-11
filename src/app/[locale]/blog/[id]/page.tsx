@@ -3,6 +3,7 @@ import { Border } from '@/components/ui/Border'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { Post } from '@/types/post'
 import { fetchPost } from '@/request/fetch'
+import { MessageMarkdown } from '@/components/ui/message-markdown'
 
 export const metadata: Metadata = {
   title: 'Blog - Article Title',
@@ -39,9 +40,9 @@ export default async function ViewPost({ params: { id } }: Props) {
           </FadeIn>
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
             <div className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-              {/* <div className="typography">
+              <div className="typography">
                 {post?.content && <MessageMarkdown content={post.content} />}
-              </div> */}
+              </div>
             </div>
           </FadeIn>
         </div>

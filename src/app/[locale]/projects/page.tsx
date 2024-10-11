@@ -30,7 +30,7 @@ export default async function ViewProjectsPage() {
 
   return (
     <>
-      <PageIntroSections {...pageIntro} />
+      {/* <PageIntroSections {...pageIntro} /> */}
 
       <Container className="mt-24 sm:mt-32 lg:mt-40">
         <div className="space-y-24 lg:space-y-32">

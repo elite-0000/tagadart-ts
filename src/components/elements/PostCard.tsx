@@ -34,7 +34,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         </div>
         <div className="group relative max-w-xl">
           <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <Link href={`/posts/${post.id}`}>
+            <Link href={`/blog/${post.id}`}>
               <span className="absolute inset-0" />
               {post.pageIntro.title}
             </Link>

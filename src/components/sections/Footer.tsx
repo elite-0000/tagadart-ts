@@ -133,9 +133,9 @@ export function Footer() {
             {/* <Logo className="h-8" fillOnHover /> */}
             <NextCloudinaryImage
               src={'logo_tagadart_2ef62a5f8c'}
-              alt="Logo"
-              width={80}
-              height={80}
+              alt="Tagadart Logo"
+              width={140}
+              height={140}
             />
           </Link>
           <p className="text-sm text-neutral-700">
