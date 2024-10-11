@@ -4,10 +4,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { Post } from '@/types/post'
 import { fetchPost } from '@/request/fetch'
 import { MessageMarkdown } from '@/components/ui/message-markdown'
-
-export const metadata: Metadata = {
-  title: 'Blog - Article Title',
-}
+import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 type Props = {
   params: {
@@ -15,9 +12,16 @@ type Props = {
   }
 }
 
+export const metadata: Metadata = {
+  title: 'Blog',
+}
+
 export default async function ViewPost({ params: { id } }: Props) {
   const post: Post = await fetchPost(id)
+  metadata.title = `Blog - ${post?.pageIntro.title}`
+
   if (!post) return null
+  console.log(post.content, 'post content')
   return (
     <article>
       <Border className="pt-16">
@@ -40,8 +44,9 @@ export default async function ViewPost({ params: { id } }: Props) {
           </FadeIn>
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
             <div className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-              <div className="typography">
-                {post?.content && <MessageMarkdown content={post.content} />}
+              <div className="markdown-content">
+                {/* {post?.content && <MessageMarkdown content={post.content} />} */}
+                {post?.content && <BasicMarkdown>{post.content}</BasicMarkdown>}
               </div>
             </div>
           </FadeIn>
