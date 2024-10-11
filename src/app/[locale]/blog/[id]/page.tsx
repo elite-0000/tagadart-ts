@@ -21,7 +21,6 @@ export default async function ViewPost({ params: { id } }: Props) {
   metadata.title = `Blog - ${post?.pageIntro.title}`
 
   if (!post) return null
-  console.log(post.content, 'post content')
   return (
     <article>
       <Border className="pt-16">
