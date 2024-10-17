@@ -164,6 +164,7 @@ export async function fetchPosts() {
 
   const queryParams: RestQueryParams = {
     populate: populatePosts,
+    sort: 'createdAt:desc',
     publicationState: 'live',
     pagination: {
       page: 1,
@@ -185,6 +186,7 @@ export async function fetchPost(id: string) {
 
   const queryParams: RestQueryParams = {
     populate: populatePosts,
+
     publicationState: 'live',
     pagination: {
       page: 1,

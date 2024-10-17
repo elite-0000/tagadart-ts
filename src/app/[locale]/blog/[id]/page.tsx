@@ -5,6 +5,9 @@ import { Post } from '@/types/post'
 import { fetchPost } from '@/request/fetch'
 import { MessageMarkdown } from '@/components/ui/message-markdown'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
+import { PageIntroSections } from '@/components/sections/PageIntro'
+import { formatDate } from '@/lib/helper'
+import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
 
 type Props = {
   params: {
@@ -27,18 +30,11 @@ export default async function ViewPost({ params: { id } }: Props) {
         <div className="mt-24 sm:mt-32 lg:mt-40">
           <FadeIn>
             <header className="mx-auto flex max-w-5xl flex-col text-center">
-              <h1 className="mt-6 font-display text-5xl font-medium tracking-tight text-neutral-950 [text-wrap:balance] sm:text-6xl">
-                {post?.pageIntro.title}
-              </h1>
-              <time
-                dateTime={post?.pageIntro.eyebrow}
-                className="order-first text-sm text-neutral-950"
-              >
-                {post?.pageIntro.eyebrow}
-              </time>
-              <p className="mt-6 text-sm font-semibold text-neutral-950">
-                by {post?.author.fullname}, {post?.author.role}
-              </p>
+              <BlogPageIntroSections
+                post={post}
+                showCover={true}
+                {...post?.pageIntro}
+              />
             </header>
           </FadeIn>
           <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
