@@ -16,14 +16,15 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
       key={post.id}
       className="relative isolate mb-24 flex flex-col gap-8 lg:flex-row"
     >
-      <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0">
+      <div className="mx-auto text-center">
+        {/* <div className="relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0"> */}
         <NextCloudinaryImage
           src={post.pageIntro.cover.url}
           alt={post.pageIntro.title}
-          width={1000}
-          height={1000}
+          width={320}
+          height={320}
           // crop={'fill'}
-          className="absolute inset-0 rounded-2xl object-cover"
+          className="inset-0 rounded-2xl object-cover"
         />
       </div>
       <div>
@@ -65,6 +66,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
             </div>
           )}
         </div>
+        <div className="mt-6 border-b border-gray-200"></div>
       </div>
     </article>
   )
