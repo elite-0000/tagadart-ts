@@ -43,7 +43,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
                       <dd>{project.client}</dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Year</dt>
+                      <dt className="font-semibold">Année</dt>
                       <dd>
                         <time dateTime={project.year}>{project.year}</time>
                       </dd>
@@ -57,19 +57,17 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
               </Container>
             </div>
 
-            <div className="border-y border-neutral-200 bg-neutral-100">
-              <div className="-my-px mx-auto max-w-[76rem] bg-neutral-200">
-                <GrayscaleTransitionImage
-                  src={`${project?.pageIntro?.cover?.url}`}
-                  quality={90}
-                  className="w-full"
-                  sizes="(min-width: 1216px) 76rem, 100vw"
-                  priority
-                  alt={project.pageIntro?.title}
-                  width={800}
-                  height={600}
-                />
-              </div>
+            <div className="max-w-[76rem0 -my-px mx-auto">
+              <GrayscaleTransitionImage
+                src={`${project?.pageIntro?.cover?.url}`}
+                quality={90}
+                className="w-full py-6"
+                sizes="(min-width: 1216px) 76rem, 100vw"
+                priority
+                alt={project.pageIntro?.title}
+                width={800}
+                height={600}
+              />
             </div>
           </FadeIn>
         </header>
@@ -77,11 +75,11 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
 
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
         <div className="[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-          <div>
+          <div className="mt-6">
             <h2 className="text-xl">{t('content')}</h2>
             <BasicMarkdown content={project.content} />
           </div>
-          <div>
+          <div className="mt-6">
             <h2 className="text-xl">{t('expertise')}</h2>
             <BasicMarkdown content={project.expertise} />
           </div>
@@ -97,14 +95,23 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
           </div> */}
         </div>
       </FadeIn>
-      <FadeIn>
+      {project.testimonials && (
+        <FadeIn>
+          {project.testimonials.map((testimonial) => (
+            <Testimonial key={testimonial.id} author={testimonial.author}>
+              {testimonial.content}
+            </Testimonial>
+          ))}
+        </FadeIn>
+      )}
+      {/* <FadeIn>
         <Testimonial
           key={project.testimonials?.[0]?.id}
           author={project.testimonials?.[0]?.author}
         >
           {project.testimonials?.[0]?.content}
         </Testimonial>
-      </FadeIn>
+      </FadeIn> */}
     </Container>
   )
 }

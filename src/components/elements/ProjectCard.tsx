@@ -38,13 +38,14 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
             </div> */}
           </div>
           {project.pageIntro.cover && (
-            <div className="mt-6">
+            <div className="my-6">
               <NextCloudinaryImage
                 src={project.pageIntro.cover.url}
                 alt={project.pageIntro.title}
                 width={600}
                 height={500}
                 className="rounded-md"
+                crop="fill"
               />
             </div>
           )}

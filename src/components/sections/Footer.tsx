@@ -19,6 +19,7 @@ function Navigation() {
       links: [
         { title: 'Climact', href: '/projects/1' },
         { title: 'Community', href: '/projects/2' },
+        { title: 'Naturalisation', href: '/projects/6' },
 
         // {
         //   title: (

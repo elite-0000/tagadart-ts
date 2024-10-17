@@ -40,7 +40,7 @@ export function BlogPageIntroSections({
                 src={cover.url}
                 alt={cover.alternativeText}
                 width={1200}
-                height={400}
+                height={600}
                 className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
               />
             </div>
