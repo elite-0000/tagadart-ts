@@ -44,7 +44,11 @@ export default async function PageRoute({ params }: Props) {
 
   const contentSections = page.data[0].structure
   return (
-    <>{contentSections.map((section: Section) => componentResolver(section))}</>
+    <>
+      {contentSections.map((section: Section & PageIntro) =>
+        componentResolver(section),
+      )}
+    </>
   )
   // const contentSections = page.data[0].attributes.contentSections;
   // return contentSections.map((section: any, index: number) => componentResolver(section, index));
