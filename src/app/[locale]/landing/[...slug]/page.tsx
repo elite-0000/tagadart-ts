@@ -15,9 +15,25 @@ async function getPageBySlug(slug: string, lang: string) {
   const urlParamsObject = {
     filters: { slug },
     locale: lang,
+
+    // populate: [
+    //   'structure',
+    //   'structure.section',
+    //   'structure.section.blog-section',
+    //   'structure.section.blog-section.posts',
+    // ],
     populate: {
       structure: {
-        populate: '*',
+        on: {
+          'section.blog-section': {
+            populate: [
+              'sectionIntro',
+              'posts',
+              'posts.pageIntro',
+              'posts.pageIntro.cover',
+            ],
+          },
+        },
       },
     },
   }
@@ -39,8 +55,8 @@ export default async function PageRoute({ params }: Props) {
     switch (section.__component) {
       case 'section.blog-section':
         return <BlogSection key={section.id} blogSection={section} />
-      case 'section.testimonials':
-        return <TestimonialSection key={section.id} avatar={section.avatar} />
+      // case 'section.testimonials':
+      //   return <TestimonialSection key={section.id} avatar={section.avatar} />
       default:
         return null
     }

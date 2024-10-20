@@ -7,13 +7,17 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import PostCard from '@/components/elements/PostCard'
 import { fetchPosts } from '@/request/fetch'
+import { AnyTxtRecord } from 'dns'
 
 interface BlogProps {
-  blogSection: PageIntro
+  // blogSection: PageIntro
+  blogSection: any
 }
 
 const BlogSection: React.FC<BlogProps> = async ({ blogSection }) => {
   let posts: Post[] | null = null
+
+  console.log(blogSection.posts, 'blogSection posts')
 
   try {
     posts = await fetchPosts()
@@ -22,10 +26,14 @@ const BlogSection: React.FC<BlogProps> = async ({ blogSection }) => {
   }
   return (
     <>
-      <SectionIntro {...blogSection} />
+      <SectionIntro {...blogSection.sectionIntro} />
       <Container className="mt-16">
         <FadeIn>
-          {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
+          {blogSection?.posts &&
+            blogSection?.posts.map((post: Post) => (
+              <PostCard key={post.id} post={post} />
+            ))}
+          {/* {posts && posts.map((post) => <PostCard key={post.id} post={post} />)} */}
         </FadeIn>
       </Container>
     </>
