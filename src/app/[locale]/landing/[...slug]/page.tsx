@@ -1,4 +1,5 @@
 import BlogSection from '@/components/sections/dynamic/BlogSection'
+import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 
@@ -10,14 +11,15 @@ type Props = {
 }
 
 async function getPageBySlug(slug: string, lang: string) {
-  //   const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN
-  //   const options = { headers: { Authorization: `Bearer ${token}` } }
-
   const path = `/pages`
   const urlParamsObject = {
     filters: { slug },
     locale: lang,
-    populate: 'structure',
+    populate: {
+      structure: {
+        populate: '*',
+      },
+    },
   }
   return await fetchAxiosAPI(path, urlParamsObject)
 }
@@ -32,11 +34,13 @@ export default async function PageRoute({ params }: Props) {
     [key: string]: any
   }
 
-  //TODO: Change to sectionIntro
   const componentResolver = (section: Section & PageIntro) => {
+    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return <BlogSection key={section.id} blogSection={section} />
+      case 'section.testimonials':
+        return <TestimonialSection key={section.id} avatar={section.avatar} />
       default:
         return null
     }

@@ -3,16 +3,16 @@ import { MediaItem } from '@/types/global'
 import React from 'react'
 
 interface TestimonialSectionProps {
-  quote: string
-  author: string
-  position: string
+  quote?: string
+  author?: string
+  position?: string
   avatar: MediaItem
 }
 
 const TestimonialSection: React.FC<TestimonialSectionProps> = ({
-  quote,
-  author,
-  position,
+  quote = 'text',
+  author = 'miranda',
+  position = 'Senior Developer',
   avatar,
 }) => {
   return (
@@ -39,13 +39,13 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
           </blockquote>
         </div>
         <div className="col-end-1 w-16 lg:row-span-4 lg:w-72">
-          <NextCloudinaryImage
+          {/* <NextCloudinaryImage
             alt={avatar.alternativeText}
             src={avatar.url}
             width={200}
             height={200}
             className="rounded-xl bg-indigo-50 lg:rounded-3xl"
-          />
+          /> */}
         </div>
         <figcaption className="text-base lg:col-start-1 lg:row-start-3">
           <div className="font-semibold text-gray-900">{author}</div>
