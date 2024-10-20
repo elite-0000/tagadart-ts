@@ -9,8 +9,21 @@ import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
+import { existsSync } from 'fs'
+
+// Function to dynamically import the Card component
+// async function loadCardComponent() {
+//   let Card;
+//   if (existsSync('./customBranding/Card.tsx')) {
+//     Card = await import('./customBranding/Card');
+//   } else {
+//     Card = await import('./default/Card');
+//   }
+//   return Card;
+// }
 
 export const metadata: Metadata = {
+  //TODO: Change by real SEO
   title: 'Projet - Nom du projet',
 }
 type Props = {

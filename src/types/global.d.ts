@@ -35,7 +35,8 @@ export interface RestQueryParams extends Partial<PaginationMeta> {
   fields?: string | string[]
   filters?: object
   sort?: string
-  populate: string | object
+  locale?: string
+  populate?: string | object
   locale?: string | string[]
   publicationState?: 'live' | 'preview'
   cover?: MediaItem
