@@ -8,62 +8,70 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import TeamCard1 from './TeamsCard/TeamCard1'
+import { Member } from '@/types/member'
 
 interface TeamsProps {
-  teamsSection: { sectionIntro: PageIntro } & { teams: Team[] }
+  teamsSection: { sectionIntro: PageIntro } & { members: Member[] }
   designType: Number
 }
 
-const renderContent = (teams: Team[], designType?: Number) => {
+const renderContent = (members: Member[], designType?: Number) => {
   switch (designType) {
     case 1:
       return (
-        <Container className="mt-16">
-          <FadeIn>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {teams.map((service: Team) => (
-                <TeamCard1 key={service.id} team={service} />
-              ))}
-            </div>
-          </FadeIn>
+        <Container className="mt-24 sm:mt-32 lg:mt-40">
+          <div className="space-y-24">
+            <FadeIn>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {members.map((member: Member) => (
+                  <TeamCard1 key={member.id} member={member} />
+                ))}
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       )
 
     default:
       return (
-        <Container className="mt-16">
-          <FadeIn>
-            {teams.map((service: Team) => (
-              <TeamCard1 key={service.id} team={service} />
-            ))}
-          </FadeIn>
+        <Container className="mt-24 sm:mt-32 lg:mt-40">
+          <div className="space-y-24">
+            <FadeIn>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {members.map((member: Member) => (
+                  <TeamCard1 key={member.id} member={member} />
+                ))}
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       )
   }
 }
 
-const ServiceSection: React.FC<TeamsProps> = async ({
+const TeamSection: React.FC<TeamsProps> = async ({
   teamsSection,
   designType,
 }) => {
-  let services: Team[] | null = null
+  // let teams: Team[] | null = null
   try {
-    services = await fetchServices()
+    console.log("teamsSection>> ", teamsSection.members);
+    // teams = await fetchTeams()
   } catch (error) {
-    console.error('Failed to load services:', error)
+    console.error('Failed to load team:', error)
   }
 
   return (
     <>
       <SectionIntro {...teamsSection.sectionIntro} />
       {renderContent(
-        teamsSection.teams.length > 0
-          ? teamsSection.teams
-          : services || [],
+        teamsSection.members.length > 0
+          ? teamsSection.members
+          : [],
         designType,
       )}
     </>
   )
 }
 
-export default ServiceSection
+export default TeamSection

@@ -60,6 +60,7 @@ async function getPageBySlug(slug: string, lang: string) {
               'sectionIntro',
               'members',
               'members.fullname',
+              'members.avatar',
               'members.posts.pageIntro',
             ],
           },

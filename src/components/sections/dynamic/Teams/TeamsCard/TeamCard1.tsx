@@ -4,43 +4,51 @@ import Icon from '@/components/images/Icon'
 import { Team } from '@/types/team'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
+import { FadeIn } from '@/components/ui/FadeIn'
 
 import { truncateWithEllipses } from '@/lib/helper'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
+import { Member } from '@/types/member'
 
 interface TeamCardProps {
-  team: Team
+  member: Member,
 }
 
-const TeamCard1: React.FC<TeamCardProps> = async ({ team }) => {
+const TeamCard1: React.FC<TeamCardProps> = async ({ member }) => {
   const t = await getTranslations('Team')
 
   return (
-    <div key={team.id} className="flex flex-col">
-      <dt className="items-top flex min-h-20 gap-x-3 text-xl font-bold leading-7 text-gray-900">
-        <div className="text-primary-600">
-          <Icon
-            size={48}
-            /* @ts-ignore */
-            name={team.classIcon as IconProps}
-          />
-        </div>
-        {team.pageIntro.title}
-      </dt>
-      <dd className="mt-1 flex flex-auto flex-col text-lg leading-6 text-gray-600">
-        <BasicMarkdown>
-          {truncateWithEllipses(team.pageIntro.content, 150)}
-        </BasicMarkdown>
-        {/* <BasicMarkdown>{team.pageIntro.content}</BasicMarkdown> */}
-
-        <Link
-          href={`/teams/${team.id}`}
-          className="mt-4 text-sm font-semibold leading-6 text-primary-600"
-        >
-          {t('view_more')} <span aria-hidden="true">→</span>
-        </Link>
-      </dd>
+    <div className="lg:col-span-3">
+      <ul
+        role="list"
+        className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
+      >
+        <li key={member.fullname}>
+          <FadeIn>
+            <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
+              <NextCloudinaryImage
+                src={`${member.avatar?.url}`}
+                alt={`${member.fullname}`}
+                width={500}
+                height={700}
+                crop={'fill'}
+                // crop={'crop'}
+                // crop={'pad'}
+                className="grayscale transition duration-500 motion-safe:group-hover:scale-105"
+              />
+              <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black to-black/0 to-40% p-6">
+                <p className="font-display text-base/6 font-semibold tracking-wide text-white">
+                  {member.fullname}
+                </p>
+                <p className="mt-2 text-sm text-white">
+                  {member.role}
+                </p>
+              </div>
+            </div>
+          </FadeIn>
+        </li>
+      </ul>
     </div>
   )
 }
