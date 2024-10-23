@@ -25,7 +25,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ feature }) => {
                   aria-hidden="true"
                   className="h-5 w-5 flex-none text-indigo-600"
                 /> */}
-                {feature.pageIntro?.title || 'Default Title'}{' '}
+                {feature.pageIntro?.title}
                 {/* Added optional chaining and default value */}
               </dt>
               <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">

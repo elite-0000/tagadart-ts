@@ -31,6 +31,8 @@ async function getPageBySlug(slug: string, lang: string) {
               'posts',
               'posts.pageIntro',
               'posts.pageIntro.cover',
+              'posts.author',
+              'posts.author.avatar',
             ],
           },
         },
@@ -51,7 +53,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const componentResolver = (section: Section & PageIntro) => {
-    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return <BlogSection key={section.id} blogSection={section} />

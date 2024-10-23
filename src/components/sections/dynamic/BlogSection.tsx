@@ -17,8 +17,6 @@ interface BlogProps {
 const BlogSection: React.FC<BlogProps> = async ({ blogSection }) => {
   let posts: Post[] | null = null
 
-  console.log(blogSection.posts, 'blogSection posts')
-
   try {
     posts = await fetchPosts()
   } catch (error) {
@@ -31,7 +29,7 @@ const BlogSection: React.FC<BlogProps> = async ({ blogSection }) => {
         <FadeIn>
           {blogSection?.posts &&
             blogSection?.posts.map((post: Post) => (
-              <PostCard key={post.id} post={post} />
+              <PostCard key={post.id} post={post} designType="alternate" />
             ))}
           {/* {posts && posts.map((post) => <PostCard key={post.id} post={post} />)} */}
         </FadeIn>
