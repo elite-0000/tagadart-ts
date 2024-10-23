@@ -51,5 +51,10 @@
     "title": "Meet Our Team",
     "view_more": "View More",
     "content": "Description"
+  },
+  "Reference": {
+    "title": "References",
+    "view_more": "View More",
+    "content": "Description"
   }
 }
