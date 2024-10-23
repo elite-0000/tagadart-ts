@@ -3,9 +3,11 @@ import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSect
 import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
 import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
 import ReferenceSection from '@/components/sections/dynamic/References/ReferenceSection'
+import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
+import Contact from '../../contact/page'
 
 type Props = {
   params: {
@@ -129,6 +131,15 @@ export default async function PageRoute({ params }: Props) {
             <TeamsSection
               key={section.id}
               teamsSection={section}
+              designType={2}
+            />
+          )
+        case 'section.contact-section':
+          console.log("contact section: ", section);
+          return (
+            <ContactSection
+              key={section.id}
+              contactSection={section}
               designType={2}
             />
           )
