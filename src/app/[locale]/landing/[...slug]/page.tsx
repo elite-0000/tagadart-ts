@@ -1,5 +1,5 @@
-import BlogSection from '@/components/sections/dynamic/BlogSection'
-import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
+import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
+
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 
@@ -55,7 +55,13 @@ export default async function PageRoute({ params }: Props) {
   const componentResolver = (section: Section & PageIntro) => {
     switch (section.__component) {
       case 'section.blog-section':
-        return <BlogSection key={section.id} blogSection={section} />
+        return (
+          <PostsSection
+            key={section.id}
+            postsSection={section}
+            designType={1}
+          />
+        )
       // case 'section.testimonials':
       //   return <TestimonialSection key={section.id} avatar={section.avatar} />
       default:
