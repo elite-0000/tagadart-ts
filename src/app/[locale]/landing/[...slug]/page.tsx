@@ -2,6 +2,7 @@ import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
 import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
 import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
+import ReferenceSection from '@/components/sections/dynamic/References/ReferenceSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -64,6 +65,14 @@ async function getPageBySlug(slug: string, lang: string) {
               'members.posts.pageIntro',
             ],
           },
+          'section.reference-section': {
+            populate: [
+              'sectionIntro',
+              'clients',
+              'clients.name',
+              'clients.logo',
+            ],
+          },
         },
       },
     },
@@ -107,11 +116,11 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
-        case 'section.team-section':
+        case 'section.reference-section':
           return (
-            <TeamsSection
+            <ReferenceSection
               key={section.id}
-              teamsSection={section}
+              referenceSection={section}
               designType={2}
             />
           )
