@@ -1,6 +1,7 @@
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
 import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
+import TeamsSection from '@/components/sections/dynamic/Teams/TeamsSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -97,6 +98,14 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
+        case 'section.teams-section':
+          return (
+            <ServicesSection
+              key={section.id}
+              servicesSection={section}
+              designType={2}
+            />
+          )
       // case 'section.testimonials':
       //   return <TestimonialSection key={section.id} avatar={section.avatar} />
       default:
