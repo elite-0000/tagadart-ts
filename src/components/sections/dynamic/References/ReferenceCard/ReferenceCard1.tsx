@@ -16,7 +16,6 @@ interface ReferenceCardProps {
 
 const ReferenceCard1: React.FC<ReferenceCardProps> = async ({ client }) => {
   const t = await getTranslations('Reference')
-  console.log("client>> ", client);
   return (
     <li key={client.id} className="group">
       <FadeIn className="overflow-hidden">
