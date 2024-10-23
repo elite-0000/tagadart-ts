@@ -57,7 +57,7 @@ export interface PageIntro {
   title: string
   eyebrow: string
   content: any
-  image: string
+  image?: string
   cover: MediaItem
 }
 

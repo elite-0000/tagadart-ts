@@ -1,21 +1,20 @@
 import React from 'react'
 import { FadeIn } from '@/components/ui/FadeIn'
-import Image from 'next/image'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 import { Project } from '@/types/project'
-import ReactMarkdown from 'react-markdown'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
-import NextCloudinaryImage from '../images/ImageNextCloudinary'
-import BasicMarkdown from '../ui/BasicMarkdown'
+
 import { truncateWithEllipses } from '@/lib/helper'
+import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
+import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 interface ProjectCardProps {
   project: Project
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
+const ProjectCard1: React.FC<ProjectCardProps> = async ({ project }) => {
   const t = await getTranslations('Project')
 
   return (
@@ -24,26 +23,30 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
         <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
           <div className="flex items-center">
             <div>
-              <NextCloudinaryImage
-                src={project.logo.url}
-                alt={project.client}
-                width={100}
-                height={20}
-                crop="fill_pad"
-                className="mr-3"
-              />
+              {project?.logo?.url && (
+                <NextCloudinaryImage
+                  src={project?.logo?.url}
+                  alt={project.client}
+                  width={100}
+                  height={20}
+                  crop="fill_pad"
+                  className="mr-3"
+                />
+              )}
             </div>
           </div>
           {project.pageIntro.cover && (
             <div className="my-6">
-              <NextCloudinaryImage
-                src={project.pageIntro.cover.url}
-                alt={project.pageIntro.title}
-                width={600}
-                height={500}
-                className="rounded-md"
-                crop="fill"
-              />
+              {project?.pageIntro?.cover.url && (
+                <NextCloudinaryImage
+                  src={project?.pageIntro?.cover.url}
+                  alt={project?.pageIntro?.title}
+                  width={600}
+                  height={500}
+                  className="rounded-md"
+                  crop="fill"
+                />
+              )}
             </div>
           )}
 
@@ -80,4 +83,4 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
   )
 }
 
-export default ProjectCard
+export default ProjectCard1

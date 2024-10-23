@@ -66,8 +66,6 @@ function DropzoneComponent({
   const [selectedFiles, setSelectedFiles] = useState<File[]>([])
   const { setValue, getValues } = useForm()
 
-  // console.log(getValues(), 'getValues')
-
   // Custom onDrop function using useCallback to handle file selection
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {

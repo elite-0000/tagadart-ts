@@ -9,10 +9,7 @@ interface PostCard1Props {
 
 const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
   return (
-    <article
-      key={post.id}
-      className="flex flex-col items-start justify-between"
-    >
+    <article key={post.id} className="flex flex-col items-start justify-start">
       <div className="relative w-full">
         <NextCloudinaryImage
           alt={post.pageIntro.title}
