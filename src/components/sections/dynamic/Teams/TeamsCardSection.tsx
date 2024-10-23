@@ -55,7 +55,6 @@ const TeamSection: React.FC<TeamsProps> = async ({
 }) => {
   // let teams: Team[] | null = null
   try {
-    console.log("teamsSection>> ", teamsSection.members);
     // teams = await fetchTeams()
   } catch (error) {
     console.error('Failed to load team:', error)
