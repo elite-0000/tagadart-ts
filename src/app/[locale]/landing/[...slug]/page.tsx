@@ -1,7 +1,7 @@
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
 import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
-import TeamsSection from '@/components/sections/dynamic/Teams/TeamsSection'
+import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -55,6 +55,14 @@ async function getPageBySlug(slug: string, lang: string) {
               'our_services.pageIntro.cover',
             ],
           },
+          'section.team-section': {
+            populate: [
+              'sectionIntro',
+              'members',
+              'members.fullname',
+              'members.posts.pageIntro',
+            ],
+          },
         },
       },
     },
@@ -98,11 +106,11 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
-        case 'section.teams-section':
+        case 'section.team-section':
           return (
-            <ServicesSection
+            <TeamsSection
               key={section.id}
-              servicesSection={section}
+              teamsSection={section}
               designType={2}
             />
           )
