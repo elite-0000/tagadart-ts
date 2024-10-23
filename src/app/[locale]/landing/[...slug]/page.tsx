@@ -1,5 +1,6 @@
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
+import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -45,6 +46,14 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.logo',
             ],
           },
+          'section.services-section': {
+            populate: [
+              'sectionIntro',
+              'our_services',
+              'our_services.pageIntro',
+              'our_services.pageIntro.cover',
+            ],
+          },
         },
       },
     },
@@ -63,7 +72,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const componentResolver = (section: any) => {
-    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return (
@@ -78,6 +86,14 @@ export default async function PageRoute({ params }: Props) {
           <ProjectsSection
             key={section.id}
             projectsSection={section}
+            designType={2}
+          />
+        )
+      case 'section.services-section':
+        return (
+          <ServicesSection
+            key={section.id}
+            servicesSection={section}
             designType={2}
           />
         )

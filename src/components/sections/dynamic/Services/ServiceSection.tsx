@@ -10,7 +10,7 @@ import { SectionIntro } from '../../SectionIntro'
 import ServiceCard1 from './ServiceCard/ServiceCard1'
 
 interface ServicesProps {
-  servicesSection: { sectionIntro: PageIntro } & { services: Service[] }
+  servicesSection: { sectionIntro: PageIntro } & { our_services: Service[] }
   designType: Number
 }
 
@@ -47,7 +47,6 @@ const ServiceSection: React.FC<ServicesProps> = async ({
   designType,
 }) => {
   let services: Service[] | null = null
-
   try {
     services = await fetchServices()
   } catch (error) {
@@ -58,8 +57,8 @@ const ServiceSection: React.FC<ServicesProps> = async ({
     <>
       <SectionIntro {...servicesSection.sectionIntro} />
       {renderContent(
-        servicesSection.services.length > 0
-          ? servicesSection.services
+        servicesSection.our_services.length > 0
+          ? servicesSection.our_services
           : services || [],
         designType,
       )}
