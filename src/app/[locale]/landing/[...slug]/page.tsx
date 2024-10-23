@@ -1,5 +1,6 @@
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
+import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -16,13 +17,6 @@ async function getPageBySlug(slug: string, lang: string) {
   const urlParamsObject = {
     filters: { slug },
     locale: lang,
-
-    // populate: [
-    //   'structure',
-    //   'structure.section',
-    //   'structure.section.blog-section',
-    //   'structure.section.blog-section.posts',
-    // ],
     populate: {
       structure: {
         on: {
@@ -45,6 +39,10 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.logo',
             ],
           },
+          'section.culture-section': {
+            populate: ['sectionIntro', 'values'],
+          },
+          //TODO: ADD NEW SECTION POPULATE
         },
       },
     },
@@ -70,7 +68,7 @@ export default async function PageRoute({ params }: Props) {
           <PostsSection
             key={section.id}
             postsSection={section}
-            designType={2}
+            designType={1}
           />
         )
       case 'section.projects-section':
@@ -81,8 +79,14 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
-      // case 'section.testimonials':
-      //   return <TestimonialSection key={section.id} avatar={section.avatar} />
+      // case 'section.services-section':
+      // case 'section.teams-section':
+      // case 'section.culture-section':
+      // case 'section.contact-form':
+      // case 'section.page-intro':
+      // case 'section.reference-section':
+      case 'section.testimonials':
+        return <TestimonialSection key={section.id} avatar={section.avatar} />
       default:
         return null
     }
