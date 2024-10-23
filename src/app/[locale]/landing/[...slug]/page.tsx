@@ -73,7 +73,7 @@ async function getPageBySlug(slug: string, lang: string) {
 
 export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
-  if (page?.data?.length === 0) return null
+  if (!page || !page.data || page.data.length === 0) return null;
 
   type Section = {
     id: number
@@ -107,6 +107,14 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
+        case 'section.team-section':
+          return (
+            <TeamsSection
+              key={section.id}
+              teamsSection={section}
+              designType={2}
+            />
+          )
         case 'section.team-section':
           return (
             <TeamsSection
