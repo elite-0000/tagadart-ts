@@ -46,5 +46,10 @@
     "blog": "Blog",
     "contact": "Contact Us",
     "follow_us": "Follow Us"
+  },
+  "Team": {
+    "title": "Meet Our Team",
+    "view_more": "View More",
+    "content": "Description"
   }
 }
