@@ -17,19 +17,17 @@ interface ReferenceCardProps {
 const ClientCard1: React.FC<ReferenceCardProps> = async ({ client }) => {
   const t = await getTranslations('Reference')
   return (
-    <li key={client.id} className="group">
-      <FadeIn className="overflow-hidden">
-        {client?.logo && (
-          <NextCloudinaryImage
-            width={160}
-            height={80}
-            alt={client?.logo?.alternativeText}
-            src={`${client?.logo?.url}`}
-            crop="fit"
-          />
-        )}
-      </FadeIn>
-    </li>
+    <FadeIn className="overflow-hidden">
+      {client?.logo && (
+        <NextCloudinaryImage
+          width={160}
+          height={80}
+          alt={client?.logo?.alternativeText}
+          src={`${client?.logo?.url}`}
+          crop="fit"
+        />
+      )}
+    </FadeIn>
   )
 }
 

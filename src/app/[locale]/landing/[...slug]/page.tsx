@@ -81,9 +81,9 @@ async function getPageBySlug(slug: string, lang: string) {
           'section.page-intro': {
             populate: ['title', 'eyebrow', 'content', 'cover'],
           },
-          // 'section.features-section': {
-          //   populate: ['sectionIntro'],
-          // },
+          'section.features-section': {
+            populate: ['sectionIntro'],
+          },
         },
       },
     },
@@ -187,6 +187,7 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const contentSections = page?.data[0]?.structure
+  console.log(contentSections, 'contentSections')
   return (
     <>
       {contentSections?.map((section: Section & PageIntro) =>

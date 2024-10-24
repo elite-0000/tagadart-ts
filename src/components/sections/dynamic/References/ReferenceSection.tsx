@@ -15,12 +15,17 @@ interface ReferenceProps {
   designType: Number
 }
 
-const renderContent = (
-  clients: Client[],
-  sectionIntro: PageIntro,
+interface RenderContentProps {
+  clients: Client[]
+  sectionIntro: PageIntro
+  designType?: Number
+}
 
-  designType?: Number,
-) => {
+const RenderContent: React.FC<RenderContentProps> = ({
+  clients,
+  sectionIntro,
+  designType,
+}) => {
   switch (designType) {
     default:
       return (
@@ -57,13 +62,15 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
 
   return (
     <>
-      {renderContent(
-        referenceSection.clients.length > 0
-          ? referenceSection.clients
-          : clients || [],
-        referenceSection.sectionIntro,
-        designType,
-      )}
+      <RenderContent
+        clients={
+          referenceSection.clients.length > 0
+            ? referenceSection.clients
+            : clients || []
+        }
+        sectionIntro={referenceSection.sectionIntro}
+        designType={designType}
+      />
     </>
   )
 }
