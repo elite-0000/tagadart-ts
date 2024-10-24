@@ -7,9 +7,10 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import { Button } from '@/components/elements/Button'
 import { getTranslations } from 'next-intl/server'
+import { PageIntroSections } from '../../PageIntro'
 
 interface PageIntroProps {
-  pageIntroSection: { sectionIntro: PageIntro }
+  pageIntroSection: PageIntro
   designType: Number
 }
 
@@ -25,7 +26,7 @@ const PageIntroSection: React.FC<PageIntroProps> = async ({
 
   return (
     <>
-      <SectionIntro {...pageIntroSection.sectionIntro} />
+      <PageIntroSections {...pageIntroSection} />
     </>
   )
 }

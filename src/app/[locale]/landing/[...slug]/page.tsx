@@ -86,6 +86,7 @@ async function getPageBySlug(slug: string, lang: string) {
               'title',
               'eyebrow',
               'content',
+              'cover',
             ],
           },
           // 'section.features-section': {
