@@ -19,8 +19,7 @@ const renderContent = (clients: Client[], designType?: Number) => {
   switch (designType) {
     case 1:
       return (
-        <Container className="mt-24 sm:mt-32 lg:mt-40">
-          <FadeInStagger faster>
+        <FadeInStagger faster>
           <Border className="mb-12" as={FadeIn} />
             <ul
               role="list"
@@ -32,17 +31,23 @@ const renderContent = (clients: Client[], designType?: Number) => {
                 </li>
               ))}
             </ul>
-          </FadeInStagger>
-        </Container>
+        </FadeInStagger>
       )
 
     default:
       return (
         <Container className="mt-16">
           <FadeIn>
-            {clients.map((client: Client) => (
-              <ReferenceCard1 key={client.id} client={client} />
-            ))}
+            <ul
+              role="list"
+              className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
+            >
+              {clients.map((client: Client) => (
+                <li key={client.id} className="group">
+                  <ReferenceCard1 key={client.id} client={client} />
+                </li>
+              ))}
+            </ul>
           </FadeIn>
         </Container>
       )
@@ -61,15 +66,17 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
   }
 
   return (
-    <>
-      <SectionIntro {...referenceSection.sectionIntro} />
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
+      <FadeIn>
+        <SectionIntro {...referenceSection.sectionIntro} />
+      </FadeIn>
       {renderContent(
         referenceSection.clients.length > 0
           ? referenceSection.clients
           : clients || [],
         designType,
       )}
-    </>
+    </Container>
   )
 }
 
