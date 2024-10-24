@@ -14,11 +14,23 @@ interface ServicesProps {
   designType: Number
 }
 
-const renderContent = (services: Service[], designType?: Number) => {
+interface RenderContentProps {
+  services: Service[]
+  sectionIntro: PageIntro
+  designType?: Number
+}
+
+const RenderContent: React.FC<RenderContentProps> = ({
+  services,
+  sectionIntro,
+  designType,
+}) => {
   switch (designType) {
     case 1:
       return (
         <Container className="mt-16">
+          <SectionIntro {...sectionIntro} />
+
           <FadeIn>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               {services.map((service: Service) => (
@@ -57,13 +69,15 @@ const ServiceSection: React.FC<ServicesProps> = async ({
 
   return (
     <>
-      <SectionIntro {...servicesSection.sectionIntro} />
-      {renderContent(
-        servicesSection.our_services.length > 0
-          ? servicesSection.our_services
-          : services || [],
-        designType,
-      )}
+      <RenderContent
+        services={
+          servicesSection.our_services.length > 0
+            ? servicesSection.our_services
+            : services || []
+        }
+        sectionIntro={servicesSection.sectionIntro}
+        designType={designType}
+      />
     </>
   )
 }

@@ -15,11 +15,22 @@ interface TeamsProps {
   designType: Number
 }
 
-const renderContent = (members: Member[], designType?: Number) => {
+interface RenderContentProps {
+  members: Member[]
+  sectionIntro: PageIntro
+  designType?: Number
+}
+
+const RenderContent: React.FC<RenderContentProps> = ({
+  members,
+  sectionIntro,
+  designType,
+}) => {
   switch (designType) {
     case 1:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
+          <SectionIntro {...sectionIntro} />
           <div className="space-y-24">
             <FadeIn>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -28,9 +39,9 @@ const renderContent = (members: Member[], designType?: Number) => {
                     role="list"
                     className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
                   >
-                  {members.map((member: Member) => (
-                    <TeamCard1 key={member.id} member={member} />
-                  ))}
+                    {members.map((member: Member) => (
+                      <TeamCard1 key={member.id} member={member} />
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -48,9 +59,9 @@ const renderContent = (members: Member[], designType?: Number) => {
                 role="list"
                 className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
               >
-              {members.map((member: Member) => (
-                <TeamCard1 key={member.id} member={member} />
-              ))}
+                {members.map((member: Member) => (
+                  <TeamCard1 key={member.id} member={member} />
+                ))}
               </ul>
             </FadeIn>
           </div>
@@ -72,13 +83,11 @@ const TeamSection: React.FC<TeamsProps> = async ({
 
   return (
     <>
-      <SectionIntro {...teamsSection.sectionIntro} />
-      {renderContent(
-        teamsSection.members.length > 0
-          ? teamsSection.members
-          : [],
-        designType,
-      )}
+      <RenderContent
+        members={teamsSection.members.length > 0 ? teamsSection.members : []}
+        sectionIntro={teamsSection.sectionIntro}
+        designType={designType}
+      />
     </>
   )
 }

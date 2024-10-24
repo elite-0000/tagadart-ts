@@ -27,23 +27,6 @@ const RenderContent: React.FC<RenderContentProps> = ({
   designType,
 }) => {
   switch (designType) {
-    case 1:
-      return (
-        <FadeInStagger faster>
-          <Border className="mb-12" as={FadeIn} />
-            <ul
-              role="list"
-              className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
-            >
-              {clients.map((client: Client) => (
-                <li key={client.id} className="group">
-                  <ReferenceCard1 key={client.id} client={client} />
-                </li>
-              ))}
-            </ul>
-        </FadeInStagger>
-      )
-
     default:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
@@ -60,7 +43,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
                 </li>
               ))}
             </ul>
-          </FadeIn>
+          </FadeInStagger>
         </Container>
       )
   }

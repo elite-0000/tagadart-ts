@@ -11,7 +11,7 @@ interface PostCardProps {
   designType?: 'default' | 'alternate'
 }
 
-const renderContent = (post: Post, designType?: 'default' | 'alternate') => {
+const renderContentOld = (post: Post, designType?: 'default' | 'alternate') => {
   switch (designType) {
     case 'alternate':
       return (
@@ -137,7 +137,7 @@ const renderContent = (post: Post, designType?: 'default' | 'alternate') => {
 }
 
 const PostCard: React.FC<PostCardProps> = ({ post, designType }) => {
-  return renderContent(post, designType)
+  return renderContentOld(post, designType)
 }
 
 export default PostCard

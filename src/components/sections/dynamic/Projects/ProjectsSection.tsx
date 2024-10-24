@@ -14,24 +14,22 @@ interface ProjectsProps {
   designType: Number
 }
 
-const renderContent = (projects: Project[], designType?: Number) => {
-  switch (designType) {
-    // case 1:
-    //   return (
-    //     <Container className="mt-16">
-    //       <FadeIn>
-    //         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    //           {projects.map((project: Project) => (
-    //             <ProjectCard1 key={project.id} project={project} />
-    //           ))}
-    //         </div>
-    //       </FadeIn>
-    //     </Container>
-    //   )
+interface RenderContentProps {
+  projects: Project[]
+  sectionIntro: PageIntro
+  designType?: Number
+}
 
+const RenderContent: React.FC<RenderContentProps> = ({
+  projects,
+  sectionIntro,
+  designType,
+}) => {
+  switch (designType) {
     default:
       return (
         <Container className="mt-16">
+          <SectionIntro {...sectionIntro} />
           <FadeIn>
             {projects.map((project: Project) => (
               <ProjectCard1 key={project.id} project={project} />
@@ -56,13 +54,15 @@ const ProjectsSection: React.FC<ProjectsProps> = async ({
 
   return (
     <>
-      <SectionIntro {...projectsSection.sectionIntro} />
-      {renderContent(
-        projectsSection.projects.length > 0
-          ? projectsSection.projects
-          : projects || [],
-        designType,
-      )}
+      <RenderContent
+        projects={
+          projectsSection.projects.length > 0
+            ? projectsSection.projects
+            : projects || []
+        }
+        sectionIntro={projectsSection.sectionIntro}
+        designType={designType}
+      />
     </>
   )
 }
