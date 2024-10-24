@@ -20,7 +20,7 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   return (
     <>
       <SectionIntro {...projectsSection} />
-      <Container className="mt-16">
+      <Container>
         <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {projects &&
             projects.map((project) => (

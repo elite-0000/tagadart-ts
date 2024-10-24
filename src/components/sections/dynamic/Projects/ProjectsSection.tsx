@@ -28,7 +28,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   switch (designType) {
     default:
       return (
-        <Container className="mt-16">
+        <Container>
           <SectionIntro {...sectionIntro} />
           <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {projects.map((project: Project) => (

@@ -28,7 +28,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   switch (designType) {
     case 1:
       return (
-        <Container className="mt-16">
+        <Container>
           <SectionIntro {...sectionIntro} />
           <FadeIn>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -42,7 +42,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
 
     default:
       return (
-        <Container className="mt-16">
+        <Container>
           <SectionIntro {...sectionIntro} />
           <FadeIn>
             {posts.map((post: Post) => (

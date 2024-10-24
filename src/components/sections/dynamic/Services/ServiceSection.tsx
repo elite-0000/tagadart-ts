@@ -26,24 +26,10 @@ const RenderContent: React.FC<RenderContentProps> = ({
   designType,
 }) => {
   switch (designType) {
-    case 1:
-      return (
-        <Container className="mt-16">
-          <SectionIntro {...sectionIntro} />
-
-          <FadeIn>
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-              {services.map((service: Service) => (
-                <ServiceCard1 key={service.id} service={service} />
-              ))}
-            </div>
-          </FadeIn>
-        </Container>
-      )
-
     default:
       return (
-        <Container className="mt-16">
+        <Container>
+          <SectionIntro {...sectionIntro} />
           <FadeIn>
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               {services.map((service: Service) => (

@@ -16,7 +16,7 @@ const BlogSection: React.FC<BlogProps> = ({ blogSection, posts }) => {
   return (
     <>
       <SectionIntro {...blogSection} />
-      <Container className="mt-16">
+      <Container>
         <FadeIn>
           {posts && posts.map((post) => <PostCard key={post.id} post={post} />)}
         </FadeIn>

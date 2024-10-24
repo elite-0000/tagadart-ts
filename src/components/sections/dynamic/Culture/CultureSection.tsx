@@ -28,7 +28,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   switch (designType) {
     case 1:
       return (
-        <Container className="mt-16">
+        <Container>
           <SectionIntro {...sectionIntro} />
           <GridList>
             {cultures.map((culture: Culture) => (
@@ -40,7 +40,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
 
     default:
       return (
-        <Container className="mt-16">
+        <Container>
           <SectionIntro {...sectionIntro} />
           <FadeIn>
             {cultures.map((culture: Culture) => (
