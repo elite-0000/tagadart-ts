@@ -12,7 +12,6 @@ import TestimonialSection from '@/components/sections/dynamic/TestimonialSection
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
-import Contact from '../../contact/page'
 
 type Props = {
   params: {

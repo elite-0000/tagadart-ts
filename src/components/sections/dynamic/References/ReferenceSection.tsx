@@ -17,11 +17,11 @@ interface ReferenceProps {
 
 const renderContent = (clients: Client[], designType?: Number) => {
   switch (designType) {
-    case 1:
+    default:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <FadeInStagger faster>
-          <Border className="mb-12" as={FadeIn} />
+            <Border className="mb-12" as={FadeIn} />
             <ul
               role="list"
               className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
@@ -33,17 +33,6 @@ const renderContent = (clients: Client[], designType?: Number) => {
               ))}
             </ul>
           </FadeInStagger>
-        </Container>
-      )
-
-    default:
-      return (
-        <Container className="mt-16">
-          <FadeIn>
-            {clients.map((client: Client) => (
-              <ReferenceCard1 key={client.id} client={client} />
-            ))}
-          </FadeIn>
         </Container>
       )
   }
