@@ -46,15 +46,10 @@ const RenderContent: React.FC<RenderContentProps> = ({
 
     default:
       return (
-<<<<<<< HEAD
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <SectionIntro {...sectionIntro} />
           <FadeInStagger faster>
             <Border className="mb-12" as={FadeIn} />
-=======
-        <Container className="mt-16">
-          <FadeIn>
->>>>>>> 40f715f648769545e2562a40a33c506ac6331e3b
             <ul
               role="list"
               className="grid grid-cols-2 gap-x-8 gap-y-12 pt-12 sm:grid-cols-3 lg:grid-cols-4"
@@ -83,7 +78,6 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
   }
 
   return (
-<<<<<<< HEAD
     <>
       <RenderContent
         clients={
@@ -95,19 +89,6 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
         designType={designType}
       />
     </>
-=======
-    <Container className="mt-24 sm:mt-32 lg:mt-40">
-      <FadeIn>
-        <SectionIntro {...referenceSection.sectionIntro} />
-      </FadeIn>
-      {renderContent(
-        referenceSection.clients.length > 0
-          ? referenceSection.clients
-          : clients || [],
-        designType,
-      )}
-    </Container>
->>>>>>> 40f715f648769545e2562a40a33c506ac6331e3b
   )
 }
 
