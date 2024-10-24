@@ -9,6 +9,7 @@ import CultureSection from '@/components/sections/dynamic/Culture/CultureSection
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 import Contact from '../../contact/page'
+import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 
 type Props = {
   params: {
@@ -90,6 +91,13 @@ async function getPageBySlug(slug: string, lang: string) {
               'Buttons.link',
             ],
           },
+          'section.page-intro': {
+            populate: [
+              'title',
+              'eyebrow',
+              'content',
+            ],
+          },
         },
       },
     },
@@ -162,6 +170,14 @@ export default async function PageRoute({ params }: Props) {
             <ContactSection
               key={section.id}
               contactSection={section}
+              designType={2}
+            />
+          )
+        case 'section.page-intro':
+          return (
+            <PageIntroSection
+              key={section.id}
+              pageIntroSection={section}
               designType={2}
             />
           )
