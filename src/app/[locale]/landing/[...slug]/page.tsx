@@ -1,3 +1,4 @@
+import FeaturesSection from '@/components/sections/dynamic/Features/FeaturesSection'
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
 import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
@@ -39,6 +40,9 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.logo',
             ],
           },
+          // 'section.features-section': {
+          //   populate: ['sectionIntro'],
+          // },
           'section.culture-section': {
             populate: ['sectionIntro', 'values'],
           },
@@ -79,6 +83,14 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
+      case 'section.features-section':
+        return (
+          <FeaturesSection
+            key={section.id}
+            featuresSection={section}
+            designType={10}
+          />
+        )
       // case 'section.services-section':
       // case 'section.teams-section':
       // case 'section.culture-section':
@@ -92,10 +104,10 @@ export default async function PageRoute({ params }: Props) {
     }
   }
 
-  const contentSections = page.data[0].structure
+  const contentSections = page?.data[0]?.structure
   return (
     <>
-      {contentSections.map((section: Section & PageIntro) =>
+      {contentSections?.map((section: Section & PageIntro) =>
         componentResolver(section),
       )}
     </>

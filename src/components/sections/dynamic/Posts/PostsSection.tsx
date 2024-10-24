@@ -5,8 +5,8 @@ import { SectionIntro } from '../../SectionIntro'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { fetchPosts } from '@/request/fetch'
-import PostCard1 from './PostCard/PostCard1'
-import PostCard2 from './PostCard/PostCard2'
+import PostCard1 from '../Posts/PostCard/PostCard1'
+import PostCard2 from '../Posts/PostCard/PostCard2'
 import { PageIntro } from '@/types/global'
 
 interface BlogProps {
