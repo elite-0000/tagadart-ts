@@ -3,11 +3,7 @@ import Icon from '@/components/images/Icon'
 
 import { Culture } from '@/types/global'
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
-
-import { truncateWithEllipses } from '@/lib/helper'
-import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
-import BasicMarkdown from '@/components/ui/BasicMarkdown'
+import { GridListItem } from '@/components/ui/GridList'
 
 interface CultureCardProps {
     culture: Culture
@@ -17,7 +13,11 @@ const CultureCard1: React.FC<CultureCardProps> = async ({ culture }) => {
   const t = await getTranslations('Culture')
 
   return (
-    <></>
+    <>
+      <GridListItem key={culture.id} title={culture.title} invert>
+      {culture.content}
+    </GridListItem>
+    </>
   )
 }
 
