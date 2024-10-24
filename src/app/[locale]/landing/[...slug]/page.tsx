@@ -168,8 +168,6 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
-      // case 'section.testimonials':
-      //   return <TestimonialSection key={section.id} avatar={section.avatar} />
 
       case 'section.features-section':
         return (

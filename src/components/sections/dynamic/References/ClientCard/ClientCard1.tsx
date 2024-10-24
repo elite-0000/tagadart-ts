@@ -11,26 +11,26 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 interface ReferenceCardProps {
-    client: Client
+  client: Client
 }
 
-const ReferenceCard1: React.FC<ReferenceCardProps> = async ({ client }) => {
+const ClientCard1: React.FC<ReferenceCardProps> = async ({ client }) => {
   const t = await getTranslations('Reference')
   return (
     <li key={client.id} className="group">
       <FadeIn className="overflow-hidden">
-          {client?.logo && (
-            <NextCloudinaryImage
-              width={160}
-              height={80}
-              alt={client?.logo?.alternativeText}
-              src={`${client?.logo?.url}`}
-              crop="fit"
-            />
-          )}
+        {client?.logo && (
+          <NextCloudinaryImage
+            width={160}
+            height={80}
+            alt={client?.logo?.alternativeText}
+            src={`${client?.logo?.url}`}
+            crop="fit"
+          />
+        )}
       </FadeIn>
     </li>
   )
 }
 
-export default ReferenceCard1
+export default ClientCard1

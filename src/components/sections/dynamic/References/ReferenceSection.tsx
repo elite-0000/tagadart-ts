@@ -8,18 +8,24 @@ import { Border } from '@/components/ui/Border'
 import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
-import ReferenceCard1 from './ReferenceCard/ReferenceCard1'
+import ClientCard1 from './ClientCard/ClientCard1'
 
 interface ReferenceProps {
   referenceSection: { sectionIntro: PageIntro } & { clients: Client[] }
   designType: Number
 }
 
-const renderContent = (clients: Client[], designType?: Number) => {
+const renderContent = (
+  clients: Client[],
+  sectionIntro: PageIntro,
+
+  designType?: Number,
+) => {
   switch (designType) {
     default:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
+          <SectionIntro {...sectionIntro} />
           <FadeInStagger faster>
             <Border className="mb-12" as={FadeIn} />
             <ul
@@ -28,7 +34,7 @@ const renderContent = (clients: Client[], designType?: Number) => {
             >
               {clients.map((client: Client) => (
                 <li key={client.id} className="group">
-                  <ReferenceCard1 key={client.id} client={client} />
+                  <ClientCard1 key={client.id} client={client} />
                 </li>
               ))}
             </ul>
@@ -51,11 +57,11 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
 
   return (
     <>
-      <SectionIntro {...referenceSection.sectionIntro} />
       {renderContent(
         referenceSection.clients.length > 0
           ? referenceSection.clients
           : clients || [],
+        referenceSection.sectionIntro,
         designType,
       )}
     </>
