@@ -44,11 +44,14 @@ const renderContent = (members: Member[], designType?: Number) => {
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <div className="space-y-24">
             <FadeIn>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                {members.map((member: Member) => (
-                  <TeamCard1 key={member.id} member={member} />
-                ))}
-              </div>
+              <ul
+                role="list"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
+              >
+              {members.map((member: Member) => (
+                <TeamCard1 key={member.id} member={member} />
+              ))}
+              </ul>
             </FadeIn>
           </div>
         </Container>
