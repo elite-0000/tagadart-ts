@@ -1,7 +1,9 @@
 import { MediaItem } from '@/types/global'
+import dynamicIconImports from 'lucide-react/dynamicIconImports'
 export interface Feature {
   id: string
   name: string
-  logo: MediaItem
+  classIcon: keyof typeof dynamicIconImports
+  content: any
   link: string
 }

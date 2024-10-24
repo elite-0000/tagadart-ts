@@ -82,7 +82,7 @@ async function getPageBySlug(slug: string, lang: string) {
             populate: ['title', 'eyebrow', 'content', 'cover'],
           },
           'section.features-section': {
-            populate: ['sectionIntro'],
+            populate: ['sectionIntro', 'features'],
           },
         },
       },
