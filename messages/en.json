@@ -56,5 +56,10 @@
     "title": "References",
     "view_more": "View More",
     "content": "Description"
+  },
+  "Culture": {
+    "title": "Culture",
+    "view_more": "View More",
+    "content": "Description"
   }
 }
