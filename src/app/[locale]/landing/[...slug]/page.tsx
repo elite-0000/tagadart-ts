@@ -4,6 +4,7 @@ import ServicesSection from '@/components/sections/dynamic/Services/ServiceSecti
 import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
 import ReferenceSection from '@/components/sections/dynamic/References/ReferenceSection'
 import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
+import CultureSection from '@/components/sections/dynamic/Culture/CultureSection'
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -75,6 +76,20 @@ async function getPageBySlug(slug: string, lang: string) {
               'clients.logo',
             ],
           },
+          'section.culture-section': {
+            populate: [
+              'sectionIntro',
+              'values',
+              'values.title',
+            ],
+          },
+          'section.cta': {
+            populate: [
+              'sectionIntro',
+              'Buttons',
+              'Buttons.link',
+            ],
+          },
         },
       },
     },
@@ -134,8 +149,15 @@ export default async function PageRoute({ params }: Props) {
               designType={2}
             />
           )
-        case 'section.contact-section':
-          console.log("contact section: ", section);
+        case 'section.culture-section':
+          return (
+            <CultureSection
+              key={section.id}
+              culturesSection={section}
+              designType={2}
+            />
+          )
+        case 'section.cta':
           return (
             <ContactSection
               key={section.id}

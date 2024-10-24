@@ -98,3 +98,10 @@ export interface CTA {}
 //   newsletter: boolean
 //   form: Form
 // }
+
+export interface Buttons {
+  id: string
+  link: string
+  text: string
+  type: string
+}
