@@ -20,7 +20,7 @@ const renderContent = (services: Service[], designType?: Number) => {
       return (
         <Container className="mt-16">
           <FadeIn>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
               {services.map((service: Service) => (
                 <ServiceCard1 key={service.id} service={service} />
               ))}
@@ -33,9 +33,11 @@ const renderContent = (services: Service[], designType?: Number) => {
       return (
         <Container className="mt-16">
           <FadeIn>
-            {services.map((service: Service) => (
-              <ServiceCard1 key={service.id} service={service} />
-            ))}
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+              {services.map((service: Service) => (
+                <ServiceCard1 key={service.id} service={service} />
+              ))}
+            </div>
           </FadeIn>
         </Container>
       )

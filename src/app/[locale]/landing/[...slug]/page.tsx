@@ -1,17 +1,16 @@
 import FeaturesSection from '@/components/sections/dynamic/Features/FeaturesSection'
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
-
 import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
 import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
 import ReferenceSection from '@/components/sections/dynamic/References/ReferenceSection'
 import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
 import CultureSection from '@/components/sections/dynamic/Culture/CultureSection'
-
 import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
-
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
+
+import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 
 type Props = {
   params: {
@@ -78,6 +77,9 @@ async function getPageBySlug(slug: string, lang: string) {
           },
           'section.cta': {
             populate: ['sectionIntro', 'Buttons', 'Buttons.link'],
+          },
+          'section.page-intro': {
+            populate: ['title', 'eyebrow', 'content', 'cover'],
           },
           // 'section.features-section': {
           //   populate: ['sectionIntro'],
@@ -155,6 +157,14 @@ export default async function PageRoute({ params }: Props) {
           <ContactSection
             key={section.id}
             contactSection={section}
+            designType={2}
+          />
+        )
+      case 'section.page-intro':
+        return (
+          <PageIntroSection
+            key={section.id}
+            pageIntroSection={section}
             designType={2}
           />
         )
