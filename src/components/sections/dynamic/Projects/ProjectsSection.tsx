@@ -5,7 +5,7 @@ import { PageIntro } from '@/types/global'
 import { fetchProjects } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
+import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ProjectCard1 from './ProjectCard/ProjectCard1'
 
@@ -30,11 +30,11 @@ const RenderContent: React.FC<RenderContentProps> = ({
       return (
         <Container className="mt-16">
           <SectionIntro {...sectionIntro} />
-          <FadeIn>
+          <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {projects.map((project: Project) => (
               <ProjectCard1 key={project.id} project={project} />
             ))}
-          </FadeIn>
+          </FadeInStagger>
         </Container>
       )
   }

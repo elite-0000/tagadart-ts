@@ -11,6 +11,7 @@ import { PageIntro } from '@/types/global'
 import FeaturesSection1 from './FeaturesSection/FeaturesSection1'
 import { ArrowBigUpDashIcon, CloudFog, FingerprintIcon } from 'lucide-react'
 import { LockClosedIcon } from '@radix-ui/react-icons'
+import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 interface BlogProps {
   featuresSection: any
@@ -61,15 +62,16 @@ const RenderContent: React.FC<RenderContentProps> = ({
       return (
         <div className="bg-white py-24 sm:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            {/* <SectionIntro {...sectionIntro} /> */}
             <div className="mx-auto max-w-2xl lg:text-center">
-              <h2 className="text-base font-semibold leading-7 text-indigo-600">
+              <h2 className="text-base font-semibold leading-7 text-primary-600">
                 {sectionIntro?.eyebrow}
               </h2>
               <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
                 {sectionIntro?.title}
               </p>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                {sectionIntro?.content}
+                <BasicMarkdown>{sectionIntro?.content}</BasicMarkdown>
               </p>
             </div>
             <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl"></div>
@@ -77,7 +79,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
               {features.map((feature) => (
                 <div key={feature.name} className="relative pl-16">
                   <dt className="text-base font-semibold leading-7 text-gray-900">
-                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                    <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-primary-600">
                       <feature.icon
                         aria-hidden="true"
                         className="h-6 w-6 text-white"
@@ -113,7 +115,6 @@ const FeaturesSection: React.FC<BlogProps> = async ({
 
   return (
     <>
-      TESST
       <RenderContent
         // clients={
         //   referenceSection.clients.length > 0
