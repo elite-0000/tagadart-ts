@@ -25,8 +25,8 @@ export interface MediaItem {
   id: string
   url: string
   provider_metadata?: any
-  width?: number
-  height?: number
+  width: number
+  height: number
   alternativeText: string
 }
 
@@ -77,28 +77,7 @@ export interface Office {
 // CTA.ts
 export interface CTA {}
 
-// // AboutUs.ts
-// export interface AboutUs {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   culture: Culture
-//   team: Member[]
-// }
-
-// // Contact.ts
-// export interface Contact {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   offices: Office[]
-//   newsletter: boolean
-//   form: Form
-// }
-
-export interface Buttons {
+export interface ButtonProps {
   id: string
   link: string
   text: string

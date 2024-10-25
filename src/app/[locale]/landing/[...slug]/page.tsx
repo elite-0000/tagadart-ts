@@ -11,6 +11,7 @@ import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 
 import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
+import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 
 type Props = {
   params: {
@@ -84,6 +85,9 @@ async function getPageBySlug(slug: string, lang: string) {
           'section.features-section': {
             populate: ['sectionIntro', 'features'],
           },
+          'section.hero-section': {
+            populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+          },
         },
       },
     },
@@ -95,6 +99,8 @@ export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
   if (!page || !page.data || page.data.length === 0) return null
 
+  console.log(page.data.structure, 'page')
+
   type Section = {
     id: number
     __component: string
@@ -102,6 +108,7 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const componentResolver = (section: any) => {
+    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return (
@@ -177,6 +184,10 @@ export default async function PageRoute({ params }: Props) {
             designType={10}
           />
         )
+      case 'section.hero-section':
+        return (
+          <HeroSection key={section.id} heroSection={section} designType={10} />
+        )
 
       case 'section.testimonials':
         return <TestimonialSection key={section.id} avatar={section.avatar} />
@@ -187,7 +198,7 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const contentSections = page?.data[0]?.structure
-  console.log(contentSections, 'contentSections')
+
   return (
     <>
       {contentSections?.map((section: Section & PageIntro) =>

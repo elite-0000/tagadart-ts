@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Buttons, PageIntro } from '@/types/global'
+import { ButtonProps, PageIntro } from '@/types/global'
 
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
@@ -9,11 +9,11 @@ import { Button } from '@/components/elements/Button'
 import { getTranslations } from 'next-intl/server'
 
 interface ContactProps {
-  contactSection: { sectionIntro: PageIntro } & { Buttons: Buttons[] }
+  contactSection: { sectionIntro: PageIntro } & { Buttons: ButtonProps[] }
   designType: Number
 }
 
-const renderContent = async (Buttons: Buttons[], designType?: Number) => {
+const renderContent = async (Buttons: ButtonProps[], designType?: Number) => {
   const t = await getTranslations('Contact')
   switch (designType) {
     case 1:
@@ -29,7 +29,7 @@ const renderContent = async (Buttons: Buttons[], designType?: Number) => {
                   {/* <Button href="/contact" invert>
                     {t('button_contact')}
                   </Button> */}
-                  {Buttons.map((button: Buttons) => (
+                  {Buttons.map((button: ButtonProps) => (
                     <Button key={button.id} href={button.link} invert>
                       {button.text}
                     </Button>
@@ -77,9 +77,7 @@ const ContactSection: React.FC<ContactProps> = async ({
     <>
       <SectionIntro {...contactSection.sectionIntro} />
       {renderContent(
-        contactSection.Buttons.length > 0
-          ? contactSection.Buttons
-          : [],
+        contactSection.Buttons.length > 0 ? contactSection.Buttons : [],
         designType,
       )}
     </>

@@ -68,8 +68,6 @@ const FeaturesSection: React.FC<FeaturesProps> = async ({
   featuresSection,
   designType,
 }) => {
-  console.log(featuresSection, 'featuresSection')
-
   return (
     <>
       <RenderContent
