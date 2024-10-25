@@ -12,6 +12,7 @@ import { PageIntro } from '@/types/global'
 
 import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
+import CTASection from '@/components/sections/dynamic/CTA/CTA'
 
 type Props = {
   params: {
@@ -77,8 +78,9 @@ async function getPageBySlug(slug: string, lang: string) {
             populate: ['sectionIntro', 'values', 'values.title'],
           },
           'section.cta': {
-            populate: ['sectionIntro', 'Buttons', 'Buttons.link'],
+            populate: ['sectionIntro', 'buttons'],
           },
+
           'section.page-intro': {
             populate: ['title', 'eyebrow', 'content', 'cover'],
           },
@@ -142,6 +144,10 @@ export default async function PageRoute({ params }: Props) {
             referenceSection={section}
             designType={2}
           />
+        )
+      case 'section.cta':
+        return (
+          <CTASection key={section.id} ctaSection={section} designType={10} />
         )
       case 'section.team-section':
         return (
