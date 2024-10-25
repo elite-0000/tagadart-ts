@@ -1,21 +1,11 @@
 import React from 'react'
-
-import { Post } from '@/types/post'
-import { SectionIntro } from '../../SectionIntro'
-import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
-import { fetchPosts } from '@/request/fetch'
 import { PageIntro } from '@/types/global'
-import { ArrowBigUpDashIcon, CloudFog, FingerprintIcon } from 'lucide-react'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
-
-import * as Icons from 'lucide-react'
 import Icon from '@/components/images/Icon'
 import { Feature } from '@/types/feature'
 
 interface FeaturesProps {
-  featuresSection: any
-  // featuresSection: { sectionIntro: PageIntro } & { posts: Post[] }
+  featuresSection: { sectionIntro: PageIntro } & { features: Feature[] }
   designType: Number
 }
 
@@ -24,33 +14,6 @@ interface RenderContentProps {
   sectionIntro: PageIntro
   designType?: Number
 }
-
-// const features = [
-//   {
-//     name: 'Push to deploy',
-//     description:
-//       'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
-//     icon: 'ArrowBigUpDashIcon',
-//   },
-//   // {
-//   //   name: 'SSL certificates',
-//   //   description:
-//   //     'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
-//   //   icon: 'AlertOctagon',
-//   // },
-//   // {
-//   //   name: 'Simple queues',
-//   //   description:
-//   //     'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.',
-//   //   icon: 'ActivityIcon',
-//   // },
-//   // {
-//   //   name: 'Advanced security',
-//   //   description:
-//   //     'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-//   //   icon: 'ArrowBigUpDashIcon',
-//   // },
-// ]
 
 const RenderContent: React.FC<RenderContentProps> = ({
   features,

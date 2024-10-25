@@ -56,8 +56,7 @@ export interface PaginationMeta {
 export interface PageIntro {
   title: string
   eyebrow: string
-  content: any
-  image?: string
+  content: string
   cover: MediaItem
 }
 
