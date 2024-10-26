@@ -13,6 +13,7 @@ import { PageIntro } from '@/types/global'
 import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
+import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
 
 type Props = {
   params: {
@@ -56,6 +57,9 @@ async function getPageBySlug(slug: string, lang: string) {
               'our_services.pageIntro',
               'our_services.pageIntro.cover',
             ],
+          },
+          'section.pricing-section': {
+            populate: ['sectionIntro', 'cards', 'cards.features'],
           },
           'section.team-section': {
             populate: [
@@ -148,6 +152,14 @@ export default async function PageRoute({ params }: Props) {
       case 'section.cta':
         return (
           <CTASection key={section.id} ctaSection={section} designType={10} />
+        )
+      case 'section.pricing-section':
+        return (
+          <PricingSection
+            key={section.id}
+            pricingSection={section}
+            designType={10}
+          />
         )
       case 'section.team-section':
         return (
