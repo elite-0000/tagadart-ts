@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Clients from '@/components/sections/Clients'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 
 import { getTranslations } from 'next-intl/server'
 import { fetchProjects, fetchProjectsPage } from '@/request/fetch'
@@ -46,7 +46,7 @@ export default async function ViewProjectsPage() {
         </div> */}
       </Container>
 
-      <ContactSection />
+      <ContactFooter />
     </>
   )
 }

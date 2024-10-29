@@ -5,7 +5,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { OfficesSection } from '@/components/sections/Offices'
 import { useTranslations } from 'next-intl'
 
-export async function ContactSection() {
+export async function ContactFooter() {
   const t = await useTranslations('Contact')
   return (
     <Container className="mt-24 sm:mt-32 lg:mt-40">

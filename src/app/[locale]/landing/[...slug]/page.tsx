@@ -105,8 +105,6 @@ export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
   if (!page || !page.data || page.data.length === 0) return null
 
-  console.log(page.data.structure, 'page')
-
   type Section = {
     id: number
     __component: string
@@ -114,7 +112,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const componentResolver = (section: any) => {
-    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return (
@@ -224,6 +221,4 @@ export default async function PageRoute({ params }: Props) {
       )}
     </>
   )
-  // const contentSections = page.data[0].attributes.contentSections;
-  // return contentSections.map((section: any, index: number) => componentResolver(section, index));
 }

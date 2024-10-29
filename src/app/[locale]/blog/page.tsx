@@ -4,7 +4,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 import BlogSection from '@/components/sections/BlogSection'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 
 export const metadata: Metadata = {
@@ -33,7 +33,7 @@ export default async function ViewBlogsPage() {
         <BlogSection blogSection={blogSection} posts={posts} />
       </Container>
 
-      <ContactSection />
+      <ContactFooter />
     </>
   )
 }

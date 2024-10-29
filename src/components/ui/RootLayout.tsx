@@ -23,7 +23,7 @@ import { useTranslations } from 'next-intl'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 import Contact from '@/app/[locale]/contact/page'
-import { ContactSection } from '../sections/ContactSection'
+import { ContactFooter } from '../sections/ContactFooter'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -290,7 +290,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
 
           <main className="w-full flex-auto">
             {children}
-            <ContactSection />
+            <ContactFooter />
           </main>
 
           <Footer />

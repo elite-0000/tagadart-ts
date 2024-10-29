@@ -2,7 +2,7 @@ import { type Metadata } from 'next'
 
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 
 import BlogSection from '@/components/sections/BlogSection'
 
@@ -62,7 +62,7 @@ export default async function Home() {
       <ServicesSection servicesSection={servicesSection} services={services} />
       <BlogSection blogSection={blogSection} posts={posts} />
       <ClientsSection clients={clients} referencesSection={referencesSection} />
-      <ContactSection />
+      <ContactFooter />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>
   )

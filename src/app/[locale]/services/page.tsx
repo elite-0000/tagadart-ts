@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 
 import { fetchServices, fetchServicesPage } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
@@ -28,7 +28,7 @@ export default async function ViewServicesPages() {
     <>
       <PageIntroSections {...pageIntro} />
       <ServicesSection servicesSection={servicesSection} services={services} />
-      <ContactSection />
+      <ContactFooter />
     </>
   )
 }

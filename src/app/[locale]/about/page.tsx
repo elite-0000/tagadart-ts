@@ -1,7 +1,7 @@
 import { fetchAxiosAPI } from '@/request/request'
 import { type Metadata } from 'next'
 
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 
 import TeamSection from '@/components/sections/TeamSection'
@@ -54,7 +54,7 @@ export default async function About() {
       </div>
 
       <TeamSection teamSection={teamSection} />
-      <ContactSection />
+      <ContactFooter />
     </>
   )
 }
