@@ -49,6 +49,15 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.logo',
             ],
           },
+          'section.contact-section': {
+            populate: [
+              'sectionIntro',
+              'content',
+              'content.offices',
+              'content.emails',
+              'content.socials',
+            ],
+          },
 
           'section.services-section': {
             populate: [
@@ -171,6 +180,14 @@ export default async function PageRoute({ params }: Props) {
           <CultureSection
             key={section.id}
             culturesSection={section}
+            designType={2}
+          />
+        )
+      case 'section.contact-section':
+        return (
+          <ContactSection
+            key={section.id}
+            contactSection={section}
             designType={2}
           />
         )
