@@ -7,13 +7,13 @@ import ReferenceSection from '@/components/sections/dynamic/References/Reference
 import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
 import CultureSection from '@/components/sections/dynamic/Culture/CultureSection'
 import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
-import { fetchAxiosAPI } from '@/request/request'
-import { PageIntro } from '@/types/global'
-
 import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
+
+import { fetchAxiosAPI } from '@/request/request'
+import { PageIntro } from '@/types/global'
 
 type Props = {
   params: {
@@ -23,9 +23,14 @@ type Props = {
 }
 
 async function getPageBySlug(slug: string, lang: string) {
+  const querySlug = slug === undefined ? 'home' : slug
   const path = `/pages`
   const urlParamsObject = {
-    filters: { slug },
+    filters: {
+      slug: {
+        $eq: querySlug,
+      },
+    },
     locale: lang,
     populate: {
       structure: {
