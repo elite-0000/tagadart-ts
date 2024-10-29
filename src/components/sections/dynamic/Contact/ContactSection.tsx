@@ -10,6 +10,8 @@ import { ContactContent, ContactProps, Office } from '@/types/contact'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import Icon from '@/components/images/Icon'
 import dynamicIconImports from 'lucide-react/dynamicIconImports'
+import { getTranslations } from 'next-intl/server'
+import { useTranslations } from 'next-intl'
 
 interface OfficesSectionProps {
   offices: Office[]
@@ -39,12 +41,13 @@ const OfficesSection: React.FC<OfficesSectionProps> = ({
 const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
   contactContent,
 }) => {
+  const t = useTranslations('Contact')
   return (
     <FadeIn>
       {contactContent.offices.length > 0 && (
         <>
           <h2 className="font-display text-base font-semibold text-neutral-950">
-            Our offices
+            {t('offices')}
           </h2>
           <OfficesSection
             offices={contactContent.offices}
@@ -56,7 +59,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
       {contactContent.emails.length > 0 && (
         <Border className="mt-16 pt-16">
           <h2 className="font-display text-base font-semibold text-neutral-950">
-            Email us
+            {t('email_us')}
           </h2>
           <dl className="mt-6 grid grid-cols-1 gap-8 text-sm sm:grid-cols-2">
             {contactContent.emails.map(({ id, label, email }) => (
@@ -79,7 +82,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
       {contactContent.socials.length > 0 && (
         <Border className="mt-16 pt-16">
           <h2 className="font-display text-base font-semibold text-neutral-950">
-            Follow us
+            {t('follow_us')}
           </h2>
           <ul className="mt-6 flex gap-x-10">
             {contactContent.socials.map((social) => (
@@ -88,6 +91,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
                   href={social.url}
                   aria-label={social.name}
                   className="text-neutral-600 hover:text-neutral-950"
+                  target="_blank"
                 >
                   <Icon
                     name={social.icon as keyof typeof dynamicIconImports}
