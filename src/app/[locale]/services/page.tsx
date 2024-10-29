@@ -1,10 +1,8 @@
 import type { Metadata } from 'next'
 
 import { ContactSection } from '@/components/sections/ContactSection'
-import { Container } from '@/components/ui/Container'
 
 import { fetchServices, fetchServicesPage } from '@/request/fetch'
-import { ServiceCard } from '@/components/elements/ServiceCard'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import ServicesSection from '@/components/sections/ServicesSection'
 export const metadata: Metadata = {

@@ -14,11 +14,22 @@ interface BlogProps {
   designType: Number
 }
 
-const renderContent = (posts: Post[], designType?: Number) => {
+interface RenderContentProps {
+  posts: Post[]
+  sectionIntro: PageIntro
+  designType?: Number
+}
+
+const RenderContent: React.FC<RenderContentProps> = ({
+  posts,
+  sectionIntro,
+  designType,
+}) => {
   switch (designType) {
     case 1:
       return (
-        <Container className="mt-16">
+        <Container>
+          <SectionIntro {...sectionIntro} />
           <FadeIn>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {posts.map((post: Post) => (
@@ -31,7 +42,8 @@ const renderContent = (posts: Post[], designType?: Number) => {
 
     default:
       return (
-        <Container className="mt-16">
+        <Container>
+          <SectionIntro {...sectionIntro} />
           <FadeIn>
             {posts.map((post: Post) => (
               <PostCard2 key={post.id} post={post} />
@@ -56,11 +68,11 @@ const PostsSection: React.FC<BlogProps> = async ({
 
   return (
     <>
-      <SectionIntro {...postsSection.sectionIntro} />
-      {renderContent(
-        postsSection.posts.length > 0 ? postsSection.posts : posts || [],
-        designType,
-      )}
+      <RenderContent
+        posts={postsSection.posts.length > 0 ? postsSection.posts : posts || []}
+        sectionIntro={postsSection.sectionIntro}
+        designType={designType}
+      />
     </>
   )
 }

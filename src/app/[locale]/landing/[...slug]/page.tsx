@@ -1,10 +1,19 @@
 import FeaturesSection from '@/components/sections/dynamic/Features/FeaturesSection'
 import PostsSection from '@/components/sections/dynamic/Posts/PostsSection'
 import ProjectsSection from '@/components/sections/dynamic/Projects/ProjectsSection'
+import ServicesSection from '@/components/sections/dynamic/Services/ServiceSection'
+import TeamsSection from '@/components/sections/dynamic/Teams/TeamsCardSection'
+import ReferenceSection from '@/components/sections/dynamic/References/ReferenceSection'
+import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
+import CultureSection from '@/components/sections/dynamic/Culture/CultureSection'
 import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
-
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
+
+import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
+import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
+import CTASection from '@/components/sections/dynamic/CTA/CTA'
+import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
 
 type Props = {
   params: {
@@ -40,13 +49,51 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.logo',
             ],
           },
-          // 'section.features-section': {
-          //   populate: ['sectionIntro'],
-          // },
-          'section.culture-section': {
-            populate: ['sectionIntro', 'values'],
+
+          'section.services-section': {
+            populate: [
+              'sectionIntro',
+              'our_services',
+              'our_services.pageIntro',
+              'our_services.pageIntro.cover',
+            ],
           },
-          //TODO: ADD NEW SECTION POPULATE
+          'section.pricing-section': {
+            populate: ['sectionIntro', 'cards', 'cards.features'],
+          },
+          'section.team-section': {
+            populate: [
+              'sectionIntro',
+              'members',
+              'members.fullname',
+              'members.avatar',
+              'members.posts.pageIntro',
+            ],
+          },
+          'section.reference-section': {
+            populate: [
+              'sectionIntro',
+              'clients',
+              'clients.name',
+              'clients.logo',
+            ],
+          },
+          'section.culture-section': {
+            populate: ['sectionIntro', 'values', 'values.title'],
+          },
+          'section.cta': {
+            populate: ['sectionIntro', 'buttons'],
+          },
+
+          'section.page-intro': {
+            populate: ['title', 'eyebrow', 'content', 'cover'],
+          },
+          'section.features-section': {
+            populate: ['sectionIntro', 'features'],
+          },
+          'section.hero-section': {
+            populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+          },
         },
       },
     },
@@ -56,7 +103,9 @@ async function getPageBySlug(slug: string, lang: string) {
 
 export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
-  if (page?.data?.length === 0) return null
+  if (!page || !page.data || page.data.length === 0) return null
+
+  console.log(page.data.structure, 'page')
 
   type Section = {
     id: number
@@ -83,6 +132,68 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
+
+      case 'section.services-section':
+        return (
+          <ServicesSection
+            key={section.id}
+            servicesSection={section}
+            designType={2}
+          />
+        )
+      case 'section.reference-section':
+        return (
+          <ReferenceSection
+            key={section.id}
+            referenceSection={section}
+            designType={2}
+          />
+        )
+      case 'section.cta':
+        return (
+          <CTASection key={section.id} ctaSection={section} designType={10} />
+        )
+      case 'section.pricing-section':
+        return (
+          <PricingSection
+            key={section.id}
+            pricingSection={section}
+            designType={10}
+          />
+        )
+      case 'section.team-section':
+        return (
+          <TeamsSection
+            key={section.id}
+            teamsSection={section}
+            designType={2}
+          />
+        )
+      case 'section.culture-section':
+        return (
+          <CultureSection
+            key={section.id}
+            culturesSection={section}
+            designType={2}
+          />
+        )
+      case 'section.cta':
+        return (
+          <ContactSection
+            key={section.id}
+            contactSection={section}
+            designType={2}
+          />
+        )
+      case 'section.page-intro':
+        return (
+          <PageIntroSection
+            key={section.id}
+            pageIntroSection={section}
+            designType={2}
+          />
+        )
+
       case 'section.features-section':
         return (
           <FeaturesSection
@@ -91,20 +202,21 @@ export default async function PageRoute({ params }: Props) {
             designType={10}
           />
         )
-      // case 'section.services-section':
-      // case 'section.teams-section':
-      // case 'section.culture-section':
-      // case 'section.contact-form':
-      // case 'section.page-intro':
-      // case 'section.reference-section':
+      case 'section.hero-section':
+        return (
+          <HeroSection key={section.id} heroSection={section} designType={10} />
+        )
+
       case 'section.testimonials':
         return <TestimonialSection key={section.id} avatar={section.avatar} />
+
       default:
         return null
     }
   }
 
   const contentSections = page?.data[0]?.structure
+
   return (
     <>
       {contentSections?.map((section: Section & PageIntro) =>
