@@ -288,10 +288,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             interactive
           />
 
-          <main className="w-full flex-auto">
-            {children}
-            <ContactFooter />
-          </main>
+          <main className="w-full flex-auto">{children}</main>
 
           <Footer />
         </motion.div>
