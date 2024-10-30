@@ -1,9 +1,6 @@
 import { RestQueryParams } from '@/types/global'
 
 export const structurePopulate = {
-  pageIntro: {
-    populate: ['cover'],
-  },
   structure: {
     on: {
       'section.blog-section': {
@@ -84,6 +81,23 @@ export const structurePopulate = {
   },
 }
 
+export const projectPopulate = {
+  pageIntro: {
+    populate: ['cover'],
+  },
+  logo: {
+    populate: '*',
+  },
+}
+export const postPopulate = {
+  pageIntro: {
+    populate: ['cover'],
+  },
+  author: {
+    populate: ['avatar'],
+  },
+}
+
 // Collection-specific populates using array format for consistency
 const collectionPopulates = {
   projects: [
@@ -126,6 +140,7 @@ export const createQueryParams = (
       //         {},
       //       )
       //     : collectionPopulates[collection]),
+      ...projectPopulate,
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
