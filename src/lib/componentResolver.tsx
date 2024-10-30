@@ -11,19 +11,37 @@ import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSec
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
+import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
-export const componentResolver = (section: any) => {
+export const componentResolver = ({
+  section,
+  designType,
+}: {
+  section: any
+  designType: number
+}) => {
   switch (section.__component) {
+    case 'section.text-section':
+      return (
+        <>
+          {section.title && <h2 className="text-xl">{section.title}</h2>}
+          <BasicMarkdown content={section.content} />
+        </>
+      )
     case 'section.blog-section':
       return (
-        <PostsSection key={section.id} postsSection={section} designType={1} />
+        <PostsSection
+          key={section.id}
+          postsSection={section}
+          designType={designType}
+        />
       )
     case 'section.projects-section':
       return (
         <ProjectsSection
           key={section.id}
           projectsSection={section}
-          designType={2}
+          designType={designType}
         />
       )
 
@@ -32,7 +50,7 @@ export const componentResolver = (section: any) => {
         <ServicesSection
           key={section.id}
           servicesSection={section}
-          designType={2}
+          designType={designType}
         />
       )
     case 'section.reference-section':
@@ -40,31 +58,39 @@ export const componentResolver = (section: any) => {
         <ReferenceSection
           key={section.id}
           referenceSection={section}
-          designType={2}
+          designType={designType}
         />
       )
     case 'section.cta':
       return (
-        <CTASection key={section.id} ctaSection={section} designType={10} />
+        <CTASection
+          key={section.id}
+          ctaSection={section}
+          designType={designType}
+        />
       )
     case 'section.pricing-section':
       return (
         <PricingSection
           key={section.id}
           pricingSection={section}
-          designType={10}
+          designType={designType}
         />
       )
     case 'section.team-section':
       return (
-        <TeamsSection key={section.id} teamsSection={section} designType={2} />
+        <TeamsSection
+          key={section.id}
+          teamsSection={section}
+          designType={designType}
+        />
       )
     case 'section.culture-section':
       return (
         <CultureSection
           key={section.id}
           culturesSection={section}
-          designType={2}
+          designType={designType}
         />
       )
     case 'section.contact-section':
@@ -72,15 +98,7 @@ export const componentResolver = (section: any) => {
         <ContactSection
           key={section.id}
           contactSection={section}
-          designType={2}
-        />
-      )
-    case 'section.cta':
-      return (
-        <ContactSection
-          key={section.id}
-          contactSection={section}
-          designType={2}
+          designType={designType}
         />
       )
     case 'section.page-intro':
@@ -88,7 +106,7 @@ export const componentResolver = (section: any) => {
         <PageIntroSection
           key={section.id}
           pageIntroSection={section}
-          designType={2}
+          designType={designType}
         />
       )
 
@@ -97,12 +115,16 @@ export const componentResolver = (section: any) => {
         <FeaturesSection
           key={section.id}
           featuresSection={section}
-          designType={10}
+          designType={designType}
         />
       )
     case 'section.hero-section':
       return (
-        <HeroSection key={section.id} heroSection={section} designType={10} />
+        <HeroSection
+          key={section.id}
+          heroSection={section}
+          designType={designType}
+        />
       )
 
     case 'section.testimonials':

@@ -13,6 +13,9 @@ export const structurePopulate = {
           'posts.author.avatar',
         ],
       },
+      'section.text-section': {
+        populate: '*',
+      },
       'section.projects-section': {
         populate: [
           'sectionIntro',
