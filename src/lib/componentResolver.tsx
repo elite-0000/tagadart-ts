@@ -132,7 +132,7 @@ export const componentResolver = ({
         <TestimonialSection
           testimonialSection={section}
           key={section.id}
-          avatar={section.avatar}
+          // avatar={section.avatar}
         />
       )
 

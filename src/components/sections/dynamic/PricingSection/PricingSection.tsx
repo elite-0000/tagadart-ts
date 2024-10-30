@@ -46,26 +46,26 @@ const RenderContent: React.FC<PricingProps> = ({
               <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-4xl text-center">
                   <h2 className="text-base font-semibold leading-7 text-primary-600">
-                    {pricingSection.sectionIntro.eyebrow}
+                    {pricingSection?.sectionIntro?.eyebrow}
                   </h2>
                   <p className="text-balance text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                    {pricingSection.sectionIntro.title}
+                    {pricingSection?.sectionIntro?.title}
                   </p>
                   <div className="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-gray-600 sm:text-xl/8">
                     <BasicMarkdown>
-                      {pricingSection.sectionIntro.content}
+                      {pricingSection?.sectionIntro?.content}
                     </BasicMarkdown>
                   </div>
                 </div>
 
                 <div className="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                  {pricingSection.cards.map((card, cardIdx) => (
+                  {pricingSection?.cards.map((card, cardIdx) => (
                     <div
                       key={card.id}
                       className={classNames(
-                        card.popular ? 'lg:z-10 lg:rounded-b-none' : 'lg:mt-8',
+                        card?.popular ? 'lg:z-10 lg:rounded-b-none' : 'lg:mt-8',
                         cardIdx === 0 ? 'lg:rounded-r-none' : '',
-                        cardIdx === pricingSection.cards.length - 1
+                        cardIdx === pricingSection?.cards?.length - 1
                           ? 'lg:rounded-l-none'
                           : '',
                         'flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-gray-200 xl:p-10',

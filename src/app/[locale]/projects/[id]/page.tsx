@@ -90,7 +90,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
       </FadeIn>
 
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-        <div className="[&>*]:mx-auto [&>*]:max-w-7xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
+        <div className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
           {contentSections?.map((section: any) =>
             componentResolver({ section, designType: 1 }),
           )}
