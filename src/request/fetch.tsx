@@ -2,6 +2,7 @@
 
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import { createQueryParams } from './populate'
 
 //////// PAGES
 export async function fetchHomePage() {
@@ -203,70 +204,6 @@ export async function fetchPost(id: string) {
   }
 }
 
-export const getProjectQueryParams = (): RestQueryParams => {
-  return {
-    populate: {
-      // Basic project fields
-      pageIntro: {
-        populate: ['cover'],
-      },
-      testimonials: {
-        populate: {
-          author: {
-            populate: ['avatar'],
-          },
-        },
-      },
-      // content: true,
-      // expertise: true,
-      // client: true,
-      // year: true,
-      // service: true,
-      // Dynamic zones and related content
-      structure: {
-        populate: {
-          on: {
-            'section.blog-section': {
-              populate: {
-                sectionIntro: {
-                  populate: ['cover'],
-                },
-                posts: {
-                  populate: {
-                    pageIntro: {
-                      populate: ['cover'],
-                    },
-                    author: {
-                      populate: ['avatar'],
-                    },
-                  },
-                },
-              },
-            },
-            'section.projects-section': {
-              populate: {
-                sectionIntro: {
-                  populate: ['cover'],
-                },
-                projects: {
-                  populate: {
-                    pageIntro: {
-                      populate: ['cover'],
-                    },
-                    logo: true,
-                  },
-                },
-              },
-            },
-            // Add other sections as needed
-          },
-        },
-      },
-    },
-    publicationState: 'live',
-  }
-}
-
 export async function fetchProjects() {
   const populateProjects = ['pageIntro', 'pageIntro.cover', 'logo']
 
@@ -385,41 +322,15 @@ export async function fetchProject(id: string) {
     },
   ]
 
-  const queryParams: RestQueryParams = {
-    populate: { ...structurePopulate },
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
-
-  const queryParams2 = getProjectQueryParams()
+  const queryParams = createQueryParams('projects')
 
   try {
-    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams2)
+    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
     return projectsData?.data
   } catch (error) {
     console.error('Failed to load projects data:', error)
     throw error
   }
-
-  // const queryParams: RestQueryParams = {
-  //   populate: populateProject,
-  //   publicationState: 'live',
-  //   pagination: {
-  //     page: 1,
-  //     pageSize: 10,
-  //   },
-  // }
-
-  // try {
-  //   const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
-  //   return projectsData?.data
-  // } catch (error) {
-  //   console.error('Failed to load projects data:', error)
-  //   throw error
-  // }
 }
 
 export async function fetchServices() {
