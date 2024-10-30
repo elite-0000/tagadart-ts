@@ -22,7 +22,7 @@ export function SectionIntro({
   invert?: boolean
 }) {
   return (
-    <Container
+    <div
       {...props}
       className={clsx(
         !noMarginTop && 'mt-24 sm:mt-32',
@@ -69,6 +69,6 @@ export function SectionIntro({
           </div>
         )}
       </FadeIn>
-    </Container>
+    </div>
   )
 }

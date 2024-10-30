@@ -22,13 +22,18 @@ interface RenderContentProps {
 
 const RenderContent: React.FC<RenderContentProps> = ({
   posts,
-  sectionIntro,
+  sectionIntro = {
+    title: 'Des posts qui peuvent vous inspirer',
+    eyebrow: 'Blog',
+    content: '',
+    cover: null,
+  },
   designType,
 }) => {
   switch (designType) {
     case 1:
       return (
-        <Container>
+        <>
           <SectionIntro {...sectionIntro} />
           <FadeIn>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -37,19 +42,19 @@ const RenderContent: React.FC<RenderContentProps> = ({
               ))}
             </div>
           </FadeIn>
-        </Container>
+        </>
       )
 
     default:
       return (
-        <Container>
+        <>
           <SectionIntro {...sectionIntro} />
           <FadeIn>
             {posts.map((post: Post) => (
               <PostCard2 key={post.id} post={post} />
             ))}
           </FadeIn>
-        </Container>
+        </>
       )
   }
 }
@@ -66,13 +71,18 @@ const PostsSection: React.FC<BlogProps> = async ({
     console.error('Failed to load posts:', error)
   }
   console.log(postsSection, 'postsSection')
+
+  const sectionIntro = {
+    title: 'Des posts qui peuvent hihihihi',
+    eyebrow: 'Blog',
+  }
   return (
     <>
       <RenderContent
         posts={
           postsSection?.posts?.length > 0 ? postsSection?.posts : posts || []
         }
-        sectionIntro={postsSection.sectionIntro}
+        sectionIntro={postsSection?.sectionIntro || sectionIntro}
         designType={designType}
       />
     </>

@@ -126,7 +126,6 @@ export const createQueryParams = (
   return {
     populate: {
       ...(collectionPopulates[collection] || {}),
-
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',

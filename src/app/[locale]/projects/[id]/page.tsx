@@ -94,18 +94,9 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
             <BasicMarkdown content={project.expertise} />
           </div>
           {/* TODO: Add Tags list */}
-
-          {/* <div>
-            {project.testimonials &&
-              project.testimonials.map((testimonial) => (
-                <Testimonial key={testimonial.id} author={testimonial.author}>
-                  {testimonial.content}
-                </Testimonial>
-              ))}
-          </div> */}
+          {contentSections?.map((section: any) => componentResolver(section))}
         </div>
       </FadeIn>
-      {contentSections?.map((section: any) => componentResolver(section))}
       {project.testimonials && (
         <FadeIn>
           {project.testimonials.map((testimonial) => (
