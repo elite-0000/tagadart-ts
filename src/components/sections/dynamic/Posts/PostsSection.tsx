@@ -70,10 +70,9 @@ const PostsSection: React.FC<BlogProps> = async ({
   } catch (error) {
     console.error('Failed to load posts:', error)
   }
-  console.log(postsSection, 'postsSection')
 
   const sectionIntro = {
-    title: 'Des posts qui peuvent hihihihi',
+    title: 'Des posts qui peuvent vous plaire',
     eyebrow: 'Blog',
   }
   return (
