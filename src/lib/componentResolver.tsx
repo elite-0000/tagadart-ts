@@ -13,6 +13,7 @@ import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
 
 export const componentResolver = (section: any) => {
+  console.log(section.__component, 'section.__component')
   switch (section.__component) {
     case 'section.blog-section':
       return (

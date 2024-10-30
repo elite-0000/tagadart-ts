@@ -9,6 +9,7 @@ import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
+import { componentResolver } from '@/lib/componentResolver'
 
 export const metadata: Metadata = {
   //TODO: Change by real SEO
@@ -24,7 +25,11 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
   if (!project) return null
 
-  console.log(project, 'project')
+  // console.log(project, 'project')
+
+  const contentSections = project?.structure
+
+  // console.log(contentSections, 'contentSections')
 
   const { pageIntro } = project || ''
 
@@ -100,6 +105,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
           </div> */}
         </div>
       </FadeIn>
+      {contentSections?.map((section: any) => componentResolver(section))}
       {project.testimonials && (
         <FadeIn>
           {project.testimonials.map((testimonial) => (

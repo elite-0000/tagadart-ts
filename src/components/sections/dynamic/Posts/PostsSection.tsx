@@ -65,11 +65,13 @@ const PostsSection: React.FC<BlogProps> = async ({
   } catch (error) {
     console.error('Failed to load posts:', error)
   }
-
+  console.log(postsSection, 'postsSection')
   return (
     <>
       <RenderContent
-        posts={postsSection.posts.length > 0 ? postsSection.posts : posts || []}
+        posts={
+          postsSection?.posts?.length > 0 ? postsSection?.posts : posts || []
+        }
         sectionIntro={postsSection.sectionIntro}
         designType={designType}
       />

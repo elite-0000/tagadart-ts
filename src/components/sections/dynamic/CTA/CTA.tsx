@@ -23,19 +23,19 @@ const RenderContent: React.FC<CTAProps> = ({ ctaSection, designType }) => {
               <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
                   <h2 className="text-base font-semibold leading-7 text-primary-600">
-                    {ctaSection.sectionIntro.eyebrow}
+                    {ctaSection?.sectionIntro?.eyebrow}
                   </h2>
                   <p className="mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                    {ctaSection.sectionIntro.title}
+                    {ctaSection?.sectionIntro?.title}
                   </p>
                   <div className="mx-auto mt-6 max-w-xl text-pretty text-lg/8 text-gray-600">
                     <BasicMarkdown>
-                      {ctaSection.sectionIntro.content}
+                      {ctaSection?.sectionIntro?.content}
                     </BasicMarkdown>
                   </div>
-                  {ctaSection.buttons && ctaSection.buttons.length > 0 && (
+                  {ctaSection?.buttons && ctaSection?.buttons?.length > 0 && (
                     <div className="mt-10 flex items-center justify-center gap-x-6">
-                      {ctaSection.buttons.map((button) => (
+                      {ctaSection?.buttons?.map((button) => (
                         <Link
                           key={button.id}
                           href={button.link}
@@ -63,6 +63,7 @@ const RenderContent: React.FC<CTAProps> = ({ ctaSection, designType }) => {
 }
 
 const CTASection: React.FC<CTAProps> = ({ ctaSection, designType }) => {
+  // console.log(ctaSection, 'ctaSection')
   return <RenderContent ctaSection={ctaSection} designType={designType} />
 }
 
