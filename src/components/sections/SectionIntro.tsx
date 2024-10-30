@@ -27,7 +27,7 @@ export function SectionIntro({
       className={clsx(
         // !noMarginTop && 'mt-24 sm:mt-32',
         centered && 'text-center',
-        'my-16',
+        'mb-8 mt-12',
       )}
     >
       <FadeIn>
@@ -36,7 +36,7 @@ export function SectionIntro({
             <>
               <span
                 className={clsx(
-                  'mb-6 block font-display text-base font-semibold',
+                  'mb-2 block font-display text-base font-semibold',
                   invert ? 'text-primary-50' : 'text-neutral-950',
                 )}
               >
