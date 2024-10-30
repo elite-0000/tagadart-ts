@@ -22,12 +22,7 @@ interface RenderContentProps {
 
 const RenderContent: React.FC<RenderContentProps> = ({
   posts,
-  sectionIntro = {
-    title: 'Des posts qui peuvent vous inspirer',
-    eyebrow: 'Blog',
-    content: '',
-    cover: null,
-  },
+  sectionIntro,
   designType,
 }) => {
   switch (designType) {
@@ -71,6 +66,7 @@ const PostsSection: React.FC<BlogProps> = async ({
     console.error('Failed to load posts:', error)
   }
 
+  //TODO: Change to localized string
   const sectionIntro = {
     title: 'Des posts qui peuvent vous plaire',
     eyebrow: 'Blog',

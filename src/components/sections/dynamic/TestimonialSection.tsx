@@ -7,6 +7,7 @@ interface TestimonialSectionProps {
   author?: string
   position?: string
   avatar: MediaItem
+  testimonialSection: any
 }
 
 const TestimonialSection: React.FC<TestimonialSectionProps> = ({
@@ -14,7 +15,9 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   author = 'miranda',
   position = 'Senior Developer',
   avatar,
+  testimonialSection,
 }) => {
+  console.log(testimonialSection, 'testimonialSection')
   return (
     <section className="isolate overflow-hidden bg-white px-6 lg:px-8">
       {/* <div className="relative mx-auto max-w-2xl py-24 sm:py-32 lg:max-w-4xl"></div>

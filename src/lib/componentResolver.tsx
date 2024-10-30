@@ -128,7 +128,13 @@ export const componentResolver = ({
       )
 
     case 'section.testimonials':
-      return <TestimonialSection key={section.id} avatar={section.avatar} />
+      return (
+        <TestimonialSection
+          testimonialSection={section}
+          key={section.id}
+          avatar={section.avatar}
+        />
+      )
 
     default:
       return null

@@ -25,14 +25,8 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
   if (!project) return null
 
-  // console.log(project, 'project')
-
   const contentSections = project?.structure
-
-  // console.log(contentSections, 'contentSections')
-
   const { pageIntro } = project || ''
-
   const t = await getTranslations('Project')
 
   return (
