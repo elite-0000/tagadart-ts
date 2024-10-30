@@ -48,7 +48,7 @@ const RenderContent: React.FC<PricingProps> = ({
                   <h2 className="text-base font-semibold leading-7 text-primary-600">
                     {pricingSection.sectionIntro.eyebrow}
                   </h2>
-                  <p className="mt-2 text-balance text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                  <p className="text-balance text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
                     {pricingSection.sectionIntro.title}
                   </p>
                   <div className="mx-auto mt-6 max-w-2xl text-pretty text-center text-lg font-medium text-gray-600 sm:text-xl/8">

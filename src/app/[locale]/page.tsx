@@ -51,12 +51,6 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
-        <FadeIn className="max-w-3xl">
-          <PageIntro {...pageIntro} />
-        </FadeIn>
-      </Container> */}
-
       <PageIntroSections {...pageIntro} />
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
       <ServicesSection servicesSection={servicesSection} services={services} />

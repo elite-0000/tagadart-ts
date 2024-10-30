@@ -12,7 +12,7 @@ interface CultureCardProps {
 const CultureSection: React.FC<CultureCardProps> = ({ cultureSection }) => {
   return (
     <div className="mt-24 rounded-4xl bg-primary-800 py-24 sm:mt-32 lg:mt-40 lg:py-32">
-      <SectionIntro {...cultureSection} invert noMarginTop />
+      <SectionIntro {...cultureSection} invert />
       <Container className="mt-16">
         <GridList>
           {cultureSection?.values?.map((item) => (
