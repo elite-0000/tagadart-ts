@@ -47,21 +47,21 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
                 <div className="mx-auto max-w-5xl">
                   <dl className="-mx-6 grid grid-cols-1 text-sm text-neutral-950 sm:mx-0 sm:grid-cols-4">
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Client</dt>
+                      <dt className="font-semibold">{t('client')}</dt>
                       <dd>{project.client}</dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Année</dt>
+                      <dt className="font-semibold">{t('year')}</dt>
                       <dd>
                         <time dateTime={project.year}>{project.year}</time>
                       </dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Service</dt>
+                      <dt className="font-semibold">{t('service')}</dt>
                       <dd>{project.service}</dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Website</dt>
+                      <dt className="font-semibold">{t('website')}</dt>
                       <dd>
                         <a
                           href={project.link}
@@ -97,7 +97,12 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
 
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
         <div className="[&>*]:mx-auto [&>*]:max-w-7xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-          {/* <div className="mt-6">
+          {contentSections?.map((section: any) =>
+            componentResolver({ section, designType: 1 }),
+          )}
+        </div>
+      </FadeIn>
+      {/* <div className="mt-6">
             <h2 className="text-xl">{t('content')}</h2>
             <BasicMarkdown content={project.content} />
           </div>
@@ -105,14 +110,8 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
             <h2 className="text-xl">{t('expertise')}</h2>
             <BasicMarkdown content={project.expertise} />
           </div> */}
-          {/* TODO: Add Tags list */}
-
-          {contentSections?.map((section: any) =>
-            componentResolver({ section, designType: 1 }),
-          )}
-        </div>
-      </FadeIn>
-      {project.testimonials && (
+      {/* TODO: Add Tags list */}
+      {/* {project.testimonials && (
         <FadeIn>
           {project.testimonials.map((testimonial) => (
             <Testimonial key={testimonial.id} author={testimonial.author}>
@@ -120,7 +119,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
             </Testimonial>
           ))}
         </FadeIn>
-      )}
+      )} */}
       {/* <FadeIn>
         <Testimonial
           key={project.testimonials?.[0]?.id}
