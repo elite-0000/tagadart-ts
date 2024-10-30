@@ -81,48 +81,42 @@ export const structurePopulate = {
   },
 }
 
-export const projectPopulate = {
-  pageIntro: {
-    populate: ['cover'],
-  },
-  logo: {
-    populate: '*',
-  },
-}
-export const postPopulate = {
-  pageIntro: {
-    populate: ['cover'],
-  },
-  author: {
-    populate: ['avatar'],
-  },
-}
+// export const projectPopulate = {
+//   pageIntro: {
+//     populate: ['cover'],
+//   },
+//   logo: {
+//     populate: '*',
+//   },
+// }
+// export const postPopulate = {
+//   pageIntro: {
+//     populate: ['cover'],
+//   },
+//   author: {
+//     populate: ['avatar'],
+//   },
+// }
 
 // Collection-specific populates using array format for consistency
-const collectionPopulates = {
-  projects: [
-    'pageIntro',
-    'pageIntro.cover',
-    'testimonials',
-    'testimonials.author',
-    'testimonials.author.avatar',
-    'client',
-    'year',
-    'service',
-    'content',
-    'expertise',
-    'logo',
-  ],
-  posts: [
-    'pageIntro',
-    'pageIntro.cover',
-    'author',
-    'author.avatar',
-    'content',
-    'categories',
-  ],
-  services: ['pageIntro', 'pageIntro.cover', 'content', 'features'],
-} as const
+export const collectionPopulates = {
+  projects: {
+    pageIntro: {
+      populate: ['cover'],
+    },
+    logo: {
+      populate: '*',
+    },
+  },
+  posts: {
+    pageIntro: {
+      populate: ['cover'],
+    },
+    author: {
+      populate: ['avatar'],
+    },
+  },
+}
 
 // Helper function to create query params
 export const createQueryParams = (
@@ -131,16 +125,8 @@ export const createQueryParams = (
 ): RestQueryParams => {
   return {
     populate: {
-      //   ...(Array.isArray(collectionPopulates[collection])
-      //     ? collectionPopulates[collection].reduce(
-      //         (acc, field) => ({
-      //           ...acc,
-      //           [field]: true,
-      //         }),
-      //         {},
-      //       )
-      //     : collectionPopulates[collection]),
-      ...projectPopulate,
+      ...(collectionPopulates[collection] || {}),
+
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
