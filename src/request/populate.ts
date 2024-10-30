@@ -69,6 +69,14 @@ export const structurePopulate = {
       'section.features-section': {
         populate: ['sectionIntro', 'features'],
       },
+      'section.testimonials': {
+        populate: [
+          'sectionIntro',
+          'testimonials',
+          'testimonials.author',
+          'testimonials.author.avatar',
+        ],
+      },
       'section.hero-section': {
         populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
       },
