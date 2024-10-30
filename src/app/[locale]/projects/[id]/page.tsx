@@ -9,18 +9,6 @@ import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
-import { existsSync } from 'fs'
-
-// Function to dynamically import the Card component
-// async function loadCardComponent() {
-//   let Card;
-//   if (existsSync('./customBranding/Card.tsx')) {
-//     Card = await import('./customBranding/Card');
-//   } else {
-//     Card = await import('./default/Card');
-//   }
-//   return Card;
-// }
 
 export const metadata: Metadata = {
   //TODO: Change by real SEO
@@ -35,6 +23,8 @@ type Props = {
 export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
   if (!project) return null
+
+  console.log(project, 'project')
 
   const { pageIntro } = project || ''
 
@@ -70,18 +60,20 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
               </Container>
             </div>
 
-            <div className="max-w-[76rem0 -my-px mx-auto">
-              <GrayscaleTransitionImage
-                src={`${project?.pageIntro?.cover?.url}`}
-                quality={90}
-                className="w-full py-6"
-                sizes="(min-width: 1216px) 76rem, 100vw"
-                priority
-                alt={project.pageIntro?.title}
-                width={800}
-                height={600}
-              />
-            </div>
+            {project?.pageIntro?.cover?.url && (
+              <div className="max-w-[76rem0 -my-px mx-auto">
+                <GrayscaleTransitionImage
+                  src={`${project?.pageIntro?.cover?.url}`}
+                  quality={90}
+                  className="w-full py-6"
+                  sizes="(min-width: 1216px) 76rem, 100vw"
+                  priority
+                  alt={project.pageIntro?.title}
+                  width={800}
+                  height={600}
+                />
+              </div>
+            )}
           </FadeIn>
         </header>
       </FadeIn>

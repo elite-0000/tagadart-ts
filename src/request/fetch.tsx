@@ -203,6 +203,70 @@ export async function fetchPost(id: string) {
   }
 }
 
+export const getProjectQueryParams = (): RestQueryParams => {
+  return {
+    populate: {
+      // Basic project fields
+      pageIntro: {
+        populate: ['cover'],
+      },
+      testimonials: {
+        populate: {
+          author: {
+            populate: ['avatar'],
+          },
+        },
+      },
+      // content: true,
+      // expertise: true,
+      // client: true,
+      // year: true,
+      // service: true,
+      // Dynamic zones and related content
+      structure: {
+        populate: {
+          on: {
+            'section.blog-section': {
+              populate: {
+                sectionIntro: {
+                  populate: ['cover'],
+                },
+                posts: {
+                  populate: {
+                    pageIntro: {
+                      populate: ['cover'],
+                    },
+                    author: {
+                      populate: ['avatar'],
+                    },
+                  },
+                },
+              },
+            },
+            'section.projects-section': {
+              populate: {
+                sectionIntro: {
+                  populate: ['cover'],
+                },
+                projects: {
+                  populate: {
+                    pageIntro: {
+                      populate: ['cover'],
+                    },
+                    logo: true,
+                  },
+                },
+              },
+            },
+            // Add other sections as needed
+          },
+        },
+      },
+    },
+    publicationState: 'live',
+  }
+}
+
 export async function fetchProjects() {
   const populateProjects = ['pageIntro', 'pageIntro.cover', 'logo']
 
@@ -241,8 +305,88 @@ export async function fetchProject(id: string) {
     'projectsSection.projects.our_services.pageIntro.cover',
   ]
 
+  const structurePopulate = [
+    {
+      structure: {
+        on: {
+          'section.blog-section': {
+            populate: [
+              'sectionIntro',
+              'posts',
+              'posts.pageIntro',
+              'posts.pageIntro.cover',
+              'posts.author',
+              'posts.author.avatar',
+            ],
+          },
+          // 'section.projects-section': {
+          //   populate: [
+          //     'sectionIntro',
+          //     'projects',
+          //     'projects.pageIntro',
+          //     'projects.pageIntro.cover',
+          //     'projects.logo',
+          //   ],
+          // },
+          // 'section.contact-section': {
+          //   populate: [
+          //     'sectionIntro',
+          //     'content',
+          //     'content.offices',
+          //     'content.emails',
+          //     'content.socials',
+          //   ],
+          // },
+          // 'section.services-section': {
+          //   populate: [
+          //     'sectionIntro',
+          //     'our_services',
+          //     'our_services.pageIntro',
+          //     'our_services.pageIntro.cover',
+          //   ],
+          // },
+          // 'section.pricing-section': {
+          //   populate: ['sectionIntro', 'cards', 'cards.features'],
+          // },
+          // 'section.team-section': {
+          //   populate: [
+          //     'sectionIntro',
+          //     'members',
+          //     'members.fullname',
+          //     'members.avatar',
+          //     'members.posts.pageIntro',
+          //   ],
+          // },
+          // 'section.reference-section': {
+          //   populate: [
+          //     'sectionIntro',
+          //     'clients',
+          //     'clients.name',
+          //     'clients.logo',
+          //   ],
+          // },
+          // 'section.culture-section': {
+          //   populate: ['sectionIntro', 'values', 'values.title'],
+          // },
+          // 'section.cta': {
+          //   populate: ['sectionIntro', 'buttons'],
+          // },
+          // 'section.page-intro': {
+          //   populate: ['title', 'eyebrow', 'content', 'cover'],
+          // },
+          // 'section.features-section': {
+          //   populate: ['sectionIntro', 'features'],
+          // },
+          // 'section.hero-section': {
+          //   populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+          // },
+        },
+      },
+    },
+  ]
+
   const queryParams: RestQueryParams = {
-    populate: populateProject,
+    populate: { ...structurePopulate },
     publicationState: 'live',
     pagination: {
       page: 1,
@@ -250,13 +394,32 @@ export async function fetchProject(id: string) {
     },
   }
 
+  const queryParams2 = getProjectQueryParams()
+
   try {
-    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
+    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams2)
     return projectsData?.data
   } catch (error) {
     console.error('Failed to load projects data:', error)
     throw error
   }
+
+  // const queryParams: RestQueryParams = {
+  //   populate: populateProject,
+  //   publicationState: 'live',
+  //   pagination: {
+  //     page: 1,
+  //     pageSize: 10,
+  //   },
+  // }
+
+  // try {
+  //   const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
+  //   return projectsData?.data
+  // } catch (error) {
+  //   console.error('Failed to load projects data:', error)
+  //   throw error
+  // }
 }
 
 export async function fetchServices() {
