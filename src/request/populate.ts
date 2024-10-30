@@ -1,181 +1,105 @@
 import { RestQueryParams } from '@/types/global'
 
-// utils/populates.ts
 export const structurePopulate = {
+  pageIntro: {
+    populate: ['cover'],
+  },
   structure: {
-    populate: {
-      on: {
-        'section.blog-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            posts: {
-              populate: {
-                pageIntro: {
-                  populate: ['cover'],
-                },
-                author: {
-                  populate: ['avatar'],
-                },
-              },
-            },
-          },
-        },
-        'section.projects-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            projects: {
-              populate: {
-                pageIntro: {
-                  populate: ['cover'],
-                },
-                logo: true,
-              },
-            },
-          },
-        },
-        'section.contact-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            content: {
-              populate: ['offices', 'emails', 'socials'],
-            },
-          },
-        },
-        'section.services-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            our_services: {
-              populate: {
-                pageIntro: {
-                  populate: ['cover'],
-                },
-              },
-            },
-          },
-        },
-        'section.pricing-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            cards: {
-              populate: ['features'],
-            },
-          },
-        },
-        'section.team-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            members: {
-              populate: {
-                fullname: true,
-                avatar: true,
-                posts: {
-                  populate: {
-                    pageIntro: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-        'section.reference-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            clients: {
-              populate: ['name', 'logo'],
-            },
-          },
-        },
-        'section.culture-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            values: {
-              populate: ['title'],
-            },
-          },
-        },
-        'section.cta': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            buttons: true,
-          },
-        },
-        'section.features-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            features: true,
-          },
-        },
-        'section.hero-section': {
-          populate: {
-            sectionIntro: {
-              populate: ['cover'],
-            },
-            buttons: true,
-            logo: true,
-          },
-        },
+    on: {
+      'section.blog-section': {
+        populate: [
+          'sectionIntro',
+          'posts',
+          'posts.pageIntro',
+          'posts.pageIntro.cover',
+          'posts.author',
+          'posts.author.avatar',
+        ],
+      },
+      'section.projects-section': {
+        populate: [
+          'sectionIntro',
+          'projects',
+          'projects.pageIntro',
+          'projects.pageIntro.cover',
+          'projects.logo',
+        ],
+      },
+      'section.contact-section': {
+        populate: [
+          'sectionIntro',
+          'content',
+          'content.offices',
+          'content.emails',
+          'content.socials',
+        ],
+      },
+      'section.services-section': {
+        populate: [
+          'sectionIntro',
+          'our_services',
+          'our_services.pageIntro',
+          'our_services.pageIntro.cover',
+        ],
+      },
+      'section.pricing-section': {
+        populate: ['sectionIntro', 'cards', 'cards.features'],
+      },
+      'section.team-section': {
+        populate: [
+          'sectionIntro',
+          'members',
+          'members.fullname',
+          'members.avatar',
+          'members.posts.pageIntro',
+        ],
+      },
+      'section.reference-section': {
+        populate: ['sectionIntro', 'clients', 'clients.name', 'clients.logo'],
+      },
+      'section.culture-section': {
+        populate: ['sectionIntro', 'values', 'values.title'],
+      },
+      'section.cta': {
+        populate: ['sectionIntro', 'buttons'],
+      },
+      'section.page-intro': {
+        populate: ['title', 'eyebrow', 'content', 'cover'],
+      },
+      'section.features-section': {
+        populate: ['sectionIntro', 'features'],
+      },
+      'section.hero-section': {
+        populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
       },
     },
   },
 }
 
-// Collection-specific populates
+// Collection-specific populates using array format for consistency
 const collectionPopulates = {
-  projects: {
-    pageIntro: {
-      populate: ['cover'],
-    },
-    testimonials: {
-      populate: {
-        author: {
-          populate: ['avatar'],
-        },
-      },
-    },
-    client: true,
-    year: true,
-    service: true,
-    content: true,
-    expertise: true,
-    logo: true,
-  },
-  posts: {
-    pageIntro: {
-      populate: ['cover'],
-    },
-    author: {
-      populate: ['avatar'],
-    },
-    content: true,
-    categories: true,
-  },
-  services: {
-    pageIntro: {
-      populate: ['cover'],
-    },
-    content: true,
-    features: true,
-  },
+  projects: [
+    'pageIntro',
+    'pageIntro.cover',
+    'testimonials',
+    'testimonials.author',
+    'testimonials.author.avatar',
+    'client',
+    'year',
+    'service',
+    'content',
+    'expertise',
+    'logo',
+  ],
+  posts: [
+    'pageIntro',
+    'pageIntro.cover',
+    'author',
+    'author.avatar',
+    'content',
+    'categories',
+  ],
+  services: ['pageIntro', 'pageIntro.cover', 'content', 'features'],
 } as const
 
 // Helper function to create query params
@@ -185,7 +109,15 @@ export const createQueryParams = (
 ): RestQueryParams => {
   return {
     populate: {
-      ...collectionPopulates[collection],
+      //   ...(Array.isArray(collectionPopulates[collection])
+      //     ? collectionPopulates[collection].reduce(
+      //         (acc, field) => ({
+      //           ...acc,
+      //           [field]: true,
+      //         }),
+      //         {},
+      //       )
+      //     : collectionPopulates[collection]),
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
