@@ -1,11 +1,10 @@
-'use client'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { useTranslations } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 
 export async function ContactFooter() {
-  const t = await useTranslations('Contact')
+  const t = await getTranslations('Contact')
   return (
     <Container className="mt-24">
       <FadeIn className="-mx-6 rounded-4xl bg-neutral-950 px-6 py-20 sm:mx-0 sm:py-32 md:px-12">
