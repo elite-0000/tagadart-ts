@@ -1,7 +1,5 @@
 import { type Metadata } from 'next'
 
-import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
 import { ContactFooter } from '@/components/sections/ContactFooter'
 
 import BlogSection from '@/components/sections/BlogSection'
