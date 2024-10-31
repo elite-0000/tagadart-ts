@@ -22,8 +22,6 @@ import { SocialMedia } from '@/components/sections/SocialMedia'
 import { useTranslations } from 'next-intl'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
-import Contact from '@/app/[locale]/contact/page'
-import { ContactFooter } from '../sections/ContactFooter'
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
