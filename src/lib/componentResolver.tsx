@@ -24,7 +24,7 @@ export const componentResolver = ({
   switch (section.__component) {
     case 'section.text-section':
       return (
-        <Section>
+        <Section className="max-w-3xl">
           {section.title && <h2 className="text-xl">{section.title}</h2>}
           <BasicMarkdown content={section.content} />
         </Section>

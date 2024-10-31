@@ -113,6 +113,11 @@ export const collectionPopulates = {
       populate: '*',
     },
   },
+  services: {
+    pageIntro: {
+      populate: ['cover'],
+    },
+  },
   posts: {
     pageIntro: {
       populate: ['cover'],
