@@ -4,6 +4,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { Check, X } from 'lucide-react'
 import { PageIntro } from '@/types/global'
+import { useTranslations } from 'next-intl'
 
 export interface PricingFeature {
   id: number
@@ -14,6 +15,7 @@ export interface PricingFeature {
 export interface PricingCard {
   id: number
   name: string
+  link: string
   price: string
   frequency: string
   content: string
@@ -37,6 +39,7 @@ const RenderContent: React.FC<PricingProps> = ({
   pricingSection,
   designType,
 }) => {
+  const t = useTranslations('Pricing')
   switch (designType) {
     default:
       return (
@@ -86,7 +89,7 @@ const RenderContent: React.FC<PricingProps> = ({
                           </h3>
                           {card.popular && (
                             <p className="rounded-full bg-primary-600/10 px-2.5 py-1 text-xs font-semibold leading-5 text-primary-600">
-                              Most popular
+                              {t('most_popular')}
                             </p>
                           )}
                         </div>
@@ -117,18 +120,20 @@ const RenderContent: React.FC<PricingProps> = ({
                           ))}
                         </ul>
                       </div>
-                      <a
-                        href="#"
-                        aria-describedby={`tier-${card.id}`}
-                        className={classNames(
-                          card.popular
-                            ? 'bg-primary-600 text-white shadow-sm hover:bg-primary-500'
-                            : 'text-primary-600 ring-1 ring-inset ring-primary-200 hover:ring-primary-300',
-                          'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
-                        )}
-                      >
-                        Get started
-                      </a>
+                      {card.link && (
+                        <a
+                          href={card.link}
+                          aria-describedby={`tier-${card.id}`}
+                          className={classNames(
+                            card.popular
+                              ? 'bg-primary-600 text-white shadow-sm hover:bg-primary-500'
+                              : 'text-primary-600 ring-1 ring-inset ring-primary-200 hover:ring-primary-300',
+                            'mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600',
+                          )}
+                        >
+                          {t('btn_pricing')}
+                        </a>
+                      )}
                     </div>
                   ))}
                 </div>

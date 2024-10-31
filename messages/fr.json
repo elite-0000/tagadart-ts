@@ -21,6 +21,10 @@
     "read_more": "Lire plus",
     "read_less": "Lire moins"
   },
+  "Pricing": {
+    "btn_pricing": "Commencez",
+    "most_popular": "Le plus populaire"
+  },
   "Contact": {
     "title": "Dites-nous en plus sur vos projets",
     "button_contact": "Contactez-nous",
