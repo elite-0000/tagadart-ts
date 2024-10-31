@@ -1,3 +1,4 @@
+//WIP ? To delete I think
 import { componentResolver } from '@/lib/componentResolver'
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
@@ -120,9 +121,9 @@ export default async function PageRoute({ params }: Props) {
 
   return (
     <>
-      {contentSections?.map((section: Section & PageIntro) =>
+      {/* {contentSections?.map((section: Section & PageIntro) =>
         componentResolver(section),
-      )}
+      )} */}
     </>
   )
 }

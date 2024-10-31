@@ -12,6 +12,7 @@ import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
+import { Section } from '@/components/ui/Section'
 
 export const componentResolver = ({
   section,
@@ -23,10 +24,10 @@ export const componentResolver = ({
   switch (section.__component) {
     case 'section.text-section':
       return (
-        <>
+        <Section>
           {section.title && <h2 className="text-xl">{section.title}</h2>}
           <BasicMarkdown content={section.content} />
-        </>
+        </Section>
       )
     case 'section.blog-section':
       return (

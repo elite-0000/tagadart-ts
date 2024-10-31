@@ -6,6 +6,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { te } from 'date-fns/locale'
 import { SectionIntro } from '../SectionIntro'
+import { Section } from '@/components/ui/Section'
 
 interface Author {
   fullname: string
@@ -48,7 +49,7 @@ const RenderContent: React.FC<TestimonialSectionProps> = ({
               key={testimonial.id}
               className="isolate overflow-hidden bg-white px-6 lg:px-8"
             >
-              <figure className="grid grid-cols-1 items-center gap-x-6 gap-y-8 lg:gap-x-10">
+              <figure className="grid grid-cols-1 items-center gap-x-6">
                 <div className="relative col-span-2 lg:col-start-1 lg:row-start-2">
                   <svg
                     viewBox="0 0 162 128"
@@ -98,10 +99,12 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({
   designType,
 }) => {
   return (
-    <RenderContent
-      testimonialSection={testimonialSection}
-      designType={designType}
-    />
+    <Section>
+      <RenderContent
+        testimonialSection={testimonialSection}
+        designType={designType}
+      />
+    </Section>
   )
 }
 

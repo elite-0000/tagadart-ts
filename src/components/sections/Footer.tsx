@@ -65,7 +65,7 @@ function Navigation() {
 export function Footer() {
   return (
     <>
-      <div className="my-8 w-full flex-auto">
+      <div className="w-full flex-auto">
         <ContactFooter />
       </div>
       <Container as="footer" className="mt-12 w-full sm:mt-16 lg:mt-20">

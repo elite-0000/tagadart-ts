@@ -9,6 +9,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ClientCard1 from './ClientCard/ClientCard1'
+import { Section } from '@/components/ui/Section'
 
 interface ReferenceProps {
   referenceSection: { sectionIntro: PageIntro } & { clients: Client[] }
@@ -61,7 +62,7 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
   }
 
   return (
-    <>
+    <Section>
       <RenderContent
         clients={
           referenceSection.clients.length > 0
@@ -71,7 +72,7 @@ const ReferenceSection: React.FC<ReferenceProps> = async ({
         sectionIntro={referenceSection.sectionIntro}
         designType={designType}
       />
-    </>
+    </Section>
   )
 }
 

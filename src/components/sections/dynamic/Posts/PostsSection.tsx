@@ -8,6 +8,7 @@ import { fetchPosts } from '@/request/fetch'
 import PostCard1 from '../Posts/PostCard/PostCard1'
 import PostCard2 from '../Posts/PostCard/PostCard2'
 import { PageIntro } from '@/types/global'
+import { Section } from '@/components/ui/Section'
 
 interface BlogProps {
   postsSection: { sectionIntro: PageIntro } & { posts: Post[] }
@@ -72,7 +73,7 @@ const PostsSection: React.FC<BlogProps> = async ({
     eyebrow: 'Blog',
   }
   return (
-    <>
+    <Section>
       <RenderContent
         posts={
           postsSection?.posts?.length > 0 ? postsSection?.posts : posts || []
@@ -80,7 +81,7 @@ const PostsSection: React.FC<BlogProps> = async ({
         sectionIntro={postsSection?.sectionIntro || sectionIntro}
         designType={designType}
       />
-    </>
+    </Section>
   )
 }
 

@@ -12,6 +12,7 @@ import Icon from '@/components/images/Icon'
 import dynamicIconImports from 'lucide-react/dynamicIconImports'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
+import { Section } from '@/components/ui/Section'
 
 interface OfficesSectionProps {
   offices: Office[]
@@ -160,10 +161,10 @@ const ContactSection: React.FC<ContactProps> = ({
   designType,
 }) => {
   return (
-    <>
+    <Section>
       <SectionIntro {...contactSection.sectionIntro} />
       <RenderContent contactSection={contactSection} designType={designType} />
-    </>
+    </Section>
   )
 }
 

@@ -227,7 +227,9 @@ export default async function PageRoute({ params }: Props) {
         )
 
       case 'section.testimonials':
-        return <TestimonialSection key={section.id} avatar={section.avatar} />
+        return (
+          <TestimonialSection key={section.id} testimonialSection={section} />
+        )
 
       default:
         return null
