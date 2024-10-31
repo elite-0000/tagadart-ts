@@ -57,7 +57,7 @@ export interface PageIntro {
   title: string
   eyebrow: string
   content: string
-  cover: MediaItem
+  cover: MediaItem | null
 }
 
 export interface Culture {

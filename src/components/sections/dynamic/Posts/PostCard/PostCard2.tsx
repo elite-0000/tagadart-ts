@@ -15,14 +15,16 @@ const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
       className="relative isolate mb-24 flex flex-col gap-8 lg:flex-row"
     >
       <div className="mx-auto text-center">
-        <NextCloudinaryImage
-          src={post.pageIntro.cover.url}
-          alt={post.pageIntro.title}
-          width={320}
-          height={320}
-          // crop={'fill'}
-          className="inset-0 rounded-2xl object-cover"
-        />
+        {post?.pageIntro?.cover?.url && (
+          <NextCloudinaryImage
+            src={post.pageIntro.cover.url}
+            alt={post.pageIntro.title}
+            width={320}
+            height={320}
+            // crop={'fill'}
+            className="inset-0 rounded-2xl object-cover"
+          />
+        )}
       </div>
       <div>
         <div className="flex items-center gap-x-4 text-xs">

@@ -20,13 +20,15 @@ const renderContentOld = (post: Post, designType?: 'default' | 'alternate') => {
           className="flex flex-col items-start justify-between"
         >
           <div className="relative w-full">
-            <NextCloudinaryImage
-              alt={post.pageIntro.title}
-              src={post.pageIntro.cover.url}
-              width={300}
-              height={200}
-              className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-            />
+            {post?.pageIntro?.cover?.url && (
+              <NextCloudinaryImage
+                alt={post.pageIntro.title}
+                src={post.pageIntro.cover.url}
+                width={300}
+                height={200}
+                className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+              />
+            )}
             <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
           </div>
           <div className="max-w-xl">
@@ -81,14 +83,16 @@ const renderContentOld = (post: Post, designType?: 'default' | 'alternate') => {
           className="relative isolate mb-24 flex flex-col gap-8 lg:flex-row"
         >
           <div className="mx-auto text-center">
-            <NextCloudinaryImage
-              src={post.pageIntro.cover.url}
-              alt={post.pageIntro.title}
-              width={320}
-              height={320}
-              // crop={'fill'}
-              className="inset-0 rounded-2xl object-cover"
-            />
+            {post?.pageIntro?.cover?.url && (
+              <NextCloudinaryImage
+                src={post.pageIntro.cover.url}
+                alt={post.pageIntro.title}
+                width={320}
+                height={320}
+                // crop={'fill'}
+                className="inset-0 rounded-2xl object-cover"
+              />
+            )}
           </div>
           <div>
             <div className="flex items-center gap-x-4 text-xs">

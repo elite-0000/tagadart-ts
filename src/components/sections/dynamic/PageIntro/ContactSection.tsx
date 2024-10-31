@@ -8,6 +8,7 @@ import { SectionIntro } from '../../SectionIntro'
 import { Button } from '@/components/elements/Button'
 import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '../../PageIntro'
+import { Section } from '@/components/ui/Section'
 
 interface PageIntroProps {
   pageIntroSection: PageIntro
@@ -25,9 +26,9 @@ const PageIntroSection: React.FC<PageIntroProps> = async ({
   }
 
   return (
-    <>
+    <Section>
       <PageIntroSections {...pageIntroSection} />
-    </>
+    </Section>
   )
 }
 

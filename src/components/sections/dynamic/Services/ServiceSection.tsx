@@ -8,6 +8,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ServiceCard1 from './ServiceCard/ServiceCard1'
+import { Section } from '@/components/ui/Section'
 
 interface ServicesProps {
   servicesSection: { sectionIntro: PageIntro } & { our_services: Service[] }
@@ -54,7 +55,7 @@ const ServiceSection: React.FC<ServicesProps> = async ({
   }
 
   return (
-    <>
+    <Section>
       <RenderContent
         services={
           servicesSection.our_services.length > 0
@@ -64,7 +65,7 @@ const ServiceSection: React.FC<ServicesProps> = async ({
         sectionIntro={servicesSection.sectionIntro}
         designType={designType}
       />
-    </>
+    </Section>
   )
 }
 

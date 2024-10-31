@@ -8,6 +8,7 @@ import { Container } from '@/components/ui/Container'
 import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ProjectCard1 from './ProjectCard/ProjectCard1'
+import { Section } from '@/components/ui/Section'
 
 interface ProjectsProps {
   projectsSection: { sectionIntro: PageIntro } & { projects: Project[] }
@@ -53,7 +54,7 @@ const ProjectsSection: React.FC<ProjectsProps> = async ({
   }
 
   return (
-    <>
+    <Section>
       <RenderContent
         projects={
           projectsSection.projects.length > 0
@@ -63,7 +64,7 @@ const ProjectsSection: React.FC<ProjectsProps> = async ({
         sectionIntro={projectsSection.sectionIntro}
         designType={designType}
       />
-    </>
+    </Section>
   )
 }
 

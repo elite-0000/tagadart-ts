@@ -1,4 +1,3 @@
-import { MediaItem } from '@/types/global'
 import dynamicIconImports from 'lucide-react/dynamicIconImports'
 export interface Feature {
   id: string

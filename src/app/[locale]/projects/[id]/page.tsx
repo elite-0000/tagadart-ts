@@ -9,18 +9,7 @@ import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
-import { existsSync } from 'fs'
-
-// Function to dynamically import the Card component
-// async function loadCardComponent() {
-//   let Card;
-//   if (existsSync('./customBranding/Card.tsx')) {
-//     Card = await import('./customBranding/Card');
-//   } else {
-//     Card = await import('./default/Card');
-//   }
-//   return Card;
-// }
+import { componentResolver } from '@/lib/componentResolver'
 
 export const metadata: Metadata = {
   //TODO: Change by real SEO
@@ -36,95 +25,76 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
   const project: Project = await fetchProject(id)
   if (!project) return null
 
+  const contentSections = project?.structure
   const { pageIntro } = project || ''
-
   const t = await getTranslations('Project')
 
   return (
-    <Container as="article" className="mt-24 sm:mt-32 lg:mt-40">
+    <Container className="mt-24 sm:mt-32 lg:mt-40">
       <FadeIn>
         <header>
           <PageIntroSections showCover={false} centered={true} {...pageIntro} />
-
           <FadeIn>
             <div className="mt-24 border-t border-neutral-200 bg-white/50 sm:mt-32 lg:mt-24">
-              <Container>
+              <>
                 <div className="mx-auto max-w-5xl">
-                  <dl className="-mx-6 grid grid-cols-1 text-sm text-neutral-950 sm:mx-0 sm:grid-cols-3">
+                  <dl className="-mx-6 grid grid-cols-1 text-sm text-neutral-950 sm:mx-0 sm:grid-cols-4">
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Client</dt>
+                      <dt className="font-semibold">{t('client')}</dt>
                       <dd>{project.client}</dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Année</dt>
+                      <dt className="font-semibold">{t('year')}</dt>
                       <dd>
                         <time dateTime={project.year}>{project.year}</time>
                       </dd>
                     </div>
                     <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
-                      <dt className="font-semibold">Service</dt>
+                      <dt className="font-semibold">{t('service')}</dt>
                       <dd>{project.service}</dd>
+                    </div>
+                    <div className="border-t border-neutral-200 px-6 py-4 first:border-t-0 sm:border-l sm:border-t-0">
+                      <dt className="font-semibold">{t('website')}</dt>
+                      <dd>
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {project.link}
+                        </a>
+                      </dd>
                     </div>
                   </dl>
                 </div>
-              </Container>
+              </>
             </div>
 
-            <div className="max-w-[76rem0 -my-px mx-auto">
-              <GrayscaleTransitionImage
-                src={`${project?.pageIntro?.cover?.url}`}
-                quality={90}
-                className="w-full py-6"
-                sizes="(min-width: 1216px) 76rem, 100vw"
-                priority
-                alt={project.pageIntro?.title}
-                width={800}
-                height={600}
-              />
-            </div>
+            {project?.pageIntro?.cover?.url && (
+              <div className="max-w-[76rem0 -my-px mx-auto">
+                <GrayscaleTransitionImage
+                  src={`${project?.pageIntro?.cover?.url}`}
+                  quality={90}
+                  className="w-full py-6"
+                  sizes="(min-width: 1216px) 76rem, 100vw"
+                  priority
+                  alt={project.pageIntro?.title}
+                  width={800}
+                  height={600}
+                />
+              </div>
+            )}
           </FadeIn>
         </header>
       </FadeIn>
 
       <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
-        <div className="[&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-          <div className="mt-6">
-            <h2 className="text-xl">{t('content')}</h2>
-            <BasicMarkdown content={project.content} />
-          </div>
-          <div className="mt-6">
-            <h2 className="text-xl">{t('expertise')}</h2>
-            <BasicMarkdown content={project.expertise} />
-          </div>
-          {/* TODO: Add Tags list */}
-
-          {/* <div>
-            {project.testimonials &&
-              project.testimonials.map((testimonial) => (
-                <Testimonial key={testimonial.id} author={testimonial.author}>
-                  {testimonial.content}
-                </Testimonial>
-              ))}
-          </div> */}
+        <div className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
+          {contentSections?.map((section: any) =>
+            componentResolver({ section, designType: 1 }),
+          )}
         </div>
       </FadeIn>
-      {project.testimonials && (
-        <FadeIn>
-          {project.testimonials.map((testimonial) => (
-            <Testimonial key={testimonial.id} author={testimonial.author}>
-              {testimonial.content}
-            </Testimonial>
-          ))}
-        </FadeIn>
-      )}
-      {/* <FadeIn>
-        <Testimonial
-          key={project.testimonials?.[0]?.id}
-          author={project.testimonials?.[0]?.author}
-        >
-          {project.testimonials?.[0]?.content}
-        </Testimonial>
-      </FadeIn> */}
     </Container>
   )
 }

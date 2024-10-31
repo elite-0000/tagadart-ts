@@ -7,6 +7,7 @@ import { ButtonProps, MediaItem, PageIntro } from '@/types/global'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import Link from 'next/link'
 import { ChevronRightIcon } from 'lucide-react'
+import { Section } from '@/components/ui/Section'
 
 interface HeroProps {
   designType?: Number
@@ -142,7 +143,11 @@ const RenderContent: React.FC<HeroProps> = ({
 }
 
 const HeroSection: React.FC<HeroProps> = ({ heroSection, designType }) => {
-  return <RenderContent heroSection={heroSection} designType={designType} />
+  return (
+    <Section>
+      <RenderContent heroSection={heroSection} designType={designType} />
+    </Section>
+  )
 }
 
 export default HeroSection
