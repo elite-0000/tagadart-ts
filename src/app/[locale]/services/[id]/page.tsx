@@ -87,14 +87,14 @@ export default async function ViewServicePage({ params: { id } }: Props) {
               )}
             </div>
           </FadeIn>
-          <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
+          {/* <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
             {service.content && (
               <div>
                 <h2 className="text-xl">{t('content')}</h2>
                 <BasicMarkdown>{service.content}</BasicMarkdown>
               </div>
             )}
-          </FadeIn>
+          </FadeIn> */}
         </div>
       </Border>
     </article>
