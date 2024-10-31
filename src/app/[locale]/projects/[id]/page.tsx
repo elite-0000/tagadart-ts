@@ -96,32 +96,6 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
           )}
         </div>
       </FadeIn>
-      {/* <div className="mt-6">
-            <h2 className="text-xl">{t('content')}</h2>
-            <BasicMarkdown content={project.content} />
-          </div>
-          <div className="mt-6">
-            <h2 className="text-xl">{t('expertise')}</h2>
-            <BasicMarkdown content={project.expertise} />
-          </div> */}
-      {/* TODO: Add Tags list */}
-      {/* {project.testimonials && (
-        <FadeIn>
-          {project.testimonials.map((testimonial) => (
-            <Testimonial key={testimonial.id} author={testimonial.author}>
-              {testimonial.content}
-            </Testimonial>
-          ))}
-        </FadeIn>
-      )} */}
-      {/* <FadeIn>
-        <Testimonial
-          key={project.testimonials?.[0]?.id}
-          author={project.testimonials?.[0]?.author}
-        >
-          {project.testimonials?.[0]?.content}
-        </Testimonial>
-      </FadeIn> */}
     </Container>
   )
 }
