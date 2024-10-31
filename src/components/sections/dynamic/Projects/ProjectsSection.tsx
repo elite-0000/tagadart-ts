@@ -1,3 +1,5 @@
+"use client"; // Add this line at the top of your file
+
 import React from 'react'
 
 import { Project } from '@/types/project'
@@ -9,6 +11,7 @@ import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ProjectCard1 from './ProjectCard/ProjectCard1'
 import { Section } from '@/components/ui/Section'
+import Fetcher from '@/request/Fetcher'
 
 interface ProjectsProps {
   projectsSection: { sectionIntro: PageIntro } & { projects: Project[] }
@@ -31,11 +34,19 @@ const RenderContent: React.FC<RenderContentProps> = ({
       return (
         <Container>
           <SectionIntro {...sectionIntro} />
-          <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-            {projects.map((project: Project) => (
-              <ProjectCard1 key={project.id} project={project} />
-            ))}
-          </FadeInStagger>
+            <Fetcher url="/projects">
+              {({ data, isLoading }) => {
+                if (isLoading) return <div>Loading projects...</div>;
+
+                return (
+                  <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                    {data?.data.map((project: Project) => (
+                      <ProjectCard1 key={project.id} project={project} />
+                    ))}
+                  </FadeInStagger>
+                );
+              }}
+            </Fetcher>
         </Container>
       )
   }
