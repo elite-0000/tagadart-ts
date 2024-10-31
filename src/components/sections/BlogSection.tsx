@@ -1,3 +1,4 @@
+//deprecated
 import React from 'react'
 import { SectionIntro } from './SectionIntro'
 import { Container } from '../ui/Container'

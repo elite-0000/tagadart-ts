@@ -14,6 +14,7 @@ import PricingSection from '@/components/sections/dynamic/PricingSection/Pricing
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
+import { Container } from '@/components/ui/Container'
 
 type Props = {
   params: {
@@ -239,10 +240,10 @@ export default async function PageRoute({ params }: Props) {
   const contentSections = page?.data[0]?.structure
 
   return (
-    <>
+    <Container>
       {contentSections?.map((section: Section & PageIntro) =>
         componentResolver(section),
       )}
-    </>
+    </Container>
   )
 }

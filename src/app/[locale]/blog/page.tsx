@@ -1,3 +1,5 @@
+//deprecated
+
 import type { Metadata } from 'next'
 import { fetchBlogPage, fetchPosts } from '@/request/fetch'
 import { Container } from '@/components/ui/Container'
