@@ -15,9 +15,7 @@ export function PageIntroSections({
   showCover = true,
 }: PageIntro & { centered?: boolean; showCover?: boolean }) {
   return (
-    <Container
-      className={clsx('mt-24 sm:mt-32 lg:mt-40', centered && 'text-center')}
-    >
+    <div className={clsx('mt-24', centered && 'text-center')}>
       <FadeIn>
         {/* <div className="grid gap-8"> */}
         <div className={`grid gap-8 ${showCover && 'grid-cols-6'}`}>
@@ -58,6 +56,6 @@ export function PageIntroSections({
           )}
         </div>
       </FadeIn>
-    </Container>
+    </div>
   )
 }

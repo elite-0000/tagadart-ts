@@ -9,6 +9,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import TeamCard1 from './TeamsCard/TeamCard1'
 import { Member } from '@/types/member'
+import { Section } from '@/components/ui/Section'
 
 interface TeamsProps {
   teamsSection: { sectionIntro: PageIntro } & { members: Member[] }
@@ -82,13 +83,13 @@ const TeamSection: React.FC<TeamsProps> = async ({
   }
 
   return (
-    <>
+    <Section>
       <RenderContent
         members={teamsSection.members.length > 0 ? teamsSection.members : []}
         sectionIntro={teamsSection.sectionIntro}
         designType={designType}
       />
-    </>
+    </Section>
   )
 }
 

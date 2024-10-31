@@ -11,17 +11,19 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
   return (
     <article key={post.id} className="flex flex-col items-start justify-start">
       <div className="relative w-full">
-        <NextCloudinaryImage
-          alt={post.pageIntro.title}
-          src={post.pageIntro.cover.url}
-          width={300}
-          height={200}
-          className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
-        />
+        {post?.pageIntro?.cover?.url && (
+          <NextCloudinaryImage
+            alt={post.pageIntro.title}
+            src={post.pageIntro.cover.url}
+            width={300}
+            height={200}
+            className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+          />
+        )}
         <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
       </div>
       <div className="max-w-xl">
-        <div className="mt-8 flex items-center gap-x-4 text-xs">
+        <div className="mt-4 flex items-center gap-x-4 text-xs">
           <time className="text-gray-500">
             {formatDate(post.publishedAt, 'fr')}
           </time>
@@ -43,7 +45,7 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
             {truncateWithEllipses(post.pageIntro.content, 150)}
           </p>
         </div>
-        <div className="relative mt-8 flex items-center gap-x-4">
+        <div className="relative mt-4 flex items-center gap-x-4">
           {post.author?.avatar && (
             <NextCloudinaryImage
               alt={post.author.fullname}

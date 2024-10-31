@@ -2,6 +2,7 @@
 
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import { createQueryParams } from './populate'
 
 //////// PAGES
 export async function fetchHomePage() {
@@ -225,30 +226,7 @@ export async function fetchProjects() {
 }
 
 export async function fetchProject(id: string) {
-  const populateProject = [
-    'pageIntro',
-    'pageIntro.cover',
-    'testimonials',
-    'testimonials.author',
-    'testimonials.author.avatar',
-    'projectsSection',
-    'projectsSection.projects',
-    'projectsSection.projects.logo',
-    'projectsSection.projects.testimonials',
-    'projectsSection.projects.pageIntro.cover',
-    'projectsSection.projects.our_services',
-    'projectsSection.projects.our_services.pageIntro',
-    'projectsSection.projects.our_services.pageIntro.cover',
-  ]
-
-  const queryParams: RestQueryParams = {
-    populate: populateProject,
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  const queryParams = createQueryParams('projects')
 
   try {
     const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)

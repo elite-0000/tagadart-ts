@@ -17,7 +17,8 @@ export function BlogPageIntroSections({
   showCover = true,
 }: PageIntro & { showCover?: boolean; post: Post }) {
   return (
-    <Container className="mt-24 text-center sm:mt-32 lg:mt-40">
+    // <Container className="mt-24 text-center sm:mt-32 lg:mt-40">
+    <>
       <FadeIn>
         <div className="grid gap-8">
           <div className="col-span-full">
@@ -50,6 +51,6 @@ export function BlogPageIntroSections({
           </p>
         </div>
       </FadeIn>
-    </Container>
+    </>
   )
 }

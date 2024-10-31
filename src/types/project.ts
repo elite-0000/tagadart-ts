@@ -20,6 +20,7 @@ export interface Project {
   testimonials: Testimonial[]
   our_services: Service[]
   posts: Post[]
+  structure: any
 }
 
 export interface ProjectsData {

@@ -7,13 +7,14 @@ import ReferenceSection from '@/components/sections/dynamic/References/Reference
 import ContactSection from '@/components/sections/dynamic/Contact/ContactSection'
 import CultureSection from '@/components/sections/dynamic/Culture/CultureSection'
 import TestimonialSection from '@/components/sections/dynamic/TestimonialSection'
-import { fetchAxiosAPI } from '@/request/request'
-import { PageIntro } from '@/types/global'
-
 import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSection'
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
+
+import { fetchAxiosAPI } from '@/request/request'
+import { PageIntro } from '@/types/global'
+import { Container } from '@/components/ui/Container'
 
 type Props = {
   params: {
@@ -23,9 +24,14 @@ type Props = {
 }
 
 async function getPageBySlug(slug: string, lang: string) {
+  const querySlug = slug === undefined ? 'home' : slug
   const path = `/pages`
   const urlParamsObject = {
-    filters: { slug },
+    filters: {
+      slug: {
+        $eq: querySlug,
+      },
+    },
     locale: lang,
     populate: {
       structure: {
@@ -47,6 +53,15 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.pageIntro',
               'projects.pageIntro.cover',
               'projects.logo',
+            ],
+          },
+          'section.contact-section': {
+            populate: [
+              'sectionIntro',
+              'content',
+              'content.offices',
+              'content.emails',
+              'content.socials',
             ],
           },
 
@@ -105,8 +120,6 @@ export default async function PageRoute({ params }: Props) {
   const page = await getPageBySlug(params.slug, params.lang)
   if (!page || !page.data || page.data.length === 0) return null
 
-  console.log(page.data.structure, 'page')
-
   type Section = {
     id: number
     __component: string
@@ -114,7 +127,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const componentResolver = (section: any) => {
-    console.log(section, 'section')
     switch (section.__component) {
       case 'section.blog-section':
         return (
@@ -177,6 +189,14 @@ export default async function PageRoute({ params }: Props) {
             designType={2}
           />
         )
+      case 'section.contact-section':
+        return (
+          <ContactSection
+            key={section.id}
+            contactSection={section}
+            designType={2}
+          />
+        )
       case 'section.cta':
         return (
           <ContactSection
@@ -208,7 +228,9 @@ export default async function PageRoute({ params }: Props) {
         )
 
       case 'section.testimonials':
-        return <TestimonialSection key={section.id} avatar={section.avatar} />
+        return (
+          <TestimonialSection key={section.id} testimonialSection={section} />
+        )
 
       default:
         return null
@@ -218,12 +240,10 @@ export default async function PageRoute({ params }: Props) {
   const contentSections = page?.data[0]?.structure
 
   return (
-    <>
+    <Container>
       {contentSections?.map((section: Section & PageIntro) =>
         componentResolver(section),
       )}
-    </>
+    </Container>
   )
-  // const contentSections = page.data[0].attributes.contentSections;
-  // return contentSections.map((section: any, index: number) => componentResolver(section, index));
 }

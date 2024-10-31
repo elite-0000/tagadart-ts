@@ -12,32 +12,23 @@ export function SectionIntro({
   smaller = false,
   invert = false,
   centered = false,
-  noMarginTop = false,
   ...props
 }: PageIntro & {
   centered?: boolean
   showCover?: boolean
-  noMarginTop?: boolean
   smaller?: boolean
   invert?: boolean
 }) {
   return (
-    <Container
-      {...props}
-      className={clsx(
-        !noMarginTop && 'mt-24 sm:mt-32',
-        centered && 'text-center',
-        'my-16',
-      )}
-    >
+    <div {...props} className={clsx(centered && 'text-center', 'mb-8')}>
       <FadeIn>
         <h2>
           {eyebrow && (
             <>
               <span
                 className={clsx(
-                  'mb-6 block font-display text-base font-semibold',
-                  invert ? 'text-primary-50' : 'text-neutral-950',
+                  'block font-display text-base font-semibold',
+                  invert ? 'text-primary-50' : 'text-primary-400',
                 )}
               >
                 {eyebrow}
@@ -69,6 +60,6 @@ export function SectionIntro({
           </div>
         )}
       </FadeIn>
-    </Container>
+    </div>
   )
 }

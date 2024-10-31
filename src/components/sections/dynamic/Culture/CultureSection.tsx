@@ -8,6 +8,7 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import CultureCard1 from './CultureCard/CultureCard1'
 import { GridList } from '@/components/ui/GridList'
+import { Section } from '@/components/ui/Section'
 
 interface CulturesProps {
   culturesSection: { sectionIntro: PageIntro } & { values: Culture[] }
@@ -57,7 +58,7 @@ const CultureSection: React.FC<CulturesProps> = async ({
   designType,
 }) => {
   return (
-    <div className="mt-24 rounded-4xl bg-primary-800 py-24 sm:mt-32 lg:mt-40 lg:py-32">
+    <Section className="rounded-4xl bg-primary-800">
       <RenderContent
         cultures={
           culturesSection.values.length > 0 ? culturesSection.values : []
@@ -65,7 +66,7 @@ const CultureSection: React.FC<CulturesProps> = async ({
         sectionIntro={culturesSection.sectionIntro}
         designType={designType}
       />
-    </div>
+    </Section>
   )
 }
 
