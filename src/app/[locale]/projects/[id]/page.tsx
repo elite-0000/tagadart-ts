@@ -11,13 +11,46 @@ import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
 import { componentResolver } from '@/lib/componentResolver'
 
-export const metadata: Metadata = {
-  //TODO: Change by real SEO
-  title: 'Projet - Nom du projet',
-}
 type Props = {
   params: {
     id: string
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project: Project = await fetchProject(params?.id)
+
+  if (!project) {
+    return {
+      title: 'Project not found',
+    }
+  }
+
+  return {
+    title: `${project.client} - ${project.pageIntro.title} - Tagadart`, // Add your site name
+    description: project.pageIntro.content,
+    openGraph: {
+      title: project.pageIntro.title,
+      description: project.content,
+      images: project.pageIntro?.cover?.url
+        ? [
+            {
+              url: project.pageIntro.cover.url,
+              width: 800,
+              height: 600,
+              alt: project.pageIntro.title,
+            },
+          ]
+        : [],
+    },
+    // Optional: Add more metadata
+    // alternates: {
+    //   canonical: `/projects/${params.id}`,
+    //   languages: {
+    //     en: `/en/projects/${params.id}`,
+    //     fr: `/fr/projects/${params.id}`,
+    //   },
+    // },
   }
 }
 
