@@ -33,23 +33,20 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
                 className="mr-3"
               />
             </div>
-            {/* <div>
-              <h2>{project.client}</h2>
-            </div> */}
           </div>
           {project.pageIntro.cover && (
-            <div className="mt-6">
+            <div className="my-6">
               <NextCloudinaryImage
                 src={project.pageIntro.cover.url}
                 alt={project.pageIntro.title}
                 width={600}
                 height={500}
                 className="rounded-md"
+                crop="fill"
               />
             </div>
           )}
 
-          {/* <p>{project.client}</p> */}
           <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
             <time dateTime={project.year} className="font-semibold">
               {project.year}

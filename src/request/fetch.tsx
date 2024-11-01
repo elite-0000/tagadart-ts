@@ -2,6 +2,7 @@
 
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
+import { createQueryParams } from './populate'
 
 //////// PAGES
 export async function fetchHomePage() {
@@ -164,6 +165,7 @@ export async function fetchPosts() {
 
   const queryParams: RestQueryParams = {
     populate: populatePosts,
+    sort: 'createdAt:desc',
     publicationState: 'live',
     pagination: {
       page: 1,
@@ -181,22 +183,13 @@ export async function fetchPosts() {
 }
 
 export async function fetchPost(id: string) {
-  const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
-
-  const queryParams: RestQueryParams = {
-    populate: populatePosts,
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  const queryParams = createQueryParams('posts')
 
   try {
-    const postsData = await fetchAxiosAPI(`/posts/${id}`, queryParams)
-    return postsData?.data
+    const postData = await fetchAxiosAPI(`/posts/${id}`, queryParams)
+    return postData?.data
   } catch (error) {
-    console.error('Failed to load posts data:', error)
+    console.error('Failed to load post:', error)
     throw error
   }
 }
@@ -223,30 +216,7 @@ export async function fetchProjects() {
 }
 
 export async function fetchProject(id: string) {
-  const populateProject = [
-    'pageIntro',
-    'pageIntro.cover',
-    'testimonials',
-    'testimonials.author',
-    'testimonials.author.avatar',
-    'projectsSection',
-    'projectsSection.projects',
-    'projectsSection.projects.logo',
-    'projectsSection.projects.testimonials',
-    'projectsSection.projects.pageIntro.cover',
-    'projectsSection.projects.our_services',
-    'projectsSection.projects.our_services.pageIntro',
-    'projectsSection.projects.our_services.pageIntro.cover',
-  ]
-
-  const queryParams: RestQueryParams = {
-    populate: populateProject,
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  const queryParams = createQueryParams('projects')
 
   try {
     const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
@@ -279,22 +249,14 @@ export async function fetchServices() {
 }
 
 export async function fetchService(id: string) {
-  const populateServices = ['pageIntro']
-
-  const queryParams: RestQueryParams = {
-    populate: populateServices,
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  const queryParams = createQueryParams('services')
 
   try {
-    const servicesData = await fetchAxiosAPI(`our-services/${id}`, queryParams)
-    return servicesData?.data
+    const serviceData = await fetchAxiosAPI(`/our-services/${id}`, queryParams)
+
+    return serviceData?.data
   } catch (error) {
-    console.error('Failed to load services data:', error)
+    console.error('Failed to load service:', error)
     throw error
   }
 }

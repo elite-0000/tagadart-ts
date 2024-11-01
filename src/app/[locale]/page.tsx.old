@@ -1,8 +1,6 @@
 import { type Metadata } from 'next'
 
-import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
-import { ContactSection } from '@/components/sections/ContactSection'
+import { ContactFooter } from '@/components/sections/ContactFooter'
 
 import BlogSection from '@/components/sections/BlogSection'
 
@@ -16,7 +14,7 @@ import {
   fetchServices,
 } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
-import ReferenceSection from '@/components/sections/Clients'
+import ClientsSection from '@/components/sections/Clients'
 
 export const metadata: Metadata = {
   description:
@@ -51,21 +49,12 @@ export default async function Home() {
 
   return (
     <>
-      {/* <Container className="mt-24 sm:mt-32 md:mt-56">
-        <FadeIn className="max-w-3xl">
-          <PageIntro {...pageIntro} />
-        </FadeIn>
-      </Container> */}
-
       <PageIntroSections {...pageIntro} />
       <ProjectsSection projectsSection={projectsSection} projects={projects} />
       <ServicesSection servicesSection={servicesSection} services={services} />
       <BlogSection blogSection={blogSection} posts={posts} />
-      <ReferenceSection
-        clients={clients}
-        referencesSection={referencesSection}
-      />
-      <ContactSection />
+      <ClientsSection clients={clients} referencesSection={referencesSection} />
+      <ContactFooter />
       {/* <referencesSection /> //TODO : later add client/reference section */}
     </>
   )

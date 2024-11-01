@@ -25,8 +25,8 @@ export interface MediaItem {
   id: string
   url: string
   provider_metadata?: any
-  width?: number
-  height?: number
+  width: number
+  height: number
   alternativeText: string
 }
 
@@ -35,7 +35,8 @@ export interface RestQueryParams extends Partial<PaginationMeta> {
   fields?: string | string[]
   filters?: object
   sort?: string
-  populate: string | object
+  locale?: string
+  populate?: string | object
   locale?: string | string[]
   publicationState?: 'live' | 'preview'
   cover?: MediaItem
@@ -55,9 +56,8 @@ export interface PaginationMeta {
 export interface PageIntro {
   title: string
   eyebrow: string
-  content: any
-  image: string
-  cover: MediaItem
+  content: string
+  cover: MediaItem | null
 }
 
 export interface Culture {
@@ -77,23 +77,9 @@ export interface Office {
 // CTA.ts
 export interface CTA {}
 
-// // AboutUs.ts
-// export interface AboutUs {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   culture: Culture
-//   team: Member[]
-// }
-
-// // Contact.ts
-// export interface Contact {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   offices: Office[]
-//   newsletter: boolean
-//   form: Form
-// }
+export interface ButtonProps {
+  id: string
+  link: string
+  text: string
+  type: string
+}

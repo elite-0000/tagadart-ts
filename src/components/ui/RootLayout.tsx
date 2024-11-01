@@ -1,5 +1,4 @@
 //TODO: Refactoring, it's not very clean, too much comments and unuse components
-
 'use client'
 import {
   createContext,
@@ -18,11 +17,8 @@ import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { Footer } from '@/components/sections/Footer'
 import { GridPattern } from '@/components/ui/GridPattern'
-import { Logo, Logomark } from '@/components/images/Logo'
-import { OfficesSection } from '@/components/sections/Offices'
 import { SocialMedia } from '@/components/sections/SocialMedia'
-import logo from '@/images/logo-tagadart.svg'
-import Image from 'next/image'
+
 import { useTranslations } from 'next-intl'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
