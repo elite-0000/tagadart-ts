@@ -1,3 +1,5 @@
+'use client';
+
 import React, { ReactNode, useEffect, useState } from "react";
 import useSWR, { KeyedMutator } from "swr";
 import { defaultQueryParams, fetchUseSWR } from "@/request/request";
@@ -25,6 +27,7 @@ interface FetcherProps<T> {
   children: (fetchData: FetcherChildProps<T>) => ReactNode;
 }
 
+
 function Fetcher<T>({
   url,
   children,
@@ -39,9 +42,9 @@ function Fetcher<T>({
   const [accumulatedData, setAccumulatedData] = useState<Data>();
 
   const effectiveFilters = { ...params.filters, ...filters };
-  const effectivePopulate = populate || params.populate;
+  const effectivePopulate = 'pageIntro.cover';
+  
   const effectiveSort = sort || params.sort;
-
   const effectiveParams = {
     ...params,
     filters: effectiveFilters,
@@ -55,7 +58,6 @@ function Fetcher<T>({
     arrayFormat: "indices",
     allowDots: false,
   });
-
   const { data, error, mutate } = useSWR<any>(
     `${url}?${queryString}`,
     fetchUseSWR,
