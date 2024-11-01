@@ -47,7 +47,7 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   projectsSection,
   designType,
 }) => {
-  const url = '/projects'; // Adjust this URL based on your API endpoint
+  const url = '/projects';
   return (
     <Section>
       <Fetcher

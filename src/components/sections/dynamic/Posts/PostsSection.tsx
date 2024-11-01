@@ -9,6 +9,9 @@ import PostCard1 from '../Posts/PostCard/PostCard1'
 import PostCard2 from '../Posts/PostCard/PostCard2'
 import { PageIntro } from '@/types/global'
 import { Section } from '@/components/ui/Section'
+import Fetcher from '@/request/Fetcher'
+import { url } from 'inspector'
+import PaginationMain from '../../Pagination'
 
 interface BlogProps {
   postsSection: { sectionIntro: PageIntro } & { posts: Post[] }
@@ -66,6 +69,7 @@ const PostsSection: React.FC<BlogProps> = async ({
   } catch (error) {
     console.error('Failed to load posts:', error)
   }
+  const url = '/posts';
 
   //TODO: Change to localized string
   const sectionIntro = {
@@ -74,13 +78,25 @@ const PostsSection: React.FC<BlogProps> = async ({
   }
   return (
     <Section>
-      <RenderContent
-        posts={
-          postsSection?.posts?.length > 0 ? postsSection?.posts : posts || []
-        }
-        sectionIntro={postsSection?.sectionIntro || sectionIntro}
-        designType={designType}
-      />
+      <Fetcher
+        url={url}
+        paginationMode="pagination" // Set pagination mode
+      >
+        {({ data, currentPage, totalPages, goToPage }) => (
+          <div>
+            <RenderContent
+              posts={data.data}
+              sectionIntro={postsSection.sectionIntro}
+              designType={designType}
+            />
+            <PaginationMain
+              currentPage={currentPage}
+              totalPages={totalPages}
+              goToPage={goToPage}
+            />
+          </div>
+        )}
+      </Fetcher>
     </Section>
   )
 }
