@@ -85,6 +85,16 @@ async function getPageBySlug(slug: string, lang: string) {
               'members.posts.pageIntro',
             ],
           },
+          'section.testimonials': {
+            populate: [
+              'sectionIntro',
+              'testimonials',
+              'testimonials.pageIntro',
+              'testimonials.pageIntro.cover',
+              'testimonials.author',
+              'testimonials.author.avatar',
+            ],
+          },
           'section.reference-section': {
             populate: [
               'sectionIntro',
