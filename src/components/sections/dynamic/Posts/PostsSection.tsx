@@ -88,7 +88,7 @@ const PostsSection: React.FC<BlogProps> = ({
               sectionIntro={postsSection.sectionIntro}
               designType={designType}
             />
-            {postsSection.sectionIntro.pagination?
+            {postsSection.sectionIntro?.pagination?
               <>
                 <PaginationMain
                   currentPage={currentPage}
