@@ -61,11 +61,14 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
               sectionIntro={projectsSection.sectionIntro}
               designType={designType}
             />
-            <PaginationMain
-              currentPage={currentPage}
-              totalPages={totalPages}
-              goToPage={goToPage}
-            />
+            {projectsSection.sectionIntro.pagination?
+              <>
+                <PaginationMain
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  goToPage={goToPage}
+                />
+              </> : null}
           </div>
         )}
       </Fetcher>
