@@ -48,7 +48,7 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
         <div className="relative mt-4 flex items-center gap-x-4">
           {post.author?.avatar && (
             <NextCloudinaryImage
-              alt={post.author.fullname}
+              alt={post.author?.fullname}
               src={post.author.avatar.url}
               width={48}
               height={48}
@@ -58,9 +58,9 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
           <div className="text-sm leading-6">
             <p className="font-semibold text-gray-900">
               <span className="absolute inset-0" />
-              {post.author.fullname}
+              {post.author?.fullname}
             </p>
-            <p className="text-gray-600">{post.author.title}</p>
+            <p className="text-gray-600">{post.author?.title}</p>
           </div>
         </div>
       </div>

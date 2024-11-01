@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 import { Post } from '@/types/post'
@@ -58,14 +59,12 @@ const RenderContent: React.FC<RenderContentProps> = ({
   }
 }
 
-const PostsSection: React.FC<BlogProps> = async ({
+const PostsSection: React.FC<BlogProps> = ({
   postsSection,
   designType,
 }) => {
-  let posts: Post[] | null = null
 
   try {
-    posts = await fetchPosts()
   } catch (error) {
     console.error('Failed to load posts:', error)
   }
