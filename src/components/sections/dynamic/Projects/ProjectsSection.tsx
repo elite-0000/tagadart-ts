@@ -49,30 +49,28 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
 }) => {
   const url = '/projects';
   return (
-    <Section>
-      <Fetcher
-        url={url}
-        paginationMode="pagination" // Set pagination mode
-      >
-        {({ data, currentPage, totalPages, goToPage }) => (
-          <div>
-            <RenderContent
-              projects={data.data}
-              sectionIntro={projectsSection.sectionIntro}
-              designType={designType}
-            />
-            {projectsSection.sectionIntro.pagination?
-              <>
+    <>
+      <Fetcher url={url} paginationMode="pagination">
+        {({ data, currentPage, totalPages, goToPage }) => {
+          return (
+            <div>
+              <RenderContent
+                projects={data.data}
+                sectionIntro={projectsSection.sectionIntro}
+                designType={designType}
+              />
+              {projectsSection.sectionIntro.pagination ? (
                 <PaginationMain
                   currentPage={currentPage}
                   totalPages={totalPages}
                   goToPage={goToPage}
                 />
-              </> : null}
-          </div>
-        )}
+              ) : null}
+            </div>
+          );
+        }}
       </Fetcher>
-    </Section>
+    </>
   );
 };
 

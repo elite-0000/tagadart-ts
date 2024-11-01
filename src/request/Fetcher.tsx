@@ -84,7 +84,7 @@ function Fetcher<T>({
         setAccumulatedData(data);
       }
     }
-  }, [data]);
+  }, [accumulatedData, data, paginationMode]);
 
   const loadMore = () => {
     if (hasNextPage) {
