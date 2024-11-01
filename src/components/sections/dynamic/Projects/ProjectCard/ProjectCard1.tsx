@@ -14,8 +14,8 @@ interface ProjectCardProps {
   project: Project
 }
 
-const ProjectCard1: React.FC<ProjectCardProps> = async ({ project }) => {
-  const t = await getTranslations('Project')
+const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
+  // const t = await getTranslations('Project')
 
   return (
     <FadeIn key={project.id} className="flex">
@@ -75,7 +75,7 @@ const ProjectCard1: React.FC<ProjectCardProps> = async ({ project }) => {
               {t('view_more')}
             </Link> */}
 
-            <Button variant="primary">{t('view_more')}</Button>
+            <Button variant="primary">view_more</Button>
           </div>
         </article>
       </Link>

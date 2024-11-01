@@ -1,5 +1,4 @@
-"use client"; // Add this line at the top of your file
-
+"use client"
 import React from 'react'
 
 import { Project } from '@/types/project'
@@ -7,21 +6,21 @@ import { PageIntro } from '@/types/global'
 import { fetchProjects } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
-import { FadeIn, FadeInStagger } from '@/components/ui/FadeIn'
+import { FadeInStagger } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ProjectCard1 from './ProjectCard/ProjectCard1'
 import { Section } from '@/components/ui/Section'
 import Fetcher from '@/request/Fetcher'
-
+import PaginationMain from '../../Pagination'
 interface ProjectsProps {
-  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] }
-  designType: Number
+  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] };
+  designType: number;
 }
 
 interface RenderContentProps {
-  projects: Project[]
-  sectionIntro: PageIntro
-  designType?: Number
+  projects: Project[];
+  sectionIntro: PageIntro;
+  designType?: number;
 }
 
 const RenderContent: React.FC<RenderContentProps> = ({
@@ -34,49 +33,44 @@ const RenderContent: React.FC<RenderContentProps> = ({
       return (
         <Container>
           <SectionIntro {...sectionIntro} />
-            <Fetcher url="/projects">
-              {({ data, isLoading }) => {
-                if (isLoading) return <div>Loading projects...</div>;
-
-                return (
-                  <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-                    {data?.data.map((project: Project) => (
-                      <ProjectCard1 key={project.id} project={project} />
-                    ))}
-                  </FadeInStagger>
-                );
-              }}
-            </Fetcher>
+          <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {projects.map((project: Project) => (
+              <ProjectCard1 key={project.id} project={project} />
+            ))}
+          </FadeInStagger>
         </Container>
-      )
+      );
   }
-}
+};
 
-const ProjectsSection: React.FC<ProjectsProps> = async ({
+const ProjectsSection: React.FC<ProjectsProps> = ({
   projectsSection,
   designType,
 }) => {
-  let projects: Project[] | null = null
-
-  try {
-    projects = await fetchProjects()
-  } catch (error) {
-    console.error('Failed to load projects:', error)
-  }
-
+  const url = '/projects'; // Adjust this URL based on your API endpoint
   return (
     <Section>
-      <RenderContent
-        projects={
-          projectsSection.projects.length > 0
-            ? projectsSection.projects
-            : projects || []
-        }
-        sectionIntro={projectsSection.sectionIntro}
-        designType={designType}
-      />
+      <Fetcher
+        url={url}
+        paginationMode="pagination" // Set pagination mode
+      >
+        {({ data, currentPage, totalPages, goToPage }) => (
+          <div>
+            <RenderContent
+              projects={data.data}
+              sectionIntro={projectsSection.sectionIntro}
+              designType={designType}
+            />
+            <PaginationMain
+              currentPage={currentPage}
+              totalPages={totalPages}
+              goToPage={goToPage}
+            />
+          </div>
+        )}
+      </Fetcher>
     </Section>
-  )
-}
+  );
+};
 
-export default ProjectsSection
+export default ProjectsSection;
