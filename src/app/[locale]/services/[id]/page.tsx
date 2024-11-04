@@ -8,8 +8,38 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 
-export const metadata: Metadata = {
-  title: 'Service - Service Title',
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const service = await fetchService(params.id)
+  
+  if (!service) {
+    return {
+      title: 'Service not found'
+    }
+  }
+  return {
+    title: `${service.seo.metaTitle} - Tagadart`, // Add your site name
+    description: service.seo.metaDescription,
+    openGraph: {
+      title: service.pageIntro.title,
+      description: service.pageIntro.content,
+      images: service.pageIntro?.cover?.url ? [
+        {
+          url: service.pageIntro.cover.url,
+          width: 800,
+          height: 600,
+          alt: service.pageIntro.title,
+        }
+      ] : [],
+    },
+    // Optional: Add more metadata
+    alternates: {
+      canonical: `/services/${params.id}`,
+      languages: {
+        'en': `/en/services/${params.id}`,
+        'fr': `/fr/services/${params.id}`,
+      },
+    }
+  }
 }
 
 type Props = {
