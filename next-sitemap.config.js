@@ -1,7 +1,11 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://tagadart.ch',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://tagadart.ch',
   generateRobotsTxt: true, // (optional)
-  generateIndexSitemap: false,
-  // ...other options
+  exclude: ['/server-sitemap.xml'], // Exclude server-side sitemap from static generation
+  robotsTxtOptions: {
+    additionalSitemaps: [
+      'https://tagadart.ch/server-sitemap.xml', // Add your server-side sitemap here
+    ],
+  },
 }
