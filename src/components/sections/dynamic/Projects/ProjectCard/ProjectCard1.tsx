@@ -9,13 +9,15 @@ import Link from 'next/link'
 import { truncateWithEllipses } from '@/lib/helper'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
+import { useTranslations } from 'next-intl'
 
 interface ProjectCardProps {
   project: Project
 }
 
 const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
-  // const t = await getTranslations('Project')
+  const t = useTranslations('Project')
+
   return (
     <FadeIn key={project.id} className="flex" style={{ opacity: 1, transform: 'none' }}>
       <Link href={`/projects/${project.id}`}>
@@ -74,7 +76,7 @@ const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
               {t('view_more')}
             </Link> */}
 
-            <Button variant="primary">view_more</Button>
+            <Button variant="primary">{t('view_more')}</Button>
           </div>
         </article>
       </Link>
