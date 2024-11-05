@@ -183,7 +183,7 @@ export async function fetchPosts() {
 }
 
 export async function fetchPost(id: string) {
-  const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
+  const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover', 'seo.metaTitle', 'seo.metaImage']
 
   const queryParams: RestQueryParams = {
     populate: populatePosts,
@@ -226,7 +226,17 @@ export async function fetchProjects() {
 }
 
 export async function fetchProject(id: string) {
-  const queryParams = createQueryParams('projects')
+  const populateProjects = ['pageIntro', 'author.avatar', 'pageIntro.cover', 'seo.metaTitle', 'seo.metaImage']
+
+  const queryParams: RestQueryParams = {
+    populate: populateProjects,
+
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
 
   try {
     const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
@@ -238,7 +248,7 @@ export async function fetchProject(id: string) {
 }
 
 export async function fetchServices() {
-  const populateServices = ['pageIntro']
+  const populateServices = ['pageIntro', 'seo.metaTitle', 'seo.metaImage']
 
   const queryParams: RestQueryParams = {
     populate: populateServices,
