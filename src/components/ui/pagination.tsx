@@ -64,7 +64,7 @@ const PaginationPrevious = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => {
-  const t = useTranslations(''); // Use useTranslations hook
+  const t = useTranslations('Pagination');
   return (
     <PaginationLink
       aria-label="Go to previous page"
@@ -83,7 +83,7 @@ const PaginationNext = ({
   className,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) => {
-  const t = useTranslations(''); // Use useTranslations hook
+  const t = useTranslations('Pagination');
   return (
     <PaginationLink
       aria-label="Go to next page"
@@ -102,7 +102,7 @@ const PaginationEllipsis = ({
   className,
   ...props
 }: React.ComponentProps<"span">) => {
-  const t = useTranslations('Pagination'); // Use useTranslations hook
+  const t = useTranslations('Pagination');
   return (
     <span
       aria-hidden

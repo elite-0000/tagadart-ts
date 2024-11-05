@@ -8,14 +8,14 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { fetchPosts } from '@/request/fetch'
 import PostCard1 from '../Posts/PostCard/PostCard1'
 import PostCard2 from '../Posts/PostCard/PostCard2'
-import { PageIntro } from '@/types/global'
+import { PageIntro, Pagination } from '@/types/global'
 import { Section } from '@/components/ui/Section'
 import Fetcher from '@/request/Fetcher'
 import { url } from 'inspector'
 import PaginationMain from '../../Pagination'
 
 interface BlogProps {
-  postsSection: { sectionIntro: PageIntro } & { posts: Post[] }
+  postsSection: { sectionIntro: PageIntro } & { posts: Post[] } & { pagination: Pagination }
   designType: Number
 }
 
@@ -69,7 +69,6 @@ const PostsSection: React.FC<BlogProps> = ({
     console.error('Failed to load posts:', error)
   }
   const url = '/posts';
-
   //TODO: Change to localized string
   const sectionIntro = {
     title: 'Des posts qui peuvent vous plaire',
@@ -79,8 +78,8 @@ const PostsSection: React.FC<BlogProps> = ({
     <Section>
       <Fetcher
         url={url}
-        paginationMode="pagination" // Set pagination mode
-      >
+        paginationMode={postsSection?.pagination?.value}
+        >
         {({ data, currentPage, totalPages, goToPage }) => (
           <div>
             <RenderContent
@@ -88,14 +87,11 @@ const PostsSection: React.FC<BlogProps> = ({
               sectionIntro={postsSection.sectionIntro}
               designType={designType}
             />
-            {postsSection.sectionIntro?.pagination?
-              <>
-                <PaginationMain
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  goToPage={goToPage}
-                />
-              </> : null}
+            <PaginationMain
+              currentPage={currentPage}
+              totalPages={totalPages}
+              goToPage={goToPage}
+            />
           </div>
         )}
       </Fetcher>

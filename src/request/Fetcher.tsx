@@ -22,7 +22,7 @@ interface FetcherProps<T> {
   sort?: string;
   populate?: string | object;
   filters?: [];
-  paginationMode?: "infinite" | "pagination";
+  paginationMode?: "infinite" | "pagination" | "off";
   params?: RestQueryParams;
   children: (fetchData: FetcherChildProps<T>) => ReactNode;
 }
@@ -33,7 +33,7 @@ function Fetcher<T>({
   children,
   params = defaultQueryParams,
   filters,
-  paginationMode = "pagination",
+  paginationMode,
   sort,
   populate,
 }: FetcherProps<T>) {
@@ -50,7 +50,7 @@ function Fetcher<T>({
     filters: effectiveFilters,
     sort: effectiveSort,
     populate: effectivePopulate,
-    pagination: { ...params.pagination, page: currentPage },
+    pagination: paginationMode === "off" ? undefined : { ...params.pagination, page: currentPage },
   };
 
   const queryString = qs.stringify(effectiveParams, {
