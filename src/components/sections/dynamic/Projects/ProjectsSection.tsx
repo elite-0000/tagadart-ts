@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { Project } from '@/types/project'
-import { PageIntro } from '@/types/global'
+import { PageIntro, Pagination } from '@/types/global'
 import { fetchProjects } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
@@ -14,7 +14,7 @@ import { Section } from '@/components/ui/Section'
 import Fetcher from '@/request/Fetcher'
 import PaginationMain from '../../Pagination'
 interface ProjectsProps {
-  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] };
+  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] } & { pagination: Pagination };
   designType: number;
 }
 
@@ -53,7 +53,10 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   const url = '/projects';
   return (
     <>
-      <Fetcher url={url} paginationMode="pagination">
+      <Fetcher 
+        url={url} 
+        paginationMode={projectsSection?.pagination?.value}
+        >
         {({ data, currentPage, totalPages, goToPage }) => {
           return (
             <div>
