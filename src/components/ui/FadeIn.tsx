@@ -39,7 +39,7 @@ export function FadeInStagger({
   return (
     <FadeInStaggerContext.Provider value={true}>
       <motion.div
-        initial="visible"
+        initial="hidden"
         whileInView="visible"
         viewport={viewport}
         transition={{ staggerChildren: faster ? 0.12 : 0.2 }}

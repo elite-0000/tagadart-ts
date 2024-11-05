@@ -84,3 +84,8 @@ export interface ButtonProps {
   text: string
   type: string
 }
+
+export interface Pagination {
+  id: number;
+  value: "off" | "infinite" | "pagination";
+}

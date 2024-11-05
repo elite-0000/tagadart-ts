@@ -7,6 +7,7 @@ import { fetchProjects } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
 import { FadeInStagger } from '@/components/ui/FadeIn'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import ProjectCard1 from './ProjectCard/ProjectCard1'
 import { Section } from '@/components/ui/Section'
@@ -35,7 +36,9 @@ const RenderContent: React.FC<RenderContentProps> = ({
           <SectionIntro {...sectionIntro} />
           <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {projects.map((project: Project) => (
-              <ProjectCard1 key={project.id} project={project} />
+              <FadeIn key={project.id}>
+                <ProjectCard1 key={project.id} project={project} />
+              </FadeIn>
             ))}
           </FadeInStagger>
         </Container>
@@ -59,13 +62,11 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
                 sectionIntro={projectsSection.sectionIntro}
                 designType={designType}
               />
-              {projectsSection.sectionIntro.pagination ? (
-                <PaginationMain
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  goToPage={goToPage}
-                />
-              ) : null}
+              <PaginationMain
+                currentPage={currentPage}
+                totalPages={totalPages}
+                goToPage={goToPage}
+              />
             </div>
           );
         }}
