@@ -11,10 +11,12 @@ import PageIntroSection from '@/components/sections/dynamic/PageIntro/ContactSec
 import HeroSection from '@/components/sections/dynamic/Hero/HeroSection'
 import CTASection from '@/components/sections/dynamic/CTA/CTA'
 import PricingSection from '@/components/sections/dynamic/PricingSection/PricingSection'
+import type { Metadata } from "next";
 
 import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
+import { structurePopulate } from '@/request/populate'
 
 type Props = {
   params: {
@@ -34,6 +36,9 @@ async function getPageBySlug(slug: string, lang: string) {
     },
     locale: lang,
     populate: {
+      seo: {
+        populate: ['metaTitle', 'metaDescription', 'metaImage.url']
+      },
       structure: {
         on: {
           'section.blog-section': {
@@ -109,11 +114,42 @@ async function getPageBySlug(slug: string, lang: string) {
           'section.hero-section': {
             populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
           },
+          
         },
       },
     },
   }
   return await fetchAxiosAPI(path, urlParamsObject)
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const page = await getPageBySlug(params.slug, params.lang);
+  
+  // Destructure the SEO properties with default values
+  const seo = page.data[0]?.seo || {};
+  const {
+    metaTitle = 'tagadart title',
+    metaDescription = 'tagadart description',
+    metaImage = {}
+  } = seo;
+  const siteName = 'tagadart';
+
+  return {
+    title: `${metaTitle} | ${siteName}`,
+    description: metaDescription,
+    openGraph: {
+      title: metaTitle,
+      description: metaDescription,
+      images: metaImage.url ? [
+        {
+          url: metaImage.url,
+          width: 800,
+          height: 600,
+          alt: metaTitle,
+        }
+      ] : [],
+    },
+  };
 }
 
 export default async function PageRoute({ params }: Props) {
