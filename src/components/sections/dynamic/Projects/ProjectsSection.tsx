@@ -65,11 +65,13 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
                 sectionIntro={projectsSection.sectionIntro}
                 designType={designType}
               />
+            {projectsSection?.pagination &&  (
               <PaginationMain
                 currentPage={currentPage}
                 totalPages={totalPages}
                 goToPage={goToPage}
               />
+            )}
             </div>
           );
         }}

@@ -87,11 +87,14 @@ const PostsSection: React.FC<BlogProps> = ({
               sectionIntro={postsSection.sectionIntro}
               designType={designType}
             />
-            <PaginationMain
-              currentPage={currentPage}
-              totalPages={totalPages}
-              goToPage={goToPage}
-            />
+            {postsSection?.pagination?.value === 'off' ? null : (
+              <PaginationMain
+                currentPage={currentPage}
+                totalPages={totalPages}
+                goToPage={goToPage}
+              />
+            )}
+
           </div>
         )}
       </Fetcher>

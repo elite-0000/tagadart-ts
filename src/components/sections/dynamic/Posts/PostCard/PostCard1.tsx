@@ -34,17 +34,21 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
                     {post.category.title}
                 </Link> */}
         </div>
-        <div className="group relative">
-          <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <Link href={`/blog/${post.id}`}>
-              <span className="absolute inset-0" />
-              {post.pageIntro.title}
-            </Link>
-          </h3>
-          <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
-            {truncateWithEllipses(post.pageIntro.content, 150)}
-          </p>
-        </div>
+        {post.pageIntro && (
+          <div className="group relative">
+            <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+              <Link href={`/blog/${post.id}`}>
+                <span className="absolute inset-0" />
+                {post.pageIntro.title}
+              </Link>
+            </h3>
+            {post.pageIntro.content && (
+              <p className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">
+                {truncateWithEllipses(post.pageIntro.content, 150)}
+              </p>
+            )}
+          </div>
+        )}
         <div className="relative mt-4 flex items-center gap-x-4">
           {post.author?.avatar && (
             <NextCloudinaryImage

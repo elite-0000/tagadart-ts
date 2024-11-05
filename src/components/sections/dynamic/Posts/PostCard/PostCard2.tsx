@@ -39,12 +39,14 @@ const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
               {post.pageIntro.title}
             </Link>
           </h3>
-
-          <div className="typography">
-            <BasicMarkdown>
-              {truncateWithEllipses(post.pageIntro.content, 150)}
-            </BasicMarkdown>
-          </div>
+          
+          {post?.pageIntro?.content && (
+            <div className="typography">
+              <BasicMarkdown>
+                {truncateWithEllipses(post.pageIntro.content, 150)}
+              </BasicMarkdown>
+            </div>
+          )}
           {post?.author && (
             <div className="mt-6 flex items-center">
               {post?.author?.avatar && (
