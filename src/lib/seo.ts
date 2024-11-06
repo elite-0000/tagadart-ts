@@ -1,12 +1,19 @@
-import {  SeoData } from '@/types/global'
+import { SeoData } from '@/types/global'
 import { Metadata } from 'next'
-
-
 
 interface GenerateMetadataOptions {
   data: SeoData | null
   type: 'project' | 'service' | 'blog'
   id: string
+  siteName?: string
+}
+
+interface SlugPageData {
+  data: Array<SeoData>
+}
+
+interface GenerateSlugMetadataOptions {
+  page: SlugPageData | null
   siteName?: string
 }
 
@@ -24,8 +31,7 @@ export function generatePageMetadata({
 
   const title = data?.seo?.metaTitle 
     ? `${data?.seo?.metaTitle} - ${siteName}`
-        : `${data?.pageIntro?.title} - ${siteName}`
-    // : data?.pageIntro?.title
+    : `${data?.pageIntro?.title} - ${siteName}`
 
   const basePath = {
     project: 'projects',
@@ -50,10 +56,38 @@ export function generatePageMetadata({
     },
     alternates: {
       canonical: `/${basePath}/${id}`,
-    //   languages: {
-    //     'en': `/en/${basePath}/${id}`,
-    //     'fr': `/fr/${basePath}/${id}`,
-    //   },
+    }
+  }
+}
+
+export function generateSlugPageMetadata({
+  page,
+
+}: GenerateSlugMetadataOptions): Metadata {
+  if (!page?.data?.[0]) {
+    return {
+      title: 'Page not found'
+    }
+  }
+
+  const pageData = page.data[0]
+  
+
+
+  return {
+    title : pageData?.seo?.metaTitle,
+    description: pageData?.seo?.metaDescription ,
+    openGraph: {
+      title: pageData?.seo?.metaTitle,
+      description: pageData?.seo?.metaDescription,
+      images: pageData?.seo?.metaImage?.url 
+        ? [{
+            url: pageData.seo.metaImage.url,
+            width: 800,
+            height: 600,
+            alt: pageData.seo.metaImage.alternativeText || pageData?.seo?.metaTitle || '',
+          }]
+        : [],
     }
   }
 }

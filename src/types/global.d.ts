@@ -36,6 +36,7 @@ export interface SeoData {
   seo: {
     metaTitle: string
     metaDescription: string
+    metaImage: MediaItem
   }
   pageIntro: PageIntro
 }

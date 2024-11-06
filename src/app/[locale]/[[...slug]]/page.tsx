@@ -17,6 +17,7 @@ import { fetchAxiosAPI } from '@/request/request'
 import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { structurePopulate } from '@/request/populate'
+import { generateSlugPageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
@@ -123,33 +124,9 @@ async function getPageBySlug(slug: string, lang: string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await getPageBySlug(params.slug, params.lang);
-  
-  // Destructure the SEO properties with default values
-  const seo = page.data[0]?.seo || {};
-  const {
-    metaTitle = 'tagadart title',
-    metaDescription = 'tagadart description',
-    metaImage = {}
-  } = seo;
-  const siteName = 'tagadart';
+  const page = await getPageBySlug(params.slug, params.lang)
 
-  return {
-    title: `${metaTitle} | ${siteName}`,
-    description: metaDescription,
-    openGraph: {
-      title: metaTitle,
-      description: metaDescription,
-      images: metaImage.url ? [
-        {
-          url: metaImage.url,
-          width: 800,
-          height: 600,
-          alt: metaTitle,
-        }
-      ] : [],
-    },
-  };
+  return generateSlugPageMetadata({ page })
 }
 
 export default async function PageRoute({ params }: Props) {
