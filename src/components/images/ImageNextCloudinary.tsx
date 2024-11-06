@@ -26,16 +26,16 @@ const NextCloudinaryImage = ({
 }: NextCloudinaryImageProps) => {
   const [blurDataURL, setBlurDataURL] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [imageSrc, setImageSrc] = useState(src) // Use state to manage image source
+  const [imageSrc, setImageSrc] = useState(src)
 
   useEffect(() => {
     const generateBlurDataURL = async () => {
-      // Generate a URL for a small, blurred version of the image
       const imageUrl = getCldImageUrl({
-        src: imageSrc, // Use imageSrc from state
-        width: 100, // Resize to a smaller size for blur effect
+        src: imageSrc,
+        width: 100,
         crop,
         gravity,
+        format: 'auto'
       })
 
       try {
@@ -55,14 +55,13 @@ const NextCloudinaryImage = ({
     generateBlurDataURL()
   }, [imageSrc, crop, gravity])
 
-  // Render loading state if blurDataURL is not ready
   if (isLoading || !blurDataURL) {
     return <div>Loading...</div> // or a skeleton loader
   }
 
   return (
     <CldImage
-      src={imageSrc} // Use imageSrc from state
+      src={imageSrc}
       alt={alt}
       width={width}
       height={height}
@@ -70,12 +69,13 @@ const NextCloudinaryImage = ({
       crop={crop}
       gravity={gravity}
       quality={quality}
+      format="auto"
       placeholder="blur"
       sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
       blurDataURL={blurDataURL}
       onError={() => {
         if (fallbackSrc) {
-          setImageSrc(fallbackSrc) // Set fallback image on error
+          setImageSrc(fallbackSrc)
         }
       }}
       {...props}
