@@ -50,6 +50,8 @@ async function getPageBySlug(slug: string, lang: string) {
               'posts.pageIntro.cover',
               'posts.author',
               'posts.author.avatar',
+              'pagination',
+              'pagination.value',
             ],
           },
           'section.projects-section': {
@@ -59,6 +61,8 @@ async function getPageBySlug(slug: string, lang: string) {
               'projects.pageIntro',
               'projects.pageIntro.cover',
               'projects.logo',
+              'pagination',
+              'pagination.value',
             ],
           },
           'section.contact-section': {
@@ -251,7 +255,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const contentSections = page?.data[0]?.structure
-
   return (
     <Container>
       {contentSections?.map((section: Section & PageIntro) =>

@@ -55,5 +55,10 @@
     "blog": "Blog",
     "contact": "Contactez-nous",
     "follow_us": "Suivez-nous"
+  },
+  "Pagination": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "morePages": "Plus de pages"
   }
 }

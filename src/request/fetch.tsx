@@ -215,7 +215,6 @@ export async function fetchProjects() {
       pageSize: 10,
     },
   }
-
   try {
     const projectsData = await fetchAxiosAPI('projects', queryParams)
     return projectsData?.data

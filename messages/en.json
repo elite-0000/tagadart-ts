@@ -62,5 +62,10 @@
     "title": "Culture",
     "view_more": "View More",
     "content": "Description"
+  },
+  "Pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "morePages": "More Pages"
   }
 }

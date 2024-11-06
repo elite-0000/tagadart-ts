@@ -12,9 +12,11 @@ export function SectionIntro({
   smaller = false,
   invert = false,
   centered = false,
+  pagination = false,
   ...props
 }: PageIntro & {
-  centered?: boolean
+  pagination?: boolean,
+  centered?: boolean  
   showCover?: boolean
   smaller?: boolean
   invert?: boolean

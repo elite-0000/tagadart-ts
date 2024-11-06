@@ -69,6 +69,7 @@ export interface PageIntro {
   eyebrow: string
   content: string
   cover: MediaItem | null
+  pagination: boolean
 }
 
 export interface Culture {
@@ -93,4 +94,9 @@ export interface ButtonProps {
   link: string
   text: string
   type: string
+}
+
+export interface Pagination {
+  id: number;
+  value: "off" | "infinite" | "pagination";
 }
