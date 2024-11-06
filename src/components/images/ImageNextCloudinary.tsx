@@ -8,6 +8,7 @@ type NextCloudinaryImageProps = CldImageProps & {
   width: number
   height: number
   src: string
+  fallbackSrc?: string // Add a fallbackSrc prop
   crop?: string
   gravity?: string
 }
@@ -17,6 +18,7 @@ const NextCloudinaryImage = ({
   width,
   height,
   src,
+  fallbackSrc, // Destructure fallbackSrc
   crop = 'auto',
   gravity = 'auto',
   quality = 'auto',
@@ -24,12 +26,14 @@ const NextCloudinaryImage = ({
 }: NextCloudinaryImageProps) => {
   const [blurDataURL, setBlurDataURL] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [imageSrc, setImageSrc] = useState(src) // Use state to manage image source
 
   useEffect(() => {
     const generateBlurDataURL = async () => {
+      // Generate a URL for a small, blurred version of the image
       const imageUrl = getCldImageUrl({
-        src,
-        width: 100,
+        src: imageSrc, // Use imageSrc from state
+        width: 100, // Resize to a smaller size for blur effect
         crop,
         gravity,
       })
@@ -49,15 +53,16 @@ const NextCloudinaryImage = ({
     }
 
     generateBlurDataURL()
-  }, [src, crop, gravity])
+  }, [imageSrc, crop, gravity])
 
+  // Render loading state if blurDataURL is not ready
   if (isLoading || !blurDataURL) {
     return <div>Loading...</div> // or a skeleton loader
   }
 
   return (
     <CldImage
-      src={src}
+      src={imageSrc} // Use imageSrc from state
       alt={alt}
       width={width}
       height={height}
@@ -66,8 +71,13 @@ const NextCloudinaryImage = ({
       gravity={gravity}
       quality={quality}
       placeholder="blur"
-      sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw" // Updated sizes
+      sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
       blurDataURL={blurDataURL}
+      onError={() => {
+        if (fallbackSrc) {
+          setImageSrc(fallbackSrc) // Set fallback image on error
+        }
+      }}
       {...props}
     />
   )
