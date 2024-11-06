@@ -19,6 +19,7 @@ const NextCloudinaryImage = ({
   src,
   crop = 'auto',
   gravity = 'auto',
+  quality = 'auto',
   ...props
 }: NextCloudinaryImageProps) => {
   const [blurDataURL, setBlurDataURL] = useState<string | null>(null)
@@ -36,7 +37,6 @@ const NextCloudinaryImage = ({
 
       try {
         const response = await fetch(imageUrl)
-        console.log("response: ", response);
         const arrayBuffer = await response.arrayBuffer()
         const buffer = Buffer.from(arrayBuffer)
         const base64 = buffer.toString('base64')
@@ -66,8 +66,11 @@ const NextCloudinaryImage = ({
       loading="lazy"
       crop={crop}
       gravity={gravity}
+      quality={quality}
       placeholder="blur"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       blurDataURL={blurDataURL}
+      
       {...props}
     />
   )
