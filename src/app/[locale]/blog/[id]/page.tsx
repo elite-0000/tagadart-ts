@@ -15,13 +15,42 @@ type Props = {
   }
 }
 
-export const metadata: Metadata = {
-  title: 'Blog',
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const blog = await fetchPost(params.id)
+  
+  if (!blog) {
+    return {
+      title: 'Blog not found'
+    }
+  }
+  return {
+    title: `${blog.seo.metaTitle}`,
+    description: blog.seo.metaDescription,
+    openGraph: {
+      title: blog.pageIntro.title,
+      description: blog.pageIntro.content,
+      images: blog.pageIntro?.cover?.url ? [
+        {
+          url: blog.pageIntro.cover.url,
+          width: 800,
+          height: 600,
+          alt: blog.pageIntro.title,
+        }
+      ] : [],
+    },
+    alternates: {
+      canonical: `/blog/${params.id}`,
+      languages: {
+        'en': `/en/blog/${params.id}`,
+        'fr': `/fr/blog/${params.id}`,
+      },
+    }
+  }
 }
 
 export default async function ViewPost({ params: { id } }: Props) {
   const post: Post = await fetchPost(id)
-  metadata.title = `Blog - ${post?.pageIntro.title}`
+  // metadata.title = `Blog - ${post?.pageIntro.title}`
 
   if (!post) return null
   return (

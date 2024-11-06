@@ -17,40 +17,38 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project: Project = await fetchProject(params?.id)
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const project = await fetchProject(params.id)
+  
   if (!project) {
     return {
-      title: 'Project not found',
+      title: 'Project not found'
     }
   }
-
   return {
-    title: `${project.client} - ${project.pageIntro.title} - Tagadart`, // Add your site name
-    description: project.pageIntro.content,
+    title: `${project.seo.metaTitle}`, // Add your site name
+    description: project.seo.metaDescription,
     openGraph: {
       title: project.pageIntro.title,
-      description: project.content,
-      images: project.pageIntro?.cover?.url
-        ? [
-            {
-              url: project.pageIntro.cover.url,
-              width: 800,
-              height: 600,
-              alt: project.pageIntro.title,
-            },
-          ]
-        : [],
+      description: project.pageIntro.content,
+      images: project.pageIntro?.cover?.url ? [
+        {
+          url: project.pageIntro.cover.url,
+          width: 800,
+          height: 600,
+          alt: project.pageIntro.title,
+        }
+      ] : [],
     },
     // Optional: Add more metadata
-    // alternates: {
-    //   canonical: `/projects/${params.id}`,
-    //   languages: {
-    //     en: `/en/projects/${params.id}`,
-    //     fr: `/fr/projects/${params.id}`,
-    //   },
-    // },
+    alternates: {
+      canonical: `/projects/${params.id}`,
+      languages: {
+        'en': `/en/projects/${params.id}`,
+        'fr': `/fr/projects/${params.id}`,
+      },
+    }
   }
 }
 
