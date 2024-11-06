@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  fontOptimization: {
+    preload: true,
+    preconnect: true,
+    formats: ['woff2'],
+  },
 }
 
 export default async function LocaleLayout({
@@ -32,6 +37,16 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
       <head>
+        <link rel="preconnect" href="https://rsms.me" />
+        <link
+          rel="preload"
+          href="/path-to-your-font.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
           strategy="afterInteractive"
@@ -46,12 +61,11 @@ export default async function LocaleLayout({
         </Script>
       </head>
       <body className="flex min-h-full flex-col">
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"></link>
         <NextIntlClientProvider messages={messages}>
           <RootLayout>{children}</RootLayout>
           <Toaster />
         </NextIntlClientProvider>
       </body>
     </html>
-  )
+  );
 }
