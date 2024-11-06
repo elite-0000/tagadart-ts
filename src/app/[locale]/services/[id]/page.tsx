@@ -7,9 +7,15 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '@/components/sections/PageIntro'
+import { generatePageMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
-  title: 'Service - Service Title',
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const service = await fetchService(params.id)
+  return generatePageMetadata({
+    data: service,
+    type: 'service',
+    id: params.id
+  })
 }
 
 type Props = {

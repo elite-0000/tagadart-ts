@@ -8,6 +8,7 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { formatDate } from '@/lib/helper'
 import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
+import { generatePageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
@@ -15,13 +16,18 @@ type Props = {
   }
 }
 
-export const metadata: Metadata = {
-  title: 'Blog',
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = await fetchPost(params.id)
+  return generatePageMetadata({
+    data: post,
+    type: 'blog',
+    id: params.id
+  })
 }
 
 export default async function ViewPost({ params: { id } }: Props) {
   const post: Post = await fetchPost(id)
-  metadata.title = `Blog - ${post?.pageIntro.title}`
+  // metadata.title = `Blog - ${post?.pageIntro.title}`
 
   if (!post) return null
   return (
