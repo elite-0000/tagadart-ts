@@ -8,6 +8,7 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { formatDate } from '@/lib/helper'
 import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
+import { generatePageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
@@ -16,36 +17,12 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const blog = await fetchPost(params.id)
-  
-  if (!blog) {
-    return {
-      title: 'Blog not found'
-    }
-  }
-  return {
-    title: `${blog.seo.metaTitle}`,
-    description: blog.seo.metaDescription,
-    openGraph: {
-      title: blog.pageIntro.title,
-      description: blog.pageIntro.content,
-      images: blog.pageIntro?.cover?.url ? [
-        {
-          url: blog.pageIntro.cover.url,
-          width: 800,
-          height: 600,
-          alt: blog.pageIntro.title,
-        }
-      ] : [],
-    },
-    alternates: {
-      canonical: `/blog/${params.id}`,
-      languages: {
-        'en': `/en/blog/${params.id}`,
-        'fr': `/fr/blog/${params.id}`,
-      },
-    }
-  }
+  const post = await fetchPost(params.id)
+  return generatePageMetadata({
+    data: post,
+    type: 'blog',
+    id: params.id
+  })
 }
 
 export default async function ViewPost({ params: { id } }: Props) {
