@@ -27,10 +27,9 @@ const NextCloudinaryImage = ({
 
   useEffect(() => {
     const generateBlurDataURL = async () => {
-      // Generate a URL for a small, blurred version of the image
       const imageUrl = getCldImageUrl({
         src,
-        width: 100, // Resize to a smaller size for blur effect
+        width: 100,
         crop,
         gravity,
       })
@@ -52,7 +51,6 @@ const NextCloudinaryImage = ({
     generateBlurDataURL()
   }, [src, crop, gravity])
 
-  // Render loading state if blurDataURL is not ready
   if (isLoading || !blurDataURL) {
     return <div>Loading...</div> // or a skeleton loader
   }
@@ -68,9 +66,8 @@ const NextCloudinaryImage = ({
       gravity={gravity}
       quality={quality}
       placeholder="blur"
-      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      sizes="(max-width: 640px) 100vw, (max-width: 768px) 75vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw" // Updated sizes
       blurDataURL={blurDataURL}
-      
       {...props}
     />
   )
