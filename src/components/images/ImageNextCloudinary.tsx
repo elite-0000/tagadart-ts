@@ -1,6 +1,7 @@
 'use client'
 
-import { CldImage, CldImageProps } from 'next-cloudinary'
+import { CldImage, CldImageProps, getCldImageUrl } from 'next-cloudinary'
+import { useEffect, useState } from 'react'
 
 type NextCloudinaryImageProps = CldImageProps & {
   alt: string
@@ -16,10 +17,46 @@ const NextCloudinaryImage = ({
   width,
   height,
   src,
-  crop = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
-  gravity = 'auto', //https://cloudinary.com/documentation/resizing_and_cropping#control_gravity
+  crop = 'auto',
+  gravity = 'auto',
   ...props
 }: NextCloudinaryImageProps) => {
+  const [blurDataURL, setBlurDataURL] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const generateBlurDataURL = async () => {
+      // Generate a URL for a small, blurred version of the image
+      const imageUrl = getCldImageUrl({
+        src,
+        width: 100, // Resize to a smaller size for blur effect
+        crop,
+        gravity,
+      })
+
+      try {
+        const response = await fetch(imageUrl)
+        console.log("response: ", response);
+        const arrayBuffer = await response.arrayBuffer()
+        const buffer = Buffer.from(arrayBuffer)
+        const base64 = buffer.toString('base64')
+        const dataUrl = `data:${response.headers.get('content-type')};base64,${base64}`
+        setBlurDataURL(dataUrl)
+      } catch (error) {
+        console.error('Error generating blur data URL:', error)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    generateBlurDataURL()
+  }, [src, crop, gravity])
+
+  // Render loading state if blurDataURL is not ready
+  if (isLoading || !blurDataURL) {
+    return <div>Loading...</div> // or a skeleton loader
+  }
+
   return (
     <CldImage
       src={src}
@@ -27,9 +64,10 @@ const NextCloudinaryImage = ({
       width={width}
       height={height}
       loading="lazy"
-      // sizes="(min-width: 480px ) 50vw, (min-width: 728px) 33vw, (min-width: 976px) 25vw, 100vw" //TODO: Better responsive sizes
       crop={crop}
       gravity={gravity}
+      placeholder="blur"
+      blurDataURL={blurDataURL}
       {...props}
     />
   )
