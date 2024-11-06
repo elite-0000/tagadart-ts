@@ -7,7 +7,6 @@ interface GenerateMetadataOptions {
   data: SeoData | null
   type: 'project' | 'service' | 'blog'
   id: string
-  appendSiteName?: boolean
   siteName?: string
 }
 
@@ -15,7 +14,6 @@ export function generatePageMetadata({
   data,
   type,
   id,
-  appendSiteName = true,
   siteName = 'Tagadart'
 }: GenerateMetadataOptions): Metadata {
   if (!data) {
@@ -24,9 +22,10 @@ export function generatePageMetadata({
     }
   }
 
-  const title = appendSiteName 
-    ? `${data?.pageIntro?.title} - ${siteName}`
-    : data?.pageIntro?.title
+  const title = data?.seo?.metaTitle 
+    ? `${data?.seo?.metaTitle} - ${siteName}`
+        : `${data?.pageIntro?.title} - ${siteName}`
+    // : data?.pageIntro?.title
 
   const basePath = {
     project: 'projects',
@@ -36,10 +35,10 @@ export function generatePageMetadata({
 
   return {
     title,
-    description: data?.seo?.metaDescription,
+    description: data?.seo?.metaDescription || data?.pageIntro?.content,
     openGraph: {
-      title: data?.pageIntro?.title,
-      description: data?.pageIntro?.content,
+      title: title,
+      description: data?.seo?.metaDescription || data?.pageIntro?.content,
       images: data?.pageIntro?.cover?.url 
         ? [{
             url: data?.pageIntro?.cover.url,
