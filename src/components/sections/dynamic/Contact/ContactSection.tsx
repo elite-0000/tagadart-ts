@@ -110,7 +110,6 @@ const RenderContent: React.FC<ContactProps> = ({
   contactSection,
   designType,
 }) => {
-  console.log(contactSection, 'contactSection')
   switch (designType) {
     case 1:
       return (
