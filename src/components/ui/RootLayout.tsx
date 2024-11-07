@@ -12,16 +12,20 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
-import { Footer } from '@/components/sections/Footer'
 import { GridPattern } from '@/components/ui/GridPattern'
 import { SocialMedia } from '@/components/sections/SocialMedia'
 
 import { useTranslations } from 'next-intl'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
+
+const Footer = dynamic(() => import('@/components/sections/Footer'), {
+  loading: () => <p>Loading footer...</p>,
+})
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
