@@ -5,7 +5,28 @@ import { RestQueryParams } from '@/types/global'
 import { createQueryParams } from './populate'
 
 //////// PAGES
+export async function fetchPageBySlug(slug: string, lang: string) {
+  const querySlug = slug === undefined ? 'home' : slug
+  const path = '/pages'
 
+  const queryParams = {
+    ...createQueryParams('pages'),
+    filters: {
+      slug: {
+        $eq: querySlug,
+      },
+    },
+    locale: lang,
+  }
+
+  try {
+    const pageData = await fetchAxiosAPI(path, queryParams)
+    return pageData // Return the full response, not just data
+  } catch (error) {
+    console.error('Failed to load page data:', error)
+    throw error
+  }
+}
 //////// COLLECTIONS
 export async function fetchPosts() {
   // const populatePosts = ['pageIntro', 'author.avatar', 'pageIntro.cover']
