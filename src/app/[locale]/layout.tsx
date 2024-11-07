@@ -30,23 +30,18 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: { locale: string }
 }) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
   const messages = await getMessages()
 
   return (
     <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
       <head>
-        <link rel="preconnect" href="https://rsms.me" />
         <link
           rel="preload"
-          href="/path-to-your-font.woff2"
+          href="../../fonts/Mona-Sans.var.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
           strategy="afterInteractive"
@@ -67,5 +62,5 @@ export default async function LocaleLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  );
+  )
 }
