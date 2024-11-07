@@ -43,7 +43,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
   const t = useTranslations('Contact')
   return (
     <FadeIn>
-      {contactContent.offices.length > 0 && (
+      {contactContent?.offices?.length > 0 && (
         <>
           <h2 className="font-display text-base font-semibold text-neutral-950">
             {t('offices')}
@@ -55,7 +55,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
         </>
       )}
 
-      {contactContent.emails.length > 0 && (
+      {contactContent?.emails?.length > 0 && (
         <Border className="mt-16 pt-16">
           <h2 className="font-display text-base font-semibold text-neutral-950">
             {t('email_us')}
@@ -78,7 +78,7 @@ const ContactDetails: React.FC<{ contactContent: ContactContent }> = ({
         </Border>
       )}
 
-      {contactContent.socials.length > 0 && (
+      {contactContent?.socials?.length > 0 && (
         <Border className="mt-16 pt-16">
           <h2 className="font-display text-base font-semibold text-neutral-950">
             {t('follow_us')}
@@ -110,6 +110,7 @@ const RenderContent: React.FC<ContactProps> = ({
   contactSection,
   designType,
 }) => {
+  console.log(contactSection, 'contactSection')
   switch (designType) {
     case 1:
       return (
@@ -118,13 +119,13 @@ const RenderContent: React.FC<ContactProps> = ({
             <div className="mx-auto max-w-4xl">
               <div className="max-w-xl">
                 <div className="mt-6 flex flex-wrap gap-4">
-                  {contactSection.buttons?.map((button) => (
+                  {contactSection?.buttons?.map((button) => (
                     <Button key={button.id} href={button.link} invert>
                       {button.text}
                     </Button>
                   ))}
                 </div>
-                {contactSection.content.offices.length > 0 && (
+                {contactSection?.content?.offices?.length > 0 && (
                   <div className="mt-10 border-t border-white/10 pt-10">
                     <h3 className="font-display text-base font-semibold text-white">
                       Our offices
