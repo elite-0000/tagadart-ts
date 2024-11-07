@@ -6,8 +6,7 @@ import { Post } from '@/types/post'
 import { fetchPost } from '@/request/fetch'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
-import { notFound } from 'next/navigation'
-import { componentResolver } from '@/lib/componentResolver'
+import { generatePageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
@@ -16,50 +15,18 @@ type Props = {
   }
 }
 
-async function getPost(id: string) {
-  const post = await fetchPost(id)
-  if (!post) return null
-  return post
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await getPost(params.id)
-
-  if (!post) {
-    return { title: 'Post not found' }
-  }
-
-  return {
-    title: `${post.pageIntro.title} - Blog - Tagadart`,
-    description: post.pageIntro.content,
-    openGraph: {
-      title: post.pageIntro.title,
-      description: post.pageIntro.content,
-      type: 'article',
-      publishedTime: post.publishedAt,
-      authors: post.author?.name ? [post.author.name] : undefined,
-      images: post.pageIntro?.cover?.url
-        ? [
-            {
-              url: post.pageIntro.cover.url,
-              width: 800,
-              height: 600,
-              alt: post.pageIntro.title,
-            },
-          ]
-        : [],
-    },
-  }
+  const post = await fetchPost(params.id)
+  return generatePageMetadata({
+    data: post,
+    type: 'blog',
+    id: params.id,
+  })
 }
 
 export default async function ViewPost({ params: { id } }: Props) {
-  const post = await getPost(id)
-
-  if (!post) {
-    notFound()
-  }
-
-  const contentSections = post?.structure
+  const post: Post = await fetchPost(id)
+  // metadata.title = `Blog - ${post?.pageIntro.title}`
 
   return (
     <article>

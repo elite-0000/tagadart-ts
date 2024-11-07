@@ -86,24 +86,6 @@ export const structurePopulate = {
   },
 }
 
-// export const projectPopulate = {
-//   pageIntro: {
-//     populate: ['cover'],
-//   },
-//   logo: {
-//     populate: '*',
-//   },
-// }
-// export const postPopulate = {
-//   pageIntro: {
-//     populate: ['cover'],
-//   },
-//   author: {
-//     populate: ['avatar'],
-//   },
-// }
-
-// Collection-specific populates using array format for consistency
 export const collectionPopulates = {
   projects: {
     pageIntro: {
@@ -111,6 +93,17 @@ export const collectionPopulates = {
     },
     logo: {
       populate: '*',
+    },
+    seo: {
+      populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
+    },
+  },
+  services: {
+    pageIntro: {
+      populate: ['cover'],
+    },
+    seo: {
+      populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
   services: {
@@ -124,6 +117,14 @@ export const collectionPopulates = {
     },
     author: {
       populate: ['avatar'],
+    },
+    seo: {
+      populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
+    },
+  },
+  pages: {
+    seo: {
+      populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
 }

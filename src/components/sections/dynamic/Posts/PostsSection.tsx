@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 
 import { Post } from '@/types/post'
@@ -7,11 +8,16 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { fetchPosts } from '@/request/fetch'
 import PostCard1 from '../Posts/PostCard/PostCard1'
 import PostCard2 from '../Posts/PostCard/PostCard2'
-import { PageIntro } from '@/types/global'
+import { PageIntro, Pagination } from '@/types/global'
 import { Section } from '@/components/ui/Section'
+import Fetcher from '@/request/Fetcher'
+import { url } from 'inspector'
+import PaginationMain from '../../Pagination'
 
 interface BlogProps {
-  postsSection: { sectionIntro: PageIntro } & { posts: Post[] }
+  postsSection: { sectionIntro: PageIntro } & { posts: Post[] } & {
+    pagination: Pagination
+  }
   designType: Number
 }
 
@@ -55,17 +61,13 @@ const RenderContent: React.FC<RenderContentProps> = ({
   }
 }
 
-const PostsSection: React.FC<BlogProps> = async ({
-  postsSection,
-  designType,
-}) => {
-  let posts: Post[] | null = null
-
+const PostsSection: React.FC<BlogProps> = ({ postsSection, designType }) => {
   try {
-    posts = await fetchPosts()
   } catch (error) {
     console.error('Failed to load posts:', error)
   }
+
+  const url = '/posts'
 
   //TODO: Change to localized string
   const sectionIntro = {
@@ -74,13 +76,34 @@ const PostsSection: React.FC<BlogProps> = async ({
   }
   return (
     <Section>
-      <RenderContent
-        posts={
-          postsSection?.posts?.length > 0 ? postsSection?.posts : posts || []
-        }
-        sectionIntro={postsSection?.sectionIntro || sectionIntro}
-        designType={designType}
-      />
+      {postsSection?.posts ? (
+        <div>
+          <RenderContent
+            posts={postsSection?.posts}
+            sectionIntro={postsSection.sectionIntro}
+            designType={designType}
+          />
+        </div>
+      ) : (
+        <Fetcher url={url} paginationMode={postsSection?.pagination?.value}>
+          {({ data, currentPage, totalPages, goToPage }) => (
+            <div>
+              <RenderContent
+                posts={data.data}
+                sectionIntro={postsSection.sectionIntro}
+                designType={designType}
+              />
+              {postsSection?.pagination?.value === 'off' ? null : (
+                <PaginationMain
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  goToPage={goToPage}
+                />
+              )}
+            </div>
+          )}
+        </Fetcher>
+      )}
     </Section>
   )
 }
