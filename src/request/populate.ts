@@ -106,11 +106,6 @@ export const collectionPopulates = {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
-  services: {
-    pageIntro: {
-      populate: ['cover'],
-    },
-  },
   posts: {
     pageIntro: {
       populate: ['cover'],

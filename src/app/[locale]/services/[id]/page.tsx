@@ -8,6 +8,15 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { generatePageMetadata } from '@/lib/seo'
+import { notFound } from 'next/navigation'
+import { componentResolver } from '@/lib/componentResolver'
+
+type Props = {
+  params: {
+    id: string
+    locale: string
+  }
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const service = await fetchService(params.id)
@@ -18,45 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })
 }
 
-type Props = {
-  params: {
-    id: string
-    locale: string
-  }
-}
-
 async function getService(id: string) {
   const service = await fetchService(id)
   if (!service) return null
   return service
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = await getService(params.id)
-
-  if (!service) {
-    return { title: 'Service not found' }
-  }
-
-  return {
-    title: `${service.pageIntro.title} - Services - Tagadart`,
-    description: service.pageIntro.content,
-    openGraph: {
-      title: service.pageIntro.title,
-      description: service.pageIntro.content,
-      type: 'website',
-      images: service.pageIntro?.cover?.url
-        ? [
-            {
-              url: service.pageIntro.cover.url,
-              width: 800,
-              height: 600,
-              alt: service.pageIntro.title,
-            },
-          ]
-        : [],
-    },
-  }
 }
 
 export default async function ViewServicePage({ params: { id } }: Props) {

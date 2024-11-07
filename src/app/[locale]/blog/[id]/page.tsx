@@ -7,6 +7,8 @@ import { fetchPost } from '@/request/fetch'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
 import { generatePageMetadata } from '@/lib/seo'
+import { componentResolver } from '@/lib/componentResolver'
+import { notFound } from 'next/navigation'
 
 type Props = {
   params: {
@@ -26,7 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ViewPost({ params: { id } }: Props) {
   const post: Post = await fetchPost(id)
-  // metadata.title = `Blog - ${post?.pageIntro.title}`
+  if (!post) {
+    notFound()
+  }
+
+  const contentSections = post?.structure
 
   return (
     <article>
