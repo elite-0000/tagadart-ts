@@ -56,6 +56,21 @@
     "contact": "Contactez-nous",
     "follow_us": "Suivez-nous"
   },
+  "Team": {
+    "title": "L'équipe",
+    "view_more": "Voir plus",
+    "content": "Description"
+  },
+  "Reference": {
+    "title": "Références",
+    "view_more": "Voir plus",
+    "content": "Description"
+  },
+  "Culture": {
+    "title": "Culture",
+    "view_more": "Voir plus",
+    "content": "Description"
+  },
   "Pagination": {
     "previous": "Précédent",
     "next": "Suivant",
