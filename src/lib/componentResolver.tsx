@@ -130,11 +130,7 @@ export const componentResolver = ({
 
     case 'section.testimonials':
       return (
-        <TestimonialSection
-          testimonialSection={section}
-          key={section.id}
-          // avatar={section.avatar}
-        />
+        <TestimonialSection testimonialSection={section} key={section.id} />
       )
 
     default:

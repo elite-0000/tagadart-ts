@@ -18,6 +18,7 @@ import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { structurePopulate } from '@/request/populate'
 import { generateSlugPageMetadata } from '@/lib/seo'
+import { componentResolver } from '@/lib/componentResolver'
 
 type Props = {
   params: {
@@ -142,122 +143,11 @@ export default async function PageRoute({ params }: Props) {
     [key: string]: any
   }
 
-  const componentResolver = (section: any) => {
-    switch (section.__component) {
-      case 'section.blog-section':
-        return (
-          <PostsSection
-            key={section.id}
-            postsSection={section}
-            designType={1}
-          />
-        )
-      case 'section.projects-section':
-        return (
-          <ProjectsSection
-            key={section.id}
-            projectsSection={section}
-            designType={2}
-          />
-        )
-
-      case 'section.services-section':
-        return (
-          <ServicesSection
-            key={section.id}
-            servicesSection={section}
-            designType={2}
-          />
-        )
-      case 'section.reference-section':
-        return (
-          <ReferenceSection
-            key={section.id}
-            referenceSection={section}
-            designType={2}
-          />
-        )
-      case 'section.cta':
-        return (
-          <CTASection key={section.id} ctaSection={section} designType={10} />
-        )
-      case 'section.pricing-section':
-        return (
-          <PricingSection
-            key={section.id}
-            pricingSection={section}
-            designType={10}
-          />
-        )
-      case 'section.team-section':
-        return (
-          <TeamsSection
-            key={section.id}
-            teamsSection={section}
-            designType={2}
-          />
-        )
-      case 'section.culture-section':
-        return (
-          <CultureSection
-            key={section.id}
-            culturesSection={section}
-            designType={2}
-          />
-        )
-      case 'section.contact-section':
-        return (
-          <ContactSection
-            key={section.id}
-            contactSection={section}
-            designType={2}
-          />
-        )
-      case 'section.cta':
-        return (
-          <ContactSection
-            key={section.id}
-            contactSection={section}
-            designType={2}
-          />
-        )
-      case 'section.page-intro':
-        return (
-          <PageIntroSection
-            key={section.id}
-            pageIntroSection={section}
-            designType={2}
-          />
-        )
-
-      case 'section.features-section':
-        return (
-          <FeaturesSection
-            key={section.id}
-            featuresSection={section}
-            designType={10}
-          />
-        )
-      case 'section.hero-section':
-        return (
-          <HeroSection key={section.id} heroSection={section} designType={10} />
-        )
-
-      case 'section.testimonials':
-        return (
-          <TestimonialSection key={section.id} testimonialSection={section} />
-        )
-
-      default:
-        return null
-    }
-  }
-
   const contentSections = page?.data[0]?.structure
   return (
     <Container>
       {contentSections?.map((section: Section & PageIntro) =>
-        componentResolver(section),
+        componentResolver({ section, designType: 1 }),
       )}
     </Container>
   )
