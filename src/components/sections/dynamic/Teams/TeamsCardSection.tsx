@@ -28,7 +28,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
-  console.log(designType, "designType")
+  console.log(designType, 'designType')
   switch (designType) {
     default:
       return (
@@ -36,7 +36,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
           <SectionIntro {...sectionIntro} />
           <div className="space-y-24">
             <FadeIn>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div>
                 <div className="lg:col-span-3">
                   <ul
                     role="list"
@@ -51,7 +51,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
             </FadeIn>
           </div>
         </Container>
-      )    
+      )
   }
 }
 
