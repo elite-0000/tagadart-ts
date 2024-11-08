@@ -17,7 +17,6 @@ import dynamic from 'next/dynamic'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { GridPattern } from '@/components/ui/GridPattern'
-import { SocialMedia } from '@/components/sections/SocialMedia'
 
 import { useTranslations } from 'next-intl'
 
@@ -25,6 +24,10 @@ import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 const Footer = dynamic(() => import('@/components/sections/Footer'), {
   loading: () => <p>Loading footer...</p>,
+})
+
+const SocialMedia = dynamic(() => import('@/components/sections/SocialMedia'), {
+  loading: () => <p>Loading socialMedia...</p>,
 })
 
 const RootLayoutContext = createContext<{

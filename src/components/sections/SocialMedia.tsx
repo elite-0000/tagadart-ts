@@ -70,7 +70,7 @@ export const socialMediaProfiles = [
   // { title: 'Dribbble', href: 'https://dribbble.com', icon: DribbbleIcon },
 ]
 
-export function SocialMedia({
+export default function SocialMedia({
   className,
   invert = false,
 }: {
