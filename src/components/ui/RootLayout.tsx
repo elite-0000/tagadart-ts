@@ -17,6 +17,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { GridPattern } from '@/components/ui/GridPattern'
+import  ErrorBoundary  from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
 
@@ -147,16 +148,6 @@ function Header({
   )
 }
 
-function NavigationRow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="even:mt-px sm:bg-neutral-950">
-      <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
-      </Container>
-    </div>
-  )
-}
-
 function RootLayoutInner({ children }: { children: React.ReactNode }) {
   let panelId = useId()
   let [expanded, setExpanded] = useState(false)
@@ -230,7 +221,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 }}
               />
             </div>
-            <Navigation />
+            <ErrorBoundary>
+              <Navigation />
+            </ErrorBoundary>
             <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
               <Container>
                 <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
@@ -238,7 +231,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                     <h2 className="font-display text-base font-semibold text-white">
                       {t('follow_us')}
                     </h2>
-                    <SocialMedia className="mt-6" invert />
+                    <ErrorBoundary>
+                      <SocialMedia className="mt-6" invert />
+                    </ErrorBoundary>
                   </div>
                 </div>
               </Container>
@@ -263,8 +258,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
           />
 
           <main className="w-full flex-auto">{children}</main>
-
-          <Footer />
+          <ErrorBoundary>
+            <Footer />
+          </ErrorBoundary>
         </motion.div>
       </motion.div>
     </MotionConfig>
