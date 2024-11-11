@@ -10,7 +10,7 @@ export const defaultQueryParams: RestQueryParams = {
   publicationState: 'preview',
   pagination: {
     page: 1,
-    pageSize: 1,
+    pageSize: 10,
   },
 }
 export async function fetchUseSWR(
