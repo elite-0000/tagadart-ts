@@ -73,7 +73,7 @@ const PaginationPrevious = ({
       {...props}
     >
       <ChevronLeft className="h-4 w-4" />
-      <span>{t('Previous')}</span> {/* Use translation key */}
+      <span>{t('previous')}</span> 
     </PaginationLink>
   );
 };
@@ -91,7 +91,7 @@ const PaginationNext = ({
       className={cn("gap-1 pr-2.5", className)}
       {...props}
     >
-      <span>{t('Next')}</span> {/* Use translation key */}
+      <span>{t('next')}</span> {/* Use translation key */}
       <ChevronRight className="h-4 w-4" />
     </PaginationLink>
   );

@@ -1,12 +1,5 @@
 import React from 'react'
-
 import { PageIntro } from '@/types/global'
-
-import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
-import { SectionIntro } from '../../SectionIntro'
-import { Button } from '@/components/elements/Button'
-import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '../../PageIntro'
 import { Section } from '@/components/ui/Section'
 
