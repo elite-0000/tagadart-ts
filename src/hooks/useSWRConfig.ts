@@ -3,7 +3,7 @@ import { SWRConfiguration } from 'swr';
 export const swrConfig: SWRConfiguration = {
   revalidateOnFocus: false,
   revalidateIfStale: false,
-  dedupingInterval: 600000, // 10 minutes
+  dedupingInterval: 600000,
   focusThrottleInterval: 5000,
   errorRetryCount: 3,
   fetcher: async (url: string) => {
