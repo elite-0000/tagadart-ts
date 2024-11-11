@@ -27,28 +27,16 @@ const RenderContent: React.FC<RenderContentProps> = ({
   designType,
 }) => {
   switch (designType) {
-    case 1:
+    default:
       return (
-        <Container>
+        <Section>
           <SectionIntro {...sectionIntro} />
           <GridList>
             {cultures.map((culture: Culture) => (
               <CultureCard1 key={culture.id} culture={culture} />
             ))}
           </GridList>
-        </Container>
-      )
-
-    default:
-      return (
-        <Container>
-          <SectionIntro {...sectionIntro} />
-          <FadeIn>
-            {cultures.map((culture: Culture) => (
-              <CultureCard1 key={culture.id} culture={culture} />
-            ))}
-          </FadeIn>
-        </Container>
+        </Section>
       )
   }
 }
@@ -58,7 +46,7 @@ const CultureSection: React.FC<CulturesProps> = async ({
   designType,
 }) => {
   return (
-    <Section className="rounded-4xl bg-primary-800">
+    <Section className="mt-24 rounded-4xl bg-primary-800 py-16 sm:mt-32 lg:mt-40 lg:py-32">
       <RenderContent
         cultures={
           culturesSection.values.length > 0 ? culturesSection.values : []

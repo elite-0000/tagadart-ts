@@ -7,6 +7,7 @@ import BasicMarkdown from '../ui/BasicMarkdown'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 import { Post } from '@/types/post'
 import { formatDate } from '@/lib/helper'
+import { Section } from '../ui/Section'
 
 export function BlogPageIntroSections({
   eyebrow,
@@ -18,7 +19,7 @@ export function BlogPageIntroSections({
 }: PageIntro & { showCover?: boolean; post: Post }) {
   return (
     // <Container className="mt-24 text-center sm:mt-32 lg:mt-40">
-    <>
+    <Section>
       <FadeIn>
         <div className="grid gap-8">
           <div className="col-span-full">
@@ -34,6 +35,24 @@ export function BlogPageIntroSections({
             <div className="mx-auto mt-6 max-w-3xl text-xl text-neutral-600">
               <BasicMarkdown>{content}</BasicMarkdown>
             </div>
+            <div className="mt-4 flex items-center justify-center space-x-4 text-center">
+              {post.author?.avatar && (
+                <NextCloudinaryImage
+                  alt={post.author.fullname}
+                  src={post.author.avatar.url}
+                  width={64}
+                  height={64}
+                  className="rounded-full bg-gray-100"
+                />
+              )}
+              <div className="text-sm leading-6">
+                <p className="font-semibold text-gray-900">
+                  <span className="absolute inset-0" />
+                  {post.author.fullname}
+                </p>
+                <p className="text-gray-600">{post.author.role}</p>
+              </div>
+            </div>
           </div>
           {showCover && cover && (
             <div className="col-span-full mx-auto">
@@ -46,11 +65,8 @@ export function BlogPageIntroSections({
               />
             </div>
           )}
-          <p className="mt-4 text-sm font-semibold text-neutral-950">
-            by {post?.author.fullname}, {post?.author.role}
-          </p>
         </div>
       </FadeIn>
-    </>
+    </Section>
   )
 }
