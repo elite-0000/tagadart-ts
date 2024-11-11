@@ -6,7 +6,7 @@ import { getTranslations } from 'next-intl/server'
 import { GridListItem } from '@/components/ui/GridList'
 
 interface CultureCardProps {
-    culture: Culture
+  culture: Culture
 }
 
 const CultureCard1: React.FC<CultureCardProps> = async ({ culture }) => {
@@ -15,8 +15,8 @@ const CultureCard1: React.FC<CultureCardProps> = async ({ culture }) => {
   return (
     <>
       <GridListItem key={culture.id} title={culture.title} invert>
-      {culture.content}
-    </GridListItem>
+        {culture.content}
+      </GridListItem>
     </>
   )
 }

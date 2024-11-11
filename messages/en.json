@@ -3,7 +3,11 @@
     "title": "Our Projects",
     "expertise": "Our Expertise",
     "content": "Description",
-    "view_more": "View More"
+    "view_more": "View More",
+    "client": "Client",
+    "year": "Year",
+    "service": "Services",
+    "website": "Website"
   },
   "Service": {
     "view_more": "View More",
@@ -16,6 +20,10 @@
   "General": {
     "read_more": "Read More",
     "read_less": "Read Less"
+  },
+  "Pricing": {
+    "btn_pricing": "Get Started",
+    "most_popular": "Most Popular"
   },
   "Contact": {
     "title": "Tell us more about your projects",
@@ -64,8 +72,8 @@
     "content": "Description"
   },
   "Pagination": {
-    "Previous": "Previous",
-    "Next": "Next",
+    "previous": "Previous",
+    "next": "Next",
     "morePages": "More Pages"
   }
 }

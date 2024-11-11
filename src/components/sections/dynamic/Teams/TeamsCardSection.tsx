@@ -10,6 +10,7 @@ import { SectionIntro } from '../../SectionIntro'
 import TeamCard1 from './TeamsCard/TeamCard1'
 import { Member } from '@/types/member'
 import { Section } from '@/components/ui/Section'
+import { CldOgImage } from 'next-cloudinary'
 
 interface TeamsProps {
   teamsSection: { sectionIntro: PageIntro } & { members: Member[] }
@@ -27,8 +28,9 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
+  console.log(designType, "designType")
   switch (designType) {
-    case 1:
+    default:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <SectionIntro {...sectionIntro} />
@@ -49,25 +51,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
             </FadeIn>
           </div>
         </Container>
-      )
-
-    default:
-      return (
-        <Container className="mt-24 sm:mt-32 lg:mt-40">
-          <div className="space-y-24">
-            <FadeIn>
-              <ul
-                role="list"
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
-              >
-                {members.map((member: Member) => (
-                  <TeamCard1 key={member.id} member={member} />
-                ))}
-              </ul>
-            </FadeIn>
-          </div>
-        </Container>
-      )
+      )    
   }
 }
 
