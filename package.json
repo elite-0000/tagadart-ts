@@ -7,8 +7,7 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --log-level warn --write \"./src/**/*.{tsx,ts}\"",
-    "lint": "next lint && npx tsc --noEmit",
-    "postbuild": "next-sitemap"
+    "lint": "next lint && npx tsc --noEmit"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

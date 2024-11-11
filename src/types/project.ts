@@ -14,13 +14,13 @@ export interface Project {
   client: string
   service: string
   link: string
-  content: string
-  expertise: string
-  tags: Tag[]
-  testimonials: Testimonial[]
-  our_services: Service[]
-  posts: Post[]
   structure: any
+  tags: Tag[]
+  // testimonials: Testimonial[]
+  // our_services: Service[]
+  // posts: Post[]
+  // content: string
+  // expertise: string
 }
 
 export interface ProjectsData {

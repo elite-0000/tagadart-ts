@@ -47,7 +47,7 @@ export function GridListItem({
       )}
     >
       <FadeIn>
-        <Border position="left" className="pl-8" invert={invert}>
+        <Border position="left" className="px-8" invert={invert}>
           <strong
             className={clsx(
               'font-semibold',
@@ -55,7 +55,7 @@ export function GridListItem({
             )}
           >
             {title}.
-          </strong>{' '}
+          </strong>
           {children}
         </Border>
       </FadeIn>
