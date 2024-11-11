@@ -10,11 +10,8 @@ interface PostCard2Props {
 
 const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
   return (
-    <article
-      key={post.id}
-      className="relative isolate mb-24 flex flex-col gap-8 lg:flex-row"
-    >
-      <div className="mx-auto text-center">
+    <article key={post.id} className="mb-24 flex flex-col gap-8 lg:flex-row">
+      <div>
         {post?.pageIntro?.cover?.url && (
           <NextCloudinaryImage
             src={post.pageIntro.cover.url}
@@ -27,7 +24,7 @@ const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
         )}
       </div>
       <div>
-        <div className="flex items-center gap-x-4 text-xs">
+        <div className="flex items-start gap-x-4 text-xs">
           <time className="text-gray-500">
             {formatDate(post.publishedAt, 'fr')}
           </time>
@@ -39,7 +36,7 @@ const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
               {post.pageIntro.title}
             </Link>
           </h3>
-          
+
           {post?.pageIntro?.content && (
             <div className="typography">
               <BasicMarkdown>
@@ -48,7 +45,7 @@ const PostCard2: React.FC<PostCard2Props> = ({ post }) => {
             </div>
           )}
           {post?.author && (
-            <div className="mt-6 flex items-center">
+            <div className="mt-6 flex items-start">
               {post?.author?.avatar && (
                 <NextCloudinaryImage
                   src={post.author.avatar.url}

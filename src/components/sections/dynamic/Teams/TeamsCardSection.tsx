@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Team } from '@/types/team'
 import { PageIntro } from '@/types/global'
-import { fetchServices } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
@@ -27,14 +25,15 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
+  console.log(designType, 'designType')
   switch (designType) {
-    case 1:
+    default:
       return (
         <Container className="mt-24 sm:mt-32 lg:mt-40">
           <SectionIntro {...sectionIntro} />
           <div className="space-y-24">
             <FadeIn>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div>
                 <div className="lg:col-span-3">
                   <ul
                     role="list"
@@ -46,24 +45,6 @@ const RenderContent: React.FC<RenderContentProps> = ({
                   </ul>
                 </div>
               </div>
-            </FadeIn>
-          </div>
-        </Container>
-      )
-
-    default:
-      return (
-        <Container className="mt-24 sm:mt-32 lg:mt-40">
-          <div className="space-y-24">
-            <FadeIn>
-              <ul
-                role="list"
-                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8"
-              >
-                {members.map((member: Member) => (
-                  <TeamCard1 key={member.id} member={member} />
-                ))}
-              </ul>
             </FadeIn>
           </div>
         </Container>

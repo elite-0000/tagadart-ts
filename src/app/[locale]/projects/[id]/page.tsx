@@ -10,6 +10,7 @@ import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { getTranslations } from 'next-intl/server'
 import { componentResolver } from '@/lib/componentResolver'
+import { generatePageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
@@ -20,36 +21,11 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await fetchProject(params.id)
-  
-  if (!project) {
-    return {
-      title: 'Project not found'
-    }
-  }
-  return {
-    title: `${project.seo.metaTitle}`, // Add your site name
-    description: project.seo.metaDescription,
-    openGraph: {
-      title: project.pageIntro.title,
-      description: project.pageIntro.content,
-      images: project.pageIntro?.cover?.url ? [
-        {
-          url: project.pageIntro.cover.url,
-          width: 800,
-          height: 600,
-          alt: project.pageIntro.title,
-        }
-      ] : [],
-    },
-    // Optional: Add more metadata
-    alternates: {
-      canonical: `/projects/${params.id}`,
-      languages: {
-        'en': `/en/projects/${params.id}`,
-        'fr': `/fr/projects/${params.id}`,
-      },
-    }
-  }
+  return generatePageMetadata({
+    data: project,
+    type: 'project',
+    id: params.id
+  })
 }
 
 export default async function ViewProjectPage({ params: { id } }: Props) {

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import React from 'react'
 
 import { Project } from '@/types/project'
@@ -14,14 +14,16 @@ import { Section } from '@/components/ui/Section'
 import Fetcher from '@/request/Fetcher'
 import PaginationMain from '../../Pagination'
 interface ProjectsProps {
-  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] } & { pagination: Pagination };
-  designType: number;
+  projectsSection: { sectionIntro: PageIntro } & { projects: Project[] } & {
+    pagination: Pagination
+  }
+  designType: number
 }
 
 interface RenderContentProps {
-  projects: Project[];
-  sectionIntro: PageIntro;
-  designType?: number;
+  projects: Project[]
+  sectionIntro: PageIntro
+  designType?: number
 }
 
 const RenderContent: React.FC<RenderContentProps> = ({
@@ -32,7 +34,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   switch (designType) {
     default:
       return (
-        <Container>
+        <>
           <SectionIntro {...sectionIntro} />
           <FadeInStagger className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {projects.map((project: Project) => (
@@ -41,43 +43,48 @@ const RenderContent: React.FC<RenderContentProps> = ({
               </FadeIn>
             ))}
           </FadeInStagger>
-        </Container>
-      );
+        </>
+      )
   }
-};
+}
 
 const ProjectsSection: React.FC<ProjectsProps> = ({
   projectsSection,
   designType,
 }) => {
-  const url = '/projects';
+  const url = '/projects'
   return (
-    <>
-      <Fetcher 
-        url={url} 
-        paginationMode={projectsSection?.pagination?.value}
-        >
-        {({ data, currentPage, totalPages, goToPage }) => {
-          return (
+    <Section>
+      {projectsSection?.projects?.length > 0 ? (
+        <div>
+          <RenderContent
+            projects={projectsSection?.projects}
+            sectionIntro={projectsSection.sectionIntro}
+            designType={designType}
+          />
+        </div>
+      ) : (
+        <Fetcher url={url} paginationMode={projectsSection?.pagination?.value}>
+          {({ data, currentPage, totalPages, goToPage }) => (
             <div>
               <RenderContent
                 projects={data.data}
                 sectionIntro={projectsSection.sectionIntro}
                 designType={designType}
               />
-            {projectsSection?.pagination &&  (
-              <PaginationMain
-                currentPage={currentPage}
-                totalPages={totalPages}
-                goToPage={goToPage}
-              />
-            )}
+              {projectsSection?.pagination?.value === 'off' ? null : (
+                <PaginationMain
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  goToPage={goToPage}
+                />
+              )}
             </div>
-          );
-        }}
-      </Fetcher>
-    </>
-  );
-};
+          )}
+        </Fetcher>
+      )}
+    </Section>
+  )
+}
 
-export default ProjectsSection;
+export default ProjectsSection
