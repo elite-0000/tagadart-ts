@@ -1,8 +1,6 @@
 import React from 'react'
 
-import { Team } from '@/types/team'
 import { PageIntro } from '@/types/global'
-import { fetchServices } from '@/request/fetch'
 
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
@@ -10,7 +8,6 @@ import { SectionIntro } from '../../SectionIntro'
 import TeamCard1 from './TeamsCard/TeamCard1'
 import { Member } from '@/types/member'
 import { Section } from '@/components/ui/Section'
-import { CldOgImage } from 'next-cloudinary'
 
 interface TeamsProps {
   teamsSection: { sectionIntro: PageIntro } & { members: Member[] }
@@ -28,7 +25,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
-  console.log(designType, "designType")
+  console.log(designType, 'designType')
   switch (designType) {
     default:
       return (
@@ -36,7 +33,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
           <SectionIntro {...sectionIntro} />
           <div className="space-y-24">
             <FadeIn>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              <div>
                 <div className="lg:col-span-3">
                   <ul
                     role="list"
@@ -51,7 +48,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
             </FadeIn>
           </div>
         </Container>
-      )    
+      )
   }
 }
 
