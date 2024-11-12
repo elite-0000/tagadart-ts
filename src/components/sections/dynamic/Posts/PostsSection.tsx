@@ -76,7 +76,7 @@ const PostsSection: React.FC<BlogProps> = ({ postsSection, designType }) => {
   }
   return (
     <Section>
-      {postsSection?.posts ? (
+      {postsSection?.posts?.length > 0 ? (
         <div>
           <RenderContent
             posts={postsSection?.posts}

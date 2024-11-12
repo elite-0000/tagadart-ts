@@ -10,7 +10,7 @@ import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 interface ServiceCardProps {
-    service: Service
+  service: Service
 }
 
 const ServiceCard1: React.FC<ServiceCardProps> = async ({ service }) => {
