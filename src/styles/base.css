@@ -35,16 +35,24 @@
 
   .ql-align-center {
     text-align: center;
-    margin: 0 auto;
   }
 
   .ql-align-right {
     text-align: right;
-    margin-left: auto;
   }
 
   .ql-align-justify {
     text-align: justify;
+  }
+
+  iframe.ql-align-center {
+    margin: 0 auto;
+    display: block;
+  }
+
+  iframe.ql-align-right {
+    margin-left: auto;
+    display: block;
   }
 }
 
