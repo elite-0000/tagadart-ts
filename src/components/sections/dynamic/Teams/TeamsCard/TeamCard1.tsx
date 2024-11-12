@@ -22,13 +22,17 @@ const TeamCard1: React.FC<TeamCardProps> = async ({ member }) => {
     <>
       <li key={member.fullname}>
         <FadeIn>
-          <div className="group relative overflow-hidden rounded-3xl bg-neutral-100">
+          <div
+            className="group relative overflow-hidden rounded-3xl bg-neutral-100"
+            style={{ minHeight: '380px' }}
+          >
             <NextCloudinaryImage
               src={`${member.avatar?.url}`}
               alt={`${member.fullname}`}
               width={500}
               height={700}
-              crop={'fill'}
+              crop="fit"
+              // crop="fill_pad"
               // crop={'crop'}
               // crop={'pad'}
               className="grayscale transition duration-500 motion-safe:group-hover:scale-105"
