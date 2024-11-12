@@ -1,4 +1,4 @@
-import { SWRConfiguration } from 'swr';
+import { SWRConfiguration } from 'swr'
 
 export const swrConfig: SWRConfiguration = {
   revalidateOnFocus: false,
@@ -11,11 +11,11 @@ export const swrConfig: SWRConfiguration = {
       headers: {
         'Cache-Control': 'max-age=3600, s-maxage=3600, stale-while-revalidate',
       },
-    });
+    })
     if (!res.ok) {
-      const error = new Error('An error occurred while fetching the data.');
-      throw error;
+      const error = new Error('An error occurred while fetching the data.')
+      throw error
     }
-    return res.json();
+    return res.json()
   },
-};
+}
