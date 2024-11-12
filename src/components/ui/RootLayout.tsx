@@ -17,7 +17,7 @@ import dynamic from 'next/dynamic'
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { GridPattern } from '@/components/ui/GridPattern'
-import  ErrorBoundary  from '@/components/elements/ErrorBoundary'
+import ErrorBoundary from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
 
