@@ -12,16 +12,28 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 
 import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
-import { Footer } from '@/components/sections/Footer'
 import { GridPattern } from '@/components/ui/GridPattern'
-import { SocialMedia } from '@/components/sections/SocialMedia'
+import ErrorBoundary from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
+
+const Footer = dynamic(() => import('@/components/sections/Footer'), {
+  loading: () => <p>Loading footer...</p>,
+})
+
+const SocialMedia = dynamic(() => import('@/components/sections/SocialMedia'), {
+  loading: () => <p>Loading socialMedia...</p>,
+})
+
+const Navigation = dynamic(() => import('@/components/sections/Navigation'), {
+  loading: () => <p>Loading Navigation...</p>,
+})
 
 const RootLayoutContext = createContext<{
   logoHovered: boolean
@@ -136,51 +148,6 @@ function Header({
   )
 }
 
-function NavigationRow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="even:mt-px sm:bg-neutral-950">
-      <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2">{children}</div>
-      </Container>
-    </div>
-  )
-}
-
-function NavigationItem({
-  href,
-  children,
-}: {
-  href: string
-  children: React.ReactNode
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative isolate -mx-6 bg-neutral-950 px-6 py-10 even:mt-px sm:mx-0 sm:px-0 sm:py-16 sm:odd:pr-16 sm:even:mt-0 sm:even:border-l sm:even:border-neutral-800 sm:even:pl-16"
-    >
-      {children}
-      <span className="absolute inset-y-0 -z-10 w-screen bg-neutral-900 opacity-0 transition group-odd:right-0 group-even:left-0 group-hover:opacity-100" />
-    </Link>
-  )
-}
-
-function Navigation() {
-  const t = useTranslations('Navigation')
-
-  return (
-    <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
-      <NavigationRow>
-        <NavigationItem href="/projects">{t('project')}</NavigationItem>
-        <NavigationItem href="/about">{t('about')}</NavigationItem>
-      </NavigationRow>
-      <NavigationRow>
-        <NavigationItem href="/services">{t('services')}</NavigationItem>
-        <NavigationItem href="/blog">{t('blog')}</NavigationItem>
-      </NavigationRow>
-    </nav>
-  )
-}
-
 function RootLayoutInner({ children }: { children: React.ReactNode }) {
   let panelId = useId()
   let [expanded, setExpanded] = useState(false)
@@ -254,7 +221,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                 }}
               />
             </div>
-            <Navigation />
+            <ErrorBoundary>
+              <Navigation />
+            </ErrorBoundary>
             <div className="relative bg-neutral-950 before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-neutral-800">
               <Container>
                 <div className="grid grid-cols-1 gap-y-10 pb-16 pt-10 sm:grid-cols-2 sm:pt-16">
@@ -262,7 +231,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
                     <h2 className="font-display text-base font-semibold text-white">
                       {t('follow_us')}
                     </h2>
-                    <SocialMedia className="mt-6" invert />
+                    <ErrorBoundary>
+                      <SocialMedia className="mt-6" invert />
+                    </ErrorBoundary>
                   </div>
                 </div>
               </Container>
@@ -287,8 +258,9 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
           />
 
           <main className="w-full flex-auto">{children}</main>
-
-          <Footer />
+          <ErrorBoundary>
+            <Footer />
+          </ErrorBoundary>
         </motion.div>
       </motion.div>
     </MotionConfig>
