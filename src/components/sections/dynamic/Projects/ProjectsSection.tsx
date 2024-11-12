@@ -55,7 +55,7 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   const url = '/projects'
   return (
     <Section>
-      {projectsSection?.projects ? (
+      {projectsSection?.projects?.length > 0 ? (
         <div>
           <RenderContent
             projects={projectsSection?.projects}
