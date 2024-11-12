@@ -12,7 +12,7 @@ import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { Member } from '@/types/member'
 
 interface TeamCardProps {
-  member: Member,
+  member: Member
 }
 
 const TeamCard1: React.FC<TeamCardProps> = async ({ member }) => {
@@ -37,9 +37,7 @@ const TeamCard1: React.FC<TeamCardProps> = async ({ member }) => {
               <p className="font-display text-base/6 font-semibold tracking-wide text-white">
                 {member.fullname}
               </p>
-              <p className="mt-2 text-sm text-white">
-                {member.role}
-              </p>
+              <p className="mt-2 text-sm text-white">{member.role}</p>
             </div>
           </div>
         </FadeIn>
