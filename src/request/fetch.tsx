@@ -105,25 +105,25 @@ export async function fetchProjects() {
 }
 
 export async function fetchProject(slug: string) {
-  const populateProjects = [
-    'pageIntro',
-    'author.avatar',
-    'pageIntro.cover',
-    'seo.metaTitle',
-    'seo.metaImage',
-  ]
+  // const populateProjects = [
+  //   'pageIntro',
+  //   'author.avatar',
+  //   'pageIntro.cover',
+  //   'seo.metaTitle',
+  //   'seo.metaImage',
+  // ]
 
-  const queryParams: RestQueryParams = {
-    populate: populateProjects,
+  // const queryParams: RestQueryParams = {
+  //   populate: populateProjects,
 
-    publicationState: 'live',
-    pagination: {
-      page: 1,
-      pageSize: 10,
-    },
-  }
+  //   publicationState: 'live',
+  //   pagination: {
+  //     page: 1,
+  //     pageSize: 10,
+  //   },
+  // }
 
-  // const queryParams = createQueryParams('projects')
+  const queryParams = createQueryParams('projects')
   try {
     const projectsData = await fetchAxiosAPI(`/projects/${slug}`, queryParams)
     return projectsData?.data
