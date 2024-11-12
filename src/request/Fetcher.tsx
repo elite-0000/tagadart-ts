@@ -1,7 +1,8 @@
 'use client'
 
 import React, { ReactNode, useEffect, useState } from 'react'
-import useSWR, { KeyedMutator } from 'swr'
+import useSWR, { KeyedMutator, SWRConfig } from 'swr'
+import { swrConfig } from '@/hooks/useSWRConfig'
 import { defaultQueryParams, fetchUseSWR } from '@/request/request'
 import { Data, RestQueryParams } from '@/types/global'
 import * as qs from 'qs'
@@ -25,6 +26,13 @@ interface FetcherProps<T> {
   paginationMode?: 'infinite' | 'pagination' | 'off'
   params?: RestQueryParams
   children: (fetchData: FetcherChildProps<T>) => ReactNode
+}
+
+const optimizedFetcherConfig = {
+  suspense: true,
+  revalidateOnMount: false,
+  revalidateIfStale: false,
+  refreshInterval: 30000,
 }
 
 function Fetcher<T>({
@@ -59,12 +67,11 @@ function Fetcher<T>({
     arrayFormat: 'indices',
     allowDots: false,
   })
+
   const { data, error, mutate } = useSWR<any>(
     `${url}?${queryString}`,
     fetchUseSWR,
-    {
-      refreshInterval: 30000,
-    },
+    optimizedFetcherConfig,
   )
 
   const hasNextPage =
@@ -85,7 +92,7 @@ function Fetcher<T>({
         setAccumulatedData(data)
       }
     }
-  }, [accumulatedData, data, paginationMode])
+  }, [data, paginationMode])
 
   const loadMore = () => {
     if (hasNextPage) {
@@ -93,19 +100,29 @@ function Fetcher<T>({
     }
   }
 
-  if (!accumulatedData) return null // Loading state can be handled differently
   if (error) return <div>Error loading data...</div>
 
-  return children({
-    data: accumulatedData,
-    currentPage,
-    goToPage,
-    isLoading: !data && !error,
-    mutate,
-    totalPages: data?.meta?.pagination?.pageCount || 0,
-    loadMore,
-    hasNextPage,
-  })
+  const mergedConfig = {
+    ...swrConfig,
+    ...optimizedFetcherConfig,
+  }
+
+  return (
+    <SWRConfig value={mergedConfig}>
+      {accumulatedData
+        ? children({
+            data: accumulatedData,
+            currentPage,
+            goToPage,
+            isLoading: !data && !error,
+            mutate,
+            totalPages: data?.meta?.pagination?.pageCount || 0,
+            loadMore,
+            hasNextPage,
+          })
+        : null}
+    </SWRConfig>
+  )
 }
 
 export default Fetcher
