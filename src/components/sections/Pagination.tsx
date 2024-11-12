@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import {
   Pagination,
   PaginationContent,
@@ -7,13 +7,13 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/ui/pagination'
+} from "@/components/ui/pagination";
 
 type PaginationMainProps = {
-  currentPage: number
-  totalPages: number
-  goToPage: (page: number) => void
-}
+  currentPage: number;
+  totalPages: number;
+  goToPage: (page: number) => void;
+};
 
 function PaginationMain({
   currentPage,
@@ -23,11 +23,11 @@ function PaginationMain({
   // Prevent default link action and navigate programmatically
   const handlePageClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-    page: number,
+    page: number
   ) => {
-    e.preventDefault()
-    goToPage(page)
-  }
+    e.preventDefault();
+    goToPage(page);
+  };
 
   return (
     <div className="pt-6">
@@ -39,7 +39,7 @@ function PaginationMain({
               // className="disabled"
               href="#!"
               onClick={(e) => handlePageClick(e, currentPage - 1)}
-              className={currentPage === 1 ? 'pointer-events-none' : ''}
+              className={currentPage === 1 ? "pointer-events-none" : ""}
               aria-disabled={currentPage === 1}
               tabIndex={currentPage === 1 ? -1 : undefined}
             />
@@ -67,9 +67,7 @@ function PaginationMain({
             <PaginationNext
               href="#!"
               onClick={(e) => handlePageClick(e, currentPage + 1)}
-              className={
-                currentPage === totalPages ? 'pointer-events-none' : ''
-              }
+              className={currentPage === totalPages ? "pointer-events-none" : ""}
               aria-disabled={currentPage === totalPages}
               tabIndex={currentPage === totalPages ? -1 : undefined}
             />
@@ -77,7 +75,7 @@ function PaginationMain({
         </PaginationContent>
       </Pagination>
     </div>
-  )
+  );
 }
 
-export default PaginationMain
+export default PaginationMain;

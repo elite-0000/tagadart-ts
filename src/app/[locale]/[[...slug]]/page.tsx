@@ -31,7 +31,6 @@ export default async function PageRoute({ params }: Props) {
   }
 
   const contentSections = page?.data[0]?.structure
-
   return (
     <Container>
       {contentSections?.map((section: Section & PageIntro) =>
