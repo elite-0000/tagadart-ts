@@ -73,8 +73,6 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'testimonials',
-          'testimonials.pageIntro',
-          'testimonials.pageIntro.cover',
           'testimonials.author',
           'testimonials.author.avatar',
         ],
