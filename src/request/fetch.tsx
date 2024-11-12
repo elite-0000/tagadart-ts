@@ -52,7 +52,7 @@ export async function fetchPosts() {
   }
 }
 
-export async function fetchPost(id: string) {
+export async function fetchPost(slug: string) {
   // const populatePosts = [
   //   'pageIntro',
   //   'author.avatar',
@@ -73,7 +73,7 @@ export async function fetchPost(id: string) {
   const queryParams = createQueryParams('posts')
 
   try {
-    const postData = await fetchAxiosAPI(`/posts/${id}`, queryParams)
+    const postData = await fetchAxiosAPI(`/posts/${slug}`, queryParams)
     return postData?.data
   } catch (error) {
     console.error('Failed to load post:', error)
