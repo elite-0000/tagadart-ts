@@ -5,8 +5,6 @@ export type BaseItem = {
   publishedAt: Date
 }
 
-
-
 export interface BasesData {
   data: BaseItem[]
   meta: PaginationMeta
@@ -69,7 +67,7 @@ export interface PageIntro {
   eyebrow: string
   content: string
   cover: MediaItem | null
-  pagination: boolean
+  pagination?: boolean
 }
 
 export interface Culture {
@@ -97,6 +95,6 @@ export interface ButtonProps {
 }
 
 export interface Pagination {
-  id: number;
-  value: "off" | "infinite" | "pagination";
+  id: number
+  value: 'off' | 'infinite' | 'pagination'
 }

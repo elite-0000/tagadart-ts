@@ -20,7 +20,6 @@ interface Testimonial {
   content: string
   cover?: MediaItem
   author: Author
-  pageIntro?: PageIntro
 }
 
 interface TestimonialSectionProps {
@@ -35,7 +34,6 @@ const RenderContent: React.FC<TestimonialSectionProps> = ({
   testimonialSection,
   designType,
 }) => {
-  console.log(testimonialSection, 'testimonialSection')
   return (
     <>
       <FadeIn>

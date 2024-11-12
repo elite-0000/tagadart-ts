@@ -28,7 +28,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
-  console.log(designType, "designType")
+  console.log(designType, 'designType')
   switch (designType) {
     default:
       return (
@@ -51,7 +51,7 @@ const RenderContent: React.FC<RenderContentProps> = ({
             </FadeIn>
           </div>
         </Container>
-      )    
+      )
   }
 }
 
