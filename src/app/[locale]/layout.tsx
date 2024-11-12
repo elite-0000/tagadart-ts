@@ -16,11 +16,6 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
-  fontOptimization: {
-    preload: true,
-    preconnect: true,
-    formats: ['woff2'],
-  },
 }
 
 export default async function LocaleLayout({
