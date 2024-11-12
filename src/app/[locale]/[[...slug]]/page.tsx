@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { generateSlugPageMetadata } from '@/lib/seo'
 import { componentResolver } from '@/lib/componentResolver'
@@ -32,7 +33,7 @@ export default async function PageRoute({ params }: Props) {
   const contentSections = page?.data[0]?.structure
   return (
     <Container>
-      {contentSections?.map((section: Section) =>
+      {contentSections?.map((section: Section & PageIntro) =>
         componentResolver({ section, designType: 100 }),
       )}
     </Container>

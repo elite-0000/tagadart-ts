@@ -67,7 +67,7 @@ export interface PageIntro {
   eyebrow: string
   content: string
   cover: MediaItem | null
-  pagination?: boolean
+  pagination: boolean
 }
 
 export interface Culture {
