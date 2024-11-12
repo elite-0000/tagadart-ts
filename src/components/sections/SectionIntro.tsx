@@ -15,8 +15,8 @@ export function SectionIntro({
   pagination = false,
   ...props
 }: PageIntro & {
-  pagination?: boolean
-  centered?: boolean
+  pagination?: boolean,
+  centered?: boolean  
   showCover?: boolean
   smaller?: boolean
   invert?: boolean

@@ -19,7 +19,7 @@ export function PageIntroSections({
       <FadeIn>
         {/* <div className="grid gap-8"> */}
         <div className={`grid gap-8 ${showCover && 'grid-cols-6'}`}>
-          <div className="col-span-6 lg:col-span-3">
+          <div className="col-span-4">
             <h1>
               <span className="block font-display text-base font-semibold text-neutral-950">
                 {eyebrow}
@@ -44,7 +44,7 @@ export function PageIntroSections({
             </div>
           </div>
           {showCover && cover && (
-            <div className="col-span-6 lg:col-span-3">
+            <div className="col-span-2">
               <NextCloudinaryImage
                 src={cover.url}
                 alt={cover.alternativeText}

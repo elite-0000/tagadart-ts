@@ -18,12 +18,13 @@ type Props = {
   }
 }
 
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await fetchProject(params.id)
   return generatePageMetadata({
     data: project,
     type: 'project',
-    id: params.id,
+    id: params.id
   })
 }
 
