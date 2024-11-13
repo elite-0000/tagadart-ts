@@ -13,7 +13,7 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
   priority?: boolean
   className?: string
   showSkeleton?: boolean
-  // Cloudinary specific props
+  //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
   crop?:
     | 'fill'
     | 'crop'
@@ -30,6 +30,7 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
     | 'lpad'
     | 'imagga_scale'
     | 'imagga_crop'
+  //https://cloudinary.com/documentation/resizing_and_cropping#control_gravity
   gravity?:
     | 'auto'
     | 'face'
@@ -63,8 +64,8 @@ const NextCloudinaryImage = ({
   priority = false,
   className = '',
   showSkeleton = true,
-  crop = 'fill',
-  gravity = 'auto',
+  crop = 'fit',
+  gravity,
   radius,
   effect,
   quality = 'auto',
@@ -95,11 +96,11 @@ const NextCloudinaryImage = ({
 
   return (
     <div
-      className={`relative ${className}`}
-      style={{
-        width: typeof width === 'number' ? `${width}px` : width,
-        height: typeof height === 'number' ? `${height}px` : height,
-      }}
+    // className={`relative ${className}`}
+    // style={{
+    //   width: typeof width === 'number' ? `${width}px` : width,
+    //   height: typeof height === 'number' ? `${height}px` : height,
+    // }}
     >
       {isLoading && showSkeleton && (
         <div className="absolute inset-0 z-10">
