@@ -47,13 +47,6 @@ export default async function LocaleLayout({
       className={`h-full bg-neutral-950 text-base antialiased ${inter.variable} ${monaSans.variable}`}
     >
       <head>
-        {/* <link
-          rel="preload"
-          href="../../fonts/Mona-Sans.var.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        /> */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
           strategy="afterInteractive"

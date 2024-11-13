@@ -67,8 +67,8 @@ export default {
         danger: '#dc3545',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
-        display: ['var(--font-mona-sans)', ...defaultTheme.fontFamily.sans],
+        display: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        sans: ['var(--font-mona-sans)', ...defaultTheme.fontFamily.sans],
       },
     },
   },

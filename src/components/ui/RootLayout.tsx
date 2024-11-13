@@ -85,20 +85,6 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          {/* <Logomark
-            className="h-8 sm:hidden"
-            invert={invert}
-            filled={logoHovered}
-          /> */}
-
-          {/* <Image
-              src={logo}
-              alt="Logo"
-              width={120}
-              height={20}
-              className="fill-slate-50 brightness-100"
-            />
-         */}
           <NextCloudinaryImage
             src={
               invert
