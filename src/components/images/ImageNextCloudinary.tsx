@@ -54,16 +54,6 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
 
 /**
  * Optimized Cloudinary Image Component with Skeleton Loading
- *
- * @example
- * // Basic usage
- * <NextCloudinaryImage
- *   src="image.jpg"
- *   alt="Description"
- *   width={800}
- *   height={600}
- *   showSkeleton
- * />
  */
 const NextCloudinaryImage = ({
   alt,
@@ -74,7 +64,7 @@ const NextCloudinaryImage = ({
   className = '',
   showSkeleton = true,
   crop = 'fill',
-  gravity,
+  gravity = 'auto',
   radius,
   effect,
   quality = 'auto',
@@ -86,51 +76,21 @@ const NextCloudinaryImage = ({
   const [isLoading, setIsLoading] = useState(showSkeleton)
   const [hasError, setHasError] = useState(false)
 
-  // Calculate responsive sizes based on image width
-  const sizes = (() => {
-    if (width <= 640) return '100vw'
-    if (width <= 768) return '75vw'
-    if (width <= 1024) return '50vw'
-    if (width <= 1280) return '33vw'
-    return '25vw'
-  })()
-
   const imageConfig = {
     src,
     alt,
     width,
     height,
     className: `transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`,
-    // Performance optimizations
     loading: priority ? ('eager' as const) : ('lazy' as const),
-    fetchPriority: priority ? ('high' as const) : ('auto' as const),
-    decoding: 'async' as const,
-    sizes,
-    // Image quality optimizations
-    quality,
-    format: fetchFormat,
     crop,
     gravity,
+    quality,
+    format: fetchFormat,
     dpr,
     colorSpace,
-    // Effects and transformations
     radius,
     effect,
-    // Prevents layout shift
-    preserveTransformations: true,
-  }
-
-  // Handle image load complete
-  const handleLoadComplete = () => {
-    setIsLoading(false)
-  }
-
-  // Handle image load error
-  const handleError = (e: any) => {
-    setIsLoading(false)
-    setHasError(true)
-    console.error('Image load failed:', src)
-    props.onError?.(e)
   }
 
   return (
@@ -141,7 +101,6 @@ const NextCloudinaryImage = ({
         height: typeof height === 'number' ? `${height}px` : height,
       }}
     >
-      {/* Skeleton loader */}
       {isLoading && showSkeleton && (
         <div className="absolute inset-0 z-10">
           <Skeleton
@@ -154,17 +113,20 @@ const NextCloudinaryImage = ({
         </div>
       )}
 
-      {/* Cloudinary Image */}
-      {!hasError ? (
-        <CldImage
-          {...imageConfig}
-          {...props}
-          onLoad={handleLoadComplete}
-          onError={handleError}
-        />
-      ) : (
-        // Fallback for error state
-        <div className="flex h-full w-full items-center justify-center bg-gray-100 p-4 text-sm text-gray-500">
+      <CldImage
+        {...imageConfig}
+        {...props}
+        onLoad={() => setIsLoading(false)}
+        onError={(e) => {
+          setIsLoading(false)
+          setHasError(true)
+          console.error('Image load failed:', src)
+          props.onError?.(e)
+        }}
+      />
+
+      {hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 p-4 text-sm text-gray-500">
           Unable to load image
         </div>
       )}
