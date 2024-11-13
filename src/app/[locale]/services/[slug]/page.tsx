@@ -1,38 +1,49 @@
-// app/[locale]/blog/[id]/page.tsx
+// app/[locale]/services/[id]/page.tsx
 import type { Metadata } from 'next'
+import { Service } from '@/types/service'
+import { fetchService } from '@/request/fetch'
 import { Border } from '@/components/ui/Border'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { Post } from '@/types/post'
-import { fetchPost } from '@/request/fetch'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
-import { BlogPageIntroSections } from '@/components/sections/BlogPageIntro'
+import { getTranslations } from 'next-intl/server'
+import { PageIntroSections } from '@/components/sections/PageIntro'
 import { generatePageMetadata } from '@/lib/seo'
-import { componentResolver } from '@/lib/componentResolver'
 import { notFound } from 'next/navigation'
+import { componentResolver } from '@/lib/componentResolver'
 
 type Props = {
   params: {
-    id: string
+    slug: string
     locale: string
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await fetchPost(params.id)
+  const service = await fetchService(params.slug)
   return generatePageMetadata({
-    data: post,
-    type: 'blog',
-    id: params.id,
+    data: service,
+    type: 'service',
+    id: params.slug,
   })
 }
 
-export default async function ViewPost({ params: { id } }: Props) {
-  const post: Post = await fetchPost(id)
-  if (!post) {
+async function getService(slug: string) {
+  const service = await fetchService(slug)
+  if (!service) return null
+  return service
+}
+
+export default async function ViewServicePage({ params: { slug } }: Props) {
+  const [service, t] = await Promise.all([
+    getService(slug),
+    getTranslations('Service'),
+  ])
+
+  if (!service) {
     notFound()
   }
 
-  const contentSections = post?.structure
+  const contentSections = service?.structure
 
   return (
     <article>
@@ -40,16 +51,16 @@ export default async function ViewPost({ params: { id } }: Props) {
         <div className="mt-24 sm:mt-32 lg:mt-40">
           <FadeIn>
             <header className="mx-auto flex max-w-5xl flex-col text-center">
-              <BlogPageIntroSections
-                post={post}
-                showCover={true}
-                {...post.pageIntro}
+              <PageIntroSections
+                showCover={false}
+                centered
+                {...service.pageIntro}
               />
             </header>
           </FadeIn>
           <FadeIn
             className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0"
-            key={id}
+            key={slug}
             style={{ opacity: 1, transform: 'none' }}
           >
             <div>
@@ -59,9 +70,12 @@ export default async function ViewPost({ params: { id } }: Props) {
             </div>
           </FadeIn>
           {/* <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-            <div className="markdown-content">
-              {post.content && <BasicMarkdown>{post.content}</BasicMarkdown>}
-            </div>
+            {service.content && (
+              <div>
+                <h2 className="text-xl">{t('content')}</h2>
+                <BasicMarkdown>{service.content}</BasicMarkdown>
+              </div>
+            )}
           </FadeIn> */}
         </div>
       </Border>

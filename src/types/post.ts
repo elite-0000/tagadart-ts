@@ -6,4 +6,5 @@ export interface Post extends BaseItem {
   author: Member
   content: string
   structure: any
+  slug: string
 }
