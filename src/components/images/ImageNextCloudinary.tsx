@@ -49,7 +49,7 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
   effect?: string
   quality?: 'auto' | number
   fetchFormat?: 'auto' | 'png' | 'jpg' | 'gif' | 'webp' | 'avif'
-  colorSpace?: 'srgb' | 'tinysrgb' | 'cmyk' | 'no_cmyk'
+  // colorSpace?: 'srgb' | 'tinysrgb' | 'cmyk' | 'no_cmyk'
   dpr?: 'auto' | number
 }
 
@@ -70,7 +70,7 @@ const NextCloudinaryImage = ({
   effect,
   quality = 'auto',
   fetchFormat = 'auto',
-  colorSpace = 'srgb',
+  // colorSpace = 'srgb',
   dpr = 'auto',
   ...props
 }: NextCloudinaryImageProps) => {
@@ -89,7 +89,7 @@ const NextCloudinaryImage = ({
     quality,
     format: fetchFormat,
     dpr,
-    colorSpace,
+    // colorSpace,
     radius,
     effect,
   }
