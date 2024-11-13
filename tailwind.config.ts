@@ -5,7 +5,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 export default {
   darkMode: ['class'],
-    // content: isProduction ? ['./src/**/*.{js,jsx,mdx,ts,tsx}'] : [], // Only scan files for purge in production
+  // content: isProduction ? ['./src/**/*.{js,jsx,mdx,ts,tsx}'] : [], // Only scan files for purge in production
   content: ['./src/**/*.{js,jsx,mdx,ts,tsx}'],
 
   theme: {
@@ -20,17 +20,17 @@ export default {
       '4xl': ['2rem', { lineHeight: '2.5rem' }],
       '5xl': ['2.5rem', { lineHeight: '3rem' }],
       '6xl': ['3rem', { lineHeight: '3.5rem' }],
-      '7xl': ['4rem', { lineHeight: '4.5rem' }]
+      '7xl': ['4rem', { lineHeight: '4.5rem' }],
     },
     extend: {
       borderRadius: {
         '4xl': '2.5rem',
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
       },
       backgroundImage: {
-        'primary-gradient': 'linear-gradient(to left, #acb6e5, #74ebd5)'
+        'primary-gradient': 'linear-gradient(to left, #acb6e5, #74ebd5)',
       },
       colors: {
         primary: {
@@ -45,7 +45,7 @@ export default {
           '800': '#125d56',
           '900': '#144d47',
           '950': '#052e2c',
-          DEFAULT: '#74ebd5'
+          DEFAULT: '#74ebd5',
         },
         secondary: {
           '50': '#f2f4fb',
@@ -59,18 +59,18 @@ export default {
           '800': '#4d498a',
           '900': '#42406f',
           '950': '#272640',
-          PRIMARY: '#acb6e5'
+          PRIMARY: '#acb6e5',
         },
         accent: '#657786',
         success: '#28a745',
         warning: '#ffc107',
-        danger: '#dc3545'
+        danger: '#dc3545',
       },
       fontFamily: {
-        sans: ['Inter var', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        display: ['Inter var', ...defaultTheme.fontFamily.sans]
-      }
-    }
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        display: ['var(--font-mona-sans)', ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
-  plugins: [require('@tailwindcss/typography'), require("tailwindcss-animate")],
+  plugins: [require('@tailwindcss/typography'), require('tailwindcss-animate')],
 } satisfies Config

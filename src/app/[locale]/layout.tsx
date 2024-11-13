@@ -7,6 +7,8 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { RootLayout } from '@/components/ui/RootLayout'
 import Script from 'next/script'
+import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
   title: {
@@ -18,6 +20,18 @@ export const metadata: Metadata = {
   },
 }
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
+
+const monaSans = localFont({
+  src: '../../../public/fonts/Mona-Sans.var.woff2',
+  variable: '--font-mona-sans',
+  display: 'swap',
+})
+
 export default async function LocaleLayout({
   children,
   params: { locale },
@@ -28,15 +42,18 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className="h-full bg-neutral-950 text-base antialiased">
+    <html
+      lang={locale}
+      className={`h-full bg-neutral-950 text-base antialiased ${inter.variable} ${monaSans.variable}`}
+    >
       <head>
-        <link
+        {/* <link
           rel="preload"
           href="../../fonts/Mona-Sans.var.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
-        />
+        /> */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-16700186470"
           strategy="afterInteractive"
