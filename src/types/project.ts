@@ -16,6 +16,7 @@ export interface Project {
   link: string
   structure: any
   tags: Tag[]
+  slug: string
   // testimonials: Testimonial[]
   // our_services: Service[]
   // posts: Post[]
