@@ -108,6 +108,7 @@ function Header({
             alt="Tagadart Logo"
             width={140}
             height={140}
+            crop="fit"
             className="m-auto"
           />
 
@@ -257,7 +258,7 @@ function RootLayoutInner({ children }: { children: React.ReactNode }) {
             interactive
           />
 
-          <main className="w-full flex-auto">{children}</main>
+          <main className="w-full flex-auto pt-20">{children}</main>
           <ErrorBoundary>
             <Footer />
           </ErrorBoundary>
