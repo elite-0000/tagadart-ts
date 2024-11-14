@@ -58,11 +58,6 @@ export default async function ViewPost({ params: { slug } }: Props) {
               )}
             </div>
           </FadeIn>
-          {/* <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-            <div className="markdown-content">
-              {post.content && <BasicMarkdown>{post.content}</BasicMarkdown>}
-            </div>
-          </FadeIn> */}
         </div>
       </Border>
     </article>

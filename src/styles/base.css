@@ -25,21 +25,93 @@
 
   /* Lists */
   ul {
-    @apply my-3 list-disc pl-6;
-  }
-  ol {
-    @apply my-3 list-decimal pl-6;
+    list-style-type: disc !important;
+    margin: 0.75rem 0 !important;
+    padding-left: 1.5rem !important;
+
+    li {
+      list-style-type: disc !important;
+      padding-left: 0 !important;
+      &::before {
+        display: none; /* Remove custom bullets */
+      }
+    }
+
+    /* Handle nested lists with ql-indent classes */
+    .ql-indent-1 {
+      list-style-type: circle !important;
+      margin-left: 1.5rem !important;
+    }
+
+    .ql-indent-2 {
+      list-style-type: square !important;
+      margin-left: 3rem !important;
+    }
   }
 
-  /* Indentation */
+  /* Ordered Lists */
+  ol {
+    list-style-type: decimal;
+    margin: 0.75rem 0;
+    padding-left: 1.5rem;
+    counter-reset: list-1;
+
+    > li {
+      list-style: none;
+      counter-increment: list-1;
+      position: relative;
+
+      &::before {
+        content: counter(list-1) '.';
+        position: absolute;
+        left: -1.5rem;
+      }
+    }
+
+    /* Second level */
+    li.ql-indent-1 {
+      counter-increment: list-2;
+      margin-left: 2.5em;
+      list-style: none;
+
+      &::before {
+        content: counter(list-2, lower-alpha) '.';
+        position: absolute;
+        left: -1.5rem;
+      }
+    }
+
+    /* Third level */
+    li.ql-indent-2 {
+      counter-increment: list-3;
+      margin-left: 4em;
+      list-style: none;
+
+      &::before {
+        content: counter(list-3, lower-roman) '.';
+        position: absolute;
+        left: -1.5rem;
+      }
+    }
+  }
+
+  ol li {
+    display: block;
+  }
+
+  ol li::marker {
+    content: none;
+  }
+
+  /* Adjust indentation for Quill's indent classes */
   .ql-indent-1 {
-    @apply pl-4;
+    margin-left: 2em !important;
+    padding-left: 0 !important;
   }
+
   .ql-indent-2 {
-    @apply pl-8;
-  }
-  .ql-indent-3 {
-    @apply pl-12;
+    margin-left: 4em !important;
+    padding-left: 0 !important;
   }
 
   /* Paragraphs and spacing */
@@ -82,17 +154,44 @@
     @apply ml-auto block;
   }
 
-  /* Text formatting */
+  /* Text formatting - Fixed bold and italic */
   strong,
-  b {
-    @apply font-bold;
+  b,
+  .ql-bold {
+    @apply font-bold !important;
   }
+
   em,
-  i {
-    @apply italic;
+  i,
+  .ql-italic {
+    @apply italic !important;
   }
-  u {
-    @apply underline;
+
+  u,
+  .ql-underline {
+    @apply underline !important;
+  }
+
+  /* Combined formatting */
+  .ql-bold.ql-italic {
+    @apply font-bold italic !important;
+  }
+
+  /* Quill specific text formatting */
+  [class*='ql-size'] {
+    @apply leading-normal;
+  }
+
+  .ql-size-small {
+    @apply text-sm;
+  }
+
+  .ql-size-large {
+    @apply text-lg;
+  }
+
+  .ql-size-huge {
+    @apply text-xl;
   }
 
   /* Block quotes */
