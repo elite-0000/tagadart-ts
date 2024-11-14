@@ -123,13 +123,50 @@ const RenderContent: React.FC<HeroProps> = ({
                   <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
                     <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
                       <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                        <Image
-                          src={heroSection?.sectionIntro?.cover.url}
-                          alt={heroSection?.sectionIntro?.cover.alternativeText}
-                          width={heroSection?.sectionIntro?.cover.width}
-                          height={heroSection?.sectionIntro?.cover.height}
-                          className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                        />
+                        {(() => {
+                          const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
+                          const url = heroSection.sectionIntro.cover.url;
+
+                          if (fileType === 'image') {
+                            return (
+                              <Image
+                                src={url}
+                                alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
+                                width={heroSection.sectionIntro.cover.width}
+                                height={heroSection.sectionIntro.cover.height}
+                                className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                              />
+                            );
+                          } else if (fileType === 'video') {
+                            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                              const videoId = url.includes('youtube.com')
+                                ? new URL(url).searchParams.get('v')
+                                : url.split('/').pop();
+
+                              const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+
+                              return (
+                                <iframe
+                                  width="800"
+                                  height="600"
+                                  src={embedUrl}
+                                  title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                                ></iframe>
+                              );
+                            } else {
+                              return (
+                                <video width="800" height="600" controls preload="none" >
+                                  <source src={url} type="video/mp4" />
+                                  Your browser does not support the video tag.
+                                </video>
+                              );
+                            }
+                          }
+                          return null;
+                        })()}
                       </div>
                     </div>
                   </div>
