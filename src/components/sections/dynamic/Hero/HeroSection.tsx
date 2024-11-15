@@ -8,6 +8,7 @@ import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import Link from 'next/link'
 import { ChevronRightIcon } from 'lucide-react'
 import { Section } from '@/components/ui/Section'
+import { SectionIntro } from '../../SectionIntro'
 
 interface HeroProps {
   designType?: Number
@@ -26,10 +27,10 @@ const RenderContent: React.FC<HeroProps> = ({
 
   designType,
 }) => {
-  const embedVideo = heroSection.embedVideo;
-  console.log("embedVideo: " + embedVideo);
+  const embedVideo = heroSection.embedVideo
+  console.log('embedVideo: ' + embedVideo)
   switch (designType) {
-    case 1: 
+    case 1:
       return (
         <div className="bg-white">
           <div className="relative isolate px-6 pt-14 lg:px-8">
@@ -48,7 +49,7 @@ const RenderContent: React.FC<HeroProps> = ({
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
               <div className="text-center">
                 <h2 className="text-base font-semibold leading-7 text-primary-600">
-                      {heroSection?.sectionIntro.eyebrow}
+                  {heroSection?.sectionIntro.eyebrow}
                 </h2>
                 <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
                   {heroSection?.sectionIntro.title}
@@ -87,51 +88,66 @@ const RenderContent: React.FC<HeroProps> = ({
                     <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
                       <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                         {(() => {
-                          const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
-                          const url = heroSection.sectionIntro.cover.url;
+                          const fileType =
+                            heroSection.sectionIntro.cover?.provider_metadata
+                              ?.resource_type
+                          const url = heroSection.sectionIntro.cover.url
 
                           if (fileType === 'image') {
                             return (
                               <Image
                                 src={url}
-                                alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
+                                alt={
+                                  heroSection.sectionIntro.cover
+                                    .alternativeText || 'Cover Image'
+                                }
                                 width={heroSection.sectionIntro.cover.width}
                                 height={heroSection.sectionIntro.cover.height}
                                 className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
                               />
-                            );
+                            )
                           } else if (embedVideo !== undefined && embedVideo) {
-                              let embedUrl;
-                              if (embedVideo.includes('youtube.com/embed')) {
-                                embedUrl = embedVideo;
-                              }
-                              else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
-                                const videoId = embedVideo.includes('youtube.com')
-                                  ? new URL(embedVideo).searchParams.get('v')
-                                  : embedVideo.split('/').pop();
-                                embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                              }
+                            let embedUrl
+                            if (embedVideo.includes('youtube.com/embed')) {
+                              embedUrl = embedVideo
+                            } else if (
+                              embedVideo.includes('youtube.com') ||
+                              embedVideo.includes('youtu.be')
+                            ) {
+                              const videoId = embedVideo.includes('youtube.com')
+                                ? new URL(embedVideo).searchParams.get('v')
+                                : embedVideo.split('/').pop()
+                              embedUrl = `https://www.youtube.com/embed/${videoId}`
+                            }
 
-                              return (
-                                <iframe
-                                  width="700"
-                                  height="600"
-                                  src={embedUrl}
-                                  title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                  className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                                ></iframe>
-                              );
+                            return (
+                              <iframe
+                                width="700"
+                                height="600"
+                                src={embedUrl}
+                                title={
+                                  heroSection.sectionIntro.cover
+                                    .alternativeText || 'YouTube Video'
+                                }
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                              ></iframe>
+                            )
                           } else if (fileType === 'video') {
-                              return (
-                                <video width="700" height="600" controls preload="none" >
-                                  <source src={url} type="video/mp4" />
-                                  Your browser does not support the video tag.
-                                </video>
-                              );
+                            return (
+                              <video
+                                width="700"
+                                height="600"
+                                controls
+                                preload="none"
+                              >
+                                <source src={url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            )
                           }
-                          return null;
+                          return null
                         })()}
                       </div>
                     </div>
@@ -154,7 +170,7 @@ const RenderContent: React.FC<HeroProps> = ({
           </div>
         </div>
       )
-    case 2: 
+    case 2:
       return (
         <div className="relative bg-white">
           <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -172,7 +188,7 @@ const RenderContent: React.FC<HeroProps> = ({
                       />
                     )}
                     <h2 className="text-base font-semibold leading-7 text-primary-600">
-                          {heroSection?.sectionIntro.eyebrow}
+                      {heroSection?.sectionIntro.eyebrow}
                     </h2>
                     <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
                       {heroSection?.sectionIntro.title}
@@ -183,92 +199,106 @@ const RenderContent: React.FC<HeroProps> = ({
                       </BasicMarkdown>
                     </div>
                     {heroSection?.buttons && heroSection.buttons.length > 0 && (
-                        <div className="mt-10 flex items-center gap-x-6">
-                          {heroSection.buttons.map((button) => (
-                            <Link
-                              key={button.id}
-                              href={button.link}
-                              className={`${
-                                button.type === 'primary'
-                                  ? 'rounded-md bg-primary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
-                                  : 'text-sm font-semibold leading-6 text-gray-900'
-                              }`}
-                            >
-                              {button.text}
-                              {button.type === 'secondary' && (
-                                <span aria-hidden="true">→</span>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
+                      <div className="mt-10 flex items-center gap-x-6">
+                        {heroSection.buttons.map((button) => (
+                          <Link
+                            key={button.id}
+                            href={button.link}
+                            className={`${
+                              button.type === 'primary'
+                                ? 'rounded-md bg-primary-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600'
+                                : 'text-sm font-semibold leading-6 text-gray-900'
+                            }`}
+                          >
+                            {button.text}
+                            {button.type === 'secondary' && (
+                              <span aria-hidden="true">→</span>
+                            )}
+                          </Link>
+                        ))}
+                      </div>
                     )}
                   </div>
                 </FadeIn>
               </Container>
             </div>
-          
-            <div className="flex justify-center items-center lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
-            {heroSection?.sectionIntro?.cover && (
-              <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                  <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                    {(() => {
-                      const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
-                      const url = heroSection.sectionIntro.cover.url;
 
-                      if (fileType === 'image') {
-                        return (
-                          <Image
-                            src={url}
-                            alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
-                            width={heroSection.sectionIntro.cover.width}
-                            height={heroSection.sectionIntro.cover.height}
-                            className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                          />
-                        );
-                      } else if (embedVideo !== undefined && embedVideo) {
-                        let embedUrl;
-                        if (embedVideo.includes('youtube.com/embed')) {
-                          embedUrl = embedVideo;
-                        }
-                        else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
-                          const videoId = embedVideo.includes('youtube.com')
-                            ? new URL(embedVideo).searchParams.get('v')
-                            : embedVideo.split('/').pop();
-                          embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                        }
+            <div className="flex items-center justify-center lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
+              {heroSection?.sectionIntro?.cover && (
+                <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
+                  <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                    <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                      {(() => {
+                        const fileType =
+                          heroSection.sectionIntro.cover?.provider_metadata
+                            ?.resource_type
+                        const url = heroSection.sectionIntro.cover.url
 
-                        return (
-                          <iframe
-                            width="700"
-                            height="600"
-                            src={embedUrl}
-                            title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                          ></iframe>
-                        );
-                      } else if (fileType === 'video') {
+                        if (fileType === 'image') {
                           return (
-                            <video width="700" height="600" controls preload="none" >
+                            <Image
+                              src={url}
+                              alt={
+                                heroSection.sectionIntro.cover
+                                  .alternativeText || 'Cover Image'
+                              }
+                              width={heroSection.sectionIntro.cover.width}
+                              height={heroSection.sectionIntro.cover.height}
+                              className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                            />
+                          )
+                        } else if (embedVideo !== undefined && embedVideo) {
+                          let embedUrl
+                          if (embedVideo.includes('youtube.com/embed')) {
+                            embedUrl = embedVideo
+                          } else if (
+                            embedVideo.includes('youtube.com') ||
+                            embedVideo.includes('youtu.be')
+                          ) {
+                            const videoId = embedVideo.includes('youtube.com')
+                              ? new URL(embedVideo).searchParams.get('v')
+                              : embedVideo.split('/').pop()
+                            embedUrl = `https://www.youtube.com/embed/${videoId}`
+                          }
+
+                          return (
+                            <iframe
+                              width="700"
+                              height="600"
+                              src={embedUrl}
+                              title={
+                                heroSection.sectionIntro.cover
+                                  .alternativeText || 'YouTube Video'
+                              }
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                              className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                            ></iframe>
+                          )
+                        } else if (fileType === 'video') {
+                          return (
+                            <video
+                              width="700"
+                              height="600"
+                              controls
+                              preload="none"
+                            >
                               <source src={url} type="video/mp4" />
                               Your browser does not support the video tag.
                             </video>
-                          );
-                      }
-                      return null;
-                    })()}
+                          )
+                        }
+                        return null
+                      })()}
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
             </div>
           </div>
         </div>
-        
       )
-    case 3: 
+    case 3:
       return (
         <div className="relative isolate pt-14">
           <div
@@ -283,11 +313,11 @@ const RenderContent: React.FC<HeroProps> = ({
               className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             />
           </div>
-          <div className="justify-center items-center py-24 sm:py-32 lg:pb-40">
+          <div className="items-center justify-center py-24 sm:py-32 lg:pb-40">
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-base font-semibold leading-7 text-primary-600">
-                        {heroSection?.sectionIntro.eyebrow}
+                  {heroSection?.sectionIntro.eyebrow}
                 </h2>
                 <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
                   {heroSection?.sectionIntro.title}
@@ -297,7 +327,7 @@ const RenderContent: React.FC<HeroProps> = ({
                     {heroSection?.sectionIntro.content}
                   </BasicMarkdown>
                 </div>
-                <div className="mt-10 flex justify-center items-center gap-x-6">
+                <div className="mt-10 flex items-center justify-center gap-x-6">
                   {heroSection?.buttons && heroSection.buttons.length > 0 && (
                     <div className="mt-10 flex items-center gap-x-6">
                       {heroSection.buttons.map((button) => (
@@ -319,64 +349,80 @@ const RenderContent: React.FC<HeroProps> = ({
                     </div>
                   )}
                 </div>
-                
               </div>
-              
+
               <div className="mt-16 flow-root sm:mt-24">
-                  {heroSection?.sectionIntro?.cover && (
-                    <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                      <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                        <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                          {(() => {
-                            const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
-                            const url = heroSection.sectionIntro.cover.url;
+                {heroSection?.sectionIntro?.cover && (
+                  <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                    <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                      <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                        {(() => {
+                          const fileType =
+                            heroSection.sectionIntro.cover?.provider_metadata
+                              ?.resource_type
+                          const url = heroSection.sectionIntro.cover.url
 
-                            if (fileType === 'image') {
-                              return (
-                                <Image
-                                  src={url}
-                                  alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
-                                  width={heroSection.sectionIntro.cover.width}
-                                  height={heroSection.sectionIntro.cover.height}
-                                  className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
-                                />
-                              );
-                            } else if (embedVideo !== undefined && embedVideo) {
-                              let embedUrl;
-                              if (embedVideo.includes('youtube.com/embed')) {
-                                embedUrl = embedVideo;
-                              } else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
-                                const videoId = embedVideo.includes('youtube.com')
-                                  ? new URL(embedVideo).searchParams.get('v')
-                                  : embedVideo.split('/').pop();
-                                embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                              }
-
-                              return (
-                                <iframe
-                                  width="700"
-                                  height="600"
-                                  src={embedUrl}
-                                  title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                  className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
-                                ></iframe>
-                              );
-                            } else if (fileType === 'video') {
-                              return (
-                                <video width="700" height="600" controls preload="none" className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto">
-                                  <source src={url} type="video/mp4" />
-                                  Your browser does not support the video tag.
-                                </video>
-                              );
+                          if (fileType === 'image') {
+                            return (
+                              <Image
+                                src={url}
+                                alt={
+                                  heroSection.sectionIntro.cover
+                                    .alternativeText || 'Cover Image'
+                                }
+                                width={heroSection.sectionIntro.cover.width}
+                                height={heroSection.sectionIntro.cover.height}
+                                className="mx-auto w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                              />
+                            )
+                          } else if (embedVideo !== undefined && embedVideo) {
+                            let embedUrl
+                            if (embedVideo.includes('youtube.com/embed')) {
+                              embedUrl = embedVideo
+                            } else if (
+                              embedVideo.includes('youtube.com') ||
+                              embedVideo.includes('youtu.be')
+                            ) {
+                              const videoId = embedVideo.includes('youtube.com')
+                                ? new URL(embedVideo).searchParams.get('v')
+                                : embedVideo.split('/').pop()
+                              embedUrl = `https://www.youtube.com/embed/${videoId}`
                             }
-                            return null;
-                          })()}
-                        </div>
+
+                            return (
+                              <iframe
+                                width="700"
+                                height="600"
+                                src={embedUrl}
+                                title={
+                                  heroSection.sectionIntro.cover
+                                    .alternativeText || 'YouTube Video'
+                                }
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="mx-auto w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                              ></iframe>
+                            )
+                          } else if (fileType === 'video') {
+                            return (
+                              <video
+                                width="700"
+                                height="600"
+                                controls
+                                preload="none"
+                                className="mx-auto w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                              >
+                                <source src={url} type="video/mp4" />
+                                Your browser does not support the video tag.
+                              </video>
+                            )
+                          }
+                          return null
+                        })()}
                       </div>
                     </div>
-                  )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -393,6 +439,10 @@ const RenderContent: React.FC<HeroProps> = ({
             />
           </div>
         </div>
+      )
+    case 5:
+      return (
+        <SectionIntro {...heroSection?.sectionIntro} embedVideo={embedVideo} />
       )
     default:
       return (
@@ -489,54 +539,69 @@ const RenderContent: React.FC<HeroProps> = ({
                 </div>
                 {heroSection?.sectionIntro?.cover && (
                   <>
-                        {(() => {
-                          const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
-                          const url = heroSection.sectionIntro.cover.url;
+                    {(() => {
+                      const fileType =
+                        heroSection.sectionIntro.cover?.provider_metadata
+                          ?.resource_type
+                      const url = heroSection.sectionIntro.cover.url
 
-                          if (fileType === 'image') {
-                            return (
-                              <Image
-                                src={url}
-                                alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
-                                width={heroSection.sectionIntro.cover.width}
-                                height={heroSection.sectionIntro.cover.height}
-                                className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                              />
-                            );
-                          } else if (embedVideo !== undefined && embedVideo) {
-                            let embedUrl;
-                            if (embedVideo.includes('youtube.com/embed')) {
-                              embedUrl = embedVideo;
+                      if (fileType === 'image') {
+                        return (
+                          <Image
+                            src={url}
+                            alt={
+                              heroSection.sectionIntro.cover.alternativeText ||
+                              'Cover Image'
                             }
-                            else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
-                              const videoId = embedVideo.includes('youtube.com')
-                                ? new URL(embedVideo).searchParams.get('v')
-                                : embedVideo.split('/').pop();
-                              embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                            }
+                            width={heroSection.sectionIntro.cover.width}
+                            height={heroSection.sectionIntro.cover.height}
+                            className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                          />
+                        )
+                      } else if (embedVideo !== undefined && embedVideo) {
+                        let embedUrl
+                        if (embedVideo.includes('youtube.com/embed')) {
+                          embedUrl = embedVideo
+                        } else if (
+                          embedVideo.includes('youtube.com') ||
+                          embedVideo.includes('youtu.be')
+                        ) {
+                          const videoId = embedVideo.includes('youtube.com')
+                            ? new URL(embedVideo).searchParams.get('v')
+                            : embedVideo.split('/').pop()
+                          embedUrl = `https://www.youtube.com/embed/${videoId}`
+                        }
 
-                            return (
-                              <iframe
-                                width="700"
-                                height="600"
-                                src={embedUrl}
-                                title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                              ></iframe>
-                            );
-                          } else if (fileType === 'video') {
-                              return (
-                                <video width="700" height="600" controls preload="none" >
-                                  <source src={url} type="video/mp4" />
-                                  Your browser does not support the video tag.
-                                </video>
-                              );
-                          }
-                          return null;
-                        })()}
-                        </>
+                        return (
+                          <iframe
+                            width="700"
+                            height="600"
+                            src={embedUrl}
+                            title={
+                              heroSection.sectionIntro.cover.alternativeText ||
+                              'YouTube Video'
+                            }
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
+                          ></iframe>
+                        )
+                      } else if (fileType === 'video') {
+                        return (
+                          <video
+                            width="700"
+                            height="600"
+                            controls
+                            preload="none"
+                          >
+                            <source src={url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        )
+                      }
+                      return null
+                    })()}
+                  </>
                 )}
               </div>
             </FadeIn>

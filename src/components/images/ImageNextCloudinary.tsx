@@ -35,7 +35,7 @@ const NextCloudinaryImage = ({
         width: 100,
         crop,
         gravity,
-        format: 'auto'
+        format: 'auto',
       })
 
       try {
