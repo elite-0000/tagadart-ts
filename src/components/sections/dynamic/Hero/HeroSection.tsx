@@ -154,7 +154,7 @@ const RenderContent: React.FC<HeroProps> = ({
           </div>
         </div>
       )
-    case 3: 
+    case 2: 
       return (
         <div className="relative bg-white">
           <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
@@ -268,7 +268,7 @@ const RenderContent: React.FC<HeroProps> = ({
         </div>
         
       )
-    case 5: 
+    case 3: 
       return (
         <div className="relative isolate pt-14">
           <div
@@ -322,61 +322,62 @@ const RenderContent: React.FC<HeroProps> = ({
                 
               </div>
               
-                {heroSection?.sectionIntro?.cover && (
-                  <div className="mx-auto mt-16 flex max-w-2xl justify-center sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                    <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                      <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                        {(() => {
-                          const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
-                          const url = heroSection.sectionIntro.cover.url;
+              <div className="mt-16 flow-root sm:mt-24">
+                  {heroSection?.sectionIntro?.cover && (
+                    <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                      <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
+                        <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                          {(() => {
+                            const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
+                            const url = heroSection.sectionIntro.cover.url;
 
-                          if (fileType === 'image') {
-                            return (
-                              <Image
-                                src={url}
-                                alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
-                                width={heroSection.sectionIntro.cover.width}
-                                height={heroSection.sectionIntro.cover.height}
-                                className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                              />
-                            );
-                          } else if (embedVideo !== undefined && embedVideo) {
-                            let embedUrl;
-                            if (embedVideo.includes('youtube.com/embed')) {
-                              embedUrl = embedVideo;
-                            }
-                            else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
-                              const videoId = embedVideo.includes('youtube.com')
-                                ? new URL(embedVideo).searchParams.get('v')
-                                : embedVideo.split('/').pop();
-                              embedUrl = `https://www.youtube.com/embed/${videoId}`;
-                            }
-
-                            return (
-                              <iframe
-                                width="700"
-                                height="600"
-                                src={embedUrl}
-                                title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                              ></iframe>
-                            );
-                          } else if (fileType === 'video') {
+                            if (fileType === 'image') {
                               return (
-                                <video width="700" height="600" controls preload="none" >
+                                <Image
+                                  src={url}
+                                  alt={heroSection.sectionIntro.cover.alternativeText || 'Cover Image'}
+                                  width={heroSection.sectionIntro.cover.width}
+                                  height={heroSection.sectionIntro.cover.height}
+                                  className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
+                                />
+                              );
+                            } else if (embedVideo !== undefined && embedVideo) {
+                              let embedUrl;
+                              if (embedVideo.includes('youtube.com/embed')) {
+                                embedUrl = embedVideo;
+                              } else if (embedVideo.includes('youtube.com') || embedVideo.includes('youtu.be')) {
+                                const videoId = embedVideo.includes('youtube.com')
+                                  ? new URL(embedVideo).searchParams.get('v')
+                                  : embedVideo.split('/').pop();
+                                embedUrl = `https://www.youtube.com/embed/${videoId}`;
+                              }
+
+                              return (
+                                <iframe
+                                  width="700"
+                                  height="600"
+                                  src={embedUrl}
+                                  title={heroSection.sectionIntro.cover.alternativeText || 'YouTube Video'}
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                  allowFullScreen
+                                  className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto"
+                                ></iframe>
+                              );
+                            } else if (fileType === 'video') {
+                              return (
+                                <video width="700" height="600" controls preload="none" className="w-full max-w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 mx-auto">
                                   <source src={url} type="video/mp4" />
                                   Your browser does not support the video tag.
                                 </video>
                               );
-                          }
-                          return null;
-                        })()}
+                            }
+                            return null;
+                          })()}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+              </div>
             </div>
           </div>
           <div
@@ -487,9 +488,7 @@ const RenderContent: React.FC<HeroProps> = ({
                   )}
                 </div>
                 {heroSection?.sectionIntro?.cover && (
-                  <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mr-0 lg:mt-0 lg:max-w-none lg:flex-none xl:ml-32">
-                    <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
-                      <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
+                  <>
                         {(() => {
                           const fileType = heroSection.sectionIntro.cover?.provider_metadata?.resource_type;
                           const url = heroSection.sectionIntro.cover.url;
@@ -537,9 +536,7 @@ const RenderContent: React.FC<HeroProps> = ({
                           }
                           return null;
                         })()}
-                      </div>
-                    </div>
-                  </div>
+                        </>
                 )}
               </div>
             </FadeIn>
