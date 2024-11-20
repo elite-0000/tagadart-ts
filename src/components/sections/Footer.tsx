@@ -62,7 +62,7 @@ function Navigation() {
   )
 }
 
-export function Footer() {
+export default function Footer() {
   return (
     <>
       <div className="w-full flex-auto">
