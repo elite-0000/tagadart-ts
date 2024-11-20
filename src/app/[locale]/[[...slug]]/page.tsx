@@ -34,7 +34,7 @@ export default async function PageRoute({ params }: Props) {
   return (
     <Container>
       {contentSections?.map((section: Section & PageIntro) =>
-        componentResolver({ section, designType: 100 }),
+        componentResolver({ section, designType: section.designType }),
       )}
     </Container>
   )
