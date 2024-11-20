@@ -122,15 +122,15 @@ export const componentResolver = ({
     case 'section.hero-section':
       return (
         <>
-          <HeroSection
+          {/* <HeroSection
             key={section.id}
             heroSection={section}
             designType={designType}
-          />
+          /> */}
+          <HeroSection key={section.id} heroSection={section} designType={2} />
           {/* <HeroSection key={section.id} heroSection={section} designType={2} />
           <HeroSection key={section.id} heroSection={section} designType={3} />
-          <HeroSection key={section.id} heroSection={section} designType={4} />
-          <HeroSection key={section.id} heroSection={section} designType={5} /> */}
+          <HeroSection key={section.id} heroSection={section} designType={4} /> */}
         </>
       )
 
