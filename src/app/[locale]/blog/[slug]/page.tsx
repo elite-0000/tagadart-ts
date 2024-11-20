@@ -12,22 +12,22 @@ import { notFound } from 'next/navigation'
 
 type Props = {
   params: {
-    id: string
+    slug: string
     locale: string
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await fetchPost(params.id)
+  const post = await fetchPost(params.slug)
   return generatePageMetadata({
     data: post,
     type: 'blog',
-    id: params.id,
+    id: params.slug,
   })
 }
 
-export default async function ViewPost({ params: { id } }: Props) {
-  const post: Post = await fetchPost(id)
+export default async function ViewPost({ params: { slug } }: Props) {
+  const post: Post = await fetchPost(slug)
   if (!post) {
     notFound()
   }
@@ -49,7 +49,7 @@ export default async function ViewPost({ params: { id } }: Props) {
           </FadeIn>
           <FadeIn
             className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0"
-            key={id}
+            key={slug}
             style={{ opacity: 1, transform: 'none' }}
           >
             <div>
@@ -58,11 +58,6 @@ export default async function ViewPost({ params: { id } }: Props) {
               )}
             </div>
           </FadeIn>
-          {/* <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-            <div className="markdown-content">
-              {post.content && <BasicMarkdown>{post.content}</BasicMarkdown>}
-            </div>
-          </FadeIn> */}
         </div>
       </Border>
     </article>

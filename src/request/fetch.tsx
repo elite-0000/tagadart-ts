@@ -52,7 +52,7 @@ export async function fetchPosts() {
   }
 }
 
-export async function fetchPost(id: string) {
+export async function fetchPost(slug: string) {
   // const populatePosts = [
   //   'pageIntro',
   //   'author.avatar',
@@ -73,7 +73,7 @@ export async function fetchPost(id: string) {
   const queryParams = createQueryParams('posts')
 
   try {
-    const postData = await fetchAxiosAPI(`/posts/${id}`, queryParams)
+    const postData = await fetchAxiosAPI(`/posts/${slug}`, queryParams)
     return postData?.data
   } catch (error) {
     console.error('Failed to load post:', error)
@@ -104,7 +104,7 @@ export async function fetchProjects() {
   }
 }
 
-export async function fetchProject(id: string) {
+export async function fetchProject(slug: string) {
   // const populateProjects = [
   //   'pageIntro',
   //   'author.avatar',
@@ -124,9 +124,8 @@ export async function fetchProject(id: string) {
   // }
 
   const queryParams = createQueryParams('projects')
-
   try {
-    const projectsData = await fetchAxiosAPI(`/projects/${id}`, queryParams)
+    const projectsData = await fetchAxiosAPI(`/projects/${slug}`, queryParams)
     return projectsData?.data
   } catch (error) {
     console.error('Failed to load projects data:', error)
@@ -157,7 +156,7 @@ export async function fetchServices() {
   }
 }
 
-export async function fetchService(id: string) {
+export async function fetchService(slug: string) {
   // const populateServices = ['pageIntro']
 
   // const queryParams: RestQueryParams = {
@@ -172,7 +171,7 @@ export async function fetchService(id: string) {
   const queryParams = createQueryParams('services')
 
   try {
-    const serviceData = await fetchAxiosAPI(`/our-services/${id}`, queryParams)
+    const serviceData = await fetchAxiosAPI(`/our-services/${slug}`, queryParams)
 
     return serviceData?.data
   } catch (error) {

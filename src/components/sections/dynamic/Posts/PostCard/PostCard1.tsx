@@ -9,7 +9,10 @@ interface PostCard1Props {
 
 const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
   return (
-    <article key={post.id} className="flex flex-col items-start justify-start">
+    <article
+      key={post.slug}
+      className="flex flex-col items-start justify-start"
+    >
       <div className="relative w-full">
         {post?.pageIntro?.cover?.url && (
           <NextCloudinaryImage
@@ -37,7 +40,7 @@ const PostCard1: React.FC<PostCard1Props> = ({ post }) => {
         {post.pageIntro && (
           <div className="group relative">
             <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-              <Link href={`/blog/${post.id}`}>
+              <Link href={`/blog/${post.slug}`}>
                 <span className="absolute inset-0" />
                 {post.pageIntro.title}
               </Link>
