@@ -33,9 +33,6 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
                 className="mr-3"
               />
             </div>
-            {/* <div>
-              <h2>{project.client}</h2>
-            </div> */}
           </div>
           {project.pageIntro.cover && (
             <div className="my-6">
@@ -50,7 +47,6 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
             </div>
           )}
 
-          {/* <p>{project.client}</p> */}
           <p className="mt-6 flex gap-x-2 text-sm text-neutral-950">
             <time dateTime={project.year} className="font-semibold">
               {project.year}

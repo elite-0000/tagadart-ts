@@ -10,7 +10,6 @@ interface ClientCardProps {
 }
 
 const ClientCard: React.FC<ClientCardProps> = ({ client }) => {
-  console.log(client, 'client')
   return (
     <>
       <FadeIn className="overflow-hidden">
