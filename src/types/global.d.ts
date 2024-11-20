@@ -68,6 +68,7 @@ export interface PageIntro {
   content: string
   cover: MediaItem | null
   pagination: boolean
+  embedVideo?: string
 }
 
 export interface Culture {

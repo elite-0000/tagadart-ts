@@ -28,7 +28,6 @@ const RenderContent: React.FC<HeroProps> = ({
   designType,
 }) => {
   const embedVideo = heroSection.embedVideo
-  console.log('embedVideo: ' + embedVideo)
   switch (designType) {
     case 1:
       return (
