@@ -76,7 +76,7 @@ const CenteredHero = ({ heroSection }: HeroProps) => (
       <div className="text-center">
         <SectionIntro
           {...heroSection.sectionIntro}
-          embedVideo={heroSection.embedVideo}
+          embedVideo={heroSection?.sectionIntro?.embedVideo}
           centered
         />
         {heroSection.buttons && heroSection.buttons.length > 0 && (
@@ -122,7 +122,7 @@ const SplitHero = ({ heroSection }: HeroProps) => (
       {/* <div className="flex items-center justify-center lg:col-span-5 lg:-mr-8 xl:absolute xl:inset-0 xl:left-1/2 xl:mr-0">
         <SectionIntro
           {...heroSection.sectionIntro}
-          embedVideo={heroSection.embedVideo}
+          embedVideo={heroSection?.sectionIntro?.embedVideo}
           // content={undefined}
           // title=""
           // eyebrow=""
@@ -236,7 +236,7 @@ const HeroSection: React.FC<HeroProps> = ({ heroSection, designType }) => {
             return (
               <SectionIntro
                 {...heroSection.sectionIntro}
-                embedVideo={heroSection.embedVideo}
+                embedVideo={heroSection?.sectionIntro?.embedVideo}
               />
             )
           default:
