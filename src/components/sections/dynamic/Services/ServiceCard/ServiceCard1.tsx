@@ -20,11 +20,7 @@ const ServiceCard1: React.FC<ServiceCardProps> = async ({ service }) => {
     <div key={service.id} className="flex flex-col">
       <dt className="items-top flex min-h-20 gap-x-3 text-xl font-bold leading-7 text-gray-900">
         <div className="text-primary-600">
-          <Icon
-            size={48}
-            /* @ts-ignore */
-            name={service.classIcon as IconProps}
-          />
+          <Icon size={48} name={service.classIcon as any} />
         </div>
         {service.pageIntro.title}
       </dt>
@@ -35,7 +31,7 @@ const ServiceCard1: React.FC<ServiceCardProps> = async ({ service }) => {
         {/* <BasicMarkdown>{service.pageIntro.content}</BasicMarkdown> */}
 
         <Link
-          href={`/services/${service.id}`}
+          href={`/services/${service.slug}`}
           className="mt-4 text-sm font-semibold leading-6 text-primary-600"
         >
           {t('view_more')} <span aria-hidden="true">→</span>

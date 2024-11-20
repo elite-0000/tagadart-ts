@@ -13,29 +13,29 @@ import { componentResolver } from '@/lib/componentResolver'
 
 type Props = {
   params: {
-    id: string
+    slug: string
     locale: string
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = await fetchService(params.id)
+  const service = await fetchService(params.slug)
   return generatePageMetadata({
     data: service,
     type: 'service',
-    id: params.id,
+    id: params.slug,
   })
 }
 
-async function getService(id: string) {
-  const service = await fetchService(id)
+async function getService(slug: string) {
+  const service = await fetchService(slug)
   if (!service) return null
   return service
 }
 
-export default async function ViewServicePage({ params: { id } }: Props) {
+export default async function ViewServicePage({ params: { slug } }: Props) {
   const [service, t] = await Promise.all([
-    getService(id),
+    getService(slug),
     getTranslations('Service'),
   ])
 
@@ -60,7 +60,7 @@ export default async function ViewServicePage({ params: { id } }: Props) {
           </FadeIn>
           <FadeIn
             className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0"
-            key={id}
+            key={slug}
             style={{ opacity: 1, transform: 'none' }}
           >
             <div>

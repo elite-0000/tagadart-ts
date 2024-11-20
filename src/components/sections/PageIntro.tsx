@@ -50,6 +50,7 @@ export function PageIntroSections({
                 alt={cover.alternativeText}
                 width={600}
                 height={500}
+                crop="auto"
                 className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
               />
             </div>

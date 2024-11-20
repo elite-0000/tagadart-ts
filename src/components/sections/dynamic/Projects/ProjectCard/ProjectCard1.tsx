@@ -24,7 +24,7 @@ const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
       className="flex"
       style={{ opacity: 1, transform: 'none' }}
     >
-      <Link href={`/projects/${project.id}`}>
+      <Link href={`/projects/${project.slug}`}>
         <article className="relative flex w-full flex-col rounded-3xl p-6 ring-1 ring-neutral-950/5 transition hover:bg-neutral-50 sm:p-8">
           <div className="flex items-center">
             <div>
@@ -73,13 +73,6 @@ const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
             </BasicMarkdown>
           </div>
           <div className="mt-6">
-            {/* <Link
-              href={`/projects/${project.id}`}
-              className={buttonVariants({ variant: 'primary' })}
-            >
-              {t('view_more')}
-            </Link> */}
-
             <Button variant="primary">{t('view_more')}</Button>
           </div>
         </article>

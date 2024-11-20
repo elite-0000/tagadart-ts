@@ -14,21 +14,22 @@ import { generatePageMetadata } from '@/lib/seo'
 
 type Props = {
   params: {
-    id: string
+    slug: string
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = await fetchProject(params.id)
+  const project = await fetchProject(params.slug)
+  console.log('paramas: ', params)
   return generatePageMetadata({
     data: project,
     type: 'project',
-    id: params.id,
+    id: params.slug,
   })
 }
 
-export default async function ViewProjectPage({ params: { id } }: Props) {
-  const project: Project = await fetchProject(id)
+export default async function ViewProjectPage({ params: { slug } }: Props) {
+  const project: Project = await fetchProject(slug)
   if (!project) return null
 
   const contentSections = project?.structure
@@ -94,7 +95,7 @@ export default async function ViewProjectPage({ params: { id } }: Props) {
         </header>
       </FadeIn>
 
-      <FadeIn key={id} style={{ opacity: 1, transform: 'none' }}>
+      <FadeIn key={slug} style={{ opacity: 1, transform: 'none' }}>
         <div className="[&>*]:mx-auto [&>*]:max-w-5xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
           {contentSections?.map((section: any) =>
             componentResolver({ section, designType: 1 }),
