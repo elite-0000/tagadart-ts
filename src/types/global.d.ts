@@ -25,9 +25,18 @@ export interface MediaItem {
   id: string
   url: string
   provider_metadata?: any
-  width?: number
-  height?: number
+  width: number
+  height: number
   alternativeText: string
+}
+
+export interface SeoData {
+  seo: {
+    metaTitle: string
+    metaDescription: string
+    metaImage: MediaItem
+  }
+  pageIntro: PageIntro
 }
 
 //****** REQUEST ******\\
@@ -55,9 +64,9 @@ export interface PaginationMeta {
 export interface PageIntro {
   title: string
   eyebrow: string
-  content: any
-  image: string
-  cover: MediaItem
+  content: string
+  cover: MediaItem | null
+  pagination: boolean
 }
 
 export interface Culture {
@@ -77,23 +86,14 @@ export interface Office {
 // CTA.ts
 export interface CTA {}
 
-// // AboutUs.ts
-// export interface AboutUs {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   culture: Culture
-//   team: Member[]
-// }
+export interface ButtonProps {
+  id: string
+  link: string
+  text: string
+  type: string
+}
 
-// // Contact.ts
-// export interface Contact {
-//   title: string
-//   eyebrow: string
-//   description: string
-//   image: string
-//   offices: Office[]
-//   newsletter: boolean
-//   form: Form
-// }
+export interface Pagination {
+  id: number
+  value: 'off' | 'infinite' | 'pagination'
+}
