@@ -69,14 +69,9 @@ const PostsSection: React.FC<BlogProps> = ({ postsSection, designType }) => {
 
   const url = '/posts'
 
-  //TODO: Change to localized string
-  const sectionIntro = {
-    title: 'Des posts qui peuvent vous plaire',
-    eyebrow: 'Blog',
-  }
   return (
     <Section>
-      {postsSection?.posts ? (
+      {postsSection?.posts && postsSection?.posts?.length > 0 ? (
         <div>
           <RenderContent
             posts={postsSection?.posts}
