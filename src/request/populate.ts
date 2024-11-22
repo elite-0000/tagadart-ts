@@ -77,6 +77,9 @@ export const structurePopulate = {
           'testimonials.pageIntro.cover',
           'testimonials.author',
           'testimonials.author.avatar',
+          'testimonials.member',
+          'testimonials.member.fullname',
+          'testimonials.member.avatar',
         ],
       },
       'section.hero-section': {

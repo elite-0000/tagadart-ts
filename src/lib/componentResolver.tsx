@@ -25,7 +25,9 @@ export const componentResolver = ({
     case 'section.text-section':
       return (
         <Section className="m-auto max-w-5xl">
-          {section.title && <h2 className="text-xl">{section.title}</h2>}
+          {section.title && (
+            <h2 className="text-2xl font-semibold">{section.title}</h2>
+          )}
           <BasicMarkdown content={section.content} />
         </Section>
       )
@@ -121,11 +123,17 @@ export const componentResolver = ({
       )
     case 'section.hero-section':
       return (
-        <HeroSection
-          key={section.id}
-          heroSection={section}
-          designType={designType}
-        />
+        <>
+          <HeroSection
+            key={section.id}
+            heroSection={section}
+            designType={designType}
+          />
+          {/* <HeroSection key={section.id} heroSection={section} designType={1} />
+          <HeroSection key={section.id} heroSection={section} designType={2} />
+          <HeroSection key={section.id} heroSection={section} designType={3} />
+          <HeroSection key={section.id} heroSection={section} designType={4} /> */}
+        </>
       )
 
     case 'section.testimonials':
