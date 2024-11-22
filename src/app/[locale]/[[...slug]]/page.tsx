@@ -33,7 +33,6 @@ export default async function PageRoute({ params }: Props) {
   const contentSections = page?.data[0]?.structure
   return (
     <Container>
-      <h1>api url{process.env.NEXT_PUBLIC_API_URL}</h1>
       {contentSections?.map((section: Section & PageIntro) =>
         componentResolver({ section, designType: section.designType }),
       )}
