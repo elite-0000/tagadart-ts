@@ -12,14 +12,14 @@ function Navigation() {
   const t = useTranslations('Navigation')
 
   const navigation = [
-    {
-      title: `${t('project')}`,
-      links: [
-        { title: 'Climact', href: '/projects/1' },
-        { title: 'Community', href: '/projects/2' },
-        { title: 'Naturalisation', href: '/projects/6' },
-      ],
-    },
+    // {
+    //   title: `${t('project')}`,
+    //   links: [
+    //     { title: 'Climact', href: '/projects/1' },
+    //     { title: 'Community', href: '/projects/2' },
+    //     { title: 'Naturalisation', href: '/projects/6' },
+    //   ],
+    // },
     {
       title: 'Tagadart',
       links: [
