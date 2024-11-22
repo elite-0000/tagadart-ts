@@ -53,9 +53,10 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   designType,
 }) => {
   const url = '/projects'
+  console.log(projectsSection?.projects, 'projectsSection?.projects')
   return (
     <Section>
-      {projectsSection?.projects ? (
+      {projectsSection?.projects && projectsSection?.projects?.length > 0 ? (
         <div>
           <RenderContent
             projects={projectsSection?.projects}
@@ -65,22 +66,24 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
         </div>
       ) : (
         <Fetcher url={url} paginationMode={projectsSection?.pagination?.value}>
-          {({ data, currentPage, totalPages, goToPage }) => (
-            <div>
-              <RenderContent
-                projects={data.data}
-                sectionIntro={projectsSection.sectionIntro}
-                designType={designType}
-              />
-              {projectsSection?.pagination?.value === 'off' ? null : (
-                <PaginationMain
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  goToPage={goToPage}
+          {({ data, currentPage, totalPages, goToPage }) => {
+            return (
+              <div>
+                <RenderContent
+                  projects={data.data}
+                  sectionIntro={projectsSection.sectionIntro}
+                  designType={designType}
                 />
-              )}
-            </div>
-          )}
+                {projectsSection?.pagination?.value === 'off' ? null : (
+                  <PaginationMain
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    goToPage={goToPage}
+                  />
+                )}
+              </div>
+            )
+          }}
         </Fetcher>
       )}
     </Section>

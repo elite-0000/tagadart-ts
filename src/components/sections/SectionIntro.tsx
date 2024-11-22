@@ -24,8 +24,6 @@ export function SectionIntro({
   smaller?: boolean
   invert?: boolean
 }) {
-  console.log(embedVideo, 'embedVideo')
-  console.log(cover, 'cover')
   const MediaRenderer = ({
     media,
     embedVideo,
