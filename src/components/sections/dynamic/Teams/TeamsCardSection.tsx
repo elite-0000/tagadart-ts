@@ -28,7 +28,6 @@ const RenderContent: React.FC<RenderContentProps> = ({
   sectionIntro,
   designType,
 }) => {
-  console.log(designType, 'designType')
   switch (designType) {
     default:
       return (
