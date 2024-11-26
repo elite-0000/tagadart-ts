@@ -95,13 +95,7 @@ const NextCloudinaryImage = ({
   }
 
   return (
-    <div
-    // className={`relative ${className}`}
-    // style={{
-    //   width: typeof width === 'number' ? `${width}px` : width,
-    //   height: typeof height === 'number' ? `${height}px` : height,
-    // }}
-    >
+    <div>
       {isLoading && showSkeleton && (
         <div className="absolute inset-0 z-10">
           <Skeleton
@@ -115,15 +109,20 @@ const NextCloudinaryImage = ({
       )}
 
       <CldImage
-        {...imageConfig}
-        {...props}
-        onLoad={() => setIsLoading(false)}
-        onError={(e) => {
-          setIsLoading(false)
-          setHasError(true)
-          console.error('Image load failed:', src)
-          props.onError?.(e)
-        }}
+        width={width}
+        height={height}
+        src={src}
+        alt={alt}
+
+        // {...imageConfig}
+        // {...props}
+        // onLoad={() => setIsLoading(false)}
+        // onError={(e) => {
+        //   setIsLoading(false)
+        //   setHasError(true)
+        //   console.error('Image load failed:', src)
+        //   props.onError?.(e)
+        // }}
       />
 
       {hasError && (

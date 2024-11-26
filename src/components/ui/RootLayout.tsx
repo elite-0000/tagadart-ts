@@ -135,15 +135,10 @@ function Header({
             alt="Tagadart Logo"
             width={140}
             height={140}
-            crop="fit"
+            crop="fill"
             className="m-auto"
+            priority={true}
           />
-
-          {/* <Logo
-            className="hidden h-8 sm:block"
-            invert={invert}
-            filled={logoHovered}
-          /> */}
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>
