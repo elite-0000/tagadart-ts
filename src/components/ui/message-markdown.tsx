@@ -52,9 +52,7 @@ function extractDataFromMDX(mdxString: string): ExtractedData {
       throw new Error('mdxString is undefined')
     }
     tagListMatch = mdxString.match(/<TagList>[\s\S]*?<\/TagList>/)
-  } catch (error) {
-    console.log('error')
-  }
+  } catch (error) {}
   if (tagListMatch) {
     const tagListItems = tagListMatch[0].match(
       /<TagListItem>(.*?)<\/TagListItem>/g,

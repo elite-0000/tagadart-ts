@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = async ({ project }) => {
                 alt={project.client}
                 width={100}
                 height={20}
-                crop="fill_pad"
+                crop="fill"
                 className="mr-3"
               />
             </div>

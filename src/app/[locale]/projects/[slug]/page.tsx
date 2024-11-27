@@ -20,7 +20,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await fetchProject(params.slug)
-  console.log('paramas: ', params)
   return generatePageMetadata({
     data: project,
     type: 'project',

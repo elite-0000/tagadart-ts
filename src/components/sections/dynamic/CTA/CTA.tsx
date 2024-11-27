@@ -85,7 +85,6 @@ const RenderContent: React.FC<CTAProps> = ({ ctaSection, designType }) => {
 }
 
 const CTASection: React.FC<CTAProps> = ({ ctaSection, designType }) => {
-  // console.log(ctaSection, 'ctaSection')
   return (
     <Section>
       <RenderContent ctaSection={ctaSection} designType={designType} />

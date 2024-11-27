@@ -34,7 +34,7 @@ const ProjectCard1: React.FC<ProjectCardProps> = ({ project }) => {
                   alt={project.client}
                   width={100}
                   height={20}
-                  crop="fill_pad"
+                  // crop="fill_pad"
                   className="mr-3"
                 />
               )}

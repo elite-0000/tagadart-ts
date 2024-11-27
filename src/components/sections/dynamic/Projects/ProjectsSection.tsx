@@ -53,7 +53,6 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   designType,
 }) => {
   const url = '/projects'
-  console.log(projectsSection?.projects, 'projectsSection?.projects')
   return (
     <Section>
       {projectsSection?.projects && projectsSection?.projects?.length > 0 ? (
