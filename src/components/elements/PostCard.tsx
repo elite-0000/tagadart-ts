@@ -60,6 +60,7 @@ const renderContentOld = (post: Post, designType?: 'default' | 'alternate') => {
                   alt={post.author.fullname}
                   src={post.author.avatar.url}
                   width={48}
+                  gravity="face"
                   height={48}
                   className="rounded-full bg-gray-100"
                 />
