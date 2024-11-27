@@ -49,13 +49,9 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
   effect?: string
   quality?: 'auto' | number
   fetchFormat?: 'auto' | 'png' | 'jpg' | 'gif' | 'webp' | 'avif'
-  // colorSpace?: 'srgb' | 'tinysrgb' | 'cmyk' | 'no_cmyk'
   dpr?: 'auto' | number
 }
 
-/**
- * Optimized Cloudinary Image Component with Skeleton Loading
- */
 const NextCloudinaryImage = ({
   alt,
   width,
@@ -70,7 +66,6 @@ const NextCloudinaryImage = ({
   effect,
   quality = 'auto',
   fetchFormat = 'auto',
-  // colorSpace = 'srgb',
   dpr = 'auto',
   ...props
 }: NextCloudinaryImageProps) => {
@@ -82,20 +77,28 @@ const NextCloudinaryImage = ({
     alt,
     width,
     height,
-    className: `transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`,
+    className: `transition-opacity duration-300 ${
+      isLoading ? 'opacity-0' : 'opacity-100'
+    } ${className}`,
     loading: priority ? ('eager' as const) : ('lazy' as const),
     crop,
     gravity,
     quality,
     format: fetchFormat,
     dpr,
-    // colorSpace,
+
     radius,
     effect,
   }
 
   return (
-    <div>
+    <div
+    // className="relative inline-block"
+    // style={{
+    //   width: `${width}px`,
+    //   height: `${height}px`,
+    // }}
+    >
       {isLoading && showSkeleton && (
         <div className="absolute inset-0 z-10">
           <Skeleton
@@ -109,20 +112,15 @@ const NextCloudinaryImage = ({
       )}
 
       <CldImage
-        width={width}
-        height={height}
-        src={src}
-        alt={alt}
-
-        // {...imageConfig}
-        // {...props}
-        // onLoad={() => setIsLoading(false)}
-        // onError={(e) => {
-        //   setIsLoading(false)
-        //   setHasError(true)
-        //   console.error('Image load failed:', src)
-        //   props.onError?.(e)
-        // }}
+        {...imageConfig}
+        {...props}
+        onLoad={() => setIsLoading(false)}
+        onError={(e) => {
+          setIsLoading(false)
+          setHasError(true)
+          console.error('Image load failed:', src)
+          props.onError?.(e)
+        }}
       />
 
       {hasError && (
