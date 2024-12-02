@@ -40,7 +40,6 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const messages = await getMessages()
-  console.log("fonts: ", monaSans);
   return (
     <html
       lang={locale}
