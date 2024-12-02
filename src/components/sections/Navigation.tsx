@@ -35,12 +35,12 @@ export default function Navigation() {
   return (
     <nav className="mt-px font-display text-5xl font-medium tracking-tight text-white">
       <NavigationRow>
-        <NavigationItem href="/projects">{t('project')}</NavigationItem>
-        <NavigationItem href="/about">{t('about')}</NavigationItem>
+        <NavigationItem href="/project">{t('demo-project')}</NavigationItem>
+        <NavigationItem href="/about">{t('demo-about')}</NavigationItem>
       </NavigationRow>
       <NavigationRow>
-        <NavigationItem href="/services">{t('services')}</NavigationItem>
-        <NavigationItem href="/blog">{t('blog')}</NavigationItem>
+        <NavigationItem href="/service">{t('demo-services')}</NavigationItem>
+        <NavigationItem href="/blog">{t('demo-blog')}</NavigationItem>
       </NavigationRow>
     </nav>
   )
