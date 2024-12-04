@@ -89,6 +89,8 @@ const NextCloudinaryImage = ({
     effect,
   }
 
+  console.log(src, 'src')
+
   return (
     <div
     // className="relative inline-block"
