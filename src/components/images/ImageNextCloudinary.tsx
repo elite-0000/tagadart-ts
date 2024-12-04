@@ -85,7 +85,6 @@ const NextCloudinaryImage = ({
     quality,
     format: fetchFormat,
     dpr,
-
     radius,
     effect,
   }
@@ -114,8 +113,8 @@ const NextCloudinaryImage = ({
         priority={true}
         {...imageConfig}
         {...props}
-        alt={alt?alt : 'default'}
-        style={{ width: '100%', height: 'auto' }}
+        alt={alt ? alt : 'default'}
+        style={{ width: width, height: 'auto' }}
         onLoad={() => setIsLoading(false)}
         onError={(e) => {
           setIsLoading(false)

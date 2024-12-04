@@ -24,7 +24,7 @@ const ClientCard1: React.FC<ReferenceCardProps> = async ({ client }) => {
           height={80}
           alt={client?.logo?.alternativeText}
           src={`${client?.logo?.url}`}
-          crop="fill"
+          crop="fit"
         />
       )}
     </FadeIn>
