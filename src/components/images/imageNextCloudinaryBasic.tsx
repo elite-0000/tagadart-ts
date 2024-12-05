@@ -1,15 +1,9 @@
 'use client'
 
-import Image from 'next/image'
-import { CldImage, getCldImageUrl } from 'next-cloudinary'
+import { CldImage, CldImageProps } from 'next-cloudinary'
 import clsx from 'clsx'
 
-type OptimizedImageProps = {
-  alt: string
-  width: number
-  height: number
-  src: string
-  crop?: any
+type OptimizedImageProps = CldImageProps & {
   className?: string
 }
 
@@ -19,16 +13,13 @@ const OptimizedImage = ({
   height,
   src,
   crop,
+  priority = false,
+  removeBackground = false,
+  format = 'auto',
+  quality = 'auto',
   className,
+  ...props
 }: OptimizedImageProps) => {
-  // const imageUrl = getCldImageUrl({
-  //   src: src,
-  //   width: width,
-  //   height: height,
-  //   crop: crop,
-  //   format: 'auto',
-  //   quality: 'auto',
-  // })
   return (
     <CldImage
       src={src}
@@ -36,8 +27,13 @@ const OptimizedImage = ({
       width={width}
       height={height}
       crop={crop}
-      // className={className}
-      className={clsx('h-auto w-auto', className)}
+      priority={priority}
+      format={format}
+      quality={quality}
+      removeBackground={removeBackground}
+      className={clsx('h-auto', className)}
+      // className={clsx('h-auto w-auto', className)}
+      {...props}
     />
   )
 }

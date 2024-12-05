@@ -9,6 +9,8 @@ const TestPage: React.FC = () => {
         height={200}
         // crop={'fit'}
         src="logo_tagadart_2ef62a5f8c"
+        priority
+        // removeBackground
       />
       <NextCloudinaryImageBasic
         alt="LOGO"
@@ -24,13 +26,30 @@ const TestPage: React.FC = () => {
         crop={'fit'}
         src="EPFL_ab5f7697d7.jpg"
       />
-      <NextCloudinaryImageBasic
-        alt="LOGO"
-        width={400}
-        height={600}
-        crop={'fill'}
-        src="Community_App_Flyer_b2de057f30.png"
-      />
+      <div className="grid grid-cols-3 gap-4">
+        <NextCloudinaryImageBasic
+          alt="LOGO"
+          width={400}
+          height={600}
+          crop={'fill'}
+          src="Community_App_Flyer_b2de057f30.png"
+        />
+        <NextCloudinaryImageBasic
+          alt="LOGO"
+          width={400}
+          height={600}
+          crop={'fill'}
+          src="Community_App_Flyer_b2de057f30.png"
+        />
+        <NextCloudinaryImageBasic
+          alt="LOGO"
+          width={400}
+          height={600}
+          crop={'fill'}
+          src="Community_App_Flyer_b2de057f30.png"
+        />
+      </div>
+
       {/* <NextCloudinaryImageBasic
         alt="LOGO"
         width={100}
