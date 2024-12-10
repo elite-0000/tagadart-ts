@@ -6,10 +6,10 @@ const TestPage: React.FC = () => {
       <NextCloudinaryImageBasic
         alt="LOGO"
         width={600}
-        height={200}
-        // crop={'fit'}
+        height={600}
+        crop={'fit'}
         src="logo_tagadart_2ef62a5f8c"
-        priority
+
         // removeBackground
       />
       <NextCloudinaryImageBasic
@@ -62,6 +62,7 @@ const TestPage: React.FC = () => {
         width={100}
         height={100}
         crop={'fit'}
+        className="rounded-full"
         src="Nic_Temoignage_9fe5ea31a5.jpg"
       />
     </div>
