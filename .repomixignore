@@ -6,3 +6,5 @@
 public/
 .vscode/
 .next/
+src/images/
+CHANGELOG.md
