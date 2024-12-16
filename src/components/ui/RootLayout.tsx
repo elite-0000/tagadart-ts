@@ -14,12 +14,12 @@ import clsx from 'clsx'
 import { motion, MotionConfig, useReducedMotion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 
-import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { GridPattern } from '@/components/ui/GridPattern'
 import ErrorBoundary from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
+import { Button } from './button'
 
 const Footer = dynamic(() => import('@/components/sections/Footer'), {
   loading: () => <p>Loading footer...</p>,
@@ -123,24 +123,10 @@ function Header({
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
-        >
-          {/* <NextCloudinaryImage
-            src={
-              invert
-                ? 'logo_tagadart_white_a60e46ff2a'
-                : 'logo_tagadart_2ef62a5f8c'
-            }
-            alt="Tagadart Logo"
-            width={140}
-            height={140}
-            crop="fill"
-            className="m-auto"
-            priority={true}
-          /> */}
-        </Link>
+        ></Link>
         <div className="flex items-center gap-x-8">
-          <Button href="/contact" invert={invert}>
-            {t('button_contact')}
+          <Button>
+            <Link href="/contact">{t('button_contact')}</Link>
           </Button>
           <button
             ref={toggleRef}

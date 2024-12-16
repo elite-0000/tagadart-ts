@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
-import { Button } from '@/components/elements/Button'
+
 import { ContactForm } from '@/components/form/ContactForm'
 import { Border } from '@/components/ui/Border'
 import { ContactContent, ContactProps, Office } from '@/types/contact'
@@ -11,6 +11,7 @@ import Icon from '@/components/images/Icon'
 import dynamicIconImports from 'lucide-react/dynamicIconImports'
 import { useTranslations } from 'next-intl'
 import { Section } from '@/components/ui/Section'
+import { Button } from '@/components/ui/button'
 
 interface OfficesSectionProps {
   offices: Office[]
@@ -119,8 +120,8 @@ const RenderContent: React.FC<ContactProps> = ({
               <div className="max-w-xl">
                 <div className="mt-6 flex flex-wrap gap-4">
                   {contactSection?.buttons?.map((button) => (
-                    <Button key={button.id} href={button.link} invert>
-                      {button.text}
+                    <Button key={button.id}>
+                      <Link href={button.link}>{button.text}</Link>
                     </Button>
                   ))}
                 </div>
