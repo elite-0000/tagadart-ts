@@ -27,9 +27,11 @@ const OptimizedImage = ({
 }: OptimizedImageProps) => {
   const [isLoading, setIsLoading] = useState(!priority)
 
+  const blurredUrl = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/w_50,e_blur:1000/${src}`
+
   return (
     <div className="relative">
-      {isLoading && (
+      {/* {isLoading && (
         <div className={clsx('absolute inset-0', skeletonClassName)}>
           <Skeleton
             className="h-full w-full"
@@ -37,7 +39,7 @@ const OptimizedImage = ({
             highlightColor="#e5e7eb"
           />
         </div>
-      )}
+      )} */}
 
       <CldImage
         src={src}
@@ -48,14 +50,17 @@ const OptimizedImage = ({
         priority={priority}
         format={format}
         quality={quality}
+        placeholder="blur"
+        blurDataURL={blurredUrl}
+        loading="lazy"
         removeBackground={removeBackground}
         className={clsx(
           'h-auto max-w-full transition-opacity duration-300',
           className,
-          {
-            'opacity-0': isLoading,
-            'opacity-100': !isLoading,
-          },
+          // {
+          //   'opacity-0': isLoading,
+          //   'opacity-100': !isLoading,
+          // },
         )}
         onLoad={() => setIsLoading(false)}
         {...props}
