@@ -124,6 +124,7 @@ const NextCloudinaryImage = ({
           console.error('Image load failed:', src)
           props.onError?.(e)
         }}
+        loading='lazy'
       />
 
       {hasError && (
