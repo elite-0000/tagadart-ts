@@ -99,25 +99,7 @@ function Fetcher<T>({
   if (error) return <div>Error loading data...</div>
 
   return (
-    <SWRConfig
-      value={{
-        revalidateOnFocus: false,
-        revalidateIfStale: false,
-        dedupingInterval: 600000, // 10 minutes
-        focusThrottleInterval: 5000,
-        errorRetryCount: 3,
-        suspense: true,
-        fetcher: async (url) => {
-          const res = await fetch(url, {
-            headers: {
-              'Cache-Control':
-                'max-age=3600, s-maxage=3600, stale-while-revalidate',
-            },
-          })
-          return res.json()
-        },
-      }}
-    >
+    <>
       {accumulatedData
         ? children({
             data: accumulatedData,
@@ -130,7 +112,7 @@ function Fetcher<T>({
             hasNextPage,
           })
         : null}
-    </SWRConfig>
+    </>
   )
 }
 
