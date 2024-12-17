@@ -12,7 +12,7 @@ import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s -  Agence Digitale Écoresponsable - Tagadart',
+    template: '%s - Tagadart',
     default: 'Tagadart - Agence Digitale Eco Responsable Lausanne',
   },
   icons: {
@@ -40,6 +40,7 @@ export default async function LocaleLayout({
   params: { locale: string }
 }) {
   const messages = await getMessages()
+
   return (
     <html
       lang={locale}
