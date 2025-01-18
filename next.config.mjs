@@ -15,10 +15,17 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+  experimental: {
+    optimizeCss: true,
+  },
   webpack(config, { dev, isServer }) {
     if (!dev && !isServer) {
       // Implement tree shaking for unused code
-      config.optimization.usedExports = true
+      config.optimization = {
+        usedExports: true,
+        sideEffects: true,
+        minimize: !dev,
+      }
 
       // Optimize CSS bundles
       config.optimization.splitChunks = {

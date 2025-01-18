@@ -3,15 +3,12 @@ import React from 'react'
 
 import { Post } from '@/types/post'
 import { SectionIntro } from '../../SectionIntro'
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
-import { fetchPosts } from '@/request/fetch'
 import PostCard1 from '../Posts/PostCard/PostCard1'
 import PostCard2 from '../Posts/PostCard/PostCard2'
 import { PageIntro, Pagination } from '@/types/global'
 import { Section } from '@/components/ui/Section'
 import Fetcher from '@/request/Fetcher'
-import { url } from 'inspector'
 import PaginationMain from '../../Pagination'
 
 interface BlogProps {

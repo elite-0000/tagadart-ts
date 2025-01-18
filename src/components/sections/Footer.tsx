@@ -5,7 +5,6 @@ import { FadeIn } from '@/components/ui/FadeIn'
 
 import { useTranslations } from 'next-intl'
 import { socialMediaProfiles } from './SocialMedia'
-import NextCloudinaryImage from '../images/ImageNextCloudinary'
 import { ContactFooter } from './ContactFooter'
 
 function Navigation() {
