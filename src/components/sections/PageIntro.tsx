@@ -1,6 +1,4 @@
 import clsx from 'clsx'
-
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { PageIntro } from '@/types/global'
 import BasicMarkdown from '../ui/BasicMarkdown'

@@ -1,10 +1,8 @@
 // app/[locale]/services/[id]/page.tsx
 import type { Metadata } from 'next'
-import { Service } from '@/types/service'
 import { fetchService } from '@/request/fetch'
 import { Border } from '@/components/ui/Border'
 import { FadeIn } from '@/components/ui/FadeIn'
-import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { getTranslations } from 'next-intl/server'
 import { PageIntroSections } from '@/components/sections/PageIntro'
 import { generatePageMetadata } from '@/lib/seo'
@@ -69,14 +67,6 @@ export default async function ViewServicePage({ params: { slug } }: Props) {
               )}
             </div>
           </FadeIn>
-          {/* <FadeIn className="main_content mt-24 sm:mt-32 lg:mt-40 [&>*]:mx-auto [&>*]:max-w-3xl [&>:first-child]:!mt-0 [&>:last-child]:!mb-0">
-            {service.content && (
-              <div>
-                <h2 className="text-xl">{t('content')}</h2>
-                <BasicMarkdown>{service.content}</BasicMarkdown>
-              </div>
-            )}
-          </FadeIn> */}
         </div>
       </Border>
     </article>

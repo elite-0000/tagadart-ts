@@ -60,7 +60,7 @@ export default async function LocaleLayout({
         `}
         </Script>
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full w-full flex-col">
         <NextIntlClientProvider messages={messages}>
           <RootLayout>{children}</RootLayout>
           <Toaster />

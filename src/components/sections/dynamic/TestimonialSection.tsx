@@ -1,10 +1,8 @@
 import React from 'react'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import { MediaItem, PageIntro } from '@/types/global'
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
-import { te } from 'date-fns/locale'
 import { SectionIntro } from '../SectionIntro'
 import { Section } from '@/components/ui/Section'
 

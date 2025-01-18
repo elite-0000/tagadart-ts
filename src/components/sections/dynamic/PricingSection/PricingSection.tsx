@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { Check, X } from 'lucide-react'

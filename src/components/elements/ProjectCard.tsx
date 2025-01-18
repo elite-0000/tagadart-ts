@@ -1,10 +1,8 @@
 import React from 'react'
 import { FadeIn } from '@/components/ui/FadeIn'
-import Image from 'next/image'
-import { Button, buttonVariants } from '@/components/ui/button'
+import { Button } from '@/components/ui/button'
 
 import { Project } from '@/types/project'
-import ReactMarkdown from 'react-markdown'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'

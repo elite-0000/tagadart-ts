@@ -6,7 +6,6 @@ import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
 import { truncateWithEllipses } from '@/lib/helper'
-import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 interface ServiceCardProps {

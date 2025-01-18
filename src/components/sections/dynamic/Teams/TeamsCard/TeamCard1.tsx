@@ -1,14 +1,9 @@
 import React from 'react'
-import Icon from '@/components/images/Icon'
 
-import { Team } from '@/types/team'
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
 import { FadeIn } from '@/components/ui/FadeIn'
 
-import { truncateWithEllipses } from '@/lib/helper'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
-import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { Member } from '@/types/member'
 
 interface TeamCardProps {

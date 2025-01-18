@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Image from 'next/image' // Assuming you're using Next.js, for optimized image handling
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '../ui/BasicMarkdown'
 import { MediaItem, PageIntro } from '@/types/global'
