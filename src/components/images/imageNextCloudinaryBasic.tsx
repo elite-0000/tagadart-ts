@@ -17,7 +17,7 @@ const OptimizedImage = ({
   height,
   src,
   crop, //  //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
-  priority = false,
+  priority = true,
   removeBackground = false,
   format = 'auto',
   quality = 'auto',
