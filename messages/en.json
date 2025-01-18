@@ -27,7 +27,7 @@
   },
   "Contact": {
     "title": "Tell us more about your projects",
-    "button_contact": "Contact Us",
+    "button_contact": "Contact Us from company",
     "offices": "Our Offices",
     "email_us": "Email Us",
     "budget": "Your Budget",
@@ -53,7 +53,7 @@
     "services": "Services",
     "about": "About",
     "blog": "Blog",
-    "contact": "Contact Us",
+    "contact": "Contact Us from Tagadart",
     "follow_us": "Follow Us"
   },
   "Team": {
