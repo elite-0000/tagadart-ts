@@ -1,8 +1,6 @@
 import { Client } from '@/types/client'
 import React from 'react'
 import { FadeIn } from '../ui/FadeIn'
-import { Border } from '../ui/Border'
-import { Cloud } from 'lucide-react'
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 interface ClientCardProps {
@@ -23,9 +21,6 @@ const ClientCard: React.FC<ClientCardProps> = ({ client }) => {
           />
         )}
       </FadeIn>
-      {/* <div className="text-center">
-        <h2 className="text-xl font-bold">{client.name}</h2>
-      </div> */}
     </>
   )
 }

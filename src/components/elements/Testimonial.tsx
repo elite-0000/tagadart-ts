@@ -2,7 +2,6 @@ import { Border } from '@/components/ui/Border'
 
 import { Member } from '@/types/member'
 import clsx from 'clsx'
-import Image from 'next/image'
 
 import NextCloudinaryImage from '../images/ImageNextCloudinary'
 

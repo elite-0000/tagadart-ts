@@ -1,4 +1,3 @@
-// app/[locale]/services/[id]/page.tsx
 import type { Metadata } from 'next'
 import { fetchService } from '@/request/fetch'
 import { Border } from '@/components/ui/Border'

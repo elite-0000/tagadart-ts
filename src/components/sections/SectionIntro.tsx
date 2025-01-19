@@ -199,7 +199,6 @@ export function SectionIntro({
             <MediaRenderer media={cover ?? undefined} embedVideo={embedVideo} />
           </div>
         )}
-        {/* {renderMedia(cover, embedVideo)} */}
       </FadeIn>
     </div>
   )

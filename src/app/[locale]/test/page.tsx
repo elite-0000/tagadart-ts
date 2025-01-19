@@ -1,9 +1,9 @@
-import NextCloudinaryImageBasic from '@/components/images/imageNextCloudinaryBasic'
+import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 
 const TestPage: React.FC = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      <NextCloudinaryImageBasic
+      <NextCloudinaryImage
         alt="LOGO"
         width={600}
         height={600}
@@ -12,14 +12,14 @@ const TestPage: React.FC = () => {
 
         // removeBackground
       />
-      <NextCloudinaryImageBasic
+      <NextCloudinaryImage
         alt="LOGO"
         width={100}
         height={100}
         // crop={'fit'}
         src="climact_logo_b928550624_55cbb1b1a7.webp"
       />
-      <NextCloudinaryImageBasic
+      <NextCloudinaryImage
         alt="LOGO"
         width={100}
         height={100}
@@ -27,21 +27,21 @@ const TestPage: React.FC = () => {
         src="EPFL_ab5f7697d7.jpg"
       />
       <div className="grid grid-cols-3 gap-4">
-        <NextCloudinaryImageBasic
+        <NextCloudinaryImage
           alt="LOGO"
           width={400}
           height={600}
           crop={'fill'}
           src="Community_App_Flyer_b2de057f30.png"
         />
-        <NextCloudinaryImageBasic
+        <NextCloudinaryImage
           alt="LOGO"
           width={400}
           height={600}
           crop={'fill'}
           src="Community_App_Flyer_b2de057f30.png"
         />
-        <NextCloudinaryImageBasic
+        <NextCloudinaryImage
           alt="LOGO"
           width={400}
           height={600}
@@ -49,15 +49,7 @@ const TestPage: React.FC = () => {
           src="Community_App_Flyer_b2de057f30.png"
         />
       </div>
-
-      {/* <NextCloudinaryImageBasic
-        alt="LOGO"
-        width={100}
-        height={100}
-        crop={'fit'}
-        src="NPO_volunteering_4138514d6a.png"
-      /> */}
-      <NextCloudinaryImageBasic
+      <NextCloudinaryImage
         alt="LOGO"
         width={100}
         height={100}

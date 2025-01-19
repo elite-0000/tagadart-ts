@@ -27,7 +27,6 @@ const ServiceCard1: React.FC<ServiceCardProps> = async ({ service }) => {
         <BasicMarkdown>
           {truncateWithEllipses(service.pageIntro.content, 150)}
         </BasicMarkdown>
-        {/* <BasicMarkdown>{service.pageIntro.content}</BasicMarkdown> */}
 
         <Link
           href={`/services/${service.slug}`}
