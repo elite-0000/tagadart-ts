@@ -126,7 +126,7 @@ function Header({
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
         >
-          {/* <NextCloudinaryImage
+          <NextCloudinaryImage
             src={
               invert
                 ? 'logo_tagadart_white_a60e46ff2a'
@@ -138,7 +138,7 @@ function Header({
             crop="fill"
             className="m-auto"
             priority={true}
-          /> */}
+          />
         </Link>
         <div className="flex items-center gap-x-8">
           <Button href="/contact" invert={invert}>

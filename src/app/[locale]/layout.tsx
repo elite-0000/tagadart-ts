@@ -12,7 +12,7 @@ import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s - Tagadart',
+    template: '%s - Agence Digitale Écoresponsable - Tagadart',
     default: 'Tagadart - Agence Digitale Eco Responsable Lausanne',
   },
   icons: {
