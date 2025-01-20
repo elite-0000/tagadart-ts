@@ -11,9 +11,22 @@ const withBundleAnalyzerConfig = withBundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable React strict mode for better performance and debugging
+  reactStrictMode: true,
+
+  // Specify page extensions
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+
+  // Image optimization configuration
   images: {
     domains: ['res.cloudinary.com'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 60,
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   experimental: {
     optimizeCss: true,
@@ -27,34 +40,136 @@ const nextConfig = {
         minimize: !dev,
       }
 
-      // Optimize CSS bundles
+      // Optimize chunks
       config.optimization.splitChunks = {
+        chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
+        minChunks: 1,
+        maxAsyncRequests: 30,
+        maxInitialRequests: 30,
         cacheGroups: {
+          default: false,
+          vendors: false,
+          // Vendor chunk
+          vendor: {
+            name: 'vendor',
+            chunks: 'all',
+            test: /[\\/]node_modules[\\/]/,
+            priority: 20,
+          },
+          // Common chunk
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'async',
+            priority: 10,
+            reuseExistingChunk: true,
+            enforce: true,
+          },
+          // Styles chunk
           styles: {
             name: 'styles',
-            test: /\.css$/,
+            test: /\.(css|scss)$/,
             chunks: 'all',
             enforce: true,
           },
         },
       }
 
-      // Set up code minification for production
+      // Configure minimizer
       config.optimization.minimizer = [
-        // Use Terser for JavaScript minification
+        // JavaScript minification
         new TerserPlugin({
           terserOptions: {
             compress: {
-              drop_console: true, // Remove console logs
+              drop_console: true,
+              drop_debugger: true,
+              pure_funcs: [
+                'console.log',
+                'console.info',
+                'console.debug',
+                'console.warn',
+              ],
+            },
+            mangle: true,
+            format: {
+              comments: false,
             },
           },
+          extractComments: false,
         }),
-        // Use CssMinimizerPlugin for CSS minification
-        new CssMinimizerPlugin(),
+
+        // CSS minification
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: [
+              'default',
+              {
+                discardComments: { removeAll: true },
+                minifyFontValues: { removeQuotes: false },
+              },
+            ],
+          },
+        }),
       ]
+
+      // Enable module concatenation
+      config.optimization.concatenateModules = true
+
+      // Enable deterministic chunk ids
+      config.optimization.chunkIds = 'deterministic'
+
+      // Enable module ids hashing
+      config.optimization.moduleIds = 'deterministic'
     }
 
     return config
+  },
+
+  // Headers configuration for security and caching
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'X-XSS-Protection',
+            value: '1; mode=block',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        // Cache static files
+        source: '/static/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]
   },
 }
 

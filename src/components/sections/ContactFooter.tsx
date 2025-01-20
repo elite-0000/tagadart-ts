@@ -1,7 +1,8 @@
-import { Button } from '@/components/elements/Button'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { useTranslations } from 'next-intl'
+import { Button } from '../ui/button'
+import Link from 'next/link'
 
 export function ContactFooter() {
   const t = useTranslations('Contact')
@@ -14,8 +15,8 @@ export function ContactFooter() {
               {t('title')}
             </h2>
             <div className="mt-6 flex">
-              <Button href="/contact" invert>
-                {t('button_contact')}
+              <Button asChild>
+                <Link href="/contact">{t('button_contact')}</Link>
               </Button>
             </div>
           </div>

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'
-
 import { Project } from '@/types/project'
 import { fetchProject } from '@/request/fetch'
 import { PageIntroSections } from '@/components/sections/PageIntro'

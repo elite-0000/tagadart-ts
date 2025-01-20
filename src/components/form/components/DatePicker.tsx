@@ -8,7 +8,6 @@ import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { formatDate } from '@/lib/helper'
-import { DateRange } from 'react-day-picker'
 import {
   FormControl,
   FormDescription,
