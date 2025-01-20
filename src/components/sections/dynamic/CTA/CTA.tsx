@@ -1,5 +1,4 @@
 import React from 'react'
-import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { ButtonProps, PageIntro } from '@/types/global'
@@ -85,7 +84,6 @@ const RenderContent: React.FC<CTAProps> = ({ ctaSection, designType }) => {
 }
 
 const CTASection: React.FC<CTAProps> = ({ ctaSection, designType }) => {
-  // console.log(ctaSection, 'ctaSection')
   return (
     <Section>
       <RenderContent ctaSection={ctaSection} designType={designType} />

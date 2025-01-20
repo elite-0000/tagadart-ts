@@ -1,5 +1,3 @@
-import { fr } from 'date-fns/locale'
-
 import {
   Popover,
   PopoverContent,
@@ -19,7 +17,6 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
-import format from 'date-fns/format'
 
 interface CustomDatePickerProps {
   type: 'single' | 'range'

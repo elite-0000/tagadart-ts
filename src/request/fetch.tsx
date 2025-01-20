@@ -171,7 +171,10 @@ export async function fetchService(slug: string) {
   const queryParams = createQueryParams('services')
 
   try {
-    const serviceData = await fetchAxiosAPI(`/our-services/${slug}`, queryParams)
+    const serviceData = await fetchAxiosAPI(
+      `/our-services/${slug}`,
+      queryParams,
+    )
 
     return serviceData?.data
   } catch (error) {

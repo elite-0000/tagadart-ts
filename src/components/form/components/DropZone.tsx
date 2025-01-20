@@ -70,7 +70,6 @@ function DropzoneComponent({
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const files = multiple ? acceptedFiles : [acceptedFiles[0]] // Handle single/multiple files
-      // console.log(files, 'files')
       field.onChange(files) // Update the field value in react-hook-form
       // setSelectedFiles(files) // Update the local state to display selected files
       // setValue(valName, files)

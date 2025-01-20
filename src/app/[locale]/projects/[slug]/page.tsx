@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import BasicMarkdown from '@/components/ui/BasicMarkdown'
-import { Testimonial } from '@/components/elements/Testimonial'
 import { Container } from '@/components/ui/Container'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { GrayscaleTransitionImage } from '@/components/ui/GrayscaleTransitionImage'
@@ -20,7 +18,6 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await fetchProject(params.slug)
-  console.log('paramas: ', params)
   return generatePageMetadata({
     data: project,
     type: 'project',

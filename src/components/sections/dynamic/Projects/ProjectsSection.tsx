@@ -3,9 +3,7 @@ import React from 'react'
 
 import { Project } from '@/types/project'
 import { PageIntro, Pagination } from '@/types/global'
-import { fetchProjects } from '@/request/fetch'
 
-import { Container } from '@/components/ui/Container'
 import { FadeInStagger } from '@/components/ui/FadeIn'
 import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
@@ -53,7 +51,6 @@ const ProjectsSection: React.FC<ProjectsProps> = ({
   designType,
 }) => {
   const url = '/projects'
-  console.log(projectsSection?.projects, 'projectsSection?.projects')
   return (
     <Section>
       {projectsSection?.projects && projectsSection?.projects?.length > 0 ? (

@@ -12,7 +12,7 @@ import localFont from 'next/font/local'
 
 export const metadata: Metadata = {
   title: {
-    template: '%s -  Agence Digitale Écoresponsable - Tagadart',
+    template: '%s - Agence Digitale Écoresponsable - Tagadart',
     default: 'Tagadart - Agence Digitale Eco Responsable Lausanne',
   },
   icons: {
@@ -60,7 +60,7 @@ export default async function LocaleLayout({
         `}
         </Script>
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full w-full flex-col">
         <NextIntlClientProvider messages={messages}>
           <RootLayout>{children}</RootLayout>
           <Toaster />

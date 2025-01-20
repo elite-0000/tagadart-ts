@@ -49,19 +49,15 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
   effect?: string
   quality?: 'auto' | number
   fetchFormat?: 'auto' | 'png' | 'jpg' | 'gif' | 'webp' | 'avif'
-  // colorSpace?: 'srgb' | 'tinysrgb' | 'cmyk' | 'no_cmyk'
   dpr?: 'auto' | number
 }
 
-/**
- * Optimized Cloudinary Image Component with Skeleton Loading
- */
 const NextCloudinaryImage = ({
   alt,
   width,
   height,
   src,
-  priority = false,
+  priority = true,
   className = '',
   showSkeleton = true,
   crop = 'fit',
@@ -70,7 +66,6 @@ const NextCloudinaryImage = ({
   effect,
   quality = 'auto',
   fetchFormat = 'auto',
-  // colorSpace = 'srgb',
   dpr = 'auto',
   ...props
 }: NextCloudinaryImageProps) => {
@@ -82,24 +77,26 @@ const NextCloudinaryImage = ({
     alt,
     width,
     height,
-    className: `transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'} ${className}`,
-    loading: priority ? ('eager' as const) : ('lazy' as const),
+    className: `transition-opacity duration-300 ${
+      isLoading ? 'opacity-0' : 'opacity-100'
+    } ${className}`,
     crop,
     gravity,
     quality,
     format: fetchFormat,
     dpr,
-    // colorSpace,
     radius,
     effect,
   }
 
+  console.log(src, 'src')
+
   return (
     <div
-    // className={`relative ${className}`}
+    // className="relative inline-block"
     // style={{
-    //   width: typeof width === 'number' ? `${width}px` : width,
-    //   height: typeof height === 'number' ? `${height}px` : height,
+    //   width: `${width}px`,
+    //   height: `${height}px`,
     // }}
     >
       {isLoading && showSkeleton && (
@@ -115,8 +112,11 @@ const NextCloudinaryImage = ({
       )}
 
       <CldImage
+        priority={true}
         {...imageConfig}
         {...props}
+        alt={alt ? alt : 'default'}
+        style={{ width: width, height: 'auto' }}
         onLoad={() => setIsLoading(false)}
         onError={(e) => {
           setIsLoading(false)
