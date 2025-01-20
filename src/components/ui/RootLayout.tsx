@@ -20,6 +20,7 @@ import ErrorBoundary from '@/components/elements/ErrorBoundary'
 
 import { useTranslations } from 'next-intl'
 import { Button } from './button'
+import NextCloudinaryImage from '../images/ImageNextCloudinary'
 
 const Footer = dynamic(() => import('@/components/sections/Footer'), {
   loading: () => <p>Loading footer...</p>,
