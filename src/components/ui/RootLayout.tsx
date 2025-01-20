@@ -123,7 +123,21 @@ function Header({
           aria-label="Home"
           onMouseEnter={() => setLogoHovered(true)}
           onMouseLeave={() => setLogoHovered(false)}
-        ></Link>
+        >
+          <NextCloudinaryImage
+            src={
+              invert
+                ? 'logo_tagadart_white_a60e46ff2a'
+                : 'logo_tagadart_2ef62a5f8c'
+            }
+            alt="Tagadart Logo"
+            width={140}
+            height={140}
+            crop="fill"
+            className="m-auto"
+            priority={true}
+          />
+        </Link>
         <div className="flex items-center gap-x-8">
           <Button>
             <Link href="/contact">{t('button_contact')}</Link>

@@ -3,8 +3,6 @@ import React from 'react'
 import { Culture } from '@/types/global'
 import { PageIntro } from '@/types/global'
 
-import { Container } from '@/components/ui/Container'
-import { FadeIn } from '@/components/ui/FadeIn'
 import { SectionIntro } from '../../SectionIntro'
 import CultureCard1 from './CultureCard/CultureCard1'
 import { GridList } from '@/components/ui/GridList'

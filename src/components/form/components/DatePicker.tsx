@@ -1,5 +1,3 @@
-import { fr } from 'date-fns/locale'
-
 import {
   Popover,
   PopoverContent,

@@ -6,7 +6,6 @@ import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
 import { truncateWithEllipses } from '@/lib/helper'
-import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 
 interface ServiceCardProps {
@@ -28,7 +27,6 @@ const ServiceCard1: React.FC<ServiceCardProps> = async ({ service }) => {
         <BasicMarkdown>
           {truncateWithEllipses(service.pageIntro.content, 150)}
         </BasicMarkdown>
-        {/* <BasicMarkdown>{service.pageIntro.content}</BasicMarkdown> */}
 
         <Link
           href={`/services/${service.slug}`}

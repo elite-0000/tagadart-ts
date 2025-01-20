@@ -20,7 +20,6 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@types/date-fns": "^2.6.0",
-    "@types/mdx": "^2.0.7",
     "@types/node": "^20.10.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
@@ -28,8 +27,11 @@
     "axios": "^1.7.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+
+
+    "css-minimizer-webpack-plugin": "^7.0.0",
+
     "date-fns": "^3.6.0",
-    "fast-glob": "^3.2.12",
     "framer-motion": "^10.15.2",
     "lucide-react": "^0.427.0",
     "next": "^14.0.4",
@@ -56,8 +58,11 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "@types/qs": "^6.9.15",
-    "css-minimizer-webpack-plugin": "^7.0.0",
+
     "env-cmd": "^10.1.0",
+
+    "cssnano": "^7.0.6",
+
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
     "prettier": "^3.3.2",

@@ -1,5 +1,4 @@
 import React from 'react'
-import Icon from '@/components/images/Icon'
 
 import { Culture } from '@/types/global'
 import { getTranslations } from 'next-intl/server'

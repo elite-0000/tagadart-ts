@@ -28,29 +28,17 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-
-  // Enable compression
-  compress: true,
-
-  // Modern experimental features for optimization
   experimental: {
-    // Enable modern optimization features
-    optimizeCss: true, // Enable CSS optimization
-    legacyBrowsers: false, // Disable support for legacy browsers
-    browsersListForSwc: true, // Enable SWC compilation with browserslist
-    // Modern code optimization
-    optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
-    // Optimize fonts
-    optimizeFonts: true,
-    // Enable scroll restoration
-    scrollRestoration: true,
+    optimizeCss: true,
   },
-
-  // Webpack configuration for production optimization
   webpack(config, { dev, isServer }) {
     if (!dev && !isServer) {
-      // Enable tree shaking
-      config.optimization.usedExports = true
+      // Implement tree shaking for unused code
+      config.optimization = {
+        usedExports: true,
+        sideEffects: true,
+        minimize: !dev,
+      }
 
       // Optimize chunks
       config.optimization.splitChunks = {

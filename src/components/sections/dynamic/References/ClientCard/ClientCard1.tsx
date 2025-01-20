@@ -1,13 +1,9 @@
 import React from 'react'
-import Icon from '@/components/images/Icon'
 
 import { Client } from '@/types/client'
 import { getTranslations } from 'next-intl/server'
-import Link from 'next/link'
 
-import { truncateWithEllipses } from '@/lib/helper'
 import NextCloudinaryImage from '@/components/images/ImageNextCloudinary'
-import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { FadeIn } from '@/components/ui/FadeIn'
 
 interface ReferenceCardProps {

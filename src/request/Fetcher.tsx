@@ -2,7 +2,6 @@
 
 import React, { ReactNode, useEffect, useState } from 'react'
 import useSWR, { KeyedMutator, SWRConfig } from 'swr'
-import { swrConfig } from '@/hooks/useSWRConfig'
 import { defaultQueryParams, fetchUseSWR } from '@/request/request'
 import { Data, RestQueryParams } from '@/types/global'
 import * as qs from 'qs'
@@ -29,10 +28,7 @@ interface FetcherProps<T> {
 }
 
 const optimizedFetcherConfig = {
-  suspense: true,
-  revalidateOnMount: false,
-  revalidateIfStale: false,
-  refreshInterval: 30000,
+  revalidateOnFocus: false,
 }
 
 function Fetcher<T>({
@@ -102,13 +98,26 @@ function Fetcher<T>({
 
   if (error) return <div>Error loading data...</div>
 
-  const mergedConfig = {
-    ...swrConfig,
-    ...optimizedFetcherConfig,
-  }
-
   return (
-    <SWRConfig value={mergedConfig}>
+    <SWRConfig
+      value={{
+        revalidateOnFocus: false,
+        revalidateIfStale: false,
+        dedupingInterval: 600000, // 10 minutes
+        focusThrottleInterval: 5000,
+        errorRetryCount: 3,
+        suspense: true,
+        fetcher: async (url) => {
+          const res = await fetch(url, {
+            headers: {
+              'Cache-Control':
+                'max-age=3600, s-maxage=3600, stale-while-revalidate',
+            },
+          })
+          return res.json()
+        },
+      }}
+    >
       {accumulatedData
         ? children({
             data: accumulatedData,

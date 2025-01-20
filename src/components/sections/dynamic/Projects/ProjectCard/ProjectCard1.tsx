@@ -3,7 +3,6 @@ import { FadeIn } from '@/components/ui/FadeIn'
 import { Button } from '@/components/ui/button'
 
 import { Project } from '@/types/project'
-import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 
 import { truncateWithEllipses } from '@/lib/helper'

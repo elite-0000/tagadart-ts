@@ -57,7 +57,7 @@ const NextCloudinaryImage = ({
   width,
   height,
   src,
-  priority = false,
+  priority = true,
   className = '',
   showSkeleton = true,
   crop = 'fit',
