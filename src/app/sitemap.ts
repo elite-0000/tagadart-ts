@@ -9,7 +9,7 @@ type SitemapRoute = {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
 
   // Define static routes
   const staticRoutes: SitemapRoute[] = [
