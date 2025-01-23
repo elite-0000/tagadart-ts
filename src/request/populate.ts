@@ -1,6 +1,33 @@
-import { RestQueryParams } from '@/types/global'
+// Import the necessary types
+import { RestQueryParams } from '@/types/global';
 
-export const structurePopulate = {
+// Define reusable constants for populate structures
+const coverPopulate = {
+  cover: {
+    fields: ['url'], // Fetch only the cover image URL
+  },
+};
+
+const avatarPopulate = {
+  avatar: {
+    fields: ['url'], // Fetch only the avatar image URL
+  },
+};
+
+const authorPopulate = {
+  author: {
+    populate: avatarPopulate, // Attach avatar populate to author
+  },
+};
+
+const pageIntroPopulate = {
+  pageIntro: {
+    populate: coverPopulate, // Attach cover populate to pageIntro
+  },
+};
+
+// Define structured populate for sections
+export const structurePopulate: Record<string, any> = {
   structure: {
     on: {
       // Page Intro Section
@@ -9,9 +36,7 @@ export const structurePopulate = {
           title: true,
           eyebrow: true,
           content: true,
-          cover: {
-            fields: ['url'], // Fetch only the URL of the cover image
-          },
+          ...coverPopulate, // Use reusable cover populate
         },
       },
 
@@ -21,23 +46,11 @@ export const structurePopulate = {
           sectionIntro: true,
           posts: {
             populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Only fetch the cover image URL
-                  },
-                },
-              },
-              author: {
-                populate: {
-                  avatar: {
-                    fields: ['url'], // Only fetch the avatar URL
-                  },
-                },
-              },
+              ...pageIntroPopulate, // Attach pageIntro populate
+              ...authorPopulate, // Attach author populate
             },
             pagination: {
-              pageSize: 5, // Fetch only 5 posts at a time (adjust as needed)
+              pageSize: 5, // Fetch only 5 posts at a time
             },
           },
         },
@@ -45,7 +58,10 @@ export const structurePopulate = {
 
       // Text Section (fetch everything since it uses simpler content)
       'section.text-section': {
-        populate: '*',
+        populate: {
+          title: true,
+          content: true,
+        },
       },
 
       // Projects Section
@@ -54,13 +70,7 @@ export const structurePopulate = {
           sectionIntro: true,
           projects: {
             populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
+              ...pageIntroPopulate, // Attach pageIntro populate
               logo: {
                 fields: ['url'], // Fetch logos with only the URL
               },
@@ -72,7 +82,7 @@ export const structurePopulate = {
         },
       },
 
-      // Contact Section
+      // Other sections (similar optimizations as above)
       'section.contact-section': {
         populate: {
           sectionIntro: true,
@@ -82,19 +92,12 @@ export const structurePopulate = {
         },
       },
 
-      // Services Section
       'section.services-section': {
         populate: {
           sectionIntro: true,
           our_services: {
             populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
+              ...pageIntroPopulate,
             },
             pagination: {
               pageSize: 5, // Limit the number of services
@@ -103,7 +106,6 @@ export const structurePopulate = {
         },
       },
 
-      // Pricing Section
       'section.pricing-section': {
         populate: {
           sectionIntro: true,
@@ -115,16 +117,13 @@ export const structurePopulate = {
         },
       },
 
-      // Team Section
       'section.team-section': {
         populate: {
           sectionIntro: true,
           members: {
             populate: {
               fullname: true,
-              avatar: {
-                fields: ['url'], // Fetch only avatar image URL
-              },
+              ...avatarPopulate, // Attach avatar populate
               posts: {
                 populate: {
                   pageIntro: true,
@@ -138,7 +137,6 @@ export const structurePopulate = {
         },
       },
 
-      // Reference Section (Clients)
       'section.reference-section': {
         populate: {
           sectionIntro: true,
@@ -156,7 +154,6 @@ export const structurePopulate = {
         },
       },
 
-      // Culture Section
       'section.culture-section': {
         populate: {
           sectionIntro: true,
@@ -166,7 +163,6 @@ export const structurePopulate = {
         },
       },
 
-      // CTA Section
       'section.cta': {
         populate: {
           sectionIntro: true,
@@ -174,7 +170,6 @@ export const structurePopulate = {
         },
       },
 
-      // Features Section
       'section.features-section': {
         populate: {
           sectionIntro: true,
@@ -182,32 +177,17 @@ export const structurePopulate = {
         },
       },
 
-      // Testimonials Section
       'section.testimonials': {
         populate: {
           sectionIntro: true,
           testimonials: {
             populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Fetch only cover image URL
-                  },
-                },
-              },
-              author: {
-                populate: {
-                  avatar: {
-                    fields: ['url'], // Fetch only avatar image URL
-                  },
-                },
-              },
+              ...pageIntroPopulate,
+              ...authorPopulate,
               member: {
                 populate: {
                   fullname: true,
-                  avatar: {
-                    fields: ['url'], // Fetch only avatar image URL
-                  },
+                  ...avatarPopulate, // Attach avatar populate for members
                 },
               },
             },
@@ -218,14 +198,11 @@ export const structurePopulate = {
         },
       },
 
-      // Hero Section
       'section.hero-section': {
         populate: {
           sectionIntro: {
             populate: {
-              cover: {
-                fields: ['url'], // Fetch only cover image URL
-              },
+              ...coverPopulate,
             },
           },
           buttons: true,
@@ -238,10 +215,11 @@ export const structurePopulate = {
   },
 };
 
-export const collectionPopulates = {
+// Collection populates (for specific collections like projects, services, etc.)
+export const collectionPopulates: Record<string, any> = {
   projects: {
     pageIntro: {
-      populate: ['cover'],
+      populate: coverPopulate,
     },
     logo: {
       populate: '*',
@@ -252,7 +230,7 @@ export const collectionPopulates = {
   },
   services: {
     pageIntro: {
-      populate: ['cover'],
+      populate: coverPopulate,
     },
     seo: {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
@@ -260,11 +238,9 @@ export const collectionPopulates = {
   },
   posts: {
     pageIntro: {
-      populate: ['cover'],
+      populate: coverPopulate,
     },
-    author: {
-      populate: ['avatar'],
-    },
+    ...authorPopulate,
     seo: {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
@@ -274,23 +250,39 @@ export const collectionPopulates = {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
-}
+};
 
-// Helper function to create query params
+// Helper function to create query params dynamically
 export const createQueryParams = (
   collection: keyof typeof collectionPopulates,
   includeStructure = true,
+  specificSections: string[] = []
 ): RestQueryParams => {
-  console.log("structurePopulate_return: ", structurePopulate);
+  const structureSections = specificSections.length
+    ? specificSections.reduce((acc, section) => {
+        if (structurePopulate.structure.on[section]) {
+          acc[section] = structurePopulate.structure.on[section];
+        }
+        return acc;
+      }, {} as Record<string, any>)
+    : structurePopulate.structure.on;
+
   return {
     populate: {
       ...(collectionPopulates[collection] || {}),
-      ...(includeStructure ? structurePopulate : {}),
+      ...(includeStructure ? structureSections : {}),
     },
     publicationState: 'live',
     pagination: {
       page: 1,
       pageSize: 10,
     },
-  }
-}
+  };
+};
+
+// Example Usage
+const queryParams = createQueryParams('posts', true, [
+  'section.blog-section',
+  'section.hero-section',
+]);
+console.log(queryParams);

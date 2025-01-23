@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/Container'
 import { generateSlugPageMetadata } from '@/lib/seo'
 import { componentResolver } from '@/lib/componentResolver'
 import { fetchPageBySlug } from '@/request/fetch'
+import Fetcher from '@/request/Fetcher'
 
 type Props = {
   params: {
@@ -20,8 +21,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PageRoute({ params }: Props) {
+  console.log('Page params: ', params)
+  const start = performance.now()
   const page = await fetchPageBySlug(params.slug, params.lang)
-
+  const end = performance.now() // End timing
+  console.log(`Fetch time: ${end - start} milliseconds`)
   if (!page || !page.data || page.data.length === 0) return null
 
   type Section = {
