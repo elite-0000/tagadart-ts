@@ -6,7 +6,6 @@ export const structurePopulate = {
       'section.blog-section': {
         populate: [
           'sectionIntro',
-          'posts',
           'posts.pageIntro.cover',
           'posts.author.avatar',
         ],
@@ -17,7 +16,6 @@ export const structurePopulate = {
       'section.projects-section': {
         populate: [
           'sectionIntro',
-          'projects',
           'projects.pageIntro.cover',
           'projects.logo',
         ],
@@ -25,7 +23,6 @@ export const structurePopulate = {
       'section.contact-section': {
         populate: [
           'sectionIntro',
-          'content',
           'content.offices',
           'content.emails',
           'content.socials',
@@ -34,7 +31,6 @@ export const structurePopulate = {
       'section.services-section': {
         populate: [
           'sectionIntro',
-          'our_services',
           'our_services.pageIntro.cover',
         ],
       },
@@ -44,17 +40,16 @@ export const structurePopulate = {
       'section.team-section': {
         populate: [
           'sectionIntro',
-          'members',
           'members.fullname',
           'members.avatar',
           'members.posts.pageIntro',
         ],
       },
       'section.reference-section': {
-        populate: ['sectionIntro', 'clients', 'clients.name', 'clients.logo'],
+        populate: ['sectionIntro', 'clients.name', 'clients.logo'],
       },
       'section.culture-section': {
-        populate: ['sectionIntro', 'values', 'values.title'],
+        populate: ['sectionIntro', 'values.title'],
       },
       'section.cta': {
         populate: ['sectionIntro', 'buttons'],
@@ -68,7 +63,6 @@ export const structurePopulate = {
       'section.testimonials': {
         populate: [
           'sectionIntro',
-          'testimonials',
           'testimonials.pageIntro.cover',
           'testimonials.author.avatar',
           'testimonials.member.fullname',
@@ -76,7 +70,7 @@ export const structurePopulate = {
         ],
       },
       'section.hero-section': {
-        populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+        populate: ['sectionIntro.cover', 'buttons', 'logo'],
       },
     },
   },
