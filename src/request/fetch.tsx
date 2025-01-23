@@ -21,7 +21,6 @@ export async function fetchPageBySlug(slug: string, lang: string) {
 
   try {
     const pageData = await fetchAxiosAPI(path, queryParams)
-    console.log('pageData>>>>>> ', JSON.stringify(pageData))
     return pageData // Return the full response, not just data
   } catch (error) {
     console.error('Failed to load page data:', error)
