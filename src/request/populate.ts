@@ -234,6 +234,7 @@ export const structurePopulate = {
           },
         },
       },
+      
     },
   },
 };
@@ -274,6 +275,119 @@ export const collectionPopulates = {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
+}
+
+export const defultPopulates = {
+  structure: {
+    on: {
+      'section.hero-section': {
+        populate: {
+          sectionIntro: {
+            populate: {
+              cover: {
+                fields: ['url'], // Fetch only cover image URL
+              },
+            },
+          },
+          buttons: true,
+          logo: {
+            fields: ['url'], // Fetch only logo URL
+          },
+        },
+      },
+      'section.reference-section': {
+        populate: {
+          sectionIntro: true,
+          clients: {
+            fields: ['name', 'link'], // Only fetch the client name and link
+            populate: {
+              logo: {
+                fields: ['url'], // Fetch only logo URL
+              },
+            },
+            pagination: {
+              pageSize: 10, // Limit the number of clients
+            },
+          },
+        },
+      },
+      'section.projects-section': {
+        populate: {
+          sectionIntro: true,
+          projects: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              logo: {
+                fields: ['url'], // Fetch logos with only the URL
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of projects per response
+            },
+          },
+        },
+      },
+      'section.testimonials': {
+        populate: {
+          sectionIntro: true,
+          testimonials: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              author: {
+                populate: {
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+              member: {
+                populate: {
+                  fullname: true,
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of testimonials
+            },
+          },
+        },
+      },
+      'section.services-section': {
+        populate: {
+          sectionIntro: true,
+          our_services: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of services
+            },
+          },
+        },
+      },
+    }
+  }
 }
 
 // Helper function to create query params
