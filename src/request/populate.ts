@@ -122,6 +122,7 @@ export const createQueryParams = (
   console.log("structurePopulate_return: ", structurePopulate);
   return {
     populate: {
+      ...(collectionPopulates[collection] || {}),
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
