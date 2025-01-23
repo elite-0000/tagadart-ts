@@ -32,22 +32,22 @@ export const componentResolver = ({
     //       <BasicMarkdown content={section.content} />
     //     </Section>
     //   )
-    case 'section.blog-section':
-      return (
-        <PostsSection
-          key={section.id}
-          postsSection={section}
-          designType={designType}
-        />
-      )
-    case 'section.projects-section':
-      return (
-        <ProjectsSection
-          key={section.id}
-          projectsSection={section}
-          designType={designType}
-        />
-      )
+    // case 'section.blog-section':
+    //   return (
+    //     <PostsSection
+    //       key={section.id}
+    //       postsSection={section}
+    //       designType={designType}
+    //     />
+    //   )
+    // case 'section.projects-section':
+    //   return (
+    //     <ProjectsSection
+    //       key={section.id}
+    //       projectsSection={section}
+    //       designType={designType}
+    //     />
+    //   )
 
     // case 'section.services-section':
     //   return (
