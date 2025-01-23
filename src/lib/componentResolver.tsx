@@ -14,6 +14,63 @@ import PricingSection from '@/components/sections/dynamic/PricingSection/Pricing
 import BasicMarkdown from '@/components/ui/BasicMarkdown'
 import { Section } from '@/components/ui/Section'
 
+type SectionComponentProps = {
+  section: any
+  designType: number
+}
+
+// Map of component resolvers
+const componentMap: Record<string, React.FC<SectionComponentProps>> = {
+  'section.text-section': ({ section }) => (
+    <Section className="m-auto max-w-5xl">
+      {section.title && (
+        <h2 className="text-2xl font-semibold">{section.title}</h2>
+      )}
+      <BasicMarkdown content={section.content} />
+    </Section>
+  ),
+  'section.blog-section': ({ section, designType }) => (
+    <PostsSection postsSection={section} designType={designType} />
+  ),
+  'section.projects-section': ({ section, designType }) => (
+    <ProjectsSection projectsSection={section} designType={designType} />
+  ),
+  'section.services-section': ({ section, designType }) => (
+    <ServicesSection servicesSection={section} designType={designType} />
+  ),
+  'section.reference-section': ({ section, designType }) => (
+    <ReferenceSection referenceSection={section} designType={designType} />
+  ),
+  'section.cta': ({ section, designType }) => (
+    <CTASection ctaSection={section} designType={designType} />
+  ),
+  'section.pricing-section': ({ section, designType }) => (
+    <PricingSection pricingSection={section} designType={designType} />
+  ),
+  'section.team-section': ({ section, designType }) => (
+    <TeamsSection teamsSection={section} designType={designType} />
+  ),
+  'section.culture-section': ({ section, designType }) => (
+    <CultureSection culturesSection={section} designType={designType} />
+  ),
+  'section.contact-section': ({ section, designType }) => (
+    <ContactSection contactSection={section} designType={designType} />
+  ),
+  'section.page-intro': ({ section, designType }) => (
+    <PageIntroSection pageIntroSection={section} designType={designType} />
+  ),
+  'section.features-section': ({ section, designType }) => (
+    <FeaturesSection featuresSection={section} designType={designType} />
+  ),
+  'section.hero-section': ({ section, designType }) => (
+    <HeroSection heroSection={section} designType={designType} />
+  ),
+  'section.testimonials': ({ section }) => (
+    <TestimonialSection testimonialSection={section} />
+  ),
+}
+
+// Component Resolver Function
 export const componentResolver = ({
   section,
   designType,
@@ -21,130 +78,11 @@ export const componentResolver = ({
   section: any
   designType: number
 }) => {
-  console.log('hello', section.__component)
-  // switch (section.__component) {
-  //   case 'section.text-section':
-  //     return (
-  //       <Section className="m-auto max-w-5xl">
-  //         {section.title && (
-  //           <h2 className="text-2xl font-semibold">{section.title}</h2>
-  //         )}
-  //         <BasicMarkdown content={section.content} />
-  //       </Section>
-  //     )
-  //   case 'section.blog-section':
-  //     return (
-  //       <PostsSection
-  //         key={section.id}
-  //         postsSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.projects-section':
-  //     return (
-  //       <ProjectsSection
-  //         key={section.id}
-  //         projectsSection={section}
-  //         designType={designType}
-  //       />
-  //     )
+  const Component = componentMap[section.__component]
+  if (!Component) {
+    console.warn(`Unknown component type: ${section.__component}`)
+    return null
+  }
 
-  //   case 'section.services-section':
-  //     return (
-  //       <ServicesSection
-  //         key={section.id}
-  //         servicesSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.reference-section':
-  //     return (
-  //       <ReferenceSection
-  //         key={section.id}
-  //         referenceSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.cta':
-  //     return (
-  //       <CTASection
-  //         key={section.id}
-  //         ctaSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.pricing-section':
-  //     return (
-  //       <PricingSection
-  //         key={section.id}
-  //         pricingSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.team-section':
-  //     return (
-  //       <TeamsSection
-  //         key={section.id}
-  //         teamsSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.culture-section':
-  //     return (
-  //       <CultureSection
-  //         key={section.id}
-  //         culturesSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.contact-section':
-  //     console.log('hello, contact section')
-  //     return (
-  //       <ContactSection
-  //         key={section.id}
-  //         contactSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.page-intro':
-  //     return (
-  //       <PageIntroSection
-  //         key={section.id}
-  //         pageIntroSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-
-  //   case 'section.features-section':
-  //     return (
-  //       <FeaturesSection
-  //         key={section.id}
-  //         featuresSection={section}
-  //         designType={designType}
-  //       />
-  //     )
-  //   case 'section.hero-section':
-  //     return (
-  //       <>
-  //         <HeroSection
-  //           key={section.id}
-  //           heroSection={section}
-  //           designType={designType}
-  //         />
-  //         {/* <HeroSection key={section.id} heroSection={section} designType={1} />
-  //         <HeroSection key={section.id} heroSection={section} designType={2} />
-  //         <HeroSection key={section.id} heroSection={section} designType={3} />
-  //         <HeroSection key={section.id} heroSection={section} designType={4} /> */}
-  //       </>
-  //     )
-
-  //   case 'section.testimonials':
-  //     return (
-  //       <TestimonialSection testimonialSection={section} key={section.id} />
-  //     )
-
-  //   default:
-  //     return null
-  // }
-  return <>hello</>
+  return <Component section={section} designType={designType} />
 }
