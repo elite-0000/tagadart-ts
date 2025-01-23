@@ -49,22 +49,22 @@ export const componentResolver = ({
         />
       )
 
-    case 'section.services-section':
-      return (
-        <ServicesSection
-          key={section.id}
-          servicesSection={section}
-          designType={designType}
-        />
-      )
-    case 'section.reference-section':
-      return (
-        <ReferenceSection
-          key={section.id}
-          referenceSection={section}
-          designType={designType}
-        />
-      )
+    // case 'section.services-section':
+    //   return (
+    //     <ServicesSection
+    //       key={section.id}
+    //       servicesSection={section}
+    //       designType={designType}
+    //     />
+    //   )
+    // case 'section.reference-section':
+    //   return (
+    //     <ReferenceSection
+    //       key={section.id}
+    //       referenceSection={section}
+    //       designType={designType}
+    //     />
+    //   )
     // case 'section.cta':
     //   return (
     //     <CTASection
