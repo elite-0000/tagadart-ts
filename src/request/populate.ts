@@ -7,9 +7,7 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'posts',
-          'posts.pageIntro',
           'posts.pageIntro.cover',
-          'posts.author',
           'posts.author.avatar',
         ],
       },
@@ -20,7 +18,6 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'projects',
-          'projects.pageIntro',
           'projects.pageIntro.cover',
           'projects.logo',
         ],
@@ -38,7 +35,6 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'our_services',
-          'our_services.pageIntro',
           'our_services.pageIntro.cover',
         ],
       },
@@ -73,11 +69,8 @@ export const structurePopulate = {
         populate: [
           'sectionIntro',
           'testimonials',
-          'testimonials.pageIntro',
           'testimonials.pageIntro.cover',
-          'testimonials.author',
           'testimonials.author.avatar',
-          'testimonials.member',
           'testimonials.member.fullname',
           'testimonials.member.avatar',
         ],
@@ -132,9 +125,9 @@ export const createQueryParams = (
   collection: keyof typeof collectionPopulates,
   includeStructure = true,
 ): RestQueryParams => {
+  console.log("structurePopulate_return: ", structurePopulate);
   return {
     populate: {
-      ...(collectionPopulates[collection] || {}),
       ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
