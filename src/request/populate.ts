@@ -4,73 +4,73 @@ export const structurePopulate = {
   structure: {
     on: {
       // Page Intro Section
-      'section.page-intro': {
-        populate: {
-          title: true,
-          eyebrow: true,
-          content: true,
-          cover: {
-            fields: ['url'], // Fetch only the URL of the cover image
-          },
-        },
-      },
+      // 'section.page-intro': {
+      //   populate: {
+      //     title: true,
+      //     eyebrow: true,
+      //     content: true,
+      //     cover: {
+      //       fields: ['url'], // Fetch only the URL of the cover image
+      //     },
+      //   },
+      // },
 
-      // Blog Section (with pagination for posts)
-      'section.blog-section': {
-        populate: {
-          sectionIntro: true,
-          posts: {
-            populate: {
-              pageIntro: {
-                populate: {
-                  cover: {
-                    fields: ['url'], // Only fetch the cover image URL
-                  },
-                },
-              },
-              author: {
-                populate: {
-                  avatar: {
-                    fields: ['url'], // Only fetch the avatar URL
-                  },
-                },
-              },
-            },
-            pagination: {
-              pageSize: 5, // Fetch only 5 posts at a time (adjust as needed)
-            },
-          },
-        },
-      },
+      // // Blog Section (with pagination for posts)
+      // 'section.blog-section': {
+      //   populate: {
+      //     sectionIntro: true,
+      //     posts: {
+      //       populate: {
+      //         pageIntro: {
+      //           populate: {
+      //             cover: {
+      //               fields: ['url'], // Only fetch the cover image URL
+      //             },
+      //           },
+      //         },
+      //         author: {
+      //           populate: {
+      //             avatar: {
+      //               fields: ['url'], // Only fetch the avatar URL
+      //             },
+      //           },
+      //         },
+      //       },
+      //       pagination: {
+      //         pageSize: 5, // Fetch only 5 posts at a time (adjust as needed)
+      //       },
+      //     },
+      //   },
+      // },
 
       // Text Section (fetch everything since it uses simpler content)
       // 'section.text-section': {
       //   populate: '*',
       // },
 
-      // // Projects Section
-      // 'section.projects-section': {
-      //   populate: {
-      //     sectionIntro: true,
-      //     projects: {
-      //       populate: {
-      //         pageIntro: {
-      //           populate: {
-      //             cover: {
-      //               fields: ['url'], // Fetch only cover image URL
-      //             },
-      //           },
-      //         },
-      //         logo: {
-      //           fields: ['url'], // Fetch logos with only the URL
-      //         },
-      //       },
-      //       pagination: {
-      //         pageSize: 5, // Limit the number of projects per response
-      //       },
-      //     },
-      //   },
-      // },
+      // Projects Section
+      'section.projects-section': {
+        populate: {
+          sectionIntro: true,
+          projects: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              logo: {
+                fields: ['url'], // Fetch logos with only the URL
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of projects per response
+            },
+          },
+        },
+      },
 
       // // Contact Section
       // 'section.contact-section': {
