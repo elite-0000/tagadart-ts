@@ -134,32 +134,30 @@ const SplitHero = ({ heroSection }: HeroProps) => (
 
 const DefaultHero = ({ heroSection }: HeroProps) => (
   <div className="relative isolate overflow-hidden bg-white">
-    <Container>
-      <FadeIn>
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-shrink-0 lg:pt-8">
-            {heroSection.logo && (
-              <NextCloudinaryImage
-                src={heroSection.logo.url}
-                alt={heroSection.logo.alternativeText}
-                width={124}
-                height={48}
-                className="my-8"
-              />
-            )}
+    {/* <Container> */}
+    {/* <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
+        <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-shrink-0 lg:pt-8">
+          {heroSection.logo && (
+            <NextCloudinaryImage
+              src={heroSection.logo.url}
+              alt={heroSection.logo.alternativeText}
+              width={124}
+              height={48}
+              className="my-8"
+            />
+          )} */}
 
-            <SectionIntro {...heroSection.sectionIntro} />
-            {heroSection.buttons && heroSection.buttons.length > 0 && (
-              <div className="mt-10 flex items-center gap-x-6">
-                {heroSection.buttons.map((button) => (
-                  <HeroButton key={button.id} button={button} />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </FadeIn>
-    </Container>
+    <SectionIntro {...heroSection.sectionIntro} />
+    {heroSection.buttons && heroSection.buttons.length > 0 && (
+      <div className="mt-10 flex items-center gap-x-6">
+        {heroSection.buttons.map((button) => (
+          <HeroButton key={button.id} button={button} />
+        ))}
+      </div>
+    )}
+    {/* </div>
+      </div> */}
+    {/* </Container> */}
   </div>
 )
 
