@@ -3,91 +3,250 @@ import { RestQueryParams } from '@/types/global'
 export const structurePopulate = {
   structure: {
     on: {
-      'section.blog-section': {
-        populate: [
-          'sectionIntro',
-          'posts',
-          'posts.pageIntro',
-          'posts.pageIntro.cover',
-          'posts.author',
-          'posts.author.avatar',
-        ],
-      },
-      'section.text-section': {
-        populate: '*',
-      },
-      'section.projects-section': {
-        populate: [
-          'sectionIntro',
-          'projects',
-          'projects.pageIntro',
-          'projects.pageIntro.cover',
-          'projects.logo',
-        ],
-      },
-      'section.contact-section': {
-        populate: [
-          'sectionIntro',
-          'content',
-          'content.offices',
-          'content.emails',
-          'content.socials',
-        ],
-      },
-      'section.services-section': {
-        populate: [
-          'sectionIntro',
-          'our_services',
-          'our_services.pageIntro',
-          'our_services.pageIntro.cover',
-        ],
-      },
-      'section.pricing-section': {
-        populate: ['sectionIntro', 'cards', 'cards.features'],
-      },
-      'section.team-section': {
-        populate: [
-          'sectionIntro',
-          'members',
-          'members.fullname',
-          'members.avatar',
-          'members.posts.pageIntro',
-        ],
-      },
-      'section.reference-section': {
-        populate: ['sectionIntro', 'clients', 'clients.name', 'clients.logo'],
-      },
-      'section.culture-section': {
-        populate: ['sectionIntro', 'values', 'values.title'],
-      },
-      'section.cta': {
-        populate: ['sectionIntro', 'buttons'],
-      },
+      // Page Intro Section
       'section.page-intro': {
-        populate: ['title', 'eyebrow', 'content', 'cover'],
+        populate: {
+          title: true,
+          eyebrow: true,
+          content: true,
+          cover: {
+            fields: ['url'], // Fetch only the URL of the cover image
+          },
+        },
       },
+
+      // Blog Section (with pagination for posts)
+      'section.blog-section': {
+        populate: {
+          sectionIntro: true,
+          posts: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  title: true,
+                  eyebrow: true,
+                  content: true,
+                  cover: {
+                    fields: ['url'], // Only fetch the cover image URL
+                  },
+                },
+              },
+              author: {
+                populate: {
+                  avatar: {
+                    fields: ['url'], // Only fetch the avatar URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Fetch only 5 posts at a time (adjust as needed)
+            },
+          },
+        },
+      },
+
+      // Text Section (fetch everything since it uses simpler content)
+      'section.text-section': {
+        populate: {
+          title: true,
+          content: true,
+        }
+      },
+
+      // Projects Section
+      'section.projects-section': {
+        populate: {
+          sectionIntro: true,
+          projects: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  title: true,
+                  eyebrow: true,
+                  content: true,
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              logo: {
+                fields: ['url'], // Fetch logos with only the URL
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of projects per response
+            },
+          },
+        },
+      },
+
+      // Contact Section
+      'section.contact-section': {
+        populate: {
+          sectionIntro: true,
+          content: {
+            populate: ['offices', 'emails', 'socials'],
+          },
+        },
+      },
+
+      // Services Section
+      'section.services-section': {
+        populate: {
+          sectionIntro: true,
+          our_services: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of services
+            },
+          },
+        },
+      },
+
+      // Pricing Section
+      'section.pricing-section': {
+        populate: {
+          sectionIntro: true,
+          cards: {
+            populate: {
+              features: true, // Fetch features for pricing cards
+            },
+          },
+        },
+      },
+
+      // Team Section
+      'section.team-section': {
+        populate: {
+          sectionIntro: true,
+          members: {
+            populate: {
+              fullname: true,
+              avatar: {
+                fields: ['url'], // Fetch only avatar image URL
+              },
+              posts: {
+                populate: {
+                  pageIntro: true,
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of team members
+            },
+          },
+        },
+      },
+
+      // Reference Section (Clients)
+      'section.reference-section': {
+        populate: {
+          sectionIntro: true,
+          clients: {
+            fields: ['name', 'link'], // Only fetch the client name and link
+            populate: {
+              logo: {
+                fields: ['url'], // Fetch only logo URL
+              },
+            },
+            pagination: {
+              pageSize: 10, // Limit the number of clients
+            },
+          },
+        },
+      },
+
+      // Culture Section
+      'section.culture-section': {
+        populate: {
+          sectionIntro: true,
+          values: {
+            fields: ['title'], // Only fetch titles of values
+          },
+        },
+      },
+
+      // CTA Section
+      'section.cta': {
+        populate: {
+          sectionIntro: true,
+          buttons: true,
+        },
+      },
+
+      // Features Section
       'section.features-section': {
-        populate: ['sectionIntro', 'features'],
+        populate: {
+          sectionIntro: true,
+          features: true,
+        },
       },
+
+      // Testimonials Section
       'section.testimonials': {
-        populate: [
-          'sectionIntro',
-          'testimonials',
-          'testimonials.pageIntro',
-          'testimonials.pageIntro.cover',
-          'testimonials.author',
-          'testimonials.author.avatar',
-          'testimonials.member',
-          'testimonials.member.fullname',
-          'testimonials.member.avatar',
-        ],
+        populate: {
+          sectionIntro: true,
+          testimonials: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              author: {
+                populate: {
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+              member: {
+                populate: {
+                  fullname: true,
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of testimonials
+            },
+          },
+        },
       },
+
+      // Hero Section
       'section.hero-section': {
-        populate: ['sectionIntro', 'sectionIntro.cover', 'buttons', 'logo'],
+        populate: {
+          sectionIntro: {
+            populate: {
+              cover: {
+                fields: ['url'], // Fetch only cover image URL
+              },
+            },
+          },
+          buttons: true,
+          logo: {
+            fields: ['url'], // Fetch only logo URL
+          },
+        },
       },
+      
     },
   },
-}
+};
 
 export const collectionPopulates = {
   projects: {
@@ -125,6 +284,119 @@ export const collectionPopulates = {
       populate: ['metaTitle', 'metaDescription', 'metaImage.url'],
     },
   },
+}
+
+export const defultPopulates = {
+  structure: {
+    on: {
+      'section.hero-section': {
+        populate: {
+          sectionIntro: {
+            populate: {
+              cover: {
+                fields: ['url'], // Fetch only cover image URL
+              },
+            },
+          },
+          buttons: true,
+          logo: {
+            fields: ['url'], // Fetch only logo URL
+          },
+        },
+      },
+      'section.reference-section': {
+        populate: {
+          sectionIntro: true,
+          clients: {
+            fields: ['name', 'link'], // Only fetch the client name and link
+            populate: {
+              logo: {
+                fields: ['url'], // Fetch only logo URL
+              },
+            },
+            pagination: {
+              pageSize: 10, // Limit the number of clients
+            },
+          },
+        },
+      },
+      'section.projects-section': {
+        populate: {
+          sectionIntro: true,
+          projects: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              logo: {
+                fields: ['url'], // Fetch logos with only the URL
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of projects per response
+            },
+          },
+        },
+      },
+      'section.testimonials': {
+        populate: {
+          sectionIntro: true,
+          testimonials: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+              author: {
+                populate: {
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+              member: {
+                populate: {
+                  fullname: true,
+                  avatar: {
+                    fields: ['url'], // Fetch only avatar image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of testimonials
+            },
+          },
+        },
+      },
+      'section.services-section': {
+        populate: {
+          sectionIntro: true,
+          our_services: {
+            populate: {
+              pageIntro: {
+                populate: {
+                  cover: {
+                    fields: ['url'], // Fetch only cover image URL
+                  },
+                },
+              },
+            },
+            pagination: {
+              pageSize: 5, // Limit the number of services
+            },
+          },
+        },
+      },
+    }
+  }
 }
 
 // Helper function to create query params
