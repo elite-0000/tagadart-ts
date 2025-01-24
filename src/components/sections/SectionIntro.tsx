@@ -96,61 +96,6 @@ export function SectionIntro({
     )
   }
 
-  const renderMedia = ({
-    media,
-    embedVideo,
-  }: {
-    media: MediaItem
-    embedVideo?: string
-  }) => {
-    const fileType = cover?.provider_metadata?.resource_type
-    const url = cover?.url
-
-    if (embedVideo) {
-      let embedUrl
-      if (embedVideo.includes('youtube.com/embed')) {
-        embedUrl = embedVideo
-      } else if (
-        embedVideo.includes('youtube.com') ||
-        embedVideo.includes('youtu.be')
-      ) {
-        const videoId = embedVideo.includes('youtube.com')
-          ? new URL(embedVideo).searchParams.get('v')
-          : embedVideo.split('/').pop()
-        embedUrl = `https://www.youtube.com/embed/${videoId}`
-      }
-      return (
-        <iframe
-          width="700"
-          height="600"
-          src={embedUrl}
-          title={cover?.alternativeText || 'YouTube Video'}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full rounded-md shadow-2xl ring-1 ring-gray-900/10"
-        ></iframe>
-      )
-    } else if (fileType === 'image' && url) {
-      return (
-        <Image
-          src={url}
-          alt={cover.alternativeText || 'Cover Image'}
-          width={cover.width}
-          height={cover.height}
-          className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10"
-        />
-      )
-    } else if (fileType === 'video') {
-      return (
-        <video width="700" height="600" controls preload="none">
-          <source src={url} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      )
-    }
-    return null
-  }
-
   return (
     <div
       {...props}

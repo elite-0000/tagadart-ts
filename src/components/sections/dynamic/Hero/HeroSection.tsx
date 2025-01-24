@@ -134,29 +134,6 @@ const SplitHero = ({ heroSection }: HeroProps) => (
 
 const DefaultHero = ({ heroSection }: HeroProps) => (
   <div className="relative isolate overflow-hidden bg-white">
-    <svg
-      aria-hidden="true"
-      className="absolute inset-0 -z-10 h-full w-full stroke-gray-200 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]"
-    >
-      <defs>
-        <pattern
-          x="50%"
-          y={-1}
-          id="hero-pattern"
-          width={200}
-          height={200}
-          patternUnits="userSpaceOnUse"
-        >
-          <path d="M.5 200V.5H200" fill="none" />
-        </pattern>
-      </defs>
-      <rect
-        fill="url(#hero-pattern)"
-        width="100%"
-        height="100%"
-        strokeWidth={0}
-      />
-    </svg>
     <Container>
       <FadeIn>
         <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
@@ -170,26 +147,7 @@ const DefaultHero = ({ heroSection }: HeroProps) => (
                 className="my-8"
               />
             )}
-            {(heroSection.badge_text || heroSection.version_text) && (
-              <div className="mt-24 sm:mt-32 lg:mt-16">
-                <div className="inline-flex space-x-6">
-                  {heroSection.badge_text && (
-                    <span className="rounded-full bg-primary-600/10 px-3 py-1 text-sm font-semibold leading-6 text-primary-600 ring-1 ring-inset ring-primary-600/10">
-                      {heroSection.badge_text}
-                    </span>
-                  )}
-                  {heroSection.version_text && (
-                    <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600">
-                      <span>{heroSection.version_text}</span>
-                      <ChevronRightIcon
-                        className="h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
+
             <SectionIntro {...heroSection.sectionIntro} />
             {heroSection.buttons && heroSection.buttons.length > 0 && (
               <div className="mt-10 flex items-center gap-x-6">
