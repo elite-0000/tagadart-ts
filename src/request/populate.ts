@@ -415,3 +415,35 @@ export const createQueryParams = (
     },
   }
 }
+
+export const createHomeSeoQueryParams = (
+  collection: keyof typeof collectionPopulates,
+  includeStructure = true,
+): RestQueryParams => {
+  return {
+    populate: {
+      ...(collectionPopulates[collection] || {}),
+    },
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+}
+
+export const createHomeQueryParams = (
+  collection: keyof typeof collectionPopulates,
+  includeStructure = true,
+): RestQueryParams => {
+  return {
+    populate: {
+      ...(collectionPopulates[collection] || {}),
+    },
+    publicationState: 'live',
+    pagination: {
+      page: 1,
+      pageSize: 10,
+    },
+  }
+}

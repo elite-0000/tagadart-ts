@@ -4,7 +4,7 @@ import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { generateSlugPageMetadata } from '@/lib/seo'
 import { componentResolver } from '@/lib/componentResolver'
-import { fetchPageBySlug } from '@/request/fetch'
+import { fetchPageBySlug, fetchSEOPageBySlug } from '@/request/fetch'
 
 type Props = {
   params: {
@@ -13,11 +13,10 @@ type Props = {
   }
 }
 
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   const page = await fetchPageBySlug(params.slug, params.lang)
-
-//   return generateSlugPageMetadata({ page })
-// }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const page = await fetchSEOPageBySlug(params.slug, params.lang)
+  return generateSlugPageMetadata({ page })
+}
 
 export default async function PageRoute({ params }: Props) {
   const page = await fetchPageBySlug(params.slug, params.lang)

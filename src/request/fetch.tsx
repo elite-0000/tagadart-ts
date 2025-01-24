@@ -2,7 +2,11 @@
 
 import { fetchAxiosAPI } from '@/request/request'
 import { RestQueryParams } from '@/types/global'
-import { createQueryParams } from './populate'
+import {
+  createHomeQueryParams,
+  createHomeSeoQueryParams,
+  createQueryParams,
+} from './populate'
 
 //////// PAGES
 export async function fetchPageBySlug(slug: string, lang: string) {
@@ -30,12 +34,49 @@ export async function fetchPageBySlug(slug: string, lang: string) {
     throw error
   }
 }
+// fetch
+export async function fetchSEOPageBySlug(slug: string, lang: string) {
+  const querySlug = slug === undefined ? 'home' : slug
+  const path = '/pages'
+
+  const queryParams = {
+    ...createHomeSeoQueryParams('pages'),
+    filters: {
+      slug: {
+        $eq: querySlug,
+      },
+    },
+    locale: lang,
+  }
+
+  try {
+    const startTime = Date.now()
+    const pageData = await fetchAxiosAPI(path, queryParams)
+    const endTime = Date.now()
+    console.log('duration: ', endTime - startTime)
+    return pageData // Return the full response, not just data
+  } catch (error) {
+    console.error('Failed to load page data:', error)
+    throw error
+  }
+}
 //////// COLLECTIONS
 export async function fetchPosts() {
   const queryParams = createQueryParams('posts')
 
   try {
     const postsData = await fetchAxiosAPI('posts', queryParams)
+    return postsData?.data
+  } catch (error) {
+    console.error('Failed to load posts data:', error)
+    throw error
+  }
+}
+export async function fetchHome() {
+  const queryParams = createHomeQueryParams('pages')
+
+  try {
+    const postsData = await fetchAxiosAPI('pages', queryParams)
     return postsData?.data
   } catch (error) {
     console.error('Failed to load posts data:', error)
