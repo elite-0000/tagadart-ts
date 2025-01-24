@@ -13,11 +13,11 @@ type Props = {
   }
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await fetchPageBySlug(params.slug, params.lang)
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   const page = await fetchPageBySlug(params.slug, params.lang)
 
-  return generateSlugPageMetadata({ page })
-}
+//   return generateSlugPageMetadata({ page })
+// }
 
 export default async function PageRoute({ params }: Props) {
   const page = await fetchPageBySlug(params.slug, params.lang)
