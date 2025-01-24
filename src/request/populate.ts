@@ -51,7 +51,7 @@ export const structurePopulate = {
         populate: {
           title: true,
           content: true,
-        }
+        },
       },
 
       // Projects Section
@@ -243,10 +243,9 @@ export const structurePopulate = {
           },
         },
       },
-      
     },
   },
-};
+}
 
 export const collectionPopulates = {
   projects: {
@@ -395,8 +394,8 @@ export const defultPopulates = {
           },
         },
       },
-    }
-  }
+    },
+  },
 }
 
 // Helper function to create query params

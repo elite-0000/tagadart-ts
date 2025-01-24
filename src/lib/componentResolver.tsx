@@ -21,7 +21,6 @@ export const componentResolver = ({
   section: any
   designType: number
 }) => {
-  console.log('component: ', section.__component)
   switch (section.__component) {
     case 'section.text-section':
       return (
