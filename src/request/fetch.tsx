@@ -34,7 +34,33 @@ export async function fetchPageBySlug(slug: string, lang: string) {
     throw error
   }
 }
-// fetch
+// fetch home page
+export async function fetchHomePageBySlug(slug: string, lang: string) {
+  const querySlug = slug === undefined ? 'home' : slug
+  const path = '/pages'
+
+  const queryParams = {
+    ...createHomeQueryParams('pages'),
+    filters: {
+      slug: {
+        $eq: querySlug,
+      },
+    },
+    locale: lang,
+  }
+
+  try {
+    const startTime = Date.now()
+    const pageData = await fetchAxiosAPI(path, queryParams)
+    const endTime = Date.now()
+    console.log('duration: ', endTime - startTime)
+    return pageData // Return the full response, not just data
+  } catch (error) {
+    console.error('Failed to load page data:', error)
+    throw error
+  }
+}
+// fetch ceo
 export async function fetchSEOPageBySlug(slug: string, lang: string) {
   const querySlug = slug === undefined ? 'home' : slug
   const path = '/pages'

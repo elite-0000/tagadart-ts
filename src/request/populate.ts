@@ -438,7 +438,7 @@ export const createHomeQueryParams = (
 ): RestQueryParams => {
   return {
     populate: {
-      ...(collectionPopulates[collection] || {}),
+      ...(includeStructure ? structurePopulate : {}),
     },
     publicationState: 'live',
     pagination: {
