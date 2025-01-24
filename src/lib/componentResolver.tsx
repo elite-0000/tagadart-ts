@@ -121,14 +121,14 @@ export const componentResolver = ({
           designType={designType}
         />
       )
-    case 'section.hero-section':
-      return (
-        <HeroSection
-          key={section.id}
-          heroSection={section}
-          designType={designType}
-        />
-      )
+    // case 'section.hero-section':
+    //   return (
+    //     <HeroSection
+    //       key={section.id}
+    //       heroSection={section}
+    //       designType={designType}
+    //     />
+    //   )
 
     case 'section.testimonials':
       return (
