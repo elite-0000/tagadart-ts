@@ -24,10 +24,7 @@ export async function fetchPageBySlug(slug: string, lang: string) {
   }
 
   try {
-    const startTime = Date.now()
     const pageData = await fetchAxiosAPI(path, queryParams)
-    const endTime = Date.now()
-    console.log('duration: ', endTime - startTime)
     return pageData // Return the full response, not just data
   } catch (error) {
     console.error('Failed to load page data:', error)
