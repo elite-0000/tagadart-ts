@@ -4,11 +4,7 @@ import { PageIntro } from '@/types/global'
 import { Container } from '@/components/ui/Container'
 import { generateSlugPageMetadata } from '@/lib/seo'
 import { componentResolver } from '@/lib/componentResolver'
-import {
-  fetchHomePageBySlug,
-  fetchPageBySlug,
-  fetchHomeSEOPageBySlug,
-} from '@/request/fetch'
+import { fetchHomePageBySlug, fetchHomeSEOPageBySlug } from '@/request/fetch'
 
 type Props = {
   params: {
