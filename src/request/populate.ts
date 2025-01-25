@@ -127,7 +127,7 @@ export const structurePopulate = {
       },
     },
   },
-};
+}
 
 // Helper to populate intro with cover
 function populateIntroWithCover() {
@@ -138,7 +138,7 @@ function populateIntroWithCover() {
       content: true,
       cover: populateImage(), // Fetch only the URL of the cover image
     },
-  };
+  }
 }
 
 // Helper to populate title and content
@@ -148,7 +148,7 @@ function populateTitleAndContent() {
       title: true,
       content: true,
     },
-  };
+  }
 }
 
 // Helper to populate page intro with cover
@@ -162,7 +162,7 @@ function populatePageIntroWithCover() {
         cover: populateImage(), // Fetch only the cover image URL
       },
     },
-  };
+  }
 }
 
 // Helper to populate hero intro with cover
@@ -174,12 +174,12 @@ function populateHeroIntroWithCover() {
       content: true,
       cover: populateImage(), // Fetch only the cover image URL
     },
-  };
+  }
 }
 
 // Helper to fetch image with only URL
 function populateImage() {
-  return { fields: ['url'] }; // Fetch only the URL field for images
+  return { fields: ['url'] } // Fetch only the URL field for images
 }
 
 export const collectionPopulates = {
@@ -360,7 +360,7 @@ export const createHomeSeoQueryParams = (
   collection: keyof typeof collectionPopulates,
   includeStructure = true,
 ): RestQueryParams => {
-  console.log("create collection: ", collection);
+  console.log('create collection: ', collection)
   return {
     populate: {
       ...(collectionPopulates[collection] || {}),
