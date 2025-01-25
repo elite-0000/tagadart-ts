@@ -7,7 +7,7 @@ import { componentResolver } from '@/lib/componentResolver'
 import {
   fetchHomePageBySlug,
   fetchPageBySlug,
-  fetchSEOPageBySlug,
+  fetchHomeSEOPageBySlug,
 } from '@/request/fetch'
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const page = await fetchSEOPageBySlug(params.slug, params.lang)
+  const page = await fetchHomeSEOPageBySlug(params.slug, params.lang)
   return generateSlugPageMetadata({ page })
 }
 

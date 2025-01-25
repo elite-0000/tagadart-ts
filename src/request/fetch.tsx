@@ -61,7 +61,7 @@ export async function fetchHomePageBySlug(slug: string, lang: string) {
   }
 }
 // fetch ceo
-export async function fetchSEOPageBySlug(slug: string, lang: string) {
+export async function fetchHomeSEOPageBySlug(slug: string, lang: string) {
   const querySlug = slug === undefined ? 'home' : slug
   const path = '/pages'
 
