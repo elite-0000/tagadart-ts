@@ -13,7 +13,6 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
   priority?: boolean
   className?: string
   showSkeleton?: boolean
-  //https://cloudinary.com/documentation/resizing_and_cropping#resize_and_crop_modes
   crop?:
     | 'fill'
     | 'crop'
@@ -30,7 +29,6 @@ interface NextCloudinaryImageProps extends Omit<CldImageProps, 'src'> {
     | 'lpad'
     | 'imagga_scale'
     | 'imagga_crop'
-  //https://cloudinary.com/documentation/resizing_and_cropping#control_gravity
   gravity?:
     | 'auto'
     | 'face'
